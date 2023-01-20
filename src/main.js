@@ -1,4 +1,15 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp, getCurrentInstance } from "vue";
 
-createApp(App).mount('#app')
+/*app imports */
+import "@/apps/dantic";
+
+/* const methodThatForcesUpdate = () => {
+  const instance = getCurrentInstance();
+  instance.proxy.forceUpdate();
+}; */
+
+/*entry app*/
+import App from "./App.vue";
+const app = createApp(App);
+app.mount("#entry-app");
+app.unmount();

@@ -1,13 +1,13 @@
 <template>
-    <main />
+    <main-view />
 </template>
 
 <script>
-import main from "./index"
+import mainView from "./ui/index"
 export default {
     name: "DanticApp",
     components: {
-        main
+        mainView
     }
 }
 </script>

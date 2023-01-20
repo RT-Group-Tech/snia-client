@@ -1,9 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { getCurrentInstance } from "vue";
 
-const instace = getCurrentInstance();
+//import { getCurrentInstance } from "vue";
 
-console.log(instace.attrs);
+/* const instace = getCurrentInstance();
+
+console.log(instace.attrs); */
 
 function getRouter(routes) {
   const router = createRouter({

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>Main Entry App</h1>
-  </div>
+  <router-view />
 </template>
 
 <script>

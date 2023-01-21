@@ -2,6 +2,7 @@ import { nSQL } from "nano-sql";
 import model from "../models/user.model";
 
 class UserService {
+  /*create & init database */
   static init(callback) {
     nSQL("userdb")
       .model(model)
@@ -26,6 +27,7 @@ class UserService {
       });
   }
 
+  /*Get all records @param callback:void(resutlt) */
   static all(callback) {
     nSQL("userdb")
       .query("select")
@@ -36,6 +38,7 @@ class UserService {
       });
   }
 
+  /*create new record to database. @params[input:Object, callback:void(result)]*/
   static create(input, callback) {
     let data = {
       name: input.name,

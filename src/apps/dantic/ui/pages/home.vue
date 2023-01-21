@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { nSQL } from "nano-sql";
+import UserService from "@/database/services/user.service";
 export default {
     name: "Home-Page",
 
@@ -37,37 +37,17 @@ export default {
 
     mounted() {
         console.log(process.env.VUE_APP_AUTH_TOKEN);
-        this.createTable();
+        UserService.init((res) => this.users = res);
     },
 
     methods: {
-        async createTable() {
-            let model = [
-                { key: "id", type: "int", props: ["pk", "ai"] },
-                { key: "name", type: "string" },
-                { key: "email", type: "string" },
-                { key: "password", type: "string" },
-            ]
-            nSQL("userdb").model(model).connect().then((res) => {
-                let data = localStorage.getItem("userdb");
-                if (data !== null || data !== undefined) {
-                    let fields = JSON.parse(data)
-                    nSQL("userdb").query("upsert", fields).exec().then((res) => {
-                        this.getAllUsers();
-                    })
 
-                }
-            })
-        },
         getAllUsers() {
-            nSQL("userdb").query("select").exec().then((res) => {
-                localStorage.setItem("userdb", JSON.stringify(res))
-                this.users = res;
-            })
+            UserService.all((results) => this.users = results)
         },
-        async addUser() {
-            let data = { name: this.form.name, email: this.form.email, password: this.form.pwd };
-            nSQL("userdb").query("upsert", data).exec().then((_) => {
+        addUser() {
+            UserService.create(this.form, (res) => {
+                console.log(res);
                 this.getAllUsers()
             })
         }

@@ -1,0 +1,31 @@
+/*    Css for snia    */
+.btn-snia {
+    background-color: #2f9239 !important;
+    color: white;
+    width: 100% !important;
+    transition: .3s all ease-in-out;
+    -webkit-transition: .3s all ease-in-out;
+    -moz-transition: .3s all ease-in-out;
+    -ms-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+}
+
+.btn-snia:hover {
+    background-color: #61d46d !important;
+    color: #fff;
+}
+
+.btn-snia:active,
+.btn-snia:focus {
+    background-color: #61d46d !important;
+    color: #fff
+}
+
+
+.img-login-snia {
+    width: 80%;
+}
+
+.text-color-snia {
+    color: #97c21f;
+}

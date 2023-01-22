@@ -1,9 +1,9 @@
 import { createApp } from "vue";
-import Router from "@/router";
+/* import Router from "@/router"; */
 
 /*app imports */
 import "@/apps/dantic";
-
+import "expose-loader?exposes=$,jQuery!jquery";
 /* const methodThatForcesUpdate = () => {
   const instance = getCurrentInstance();
   instance.proxy.forceUpdate();
@@ -12,11 +12,5 @@ import "@/apps/dantic";
 /*entry app*/
 import App from "./App.vue";
 const app = createApp(App);
-const routes = [
-  {
-    path: "/",
-    component: () => import("@/views/auth/login"),
-  },
-];
-app.use(Router(routes));
 app.mount("#entry-app");
+app.unmount();

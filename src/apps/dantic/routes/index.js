@@ -24,6 +24,12 @@ const routes = [
         beforeEnter: authorize,
       },
       {
+        path: "/dantic/secure/ipa-view",
+        component: () => import("@/apps/dantic/ui/pages/ipa-view"),
+        name: "ipa-view-route",
+        beforeEnter: authorize,
+      },
+      {
         path: "/dantic/secure/agent-creation",
         component: () => import("@/apps/dantic/ui/pages/agent-register"),
         name: "agent-create-route",

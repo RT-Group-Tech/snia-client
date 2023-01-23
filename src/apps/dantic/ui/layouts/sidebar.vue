@@ -48,7 +48,8 @@
                         </span>
                         <h4 class="text-section">Applications</h4>
                     </li>
-                    <li class="nav-item" :class="currentRoute === 'ipa-ita-reg-route' ? 'active' : ''">
+                    <li class="nav-item"
+                        :class="(currentRoute === 'ipa-ita-reg-route') || (currentRoute === 'ipa-view-route') ? 'active' : ''">
                         <a data-toggle="collapse" href="#base">
                             <i class="fas fa-archway"></i>
                             <p>IPA</p>
@@ -62,9 +63,9 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <a href="pages/voir-ipa.html">
+                                    <router-link :to="{ name: 'ipa-view-route' }">
                                         <span class="sub-item">Voir IPA</span>
-                                    </a>
+                                    </router-link>
                                 </li>
                             </ul>
                         </div>

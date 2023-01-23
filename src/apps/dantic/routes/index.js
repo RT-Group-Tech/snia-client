@@ -1,5 +1,4 @@
 import { authorize } from "@/middlewares/auth";
-
 const routes = [
   {
     path: "/",
@@ -7,15 +6,21 @@ const routes = [
     beforeEnter: authorize,
   },
   {
-    path: "/dantic-home",
+    path: "/dantic/secure",
     component: () => import("@/apps/dantic/ui/layouts"),
-    name: "home-secure-dantic-route",
+    name: "dantic-secure-route",
     beforeEnter: authorize,
     children: [
       {
         path: "",
         component: () => import("@/apps/dantic/ui/pages/dashboard"),
         name: "dashboard-route",
+        beforeEnter: authorize,
+      },
+      {
+        path: "/dantic/secure/ipa-ita-register",
+        component: () => import("@/apps/dantic/ui/pages/ipa-ita-register"),
+        name: "ipa-ita-reg-route",
         beforeEnter: authorize,
       },
     ],

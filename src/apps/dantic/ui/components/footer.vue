@@ -16,7 +16,7 @@
                 </ul>
             </nav>
             <div class="copyright ml-auto">
-                2023, made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">rt-group</a>
+                2023 Created By <a href="#">rt-group</a>
             </div>
         </div>
     </footer>

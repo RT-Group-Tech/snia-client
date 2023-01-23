@@ -74,18 +74,19 @@
                                 <div class="card-head-row card-tools-still-right">
                                     <h4 class="card-title">Geolocalisation des IPA & ITA</h4>
                                     <div class="card-tools">
-                                        <button class="btn btn-icon btn-link btn-primary btn-xs"
-                                            @click="isExpanded = !isExpanded"><span class="fa"
-                                                :class="isExpanded ? 'fa-angle-up' : 'fa-angle-down'"></span></button>
-
+                                        <button class="btn btn-icon btn-link btn-primary btn-xs" data-toggle="collapse"
+                                            data-target="#collapseRegion" aria-expanded="false"
+                                            aria-controls="collapseRegion"><span class="fa fa-angle-down">
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                                 <p class="card-category">
                                     Ci-apres la liste des IPA, leurs adresses ainsi que leur haute hierarchie</p>
                             </div>
-                            <div class="card-body animated fadeInUp" v-if="isExpanded">
+                            <div class="card-body collapse show" id="collapseRegion">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-7">
                                         <div class="table-responsive table-hover table-sales">
                                             <table class="table">
                                                 <tbody>
@@ -109,7 +110,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="map--view">
                                             <map-svg @getRegions="regions = $event" />
                                         </div>

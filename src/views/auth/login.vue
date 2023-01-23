@@ -25,12 +25,6 @@
                             </div>
                         </div>
                         <div class=" row form-sub m-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="rememberme">
-                                <label class="text-color-snia custom-control-label " for="rememberme">Souvenir de
-                                    moi</label>
-                            </div>
-
                             <a href="#" class="link  float-right ">Mot de passe perdu?</a>
                         </div>
                         <div class="form-action mb-3">

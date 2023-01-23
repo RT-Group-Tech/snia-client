@@ -3,10 +3,11 @@
         <table id="ipa-datatables" class="display table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>IPA</th>
+                    <th>ITA</th>
                     <th>Nombre d'habitants</th>
                     <th>Superficie</th>
                     <th>Nombre d'agents</th>
+                    <th>Province</th>
                 </tr>
             </thead>
             <tfoot>
@@ -15,6 +16,7 @@
                     <th>Nombre d'habitants</th>
                     <th>Superficie</th>
                     <th>Nombre d'agents</th>
+                    <th>Province</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -23,18 +25,8 @@
                     <td>2505</td>
                     <td>425km<sup>2</sup></td>
                     <td>250</td>
-                    <td><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse"
-                            data-target="#collapseControl" aria-expanded="false" aria-controls="collapseControl">
-                            <span class="caret sr-only"></span>
-                        </button></td>
+                    <td>Kasaï-central</td>
                 </tr>
-                <div class="collapse" id="collapseControl">
-                    <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        Nihil
-                        anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                    </div>
-                </div>
             </tbody>
         </table>
     </div>

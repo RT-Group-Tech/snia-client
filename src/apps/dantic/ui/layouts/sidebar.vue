@@ -70,7 +70,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" :class="currentRoute === 'ita-view-route' ? 'active' : ''">
                         <a data-toggle="collapse" href="#sidebarLayouts">
                             <i class="fas fa-warehouse"></i>
                             <p>ITA</p>
@@ -78,23 +78,22 @@
                         </a>
                         <div class="collapse" id="sidebarLayouts">
                             <ul class="nav nav-collapse">
-
                                 <li>
-                                    <a href="pages/voir-ipa.html">
+                                    <router-link :to="{ name: 'ita-view-route' }">
                                         <span class="sub-item">Voir ITA</span>
-                                    </a>
+                                    </router-link>
                                 </li>
-
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item" :class="currentRoute === 'agent-create-route' ? 'active' : ''">
-                        <a data-toggle="collapse" href="#forms">
+                    <li class="nav-item"
+                        :class="(currentRoute === 'agent-create-route') || (currentRoute === 'agents-view-route') ? 'active' : ''">
+                        <a data-toggle="collapse" href="#agents">
                             <i class="fas fa-users"></i>
                             <p>Agents</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse" id="forms">
+                        <div class="collapse" id="agents">
                             <ul class="nav nav-collapse">
                                 <li>
                                     <router-link :to="{ name: 'agent-create-route' }">
@@ -102,9 +101,9 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <a href="pages/voir-agent.html">
+                                    <router-link :to="{ name: 'agents-view-route' }">
                                         <span class="sub-item">Voir agent</span>
-                                    </a>
+                                    </router-link>
                                 </li>
 
                             </ul>

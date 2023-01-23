@@ -6,15 +6,8 @@
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
                             <h2 class="text-white pb-2 fw-bold">DANTIC</h2>
-                            <h5 class="text-white op-7 mb-2 fw-bold">Liste des Inspections Provinciales à L'Agriculture
-                                (IPA) & des Inspections Territoriales (ITA) y afferents !
+                            <h5 class="text-white op-7 mb-2 fw-bold">Liste des Inspections Territoriales (ITA)!
                             </h5>
-                        </div>
-                        <div class="ml-md-auto py-2 py-md-0">
-
-                            <router-link :to="{ name: 'ipa-ita-reg-route' }" class="btn btn-light"> <i
-                                    class="flaticon-add"></i>
-                                Créer IPA & ITA</router-link>
                         </div>
                     </div>
                 </div>
@@ -25,7 +18,7 @@
                         <div class="card full-height animated fadeInUp">
                             <div class="card-body">
                                 <!-- table pour afficher les ipa & ita -->
-                                <ipa-table></ipa-table>
+                                <ita-table></ita-table>
                                 <!-- end table -->
                             </div>
                         </div>

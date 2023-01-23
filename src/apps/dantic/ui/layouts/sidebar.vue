@@ -132,6 +132,10 @@ export default {
             let route = this.$route.name;
             this.currentRoute = route
         }, 100);
+        var scrollbarDashboard = $(".sidebar .scrollbar");
+        if (scrollbarDashboard.length > 0) {
+            scrollbarDashboard.scrollbar();
+        }
     },
 
 }

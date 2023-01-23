@@ -12,7 +12,7 @@
                         </div>
                         <div class="ml-md-auto py-2 py-md-0">
 
-                            <a href="#" class="btn btn-light"> <i class="flaticon-add-user"></i>
+                            <a href="#" class="btn btn-light"> <i class="flaticon-add"></i>
                                 Créer IPA & ITA</a>
                         </div>
                     </div>
@@ -20,10 +20,12 @@
             </div>
             <div class="page-inner mt--5">
                 <div class="row mt--2">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card full-height animated fadeInUp">
                             <div class="card-body">
-
+                                <!-- table pour afficher les ipa & ita -->
+                                <ipa-table></ipa-table>
+                                <!-- end table -->
                             </div>
                         </div>
                     </div>

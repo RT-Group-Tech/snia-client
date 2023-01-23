@@ -20,7 +20,7 @@
                     <div class="row mt--2">
                         <!-- Données IPA -->
                         <div class="col-md-12">
-                            <div class="card full-height">
+                            <div class="card full-height animated fadeInUp">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-archway mr-0"></i> IPA</h4>
                                 </div>
@@ -35,7 +35,6 @@
                                                         <optgroup label="Sélectionner une province...">
                                                             <option v-for="( province, index) in provinces"
                                                                 :value="province" :key="index">{{ province }}</option>
-
                                                         </optgroup>
                                                     </select>
                                                 </div>
@@ -86,7 +85,7 @@
 
                         <!--  Données Inspecteur -->
                         <div class="col-md-12">
-                            <div class="card full-height">
+                            <div class="card full-height animated fadeInUp">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-user mr-0"></i> INSPECTEUR</h4>
                                 </div>
@@ -162,11 +161,11 @@
                     </div>
                 </form>
 
-                <form novalidate v-else id="form-ita" class="needs-validation">
+                <form novalidate @submit.prevent="submittedStepII" v-else id="form-ita" class="needs-validation">
                     <div class="row mt--2">
                         <!-- Données ITA -->
                         <div class="col-md-12">
-                            <div class="card full-height">
+                            <div class="card full-height animated fadeInUp">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-warehouse mr-0"></i> ITA</h4>
                                 </div>
@@ -231,8 +230,7 @@
                                                 Précédent</button>
                                         </div>
                                         <div class="pull-right">
-                                            <button type="button" @click.prevent="submitted"
-                                                class="btn btn-next btn-success btn-block"><i
+                                            <button type="submit" class="btn btn-next btn-success btn-block"><i
                                                     class="flaticon-check"></i>
                                                 Enregistrer</button>
                                         </div>
@@ -290,7 +288,6 @@ export default {
         },
         /*Lorsque l'on valide la premiere etape*/
         submittedStepI(event) {
-            this.step = 2;
             const forms = document.querySelectorAll("#form-ipa");
             // Loop over them and prevent submission
             Array.from(forms).forEach((form) => {
@@ -315,15 +312,13 @@ export default {
                     form.classList.add("was-validated");
                 }
                 if (form.checkValidity()) {
-                    console.log("form validated");
+                    for (let i = 0; i < this.itas.length; i++) {
+                        // Loop over them and prevent submission
+                        console.log(JSON.stringify(this.itas[i]));
+                    }
                 }
             });
-            for (let i = 0; i < this.itas.length; i++) {
 
-                // Loop over them and prevent submission
-
-                console.log(JSON.stringify(this.itas[i]));
-            }
         }
     },
 

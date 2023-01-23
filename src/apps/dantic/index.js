@@ -5,6 +5,7 @@ import Router from "@/router";
 import routes from "./routes";
 import store from "@/store";
 import Components from "./ui/components";
+import GlobalComponents from "@/components";
 
 /*app instance*/
 const app = createApp(Entry);
@@ -12,6 +13,7 @@ const app = createApp(Entry);
 /*app routes*/
 app.use(Router(routes));
 app.use(Components);
+app.use(GlobalComponents);
 
 /*app vuex store*/
 app.use(store);

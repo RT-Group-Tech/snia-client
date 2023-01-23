@@ -55,21 +55,21 @@ export default {
 
       /**end circles charts init.**/
 
-      /*Line chart*/
-      let totalIncomeChart = document
+      /**bar charts init */
+      var totalIncomeChart = document
         .getElementById("totalIncomeChart")
         .getContext("2d");
 
-      new Chart(totalIncomeChart, {
+      var mytotalIncomeChart = new Chart(totalIncomeChart, {
         type: "bar",
         data: {
-          labels: ["L", "M", "M", "J", "V", "S", "D"],
+          labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
           datasets: [
             {
-              label: "Total statistiques module",
+              label: "Total Income",
               backgroundColor: "#ff9e27",
               borderColor: "rgb(23, 125, 255)",
-              data: [14, 18, 20, 15, 12, 11, 10],
+              data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
             },
           ],
         },
@@ -111,6 +111,8 @@ export default {
         lineColor: "#ffa534",
         fillColor: "rgba(255, 165, 52, .14)",
       });
+
+      /*end bar chart init*/
     },
   },
 };

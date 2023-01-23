@@ -20,7 +20,7 @@
             <div class="page-inner mt--5">
                 <div class="row mt--2">
                     <div class="col-md-6">
-                        <div class="card full-height">
+                        <div class="card full-height animated fadeInUp">
                             <div class="card-body">
                                 <div class="card-title">Statistiques</div>
                                 <div class="card-category">Informations à propos des statistiques du module</div>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card full-height">
+                        <div class="card full-height animated fadeInUp">
                             <div class="card-body">
                                 <div class="card-title">Total des statistiques du module</div>
                                 <div class="row py-3">
@@ -69,77 +69,49 @@
                 </div>
                 <div class="row row-card-no-pd">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card animated fadeInUp">
                             <div class="card-header">
                                 <div class="card-head-row card-tools-still-right">
                                     <h4 class="card-title">Geolocalisation des IPA & ITA</h4>
                                     <div class="card-tools">
-                                        <button class="btn btn-icon btn-link btn-primary btn-xs"><span
-                                                class="fa fa-angle-down"></span></button>
-                                        <button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span
-                                                class="fa fa-sync-alt"></span></button>
-                                        <button class="btn btn-icon btn-link btn-primary btn-xs"><span
-                                                class="fa fa-times"></span></button>
+                                        <button class="btn btn-icon btn-link btn-primary btn-xs"
+                                            @click="isExpanded = !isExpanded"><span class="fa"
+                                                :class="isExpanded ? 'fa-angle-up' : 'fa-angle-down'"></span></button>
+
                                     </div>
                                 </div>
                                 <p class="card-category">
                                     Ci-apres la liste des IPA, leurs adresses ainsi que leur haute hierarchie</p>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body animated fadeInUp" v-if="isExpanded">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="table-responsive table-hover table-sales">
                                             <table class="table">
                                                 <tbody>
-                                                    <tr>
+                                                    <tr v-for="(region, index) in regions" :key="index"
+                                                        id="table-ipa-item">
                                                         <td>
                                                             <div class="flag">
-                                                                <img src="assets/img/flags/cd.png" alt="indonesia">
+                                                                <img src="assets/img/flags/cd.png" alt="rdc">
                                                             </div>
                                                         </td>
                                                         <td>IPA</td>
                                                         <td class="text-right">
-                                                            KINSHASA
+                                                            {{ region.getAttribute('title') }}
                                                         </td>
                                                         <td class="text-right">
                                                             DELIMOND GASTON
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="flag">
-                                                                <img src="assets/img/flags/cd.png" alt="indonesia">
-                                                            </div>
-                                                        </td>
-                                                        <td>IPA</td>
-                                                        <td class="text-right">
-                                                            LUALABA
-                                                        </td>
-                                                        <td class="text-right">
-                                                            CHRIS TENDAY
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="flag">
-                                                                <img src="assets/img/flags/cd.png" alt="indonesia">
-                                                            </div>
-                                                        </td>
-                                                        <td>IPA</td>
-                                                        <td class="text-right">
-                                                            KONGO-CENTRAL
-                                                        </td>
-                                                        <td class="text-right">
-                                                            ISAAC MABUKI
-                                                        </td>
-                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mapcontainer">
-                                            <div id="map-example" class="vmap"></div>
+                                        <div class="map--view">
+                                            <map-svg @getRegions="regions = $event" />
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +121,19 @@
                 </div>
             </div>
         </div>
+        <!-- <p>
+            
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+                Button with data-target
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+            </div>
+        </div> -->
 
 
         <!-- Global footer component -->
@@ -158,7 +143,16 @@
 </template>
 
 <script>
+import DashboardMixin from "../../mixins/dashboard"
 export default {
-    name: "Dashboard"
+    name: "Dashboard",
+    extends: DashboardMixin,
+    data() {
+        return {
+            regions: [],
+            isExpanded: true,
+        }
+    },
+
 }
 </script>

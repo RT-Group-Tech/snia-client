@@ -11,7 +11,7 @@
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
                                 Lionnel nawej
-                                <span class="user-level">Administrateur</span>
+                                <span class="user-level text-success">Administrateur</span>
                                 <span class="caret"></span>
                             </span>
                         </a>
@@ -35,12 +35,12 @@
                     </div>
                 </div>
                 <ul class="nav nav-primary">
-                    <li class="nav-item active">
-                        <a href="#dashboard" class="collapsed" aria-expanded="false">
+                    <li class="nav-item" :class="currentRoute === 'dashboard-route' ? 'active' : ''">
+                        <router-link :to="{ name: 'dashboard-route' }" href="#dashboard" class="collapsed"
+                            aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <p>Tableau de bord</p>
-
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-section">
                         <span class="sidebar-mini-icon">
@@ -48,7 +48,7 @@
                         </span>
                         <h4 class="text-section">Applications</h4>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" :class="currentRoute === 'ipa-ita-reg-route' ? 'active' : ''">
                         <a data-toggle="collapse" href="#base">
                             <i class="fas fa-archway"></i>
                             <p>IPA</p>
@@ -57,9 +57,9 @@
                         <div class="collapse" id="base">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="pages/ajout-ipa.html">
+                                    <router-link :to="{ name: 'ipa-ita-reg-route' }">
                                         <span class="sub-item">Enregistrer IPA</span>
-                                    </a>
+                                    </router-link>
                                 </li>
                                 <li>
                                     <a href="pages/voir-ipa.html">
@@ -87,7 +87,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" :class="currentRoute === 'agent-create-route' ? 'active' : ''">
                         <a data-toggle="collapse" href="#forms">
                             <i class="fas fa-users"></i>
                             <p>Agents</p>
@@ -96,9 +96,9 @@
                         <div class="collapse" id="forms">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="pages/ajout-agent.html">
+                                    <router-link :to="{ name: 'agent-create-route' }">
                                         <span class="sub-item">Enregistrer Agent</span>
-                                    </a>
+                                    </router-link>
                                 </li>
                                 <li>
                                     <a href="pages/voir-agent.html">
@@ -117,9 +117,21 @@
     <!-- End Sidebar -->
 </template>
 <script>
-import DashboardMixin from "../../mixins/dashboard"
+
 export default {
     name: "Sidebar-Layout",
-    extends: DashboardMixin
+    data() {
+        return {
+            currentRoute: ''
+        }
+    },
+
+    mounted() {
+        setInterval(() => {
+            let route = this.$route.name;
+            this.currentRoute = route
+        }, 100);
+    },
+
 }
 </script>

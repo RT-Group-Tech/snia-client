@@ -23,6 +23,12 @@ const routes = [
         name: "ipa-ita-reg-route",
         beforeEnter: authorize,
       },
+      {
+        path: "/dantic/secure/agent-creation",
+        component: () => import("@/apps/dantic/ui/pages/agent-register"),
+        name: "agent-create-route",
+        beforeEnter: authorize,
+      },
     ],
   },
 ];

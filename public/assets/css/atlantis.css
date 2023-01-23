@@ -6773,7 +6773,10 @@ label {
 }
 
 .input-file.input-file-image img.img-upload-preview {
-  max-width: 100%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
   display: block;
   margin-bottom: 15px;
   box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
@@ -6781,6 +6784,10 @@ label {
 
 .input-file.input-file-image img.img-upload-preview.img-circle {
   border-radius: 2000px;
+  -webkit-border-radius: 2000px;
+  -moz-border-radius: 2000px;
+  -ms-border-radius: 2000px;
+  -o-border-radius: 2000px;
 }
 
 .form-control:disabled,

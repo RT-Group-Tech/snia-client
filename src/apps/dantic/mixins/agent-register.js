@@ -10,7 +10,7 @@ export default {
         email: "",
         telephone: "",
         pass: "",
-        adresse: "",
+        adresse: "adresse",
         province: "Kinshasa",
         territoire: "",
         fonction: "Inspecteur",

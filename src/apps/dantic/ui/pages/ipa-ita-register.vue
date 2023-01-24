@@ -75,6 +75,40 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Coordonnée GPS / LONGITUDE <sup class="text-danger">*</sup></label>
+                                                <div class="input-group">
+                                                    <input type="number" v-model="ipa.habitant" class="form-control"
+                                                           placeholder="Longitude..." required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-map-marker-alt"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="invalid-feedback">
+                                                    Longitude requis !
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Coordonnée GPS / LATITUDE <sup class="text-danger">*</sup></label>
+                                                <div class="input-group">
+                                                    <input type="number" v-model="ipa.habitant" class="form-control"
+                                                           placeholder="Latitude..." required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-map-marker-alt"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="invalid-feedback">
+                                                    nombre d'habitant requis !
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +171,103 @@
                                     </div>
                                 </div>
 
+
+                            </div>
+                        </div>
+                        <!-- End Inspecteur -->
+
+                        <!-- section climats !-->
+                        <div class="col-md-12">
+                            <div class="card full-height animated fadeInUp">
+                                <div class="card-header">
+                                    <h4 class="card-title"><i class="fa fa-cloud"></i> Climats</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="border:1px solid lightgrey;">
+                                                <div class="input-group">
+                                                    <label>Tropical </label>
+                                                    <input type="checkbox" class="form-control">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="border:1px solid lightgrey;">
+                                                <div class="input-group">
+                                                    <label>Equatorial </label>
+                                                    <input type="checkbox" class="form-control">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="border:1px solid lightgrey;">
+                                                <div class="input-group">
+                                                    <label>Montagne </label>
+                                                    <input type="checkbox" class="form-control">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end section climats !-->
+
+                        <!-- section specifite !-->
+                        <div class="col-md-12">
+                            <div class="card full-height animated fadeInUp">
+                                <div class="card-header">
+                                    <h4 class="card-title"><i class="fa fa-info-circle"></i> Characteristiques ou spécificités</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="border:1px solid lightgrey;">
+                                                <div class="input-group">
+                                                    <label>Hydrographie danse </label>
+                                                    <input type="checkbox" class="form-control">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="border:1px solid lightgrey;">
+                                                <div class="input-group">
+                                                    <label>Characteristique 2 </label>
+                                                    <input type="checkbox" class="form-control">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="border:1px solid lightgrey;">
+                                                <div class="input-group">
+                                                    <label>Characteristique 3    </label>
+                                                    <input type="checkbox" class="form-control">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="card-footer">
                                     <!-- Submit buttons -->
                                     <div class="wizard-action">
@@ -149,10 +280,10 @@
                                     </div>
                                     <!-- end submit -->
                                 </div>
+
                             </div>
                         </div>
-                        <!-- End Inspecteur -->
-
+                        <!-- end section specifite !-->
 
                     </div>
                 </form>

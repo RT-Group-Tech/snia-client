@@ -102,7 +102,7 @@
                                                             {{ region.getAttribute('title') }}
                                                         </td>
                                                         <td class="text-right">
-                                                            DELIMOND GASTON
+                                                            Dan Beya | dan@gmail.com
                                                         </td>
                                                     </tr>
 

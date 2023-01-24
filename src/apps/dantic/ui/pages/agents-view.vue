@@ -126,7 +126,6 @@ export default {
     },
 
     mounted() {
-
         /*init dataTable*/
         $('#agents-datatables').DataTable({
             "language": {

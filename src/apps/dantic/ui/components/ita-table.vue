@@ -20,13 +20,13 @@
                 </tr>
             </tfoot>
             <tbody>
-                <tr v-for="a in 10" :key="a">
+                <!-- <tr v-for="a in 10" :key="a">
                     <td>Kananga</td>
                     <td>2505</td>
                     <td>425km<sup>2</sup></td>
                     <td>250</td>
                     <td>Kasaï-central</td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>

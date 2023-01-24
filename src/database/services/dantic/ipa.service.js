@@ -26,7 +26,9 @@ class IpaService {
       });
   }
 
-  /*Get all records @param callback:void(resutlt) */
+  /***
+   * Get all records @param callback:void(resutlt)
+   **/
   static getAll(callback) {
     nSQL("ipa_table")
       .query("select")
@@ -37,7 +39,9 @@ class IpaService {
       });
   }
 
-  /*create new record to database. @params[input:Object, callback:void(result)]*/
+  /***
+   * create new record to database @param[input:Object,callback:void(result)]
+   **/
   static create(input, callback) {
     nSQL("ipa_table")
       .query("upsert", input)

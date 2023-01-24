@@ -28,8 +28,8 @@
                                     <div class="form-group">
                                         <label>Nom & Postnom <sup class="text-danger">*</sup> </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="nom & postnom..."
-                                                required>
+                                            <input type="text" v-model="formAgent.nom" class="form-control"
+                                                placeholder="nom & postnom..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="flaticon-user"></i>
@@ -40,7 +40,8 @@
                                     <div class="form-group">
                                         <label>Prenom <sup class="text-danger">*</sup> </label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="prenom..." required>
+                                            <input type="text" class="form-control" v-model="formAgent.prenom"
+                                                placeholder="prenom..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="flaticon-user"></i>
@@ -78,8 +79,8 @@
                                     <div class="form-group">
                                         <label>Email <sup class="text-danger">*</sup> </label>
                                         <div class="input-group">
-                                            <input type="email" class="form-control" placeholder="Adresse e-mail..."
-                                                required>
+                                            <input type="email" v-model="formAgent.email" class="form-control"
+                                                placeholder="Adresse e-mail..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="flaticon-envelope-1"></i>
@@ -95,7 +96,8 @@
                                                     +243
                                                 </span>
                                             </div>
-                                            <input type="tel" class="form-control" placeholder="Téléphone..." required>
+                                            <input type="tel" v-model="formAgent.telephone" class="form-control"
+                                                placeholder="Téléphone..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="fa fa-phone"></i>
@@ -106,8 +108,8 @@
                                     <div class="form-group">
                                         <label>Mot de passe <sup class="text-danger">*</sup> </label>
                                         <div class="input-group">
-                                            <input type="password" class="form-control" placeholder="Mot de passe..."
-                                                required>
+                                            <input type="password" v-model="formAgent.pass" class="form-control"
+                                                placeholder="Mot de passe..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="flaticon-lock"></i>
@@ -119,7 +121,7 @@
                                     <div class="form-group">
                                         <label>Confirmation mot de passe <sup class="text-danger">*</sup> </label>
                                         <div class="input-group">
-                                            <input type="password" class="form-control"
+                                            <input type="password" class="form-control" v-model="confirm"
                                                 placeholder="Confirmation mot de passe..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -144,12 +146,14 @@
                                             <div class="form-group">
                                                 <label>Territoire<sup class="text-danger">*</sup></label>
                                                 <div class="select2-input">
-                                                    <select id="basic" name="basic" class="form-control" required>
+                                                    <select v-model="formAgent.territoire" id="basic" name="basic"
+                                                        class="form-control" required>
                                                         <option value="">&nbsp;</option>
                                                         <optgroup label="Sélectionner une territoire...">
-                                                            <option>Dibaya</option>
-                                                            <option>Demba</option>
-                                                            <option>Idiofa</option>
+                                                            <option value="Dibaya">Dibaya</option>
+                                                            <option value="Demba">Demba</option>
+                                                            <option value="Idiofa">Idiofa</option>
+                                                            <option value="Dibelenge">Dibelenge</option>
                                                         </optgroup>
                                                     </select>
                                                 </div>
@@ -162,8 +166,8 @@
                                             <div class="form-group">
                                                 <label>Adresse <sup class="text-danger">*</sup> </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Superficie..."
-                                                        required>
+                                                    <input type="text" v-model="formAgent.adresse" class="form-control"
+                                                        placeholder="Adresse..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-map-signs"></i>

@@ -10,7 +10,6 @@
                                 Provinciales à l'Agriculture (IPA) & des Inspections Territoriales (ITA) y afferents.
                             </h5>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -30,13 +29,12 @@
                                             <div class="form-group">
                                                 <label>Province <sup class="text-danger">*</sup></label>
                                                 <div class="select2-input">
-                                                    <select id="basic" name="basic" class="form-control" required>
+                                                    <select id="provinceSelect" name="basic" class="form-control">
                                                         <option value="">&nbsp;</option>
-                                                        <optgroup label="Sélectionner une province...">
-                                                            <option v-for="( province, index) in provinces"
-                                                                :value="province" :key="index">{{ province }}</option>
-                                                        </optgroup>
+                                                        <option v-for="( province, index) in provinces"
+                                                            :value="province" :key="index">{{ province }}</option>
                                                     </select>
+                                                    {{ ipa.province }}
                                                 </div>
                                                 <div class="invalid-feedback">
                                                     Selectionnez une province !
@@ -47,8 +45,8 @@
                                             <div class="form-group">
                                                 <label>Superficie <sup class="text-danger">*</sup> </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Superficie..."
-                                                        required>
+                                                    <input type="text" v-model="ipa.superficie" class="form-control"
+                                                        placeholder="Superficie..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-map"></i>
@@ -64,8 +62,8 @@
                                             <div class="form-group">
                                                 <label>Habitant <sup class="text-danger">*</sup></label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" placeholder="habitant..."
-                                                        required>
+                                                    <input type="number" v-model="ipa.habitant" class="form-control"
+                                                        placeholder="habitant..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-users"></i>
@@ -95,7 +93,7 @@
                                             <div class="form-group">
                                                 <label>Nom <sup class="text-danger">*</sup></label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" v-model="isp.nom" class="form-control"
                                                         placeholder="Nom de l'inspecteur..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
@@ -111,7 +109,7 @@
                                             <div class="form-group">
                                                 <label>E-mail <sup class="text-danger">*</sup></label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
+                                                    <input type="email" v-model="isp.email" class="form-control"
                                                         placeholder="Adresse e-mail..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
@@ -120,7 +118,6 @@
                                                     </div>
 
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -132,10 +129,9 @@
                                                             +243
                                                         </span>
                                                     </div>
-                                                    <input type="numeric" class="form-control"
+                                                    <input type="text" v-model="isp.portable" class="form-control"
                                                         placeholder="n° portable..." required>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -189,7 +185,7 @@
                                             <div class="form-group">
                                                 <label>Superficie <sup class="text-danger">*</sup> </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" v-model="ita.superficie"
+                                                    <input type="number" class="form-control" v-model="ita.superficie"
                                                         placeholder="Superficie..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
@@ -240,8 +236,6 @@
                             </div>
                         </div>
                         <!-- End Données ITA-->
-
-
                     </div>
                 </form>
 
@@ -256,15 +250,29 @@
 </template>
 
 <script>
+import IpaService from "@/database/services/dantic/ipa.service"
 import IpaItaRegMixin from "../../mixins/ipa.ita.register"
+import servicesMixins from '../../mixins/services.mixins'
 export default {
     name: "Ipa-Ipa-Register",
     extends: IpaItaRegMixin,
-
+    mixins: [servicesMixins],
 
     data() {
         return {
             itas: [],
+            ipa: {
+                province: '',
+                superficie: '',
+                habitant: '',
+                inspecteur: {},
+                territoires: []
+            },
+            isp: {
+                nom: '',
+                email: '',
+                portable: ''
+            },
             step: 1,
         }
     },
@@ -286,6 +294,16 @@ export default {
         removeIta(index) {
             this.itas.splice(index, 1)
         },
+
+        resetForms() {
+            this.ipa.province = ''
+            this.ipa.habitant = ''
+            this.ipa.superficie = ''
+            this.ipa.inspecteur = {}
+            this.ipa.territoires = []
+            this.isp = {}
+            this.itas = []
+        },
         /*Lorsque l'on valide la premiere etape*/
         submittedStepI(event) {
             const forms = document.querySelectorAll("#form-ipa");
@@ -296,14 +314,16 @@ export default {
                     event.stopPropagation();
                     form.classList.add("was-validated");
                 }
-
                 if (form.checkValidity()) {
+                    let province = $("#provinceSelect").val()
+                    this.ipa.province = province
                     this.step = 2;
                 }
             });
         },
         /*Validation de la dexieme etape*/
         submittedStepII() {
+            let data = this.ipa;
             const forms = document.querySelectorAll("#form-ita");
             Array.from(forms).forEach((form) => {
                 if (!form.checkValidity()) {
@@ -312,10 +332,28 @@ export default {
                     form.classList.add("was-validated");
                 }
                 if (form.checkValidity()) {
-                    for (let i = 0; i < this.itas.length; i++) {
-                        // Loop over them and prevent submission
-                        console.log(JSON.stringify(this.itas[i]));
-                    }
+                    data.territoires = this.itas;
+                    data.inspecteur = this.isp;
+                    IpaService.create(data, (res) => {
+                        form.reset();
+                        this.resetForms();
+                        this.step = 1
+                        $.notify(
+                            {
+                                icon: "fa fa-check-double",
+                                title: "Opération effectuée!",
+                                message: "Nouvelle IPA créée avec succès!",
+                            },
+                            {
+                                type: "success",
+                                placement: {
+                                    from: "bottom",
+                                    align: "right",
+                                },
+                                time: 2000,
+                            }
+                        );
+                    })
                 }
             });
 

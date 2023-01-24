@@ -145,9 +145,11 @@
 
 <script>
 import DashboardMixin from "../../mixins/dashboard"
+import servicesMixins from "../../mixins/services.mixins";
 export default {
     name: "Dashboard",
     extends: DashboardMixin,
+    mixins:[servicesMixins],
     data() {
         return {
             regions: [],

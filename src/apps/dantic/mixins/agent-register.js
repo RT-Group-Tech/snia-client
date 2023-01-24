@@ -19,16 +19,10 @@ export default {
     };
   },
 
-  mounted() {
-    /*create & init client side Agent DbTable*/
-    AgentService.init((res) => {
-      console.log(JSON.stringify(res));
-    });
-  },
-
   methods: {
     /*uploading & rendering file img*/
     upload(event) {
+      //this.$refs.agentFile.files[0];
       let file = event.target.files[0];
       if (file.size > 3048576) {
         $.notify(
@@ -57,8 +51,10 @@ export default {
     },
 
     /*This method allow to create new user*/
-    submitAgent(event) {
+    createAgent(event) {
       let data = this.formAgent;
+      let territoire = $("#territoireSelect").val();
+      data.territoire = territoire;
       const forms = document.querySelectorAll("#form-agent");
       // Loop over them and prevent submission
       Array.from(forms).forEach((form) => {
@@ -69,12 +65,12 @@ export default {
         }
 
         if (form.checkValidity()) {
-          if (this.formAgent.pass !== this.confirm) {
+          if (data.pass !== this.confirm) {
             $.notify(
               {
                 icon: "fa fa-info",
-                title: "Mot de passe incorrect",
-                message: "vous devez confirmer votre mot de passe !",
+                title: "Erreur",
+                message: "Vous devez confirmer votre mot de passe ...",
               },
               {
                 type: "error",
@@ -85,12 +81,27 @@ export default {
                 time: 1000,
               }
             );
-          } else {
-            console.log(data);
-            AgentService.create(data, (res) => {
-              console.log(JSON.stringify(res));
-            });
+            return;
           }
+
+          AgentService.create(data, (res) => {
+            form.reset();
+            $.notify(
+              {
+                icon: "fa fa-check-double",
+                title: "Succès",
+                message: "Nouveau agent créé avec succès !",
+              },
+              {
+                type: "success",
+                placement: {
+                  from: "bottom",
+                  align: "right",
+                },
+                time: 1000,
+              }
+            );
+          });
         }
       });
     },

@@ -25,7 +25,7 @@
                         <div class="card full-height animated fadeInUp">
                             <div class="card-body">
                                 <!-- table pour afficher les ipa & ita -->
-                                <ipa-table></ipa-table>
+                                <ipa-table :data="ipas"></ipa-table>
                                 <!-- end table -->
                             </div>
                         </div>
@@ -33,20 +33,6 @@
                 </div>
             </div>
         </div>
-        <!-- <p>
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
-            </button>
-        </p>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
-        </div> -->
-
-
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
@@ -54,7 +40,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
-    name: "Ipa-view"
+    name: "Ipa-view",
+    mounted() {
+        this.$store.dispatch('dantic/viewIpas')
+    },
+
+    computed: {
+        ...mapGetters({
+            ipas: 'dantic/GET_IPAS'
+        })
+    },
 }
 </script>

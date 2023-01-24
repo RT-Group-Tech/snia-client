@@ -20,11 +20,11 @@
                 </tr>
             </tfoot>
             <tbody>
-                <tr v-for="a in 10" :key="a">
-                    <td>Kananga</td>
-                    <td>2505</td>
-                    <td>425km<sup>2</sup></td>
-                    <td>250</td>
+                <tr v-for="(ipa, index) in data" :key="index">
+                    <td>{{ ipa.province }}</td>
+                    <td>{{ ipa.habitant }}</td>
+                    <td>{{ ipa.superficie }}km<sup>2</sup></td>
+                    <td>10</td>
                     <td><button class="btn btn-secondary btn-sm">voir ITA</button></td>
                 </tr>
             </tbody>
@@ -35,6 +35,12 @@
 <script>
 export default {
     name: "ItaExpandedList",
+    props: {
+        data: {
+            type: Array,
+            default: () => []
+        }
+    },
     mounted() {
         $('#ipa-datatables').DataTable({
             "language": {

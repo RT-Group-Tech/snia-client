@@ -68,22 +68,22 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <tr v-for="a in 10" :key="a">
+                                            <tr v-for="(agent, index) in agents" :key="index">
                                                 <td>
                                                     <div class="avatar avatar-sm">
-                                                        <img src="assets/img/jm_denis.jpg" alt="photo"
+                                                        <img src="assets/img/picture_placeholder.png" alt="photo"
                                                             class="avatar-img rounded">
                                                     </div>
 
                                                 </td>
 
-                                                <td>Gaston Delimond</td>
-                                                <td>+243813719944</td>
-                                                <td>gastondelimond@gmail.com</td>
-                                                <td>03, Bismark, Golf Gombe</td>
-                                                <td>Lukunga</td>
-                                                <td>Kinshasa</td>
-                                                <td>Inspecteur</td>
+                                                <td>{{ agent.nom }}</td>
+                                                <td>{{ agent.telephone }}</td>
+                                                <td>{{ agent.email }}</td>
+                                                <td>{{ agent.adresse }}</td>
+                                                <td>{{ agent.territoire }}</td>
+                                                <td>{{ agent.province }}</td>
+                                                <td>{{ agent.fonction }}</td>
                                                 <td>
                                                     <button type="button" data-toggle="tooltip"
                                                         title=" Voir agent & modification"
@@ -112,10 +112,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
     name: "Ipa-view",
 
+    computed: {
+        ...mapGetters({
+            agents: 'dantic/GET_AGENTS'
+        })
+    },
+
     mounted() {
+
+        /*Call view all agent function from store*/
+        this.$store.dispatch('dantic/viewAgents');
+
+        /*init dataTable*/
         $('#agents-datatables').DataTable({
             "language": {
                 "paginate": {
@@ -130,5 +142,7 @@ export default {
             }
         })
     }
+
+
 }
 </script>

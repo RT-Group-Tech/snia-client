@@ -36,7 +36,7 @@ export default {
   },
 
   mounted() {
-    $("#basic").select2({
+    $("#provinceSelect").select2({
       theme: "bootstrap",
     });
   },

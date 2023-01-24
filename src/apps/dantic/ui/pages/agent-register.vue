@@ -15,7 +15,8 @@
                 </div>
             </div>
             <div class="page-inner mt--5">
-                <form novalidate id="form-agent" @submit.prevent="submitAgent" class="needs-validation">
+                <form id="form-agent" enctype="multipart/form-data" @submit.prevent="createAgent"
+                    class="needs-validation" novalidate>
                     <div class="row mt--2">
                         <!-- Infos personnelles agent -->
                         <div class="col-md-6">
@@ -57,7 +58,7 @@
                                                 alt="photo">
                                             <input @change="upload" type="file" ref="agentFile"
                                                 class="form-control form-control-file" id="uploadImg" name="uploadImg"
-                                                accept="image/*" required>
+                                                accept="image/*">
                                             <label for="uploadImg" class=" label-input-file btn btn-secondary">Charger
                                                 une photo</label>
                                         </div>
@@ -96,7 +97,7 @@
                                                     +243
                                                 </span>
                                             </div>
-                                            <input type="tel" v-model="formAgent.telephone" class="form-control"
+                                            <input type="text" v-model="formAgent.telephone" class="form-control"
                                                 placeholder="Téléphone..." required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -146,15 +147,12 @@
                                             <div class="form-group">
                                                 <label>Territoire<sup class="text-danger">*</sup></label>
                                                 <div class="select2-input">
-                                                    <select v-model="formAgent.territoire" id="basic" name="basic"
-                                                        class="form-control" required>
+                                                    <select id="territoireSelect" name="basic" class="form-control">
                                                         <option value="">&nbsp;</option>
-                                                        <optgroup label="Sélectionner une territoire...">
-                                                            <option value="Dibaya">Dibaya</option>
-                                                            <option value="Demba">Demba</option>
-                                                            <option value="Idiofa">Idiofa</option>
-                                                            <option value="Dibelenge">Dibelenge</option>
-                                                        </optgroup>
+                                                        <option value="Dibaya">Dibaya</option>
+                                                        <option value="Demba">Demba</option>
+                                                        <option value="Idiofa">Idiofa</option>
+                                                        <option value="Dibelenge">Dibelenge</option>
                                                     </select>
                                                 </div>
                                                 <div class="invalid-feedback">
@@ -207,9 +205,11 @@
 <script>
 import "@/assets/select2/select2.full.min.js";
 import AgentRegMixin from "../../mixins/agent-register"
+import servicesMixins from '../../mixins/services.mixins';
 export default {
     name: 'Agent-register',
     extends: AgentRegMixin,
+    mixins: [servicesMixins],
     data() {
         return {
             agentImg: ''
@@ -217,11 +217,9 @@ export default {
     },
 
     mounted() {
-        $("#basic").select2({
+        $("#territoireSelect").select2({
             theme: "bootstrap",
         });
     },
-
-
 }
 </script>

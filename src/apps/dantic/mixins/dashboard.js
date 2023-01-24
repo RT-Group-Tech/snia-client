@@ -1,8 +1,10 @@
+
 export default {
   name: "Dashboard-mixin",
 
   mounted() {
     this.loadCharts();
+    
   },
 
   methods: {

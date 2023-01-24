@@ -1,24 +1,24 @@
 import { nSQL } from "nano-sql";
-import model from "../../models/dantic/agent.model";
-class AgentService {
+import model from "../../models/dantic/ipa.model";
+class IpaService {
   /*create & init database */
   static init(callback) {
-    nSQL("agents_table")
+    nSQL("ipa_table")
       .model(model)
       .connect()
       .then((__) => {
-        let data = localStorage.getItem("agents_table");
+        let data = localStorage.getItem("ipa_table");
         if (data !== null || data !== undefined) {
           let fields = JSON.parse(data);
-          nSQL("agents_table")
+          nSQL("ipa_table")
             .query("upsert", fields)
             .exec()
             .then((_) => {
-              nSQL("agents_table")
+              nSQL("ipa_table")
                 .query("select")
                 .exec()
                 .then((res) => {
-                  localStorage.setItem("agents_table", JSON.stringify(res));
+                  localStorage.setItem("ipa_table", JSON.stringify(res));
                   callback(res);
                 });
             });
@@ -28,24 +28,25 @@ class AgentService {
 
   /*Get all records @param callback:void(resutlt) */
   static getAll(callback) {
-    nSQL("agents_table")
+    nSQL("ipa_table")
       .query("select")
       .exec()
       .then((res) => {
-        localStorage.setItem("agents_table", JSON.stringify(res));
+        localStorage.setItem("ipa_table", JSON.stringify(res));
         callback(res);
       });
   }
 
   /*create new record to database. @params[input:Object, callback:void(result)]*/
   static create(input, callback) {
-    nSQL("agents_table")
+    nSQL("ipa_table")
       .query("upsert", input)
       .exec()
       .then((res) => {
+        this.getAll((e) => console.log(JSON.stringify(e)));
         callback(res);
       });
   }
 }
 
-export default AgentService;
+export default IpaService;

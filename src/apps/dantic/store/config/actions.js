@@ -1,16 +1,17 @@
-const actions = {
-  increment({ commit, state }) {
-    let n = state.count;
-    n++;
+import AgentService from "@/database/services/dantic/agent.service";
+import IpaService from "@/database/services/dantic/ipa.service";
 
-    commit("setCount", n);
+const actions = {
+  /*Permet de voir tous les agent via la dbTable locale*/
+  viewAgents({ commit }) {
+    AgentService.getAll((data) => {
+      commit("SET_AGENTS", data);
+    });
   },
-  decrement({ commit, state }) {
-    let n = state.count;
-    if (n >= 1) {
-      n--;
-    }
-    commit("setCount", n);
+  viewIpas({ commit }) {
+    IpaService.getAll((data) => {
+      commit("SET_IPAS", data);
+    });
   },
 };
 

@@ -7,5 +7,6 @@ export default {
     /*init local database from client side service*/
     AgentService.init((res) => console.log(res));
     IpaService.init((res) => console.log(res));
+    console.log("mixins services");
   },
 };

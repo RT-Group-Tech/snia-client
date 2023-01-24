@@ -2,9 +2,9 @@
     <div class="main-header">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="white">
-            <a href="index.html" class="logo">
+            <router-link :to="{ name: 'dashboard-route' }" class="logo">
                 <img src="assets/img/logo_snia.png" alt="navbar brand" class="navbar-brand img-login-snia">
-            </a>
+            </router-link>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
@@ -77,7 +77,7 @@
                         <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
                             <div class="quick-actions-header">
                                 <span class="title mb-1">MODULE DANTIC</span>
-                                <span class="subtitle op-8">lionnel nawej</span>
+                                <span class="subtitle op-8">{{ user.name }}</span>
                             </div>
                             <div class="quick-actions-scroll scrollbar-outer">
                                 <div class="quick-actions-items">
@@ -116,19 +116,20 @@
                     <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="assets/img/picture_placeholder.png" alt="..."
+                                    class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
                             <div class="dropdown-user-scroll scrollbar-outer">
                                 <li>
                                     <div class="user-box">
-                                        <div class="avatar-lg"><img src="assets/img/profile.jpg" alt="image profile"
-                                                class="avatar-img rounded"></div>
+                                        <div class="avatar-lg"><img src="assets/img/picture_placeholder.png"
+                                                alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>Lionnel nawej kayembe</h4>
-                                            <p class="text-muted">lionnel@example.com</p><a href="profile.html"
-                                                class="btn btn-xs btn-secondary btn-sm">Voir mon profil</a>
+                                            <h4>{{ user.name }}</h4>
+                                            <p class="text-muted">{{ user.email }}</p><a href="#"
+                                                class="btn btn-xs btn-dark btn-sm">Voir mon profil</a>
                                         </div>
                                     </div>
                                 </li>
@@ -138,7 +139,9 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Parametres comptes</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login.html">Me deconnecter</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"
+                                        @click="$router.replace({ name: 'login' })">Me
+                                        Déconnecter</a>
                                 </li>
                             </div>
                         </ul>
@@ -150,6 +153,7 @@
     </div>
 </template>
 <script>
+import { mapGetters } from "vuex"
 export default {
     name: 'Header-Layout',
 
@@ -157,6 +161,11 @@ export default {
         focusSearch() {
             $('#search-nav').toggleClass("focus");
         }
+    },
+    computed: {
+        ...mapGetters({
+            user: "GET_USER"
+        })
     },
 }
 </script>

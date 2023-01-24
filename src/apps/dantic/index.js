@@ -7,11 +7,15 @@ import store from "@/store";
 import Components from "./ui/components";
 import GlobalComponents from "@/components";
 
+/*auth middleware */
+import { authorize } from "@/middlewares/auth";
 /*app instance*/
 const app = createApp(Entry);
 
 /*app routes*/
 app.use(Router(routes));
+
+/** Before app router each check if user is authorized */
 app.use(Components);
 app.use(GlobalComponents);
 

@@ -6,15 +6,15 @@
                 <form class="needs-validation" id="form-login" @submit.prevent="loggedIn" novalidate>
                     <div class="login-form">
                         <div class="form-group form-floating-label">
-                            <input id="username" name="username" type="text" class=" form-control input-border-bottom"
-                                required>
+                            <input id="username" v-model="user.email" name="username" type="text"
+                                class=" form-control input-border-bottom" required>
                             <label for="username" class="placeholder text-color-snia">Identifiant</label>
                             <div class="invalid-feedback">
                                 votre idantifiant est requis !
                             </div>
                         </div>
                         <div class="form-group form-floating-label">
-                            <input id="password" name="password" :type="inputType"
+                            <input id="password" name="password" v-model="user.password" :type="inputType"
                                 class="form-control input-border-bottom" required>
                             <label for="password" class="placeholder text-color-snia">Mot de passe</label>
                             <div class="show-password" @click="toggleVisibility">
@@ -42,6 +42,6 @@
 import LoginMixin from "@/mixins/auth/login"
 export default {
     name: "Login",
-    extends: LoginMixin
+    extends: LoginMixin,
 }
 </script>

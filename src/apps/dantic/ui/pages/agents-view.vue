@@ -112,20 +112,20 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
+import servicesMixins from '../../mixins/services.mixins';
 export default {
     name: "Ipa-view",
+    mixins: [servicesMixins],
 
     computed: {
         ...mapGetters({
             agents: 'dantic/GET_AGENTS'
         })
+
     },
 
     mounted() {
-
-        /*Call view all agent function from store*/
-        this.$store.dispatch('dantic/viewAgents');
 
         /*init dataTable*/
         $('#agents-datatables').DataTable({
@@ -141,6 +141,7 @@ export default {
                 "search": "Recherche"
             }
         })
+        this.$store.dispatch('dantic/viewAgents')
     }
 
 

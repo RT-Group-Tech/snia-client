@@ -3,13 +3,13 @@ import model from "../models/user.model";
 
 class UserService {
   /*create & init database */
-  static init(callback) {
+  static async init(callback) {
     nSQL("userdb")
       .model(model)
       .connect()
       .then((res) => {
         let data = localStorage.getItem("userdb");
-        if (data !== null || data !== undefined) {
+        if (data !== null || data !== undefined || data.length === 0) {
           let fields = JSON.parse(data);
           nSQL("userdb")
             .query("upsert", fields)
@@ -28,7 +28,7 @@ class UserService {
   }
 
   /*Get all records @param callback:void(resutlt) */
-  static all(callback) {
+  static async all(callback) {
     nSQL("userdb")
       .query("select")
       .exec()
@@ -39,17 +39,33 @@ class UserService {
   }
 
   /*create new record to database. @params[input:Object, callback:void(result)]*/
-  static create(input, callback) {
-    let data = {
-      name: input.name,
-      email: input.email,
-      password: input.pwd,
-    };
+  static async create(input, callback) {
     nSQL("userdb")
-      .query("upsert", data)
+      .query("upsert", input)
       .exec()
       .then((res) => {
         callback(res);
+      });
+  }
+
+  static login(user, callback) {
+    nSQL("userdb")
+      .query("select")
+      .where([
+        ["email", "=", user.email],
+        "AND",
+        ["password", "=", user.password],
+      ])
+      .exec()
+      .then((res) => {
+        let access = false;
+        if (res.length > 0) {
+          localStorage.setItem("userToken", JSON.stringify(res[0]));
+          access = true;
+        } else {
+          access = false;
+        }
+        callback(access);
       });
   }
 }

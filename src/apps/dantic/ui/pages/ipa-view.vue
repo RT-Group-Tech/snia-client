@@ -43,9 +43,6 @@
 import { mapGetters } from "vuex"
 export default {
     name: "Ipa-view",
-    mounted() {
-        this.$store.dispatch('dantic/viewIpas')
-    },
 
     computed: {
         ...mapGetters({

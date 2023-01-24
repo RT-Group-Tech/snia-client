@@ -7,6 +7,7 @@ export default {
   },
   mounted() {
     this.loadFonts();
+    this.$store.dispatch("refreshLoggedUser");
   },
   methods: {
     /*Load web font*/

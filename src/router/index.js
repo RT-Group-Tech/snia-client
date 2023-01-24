@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-
 //import { getCurrentInstance } from "vue";
 
 /* const instace = getCurrentInstance();

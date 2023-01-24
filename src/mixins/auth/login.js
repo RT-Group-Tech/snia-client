@@ -1,13 +1,23 @@
+import UserService from "@/database/services/user.service";
+
 export default {
   name: "login-mixin",
   data() {
     return {
       inputType: "password",
-      form: {
+      user: {
         email: "",
-        pass: "",
+        password: "",
       },
     };
+  },
+  beforeUnmount() {
+    this.$router.go();
+  },
+
+  async mounted() {
+    await UserService.init((res) => console.log(JSON.stringify(res)));
+    await this.initDefaultUsers();
   },
 
   methods: {
@@ -25,7 +35,31 @@ export default {
         }
 
         if (form.checkValidity()) {
-          console.log("form validated");
+          let user = {
+            email: this.user.email,
+            password: this.user.password,
+          };
+          UserService.login(user, (result) => {
+            if (result) {
+              this.$router.replace({ name: "dantic-secure-route" });
+            } else {
+              $.notify(
+                {
+                  icon: "fa fa-info",
+                  title: "Opération echoué!",
+                  message: "identifiant ou mot de passe erroné !",
+                },
+                {
+                  type: "error",
+                  placement: {
+                    from: "bottom",
+                    align: "right",
+                  },
+                  time: 2000,
+                }
+              );
+            }
+          });
         }
       });
     },
@@ -38,22 +72,32 @@ export default {
         this.inputType = "password";
       }
     },
-    showMessage() {
-      $.notify(
-        {
-          icon: "flaticon-alarm-1",
-          title: "Info",
-          message: "Message is still here...",
-        },
-        {
-          type: "success",
-          placement: {
-            from: "bottom",
-            align: "right",
-          },
-          time: 1000,
+
+    async initDefaultUsers() {
+      await UserService.all(async (rows) => {
+        if (rows.length === 0) {
+          let users = [
+            {
+              name: "Gaston Delimond",
+              email: "gaston@gmail.com",
+              password: "12345",
+            },
+            {
+              name: "Chris Tenday",
+              email: "chris@gmail.com",
+              password: "12345",
+            },
+            {
+              name: "Lionnel Nawej",
+              email: "lionnel@gmail.com",
+              password: "12345",
+            },
+          ];
+          for (let i = 0; i < users.length; i++) {
+            await UserService.create(users[i], (res) => console.log(res));
+          }
         }
-      );
+      });
     },
   },
 };

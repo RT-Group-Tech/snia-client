@@ -25,7 +25,8 @@
                     <td>{{ ipa.habitant }}</td>
                     <td>{{ ipa.superficie }}km<sup>2</sup></td>
                     <td>10</td>
-                    <td><button class="btn btn-secondary btn-sm">voir ITA</button></td>
+                    <td><button class="btn btn-secondary btn-sm" @click="getItas(ipa.territoires)">voir ITA</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -39,6 +40,12 @@ export default {
         data: {
             type: Array,
             default: () => []
+        }
+    },
+
+    methods: {
+        getItas(arr) {
+            console.log(JSON.stringify(arr));
         }
     },
     mounted() {
@@ -55,6 +62,7 @@ export default {
                 "search": "Recherche"
             }
         });
+        this.$store.dispatch('dantic/viewIpas')
     }
 }
 </script>

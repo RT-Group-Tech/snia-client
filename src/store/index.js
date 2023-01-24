@@ -10,10 +10,24 @@ const store = createStore({
     dantic: danticStore,
     auth: authStore,
   },
-  getters: {},
-  mutations: {},
-  state: {},
-  actions: {},
+  getters: {
+    GET_USER: (state) => state.user,
+  },
+  mutations: {
+    SET_USER(state, data) {
+      state.user = data;
+    },
+  },
+  state: {
+    user: {},
+  },
+  actions: {
+    refreshLoggedUser({ commit }) {
+      let token = localStorage.getItem("userToken");
+      let user = JSON.parse(token);
+      commit("SET_USER", user);
+    },
+  },
 });
 
 export default store;

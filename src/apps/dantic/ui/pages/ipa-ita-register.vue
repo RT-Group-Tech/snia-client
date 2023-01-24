@@ -338,6 +338,7 @@ export default {
                         form.reset();
                         this.resetForms();
                         this.step = 1
+                        IpaService.getAll((result) => console.log(result))
                         $.notify(
                             {
                                 icon: "fa fa-check-double",

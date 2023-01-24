@@ -43,7 +43,6 @@ class IpaService {
       .query("upsert", input)
       .exec()
       .then((res) => {
-        this.getAll((e) => console.log(JSON.stringify(e)));
         callback(res);
       });
   }

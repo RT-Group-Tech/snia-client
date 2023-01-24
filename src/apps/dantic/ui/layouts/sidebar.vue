@@ -5,12 +5,12 @@
             <div class="sidebar-content">
                 <div class="user">
                     <div class="avatar-sm float-left mr-2">
-                        <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                        <img src="assets/img/picture_placeholder.png" alt="..." class="avatar-img rounded-circle">
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
-                                Lionnel nawej
+                                {{ user.name }}
                                 <span class="user-level text-success">Administrateur</span>
                                 <span class="caret"></span>
                             </span>
@@ -102,7 +102,7 @@
                                 </li>
                                 <li>
                                     <router-link :to="{ name: 'agents-view-route' }">
-                                        <span class="sub-item">Voir agent</span>
+                                        <span class="sub-item">Voir agents</span>
                                     </router-link>
                                 </li>
 
@@ -117,7 +117,7 @@
     <!-- End Sidebar -->
 </template>
 <script>
-
+import { mapGetters } from "vuex"
 export default {
     name: "Sidebar-Layout",
     data() {
@@ -135,6 +135,12 @@ export default {
         if (scrollbarDashboard.length > 0) {
             scrollbarDashboard.scrollbar();
         }
+    },
+
+    computed: {
+        ...mapGetters({
+            user: "GET_USER"
+        })
     },
 
 }

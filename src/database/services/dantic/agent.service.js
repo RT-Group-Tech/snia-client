@@ -1,5 +1,6 @@
 import { nSQL } from "nano-sql";
 import model from "../../models/dantic/agent.model";
+import UserService from "../user.service";
 class AgentService {
   /*create & init database */
   static init(callback) {

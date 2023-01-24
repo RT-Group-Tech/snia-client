@@ -85,6 +85,9 @@ export default {
           }
 
           AgentService.create(data, (res) => {
+            AgentService.getAll((result) => {
+              console.log(result);
+            });
             form.reset();
             $.notify(
               {

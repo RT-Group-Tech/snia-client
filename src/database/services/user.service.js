@@ -38,7 +38,7 @@ class UserService {
       });
   }
 
-  /*create new record to database. @params[input:Object, callback:void(result)]*/
+  /***create new record to database. @param [input:Object, callback:void(result)]*/
   static async create(input, callback) {
     nSQL("userdb")
       .query("upsert", input)

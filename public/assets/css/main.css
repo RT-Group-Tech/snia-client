@@ -17,13 +17,17 @@
 
 .btn-snia:active,
 .btn-snia:focus {
-    background-color: #61d46d !important;
+    background-color: #50c45b !important;
     color: #fff
+}
+
+.bg-side-login {
+    background-color: #3dc04a !important;
 }
 
 
 .img-login-snia {
-    width: 80%;
+    width: 50%;
 }
 
 .text-color-snia {

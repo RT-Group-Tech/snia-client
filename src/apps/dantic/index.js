@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 /* dantic main app component */
-import Entry from "./Entry";
+import App from "./App";
 import Router from "@/router";
 import routes from "./routes";
 import store from "@/store";
@@ -10,7 +10,7 @@ import GlobalComponents from "@/components";
 /*auth middleware */
 import { authorize } from "@/middlewares/auth";
 /*app instance*/
-const app = createApp(Entry);
+const app = createApp(App);
 
 /*app routes*/
 app.use(Router(routes));

@@ -5,7 +5,7 @@
 <script>
 import ParentMixin from "./mixins/parent"
 export default {
-    name: "Entry",
+    name: "Dantic-app",
     extends: ParentMixin
 }
 </script>

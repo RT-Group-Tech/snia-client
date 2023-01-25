@@ -77,10 +77,11 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Coordonnée GPS / LONGITUDE <sup class="text-danger">*</sup></label>
+                                                <label>Coordonnée GPS / LONGITUDE <sup
+                                                        class="text-danger">*</sup></label>
                                                 <div class="input-group">
                                                     <input type="number" v-model="ipa.habitant" class="form-control"
-                                                           placeholder="Longitude..." required>
+                                                        placeholder="Longitude..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-map-marker-alt"></i>
@@ -94,10 +95,11 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Coordonnée GPS / LATITUDE <sup class="text-danger">*</sup></label>
+                                                <label>Coordonnée GPS / LATITUDE <sup
+                                                        class="text-danger">*</sup></label>
                                                 <div class="input-group">
                                                     <input type="number" v-model="ipa.habitant" class="form-control"
-                                                           placeholder="Latitude..." required>
+                                                        placeholder="Latitude..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-map-marker-alt"></i>
@@ -183,39 +185,24 @@
                                     <h4 class="card-title"><i class="fa fa-cloud"></i> Climats</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group" style="border:1px solid lightgrey;">
-                                                <div class="input-group">
-                                                    <label>Tropical </label>
-                                                    <input type="checkbox" class="form-control">
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group" style="border:1px solid lightgrey;">
-                                                <div class="input-group">
-                                                    <label>Equatorial </label>
-                                                    <input type="checkbox" class="form-control">
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group" style="border:1px solid lightgrey;">
-                                                <div class="input-group">
-                                                    <label>Montagne </label>
-                                                    <input type="checkbox" class="form-control">
-
-                                                </div>
-
-                                            </div>
-
+                                    <div class="form-group">
+                                        <label class="form-label">Sélectionnez un climat !</label>
+                                        <div class="selectgroup w-100">
+                                            <label class="selectgroup-item">
+                                                <input type="radio" name="value" value="Tropical"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">Tropical</span>
+                                            </label>
+                                            <label class="selectgroup-item">
+                                                <input type="radio" name="value" value="Equatorial"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">Equatorial</span>
+                                            </label>
+                                            <label class="selectgroup-item">
+                                                <input type="radio" name="value" value="Montagne"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">Montagne</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -228,42 +215,29 @@
                         <div class="col-md-12">
                             <div class="card full-height animated fadeInUp">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="fa fa-info-circle"></i> Characteristiques ou spécificités</h4>
+                                    <h4 class="card-title"><i class="fa fa-info-circle"></i> Characteristiques
+                                        ou
+                                        spécificités</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group" style="border:1px solid lightgrey;">
-                                                <div class="input-group">
-                                                    <label>Hydrographie danse </label>
-                                                    <input type="checkbox" class="form-control">
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group" style="border:1px solid lightgrey;">
-                                                <div class="input-group">
-                                                    <label>Characteristique 2 </label>
-                                                    <input type="checkbox" class="form-control">
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group" style="border:1px solid lightgrey;">
-                                                <div class="input-group">
-                                                    <label>Characteristique 3    </label>
-                                                    <input type="checkbox" class="form-control">
-
-                                                </div>
-
-                                            </div>
-
+                                    <div class="form-group">
+                                        <label class="form-label">Sélectionnez une caracteristique !</label>
+                                        <div class="selectgroup w-100">
+                                            <label class="selectgroup-item">
+                                                <input type="checkbox" name="value" value="hypographie"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">Hypographie danse</span>
+                                            </label>
+                                            <label class="selectgroup-item">
+                                                <input type="checkbox" name="value" value="Equatorial"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">caracteristique II</span>
+                                            </label>
+                                            <label class="selectgroup-item">
+                                                <input type="checkbox" name="value" value="Montagne"
+                                                    class="selectgroup-input">
+                                                <span class="selectgroup-button">Autre caracteristique</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -271,11 +245,13 @@
                                 <div class="card-footer">
                                     <!-- Submit buttons -->
                                     <div class="wizard-action">
+
                                         <div class="pull-left">
                                             <button type="submit" class="btn btn-next btn-primary"><i
                                                     class="flaticon-next"></i>
                                                 Suivant</button>
                                         </div>
+
                                         <div class="clearfix"></div>
                                     </div>
                                     <!-- end submit -->
@@ -377,6 +353,17 @@
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
+
+        <!-- <div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog"
+            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor hic voluptates similique? Dolores
+                    adipisci eligendi ab culpa nobis, amet porro provident! Laboriosam, voluptates magnam quidem ut
+                    omnis explicabo officiis impedit.
+                </div>
+            </div>
+        </div> -->
     </div>
 </template>
 
@@ -412,6 +399,10 @@ export default {
     },
 
     methods: {
+        /* showModal() {
+            $("#modal").modal()
+        }, */
+
         /*Ajoute un objet des champs pour un Ita*/
         addIta() {
             let ita = {

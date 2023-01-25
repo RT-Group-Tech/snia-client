@@ -11,8 +11,8 @@ export default {
       },
     };
   },
-  beforeUnmount() {
-    this.$router.go();
+  async beforeUnmount() {
+    await this.$router.go();
   },
 
   async mounted() {
@@ -32,6 +32,8 @@ export default {
           event.preventDefault();
           event.stopPropagation();
           form.classList.add("was-validated");
+          $("#btn-login").addClass("animated shake");
+          setTimeout(() => $("#btn-login").removeClass("animated shake"), 1000);
         }
 
         if (form.checkValidity()) {
@@ -39,9 +41,9 @@ export default {
             email: this.user.email,
             password: this.user.password,
           };
-          UserService.login(user, (result) => {
+          UserService.login(user, async (result) => {
             if (result) {
-              this.$router.replace({ name: "dantic-secure-route" });
+              await this.$router.replace({ name: "dantic-secure-route" });
             } else {
               $.notify(
                 {

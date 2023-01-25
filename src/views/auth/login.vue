@@ -28,7 +28,7 @@
                             <a href="#" class="link  float-right ">Mot de passe perdu?</a>
                         </div>
                         <div class="form-action mb-3">
-                            <button type="submit" class="btn btn-snia  btn-full btn-login">
+                            <button type="submit" id="btn-login" class="btn btn-snia  btn-full btn-login">
                                 <i class="icon-login"></i> &nbsp;
                                 Connexion</button>
                         </div>

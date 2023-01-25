@@ -23,4 +23,4 @@ app.use(GlobalComponents);
 app.use(store);
 
 /*monte l'appli sur l'identifiant dont l'ID est dantic-app */
-app.mount("#app-dantic");
+app.mount("#app");

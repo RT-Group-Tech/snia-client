@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper scrollbar-inner">
         <!-- Header Layout -->
         <header-layout />
         <!-- End Header Layout -->
@@ -23,7 +23,12 @@ export default {
     components: {
         HeaderLayout,
         SidebarLayout
-    }
+    },
+    async mounted() {
+        $(document).ready(() => {
+            $('.scrollbar-inner').scrollbar();
+        });
+    },
 
 }
 </script>

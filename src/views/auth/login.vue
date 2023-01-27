@@ -7,13 +7,9 @@
                     <h3 class="text-center"><img src="assets/img/logo_snia.png" class="img-login-snia" alt="SNIA"></h3>
                 </h1>
             </div>
-            <div class="login-aside w-50 d-flex align-items-center justify-content-center"
-                style="background-color: #efefee;">
-                <div class="container container-login container-transparent animated fadeIn bg-white">
-                    <h3 class="text-center fw-bold mb-3 title">Authentification</h3>
-                    <p class="text-center small text-info" style="font-style: italic;">Veuillez entrer vos identifiants
-                        pour vous
-                        connecter !</p>
+            <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-grey2">
+                <div class="container container-login bg-white" id="login-box">
+                    <h3 class="text-center fw-extrabold mb-3 title"><i class="flaticon-lock-1"></i></h3>
                     <form class="needs-validation" id="form-login" @submit.prevent="loggedIn" novalidate>
                         <div class="login-form">
                             <div class="form-group form-floating-label">
@@ -36,7 +32,7 @@
                                 </div>
                             </div>
                             <div class=" row form-sub m-0">
-                                <a href="#" class="link  float-right ">Mot de passe perdu?</a>
+                                <a href="#" class="link float-right fw-mediumbold">Mot de passe perdu?</a>
                             </div>
                             <div class="form-action mb-3">
                                 <button type="submit" id="btn-login" class="btn btn-snia  btn-full btn-login">

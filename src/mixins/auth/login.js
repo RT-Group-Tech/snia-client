@@ -1,4 +1,5 @@
 import UserService from "@/database/services/user.service";
+import animatedFailedTask from "@/utils/ring.button.error";
 
 export default {
   name: "login-mixin",
@@ -32,8 +33,9 @@ export default {
           event.preventDefault();
           event.stopPropagation();
           form.classList.add("was-validated");
-          $("#btn-login").addClass("animated shake");
-          setTimeout(() => $("#btn-login").removeClass("animated shake"), 1000);
+          /*create a simple animation shake when task is failed */
+          animatedFailedTask("btn-login");
+          /*end shake animation*/
         }
 
         if (form.checkValidity()) {
@@ -45,6 +47,9 @@ export default {
             if (result) {
               await this.$router.replace({ name: "dantic-secure-route" });
             } else {
+              /*create a simple animation shake when task is failed */
+              animatedFailedTask("login-box");
+              /*end shake animation*/
               $.notify(
                 {
                   icon: "fa fa-info",
@@ -52,7 +57,7 @@ export default {
                   message: "identifiant ou mot de passe erroné !",
                 },
                 {
-                  type: "error",
+                  type: "danger",
                   placement: {
                     from: "bottom",
                     align: "right",

@@ -3,6 +3,10 @@ const routes = [
     path: "/",
     name: "login",
     component: () => import("@/views/auth/login"),
+    beforeEnter: (to, from, next) => {
+      console.log("login route");
+      next();
+    },
   },
   {
     path: "/dantic/secure",

@@ -19,7 +19,7 @@
                     <div class="row mt--2">
                         <!-- Données IPA -->
                         <div class="col-md-12">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-archway mr-0"></i> IPA</h4>
                                 </div>
@@ -119,7 +119,7 @@
 
                         <!--  Données Inspecteur -->
                         <div class="col-md-12">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-user mr-0"></i> INSPECTEUR</h4>
                                 </div>
@@ -180,14 +180,14 @@
 
                         <!-- section climats !-->
                         <div class="col-md-12">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-cloud"></i> Climats</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Sélectionnez un climat !</label>
-                                        <div class="selectgroup w-100">
+                                        <div class="selectgroup-pills">
                                             <label class="selectgroup-item">
                                                 <input type="radio" name="value" value="Tropical"
                                                     class="selectgroup-input">
@@ -213,7 +213,7 @@
 
                         <!-- section specifite !-->
                         <div class="col-md-12">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-info-circle"></i> Characteristiques
                                         ou
@@ -222,7 +222,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label class="form-label">Sélectionnez une caracteristique !</label>
-                                        <div class="selectgroup w-100">
+                                        <div class="selectgroup-pills">
                                             <label class="selectgroup-item">
                                                 <input type="checkbox" name="value" value="hypographie"
                                                     class="selectgroup-input">
@@ -268,7 +268,7 @@
                     <div class="row mt--2">
                         <!-- Données ITA -->
                         <div class="col-md-12">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-warehouse mr-0"></i> ITA</h4>
                                 </div>

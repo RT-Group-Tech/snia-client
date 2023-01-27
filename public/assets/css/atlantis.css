@@ -9823,13 +9823,13 @@ label.error {
 
 .selectgroup-button {
   display: block;
-  border: 1px solid rgba(0, 40, 100, 0.12);
+  border: 1px solid rgba(58, 59, 59, 0.575);
   text-align: center;
   padding: 0.375rem 1rem;
   position: relative;
   cursor: pointer;
   border-radius: 3px;
-  color: #9aa0ac;
+  color: #343435;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -22153,11 +22153,11 @@ screen and (max-height: 300px) {
   border: 1px solid #ebecec;
 }
 
-.login .wrapper.wrapper-login .container-login h3,
-.login .wrapper.wrapper-login .container-signup h3 {
-  font-size: 19px;
-  font-weight: 600;
-  margin-bottom: 25px;
+.login .wrapper.wrapper-login .container-login h3 i,
+.login .wrapper.wrapper-login .container-signup h3 i {
+  font-size: 2.5em;
+  font-weight: 900;
+  color: #2f9239
 }
 
 .login .wrapper.wrapper-login .container-login .form-sub,

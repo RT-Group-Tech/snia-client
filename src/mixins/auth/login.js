@@ -13,7 +13,7 @@ export default {
     };
   },
   async beforeUnmount() {
-    await this.$router.go();
+    //await this.$router.go();
   },
 
   async mounted() {

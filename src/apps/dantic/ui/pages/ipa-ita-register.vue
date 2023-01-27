@@ -263,7 +263,6 @@
 
                     </div>
                 </form>
-
                 <form novalidate @submit.prevent="submittedStepII" v-else id="form-ita" class="needs-validation">
                     <div class="row mt--2">
                         <!-- Données ITA -->
@@ -345,7 +344,6 @@
                         <!-- End Données ITA-->
                     </div>
                 </form>
-
             </div>
         </div>
 

@@ -25,6 +25,9 @@ export default {
         SidebarLayout
     },
     async mounted() {
+        /*push to dashboard page when user logged in*/
+        this.$router.push({ name: "dashboard-route" });
+        /*End push*/
         $(document).ready(() => {
             $('.scrollbar-inner').scrollbar();
         });

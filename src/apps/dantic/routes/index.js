@@ -1,4 +1,11 @@
 const routes = [
+  //redirect to home
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notfound",
+    component: () => import("@/views/public/error/404"),
+  },
+
   {
     path: "/",
     name: "login",

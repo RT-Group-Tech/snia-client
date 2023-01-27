@@ -22264,7 +22264,6 @@ screen and (max-height: 300px) {
 
 /*     	Page 404     */
 .page-not-found {
-  background-image: url("../img/bg-404.jpeg");
   background-size: cover;
   background-position: center;
   image-rendering: pixelated;
@@ -22277,7 +22276,6 @@ screen and (max-height: 300px) {
   align-items: center;
   flex-direction: column;
   color: #ffffff;
-  background: rgba(0, 0, 0, 0.61);
 }
 
 .page-not-found .wrapper.not-found h1 {
@@ -22301,9 +22299,13 @@ screen and (max-height: 300px) {
 }
 
 .page-not-found .wrapper.not-found .btn-back-home {
-  border-radius: 50px;
+  border-radius: 5px;
   padding: 13px 25px;
   animation-delay: 2.5s;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 @media screen and (max-width: 576px) {

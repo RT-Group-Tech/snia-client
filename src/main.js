@@ -2,6 +2,7 @@
 /* import Router from "@/router"; */
 
 /*app imports */
+import "@/utils/ui";
 import "@/apps/dantic";
 import "expose-loader?exposes=$,jQuery!jquery";
 

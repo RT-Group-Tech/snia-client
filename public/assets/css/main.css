@@ -1,6 +1,6 @@
 /*    Css for snia    */
 .btn-snia {
-    background-color: #2f9239 !important;
+    background-color: #2f9239;
     color: white;
     width: 100% !important;
     transition: .3s all ease-in-out;
@@ -11,18 +11,18 @@
 }
 
 .btn-snia:hover {
-    background-color: #61d46d !important;
+    background-color: #61d46d;
     color: #fff;
 }
 
 .btn-snia:active,
 .btn-snia:focus {
-    background-color: #50c45b !important;
+    background-color: #50c45b;
     color: #fff
 }
 
 .bg-side-login {
-    background-color: #3dc04a !important;
+    background-color: #2f9239 !important;
 }
 
 

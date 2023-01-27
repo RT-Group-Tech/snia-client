@@ -1,5 +1,4 @@
 import UserService from "@/database/services/user.service";
-import animatedFailedTask from "@/utils/ring.button.error";
 
 export default {
   name: "login-mixin",
@@ -25,20 +24,13 @@ export default {
     /*Login submit method*/
     loggedIn(event) {
       console.clear();
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      const forms = document.querySelectorAll("#form-login");
-      // Loop over them and prevent submission
-      Array.from(forms).forEach((form) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-          form.classList.add("was-validated");
+      /***check empty form inputs before execute request @param: formId, formEvent, callback(boolean) */
+      this.$validForm("form-login", event, (result, form) => {
+        if (!result) {
           /*create a simple animation shake when task is failed */
-          animatedFailedTask("btn-login");
+          this.$animatedFailedTask("btn-login");
           /*end shake animation*/
-        }
-
-        if (form.checkValidity()) {
+        } else {
           let user = {
             email: this.user.email,
             password: this.user.password,
@@ -48,7 +40,7 @@ export default {
               await this.$router.replace({ name: "dantic-secure-route" });
             } else {
               /*create a simple animation shake when task is failed */
-              animatedFailedTask("login-box");
+              this.$animatedFailedTask("login-box");
               /*end shake animation*/
               $.notify(
                 {

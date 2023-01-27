@@ -6,9 +6,8 @@ import routes from "./routes";
 import store from "@/store";
 import Components from "./ui/components";
 import GlobalComponents from "@/components";
+import Prototypes from "../dantic/global";
 
-/*auth middleware */
-import { authorize } from "@/middlewares/auth";
 /*app instance*/
 const app = createApp(App);
 
@@ -18,6 +17,7 @@ app.use(Router(routes));
 /** Before app router each check if user is authorized */
 app.use(Components);
 app.use(GlobalComponents);
+app.use(Prototypes);
 
 /*app vuex store*/
 app.use(store);

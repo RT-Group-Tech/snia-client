@@ -55,16 +55,12 @@ export default {
       let data = this.formAgent;
       let territoire = $("#territoireSelect").val();
       data.territoire = territoire;
-      const forms = document.querySelectorAll("#form-agent");
-      // Loop over them and prevent submission
-      Array.from(forms).forEach((form) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-          form.classList.add("was-validated");
-        }
 
-        if (form.checkValidity()) {
+      /***check empty form inputs before execute request @param: formId, formEvent, callback(boolean) */
+      this.$validForm("form-agent", event, (result, form) => {
+        if (!result) {
+          this.$animatedFailedTask("btn-submit");
+        } else {
           if (data.pass !== this.confirm) {
             $.notify(
               {

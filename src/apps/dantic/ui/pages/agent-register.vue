@@ -176,7 +176,7 @@
                                                 <label>Adresse <sup class="text-danger">*</sup> </label>
                                                 <div class="input-group">
                                                     <input type="text" v-model="formAgent.adresse" class="form-control"
-                                                        placeholder="Adresse..." >
+                                                        placeholder="Adresse...">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-map-signs"></i>
@@ -190,8 +190,8 @@
                                 <div class="card-footer">
                                     <div class="wizard-action">
                                         <div class="pull-left ">
-                                            <button type="submit" class="btn btn-next btn-success mx-2"><i
-                                                    class="flaticon-check"></i>
+                                            <button type="submit" id="btn-submit"
+                                                class="btn btn-next btn-success mx-2"><i class="flaticon-check"></i>
                                                 Enregistrer</button>
                                             <button type="button" class="btn btn-next btn-dark"><i
                                                     class="flaticon-close"></i>

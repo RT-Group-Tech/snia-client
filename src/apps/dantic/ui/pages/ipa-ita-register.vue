@@ -247,7 +247,7 @@
                                     <div class="wizard-action">
 
                                         <div class="pull-left">
-                                            <button type="submit" class="btn btn-next btn-primary"><i
+                                            <button type="submit" id="btn-next" class="btn btn-next btn-primary"><i
                                                     class="flaticon-next"></i>
                                                 Suivant</button>
                                         </div>
@@ -369,6 +369,7 @@
 import IpaService from "@/database/services/dantic/ipa.service"
 import IpaItaRegMixin from "../../mixins/ipa.ita.register"
 import servicesMixins from '../../mixins/services.mixins'
+import animatedFailedTask from "@/utils/ring.button.error"
 export default {
     name: "Ipa-Ipa-Register",
     extends: IpaItaRegMixin,
@@ -426,32 +427,25 @@ export default {
         },
         /*Lorsque l'on valide la premiere etape*/
         submittedStepI(event) {
-            const forms = document.querySelectorAll("#form-ipa");
-            // Loop over them and prevent submission
-            Array.from(forms).forEach((form) => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    form.classList.add("was-validated");
+            this.$validForm('form-ipa', event, (result, form) => {
+                console.log("validator called");
+                if (!result) {
+                    this.$animatedFailedTask('btn-next')
                 }
-                if (form.checkValidity()) {
+                else {
                     let province = $("#provinceSelect").val()
                     this.ipa.province = province
                     this.step = 2;
                 }
-            });
+            })
+
+
         },
         /*Validation de la dexieme etape*/
-        submittedStepII() {
+        submittedStepII(event) {
             let data = this.ipa;
-            const forms = document.querySelectorAll("#form-ita");
-            Array.from(forms).forEach((form) => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    form.classList.add("was-validated");
-                }
-                if (form.checkValidity()) {
+            this.$validForm('form-ita', event, (result, form) => {
+                if (result) {
                     data.territoires = this.itas;
                     data.inspecteur = this.isp;
                     IpaService.create(data, (res) => {
@@ -476,7 +470,8 @@ export default {
                         );
                     })
                 }
-            });
+            })
+
 
         }
     },

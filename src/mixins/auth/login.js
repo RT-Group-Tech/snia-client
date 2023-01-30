@@ -11,8 +11,9 @@ export default {
       },
     };
   },
-  async beforeUnmount() {
-    //await this.$router.go();
+
+  async unmounted() {
+    await this.$router.go();
   },
 
   async mounted() {
@@ -37,11 +38,13 @@ export default {
           };
           UserService.login(user, async (result) => {
             if (result) {
+              await this.$store.dispatch("refreshLoggedUser");
               await this.$router.replace({ name: "dantic-secure-route" });
             } else {
               /*create a simple animation shake when task is failed */
               this.$animatedFailedTask("login-box");
               /*end shake animation*/
+              form.reset();
               $.notify(
                 {
                   icon: "fa fa-info",

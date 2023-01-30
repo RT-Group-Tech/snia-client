@@ -139,8 +139,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Parametres comptes</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"
-                                        @click="$router.replace({ name: 'login' })">Me
+                                    <a class="dropdown-item" href="javascript:void(0)" @click="logout">Me
                                         Déconnecter</a>
                                 </li>
                             </div>
@@ -160,6 +159,12 @@ export default {
     methods: {
         focusSearch() {
             $('#search-nav').toggleClass("focus");
+        },
+
+        async logout() {
+            await this.$router.replace({ name: 'login' })
+            await this.$store.dispatch("loggedOut")
+            await this.$store.dispatch("refreshLoggedUser")
         }
     },
     computed: {

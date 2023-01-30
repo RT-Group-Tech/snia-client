@@ -25,8 +25,8 @@ export default {
         SidebarLayout
     },
     async mounted() {
-        this.$router.push({ name: "dashboard-route" });
-        /*End push*/
+        /* this.$router.push({ name: "dashboard-route" }); */
+
         $(document).ready(() => {
             $('.scrollbar-inner').scrollbar();
         });

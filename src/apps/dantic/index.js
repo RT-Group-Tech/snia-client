@@ -6,7 +6,7 @@ import routes from "./routes";
 import store from "@/store";
 import Components from "./ui/components";
 import GlobalComponents from "@/components";
-import Prototypes from "../dantic/global";
+import Prototypes from "@/global";
 
 /*app instance*/
 const app = createApp(App);

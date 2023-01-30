@@ -22,10 +22,15 @@ const store = createStore({
     user: {},
   },
   actions: {
-    refreshLoggedUser({ commit }) {
+    async refreshLoggedUser({ commit }) {
       let token = localStorage.getItem("userToken");
       let user = JSON.parse(token);
       commit("SET_USER", user);
+    },
+
+    async loggedOut({ commit }) {
+      localStorage.setItem("userToken", null);
+      commit("SET_USER", null);
     },
   },
 });

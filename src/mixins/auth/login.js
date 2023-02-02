@@ -13,7 +13,7 @@ export default {
   },
 
   async unmounted() {
-    await this.$router.go();
+    this.$router.go();
   },
 
   async mounted() {
@@ -24,7 +24,6 @@ export default {
   methods: {
     /*Login submit method*/
     loggedIn(event) {
-      console.clear();
       /***check empty form inputs before execute request @param: formId, formEvent, callback(boolean) */
       this.$validForm("form-login", event, (result, form) => {
         if (!result) {
@@ -38,8 +37,8 @@ export default {
           };
           UserService.login(user, async (result) => {
             if (result) {
-              await this.$store.dispatch("refreshLoggedUser");
-              await this.$router.replace({ name: "dantic-secure-route" });
+              await this.$store.dispatch("auth/refreshLoggedUser");
+              await this.$router.push({ name: "dantic-secure-route" });
             } else {
               /*create a simple animation shake when task is failed */
               this.$animatedFailedTask("login-box");

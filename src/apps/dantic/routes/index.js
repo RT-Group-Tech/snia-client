@@ -17,7 +17,12 @@ const routes = [
     component: () => import("@/apps/dantic/ui/layouts"),
     name: "dantic-secure-route",
     beforeEnter: (to, from, next) => {
-      const user = store.getters.GET_USER;
+      const user = store.getters["auth/GET_USER"];
+      if (user === null || user === undefined) {
+        next({ name: "login" });
+      } else {
+        next();
+      }
       if (user === null || user === undefined) {
         next({ name: "login" });
       } else {

@@ -83,9 +83,9 @@
     </div>
 </template>
 <script>
-import LoginMixin from "@/mixins/auth/login"
+import AuthMixin from "@/mixins/auth/login"
 export default {
     name: "Login",
-    extends: LoginMixin,
+    extends: AuthMixin,
 }
 </script>

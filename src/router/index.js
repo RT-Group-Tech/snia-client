@@ -14,7 +14,7 @@ function getRouter(routes) {
 
   router.beforeEach((from, to, next) => {
     if (to.meta.authRequired) {
-      const user = store.getters.GET_USER;
+      const user = store.getters["auth/GET_USER"];
       if (user === null || user === undefined) {
         next({ name: "login" });
       } else {
@@ -22,6 +22,17 @@ function getRouter(routes) {
       }
     }
     next();
+  });
+
+  router.beforeResolve((to, from, next) => {
+    if (to.name) {
+      NProgress.start();
+    }
+    next();
+  });
+
+  router.afterEach((to, from) => {
+    NProgress.done();
   });
   return router;
 }

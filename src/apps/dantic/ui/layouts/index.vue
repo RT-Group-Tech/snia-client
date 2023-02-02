@@ -18,14 +18,16 @@
 /* Layouts imports */
 import HeaderLayout from "./header"
 import SidebarLayout from "./sidebar"
+
 export default {
     name: "Main-Layout",
     components: {
         HeaderLayout,
         SidebarLayout
     },
+
     async mounted() {
-        /* this.$router.push({ name: "dashboard-route" }); */
+        this.$router.push({ name: "dashboard-route" });
 
         $(document).ready(() => {
             $('.scrollbar-inner').scrollbar();

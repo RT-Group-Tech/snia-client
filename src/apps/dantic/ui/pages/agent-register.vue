@@ -214,7 +214,7 @@
 </template>
 
 <script>
-import "@/assets/select2/select2.full.min.js";
+import "@/assets/vendor/select2/select2.full.min.js";
 import AgentRegMixin from "../../mixins/agent-register"
 import servicesMixins from '../../mixins/services.mixins';
 export default {

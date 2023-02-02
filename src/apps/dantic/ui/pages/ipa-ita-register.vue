@@ -369,7 +369,6 @@
 import IpaService from "@/database/services/dantic/ipa.service"
 import IpaItaRegMixin from "../../mixins/ipa.ita.register"
 import servicesMixins from '../../mixins/services.mixins'
-import animatedFailedTask from "@/utils/ring.button.error"
 export default {
     name: "Ipa-Ipa-Register",
     extends: IpaItaRegMixin,

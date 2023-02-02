@@ -1,6 +1,19 @@
 /*    Css for snia    */
+
+/* Global variables */
+:root {
+    --app-bg-color: #2f9239;
+}
+
+/* End Global variables */
+
+
+
+
+
+
 .btn-snia {
-    background-color: #2f9239;
+    background-color: var(--app-bg-color);
     color: white;
     width: 100% !important;
     transition: .3s all ease-in-out;

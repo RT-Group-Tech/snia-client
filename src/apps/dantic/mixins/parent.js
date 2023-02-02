@@ -7,7 +7,7 @@ export default {
   },
   mounted() {
     this.loadFonts();
-    this.$store.dispatch("refreshLoggedUser");
+    this.$store.dispatch("auth/refreshLoggedUser");
   },
   methods: {
     /*Load web font*/

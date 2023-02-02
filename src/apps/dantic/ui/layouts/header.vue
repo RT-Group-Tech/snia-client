@@ -163,13 +163,13 @@ export default {
 
         async logout() {
             await this.$router.replace({ name: 'login' })
-            await this.$store.dispatch("loggedOut")
-            await this.$store.dispatch("refreshLoggedUser")
+            await this.$store.dispatch("auth/loggedOut")
+            await this.$store.dispatch("auth/refreshLoggedUser")
         }
     },
     computed: {
         ...mapGetters({
-            user: "GET_USER"
+            user: "auth/GET_USER"
         })
     },
 }

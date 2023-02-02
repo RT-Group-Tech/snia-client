@@ -13,15 +13,17 @@
                     <form class="needs-validation" id="form-login" @submit.prevent="loggedIn" novalidate>
                         <div class="login-form">
                             <div class="form-group form-floating-label">
-                                <input id="username" v-model="user.email" name="username" type="text"
-                                    class=" form-control input-border-bottom" required>
+                                <input id="username" v-model="user.email" data-toggle="tooltip"
+                                    title="Identifiant utilisateur" name="username" type="text"
+                                    class=" form-control input-border-bottom" data-placement="right" required>
                                 <label for="username" class="placeholder text-color-snia">Identifiant</label>
                                 <div class="invalid-feedback">
                                     votre idantifiant est requis !
                                 </div>
                             </div>
                             <div class="form-group form-floating-label">
-                                <input id="password" name="password" v-model="user.password" :type="inputType"
+                                <input id="password" name="password" data-toggle="tooltip" data-placement="right"
+                                    title="Mot de passe" v-model="user.password" :type="inputType"
                                     class="form-control input-border-bottom" required>
                                 <label for="password" class="placeholder text-color-snia">Mot de passe</label>
                                 <div class="show-password" @click="toggleVisibility">

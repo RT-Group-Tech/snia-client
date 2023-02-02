@@ -68,7 +68,15 @@ export default {
             $('[data-toggle="tooltip"]').tooltip();
         });
         let paths = document.querySelectorAll(".map--view path");
-        this.$emit("getRegions", Array.from(paths));
+        const pathArray = Array.from(paths);
+
+
+        /*path color*/
+        for (let i = 0; i < pathArray.length; i++) {
+            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            pathArray[i].style.fill = `#${randomColor}`;
+        }
+        this.$emit("getRegions", pathArray);
     }
 }
 </script>
@@ -76,7 +84,6 @@ export default {
 
 <style>
 .map--view path {
-    fill: #7cf38a;
     stroke: #ffffff;
     stroke-width: 1px;
     transition: 0.5s fill;

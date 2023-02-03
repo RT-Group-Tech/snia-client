@@ -1,0 +1,54 @@
+/*    Css for snia    */
+
+/* Global variables */
+:root {
+    --app-bg-color: #150570;
+}
+
+
+
+/* End Global variables */
+
+
+
+
+
+
+.btn-snia {
+    background-color: var(--app-bg-color);
+    color: white;
+    width: 100% !important;
+    transition: .3s all ease-in-out;
+    -webkit-transition: .3s all ease-in-out;
+    -moz-transition: .3s all ease-in-out;
+    -ms-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+}
+
+.btn-snia:hover {
+    background-color: #311ca5;
+    color: #fff;
+}
+
+.btn-snia:active,
+.btn-snia:focus {
+    background-color: #311ca5;
+    color: #fff
+}
+
+.bg-side-login {
+    background-color: #311ca5 !important;
+}
+
+
+.img-login-snia {
+    width: 50%;
+}
+
+.text-color-snia {
+    color: var(--app-bg-color);
+}
+
+.color-test {
+    color: #343435
+}

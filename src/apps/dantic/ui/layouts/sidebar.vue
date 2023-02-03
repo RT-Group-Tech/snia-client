@@ -11,7 +11,11 @@
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
                                 {{ user.name }}
+<<<<<<< HEAD
                                 <span class="user-level text-success">Administrateur</span>
+=======
+                                <span class="user-level text-primary">Administrateur</span>
+>>>>>>> c8384e3 (latest update)
                                 <span class="caret"></span>
                             </span>
                         </a>

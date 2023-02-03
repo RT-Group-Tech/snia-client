@@ -1,7 +1,11 @@
 <template>
     <div class="main-panel">
         <div class="container">
+<<<<<<< HEAD
             <div class="panel-header bg-success-gradient">
+=======
+            <div class="panel-header bg-app-gradient">
+>>>>>>> c8384e3 (latest update)
                 <div class="page-inner py-5">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
@@ -76,7 +80,11 @@
                                     <div class="card-tools">
                                         <button class="btn btn-icon btn-link btn-primary btn-xs" data-toggle="collapse"
                                             data-target="#collapseRegion" aria-expanded="false"
+<<<<<<< HEAD
                                             aria-controls="collapseRegion"><span class="fa fa-angle-down">
+=======
+                                            aria-controls="collapseRegion"><span class="fa fa-angle-down text-muted">
+>>>>>>> c8384e3 (latest update)
                                             </span>
                                         </button>
                                     </div>
@@ -149,7 +157,11 @@ import servicesMixins from "../../mixins/services.mixins";
 export default {
     name: "Dashboard",
     extends: DashboardMixin,
+<<<<<<< HEAD
     mixins:[servicesMixins],
+=======
+    mixins: [servicesMixins],
+>>>>>>> c8384e3 (latest update)
     data() {
         return {
             regions: [],

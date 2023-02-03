@@ -373,7 +373,11 @@ label {
 body {
   min-height: 100vh;
   position: relative;
+<<<<<<< HEAD
   background: #f9fbfd;
+=======
+  background: #e9ebf2 !important;
+>>>>>>> c8384e3 (latest update)
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -943,17 +947,29 @@ body {
 
 .sidebar .nav.nav-success>.nav-item a[data-toggle=collapse][aria-expanded=true]:before,
 .sidebar[data-background-color="white"] .nav.nav-success>.nav-item a[data-toggle=collapse][aria-expanded=true]:before {
+<<<<<<< HEAD
   background: #31CE36 !important;
+=======
+  background: var(--app-bg-color) !important;
+>>>>>>> c8384e3 (latest update)
 }
 
 .sidebar .nav.nav-success>.nav-item.active a:before,
 .sidebar[data-background-color="white"] .nav.nav-success>.nav-item.active a:before {
+<<<<<<< HEAD
   background: #31CE36 !important;
+=======
+  background: var(--app-bg-color) !important;
+>>>>>>> c8384e3 (latest update)
 }
 
 .sidebar .nav.nav-success>.nav-item.active a i,
 .sidebar[data-background-color="white"] .nav.nav-success>.nav-item.active a i {
+<<<<<<< HEAD
   color: #31CE36 !important;
+=======
+  color: var(--app-bg-color) !important;
+>>>>>>> c8384e3 (latest update)
 }
 
 .sidebar .nav.nav-warning>.nav-item a:hover i,
@@ -1126,7 +1142,11 @@ body {
 }
 
 .sidebar.sidebar-style-2 .nav.nav-primary>.nav-item.active>a {
+<<<<<<< HEAD
   background: #2f9239 !important;
+=======
+  background: var(--app-bg-color) !important;
+>>>>>>> c8384e3 (latest update)
   box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), 4px 4px 15px -5px rgba(123, 232, 21, 0.4);
 }
 
@@ -1367,6 +1387,13 @@ body {
   min-height: 100%;
   float: right;
   transition: all .3s;
+<<<<<<< HEAD
+=======
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+>>>>>>> c8384e3 (latest update)
 }
 
 .main-panel>.container {
@@ -3028,6 +3055,7 @@ body {
 }
 
 .logo-header[data-background-color="green"] {
+<<<<<<< HEAD
   background: #31CE36 !important;
 }
 
@@ -3041,6 +3069,21 @@ body {
 
 .navbar-header[data-background-color="green2"] {
   background: #2BB930 !important;
+=======
+  background: var(--app-bg-color) !important;
+}
+
+.logo-header[data-background-color="green2"] {
+  background: var(--app-bg-color) !important;
+}
+
+.navbar-header[data-background-color="green"] {
+  background: var(--app-bg-color) !important;
+}
+
+.navbar-header[data-background-color="green2"] {
+  background: var(--app-bg-color) !important;
+>>>>>>> c8384e3 (latest update)
 }
 
 .logo-header[data-background-color="orange"] {
@@ -4584,6 +4627,7 @@ body {
 /*     Card     */
 .card,
 .card-light {
+<<<<<<< HEAD
   border-radius: 5px;
   background-color: #ffffff;
   margin-bottom: 30px;
@@ -4598,11 +4642,33 @@ body {
   padding: 1rem 1.25rem;
   background-color: transparent;
   border-bottom: 1px solid #ebecec !important;
+=======
+  border-radius: .25rem;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  -webkit-border-radius: .25rem;
+  -moz-border-radius: .25rem;
+  -ms-border-radius: .25rem;
+  -o-border-radius: .25rem;
+}
+
+.card .card-header {
+  border-bottom: 1px solid #eaf0f7 !important;
+  background-color: transparent;
+>>>>>>> c8384e3 (latest update)
 }
 
 .card .card-header:first-child,
 .card-light .card-header:first-child {
   border-radius: 0px;
+<<<<<<< HEAD
+=======
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+>>>>>>> c8384e3 (latest update)
 }
 
 .card .card-header .card-head-row,
@@ -5079,6 +5145,11 @@ label {
   margin-bottom: 0px;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c8384e3 (latest update)
 /*     Card Pricing    */
 .card-pricing {
   padding: 20px 5px;
@@ -22623,6 +22694,17 @@ body[data-background-color="dark"] .board {
   background: linear-gradient(-45deg, #179D08, #31CE36) !important;
 }
 
+<<<<<<< HEAD
+=======
+.bg-app-gradient {
+  background: var(--app-bg-color) !important;
+  background: -webkit-linear-gradient(legacy-direction(-45deg), #3e2d9c, #3e2d9c) !important;
+  background: linear-gradient(-45deg, #3e2d9c, #3e2d9c) !important;
+}
+
+
+
+>>>>>>> c8384e3 (latest update)
 .bg-warning-gradient {
   background: #FFAD46 !important;
   background: -webkit-linear-gradient(legacy-direction(-45deg), #E1810B, #FFAD46) !important;

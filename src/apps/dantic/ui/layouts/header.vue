@@ -3,7 +3,8 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="white">
             <router-link :to="{ name: 'dashboard-route' }" class="logo">
-                <img src="assets/img/logo_snia.png" alt="navbar brand" class="navbar-brand img-login-snia">
+                <!-- <img src="assets/img/logo_snia.png" alt="navbar brand" > -->
+                <h1 class="display-4">SNIA</h1>
             </router-link>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

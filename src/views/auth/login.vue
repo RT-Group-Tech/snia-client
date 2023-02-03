@@ -3,6 +3,7 @@
         <div class="wrapper wrapper-login wrapper-login-full p-0">
             <div
                 class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-side-login">
+<<<<<<< HEAD
                 <h1 class="title fw-bold text-white mb-3">
                     <h3 class="text-center"><img src="assets/img/logo_snia.png" class="img-login-snia" alt="SNIA"></h3>
                 </h1>
@@ -10,6 +11,16 @@
             <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-grey2">
                 <div class="container container-login bg-white" id="login-box">
                     <h3 class="text-center fw-extrabold mb-3 title"><i class="flaticon-lock-1"></i></h3>
+=======
+                <h1 class="fw-bold display-2 text-white mb-3">
+                    SNIA
+                </h1>
+                <h3 class="text-white">Veuillez vous authentifier !</h3>
+            </div>
+            <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-grey2">
+                <div class="container container-login bg-white" id="login-box">
+                    <!-- <h3 class="text-center fw-extrabold mb-3 title"><i class="flaticon-lock-1"></i></h3> -->
+>>>>>>> c8384e3 (latest update)
                     <form class="needs-validation" id="form-login" @submit.prevent="loggedIn" novalidate>
                         <div class="login-form">
                             <div class="form-group form-floating-label">

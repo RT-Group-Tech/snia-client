@@ -56,7 +56,11 @@ export default {
                     from: "bottom",
                     align: "right",
                   },
+<<<<<<< HEAD
                   time: 2000,
+=======
+                  time: 5000,
+>>>>>>> c8384e3 (latest update)
                 }
               );
             }

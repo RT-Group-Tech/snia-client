@@ -2,9 +2,17 @@
 
 /* Global variables */
 :root {
+<<<<<<< HEAD
     --app-bg-color: #2f9239;
 }
 
+=======
+    --app-bg-color: #150570;
+}
+
+
+
+>>>>>>> c8384e3 (latest update)
 /* End Global variables */
 
 
@@ -24,18 +32,30 @@
 }
 
 .btn-snia:hover {
+<<<<<<< HEAD
     background-color: #61d46d;
+=======
+    background-color: #311ca5;
+>>>>>>> c8384e3 (latest update)
     color: #fff;
 }
 
 .btn-snia:active,
 .btn-snia:focus {
+<<<<<<< HEAD
     background-color: #50c45b;
+=======
+    background-color: #311ca5;
+>>>>>>> c8384e3 (latest update)
     color: #fff
 }
 
 .bg-side-login {
+<<<<<<< HEAD
     background-color: #2f9239 !important;
+=======
+    background-color: #311ca5 !important;
+>>>>>>> c8384e3 (latest update)
 }
 
 
@@ -44,7 +64,11 @@
 }
 
 .text-color-snia {
+<<<<<<< HEAD
     color: #97c21f;
+=======
+    color: var(--app-bg-color);
+>>>>>>> c8384e3 (latest update)
 }
 
 .color-test {

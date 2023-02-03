@@ -70,7 +70,10 @@ export default {
         let paths = document.querySelectorAll(".map--view path");
         const pathArray = Array.from(paths);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c8384e3 (latest update)
         /*path color*/
         for (let i = 0; i < pathArray.length; i++) {
             let randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -91,6 +94,10 @@ export default {
 }
 
 .map--view path:hover {
+<<<<<<< HEAD
     fill: #125218;
+=======
+    fill: #131252 !important;
+>>>>>>> c8384e3 (latest update)
 }
 </style>

@@ -3,19 +3,22 @@
 /* Global variables */
 :root {
     --app-bg-color: #150570;
+    --body-color: #edeff5
 }
 
 
+.bg-app-2 {
+    background-color: #12016d !important;
+}
+
+.bg-banner {
+    background-color: #4126da !important;
+}
+
 
 /* End Global variables */
-
-
-
-
-
-
 .btn-snia {
-    background-color: var(--app-bg-color);
+    background-color: var(--app-bg-color) !important;
     color: white;
     width: 100% !important;
     transition: .3s all ease-in-out;
@@ -51,4 +54,8 @@
 
 .color-test {
     color: #343435
+}
+
+#nprogress .bar {
+    background: rgb(221, 34, 34) !important;
 }

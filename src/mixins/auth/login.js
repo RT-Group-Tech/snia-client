@@ -1,4 +1,5 @@
 import UserService from "@/database/services/user.service";
+import apidantic from "@/apps/dantic/api";
 
 export default {
   name: "login-mixin",
@@ -12,9 +13,9 @@ export default {
     };
   },
 
-  async unmounted() {
+  /* async unmounted() {
     this.$router.go();
-  },
+  }, */
 
   async mounted() {
     await UserService.init((res) => console.log(JSON.stringify(res)));
@@ -22,6 +23,14 @@ export default {
   },
 
   methods: {
+    login() {
+      let user = this.user;
+
+      apidantic.login(user, (result) => {
+        console.log("USER LOGGED IS", result);
+      });
+    },
+
     /*Login submit method*/
     loggedIn(event) {
       /***check empty form inputs before execute request @param: formId, formEvent, callback(boolean) */

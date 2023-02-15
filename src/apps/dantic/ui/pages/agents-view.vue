@@ -31,7 +31,7 @@
             <div class="page-inner mt--5">
                 <div class="row mt--2">
                     <div class="col-md-12">
-                        <div class="card full-height animated fadeInUp">
+                        <div class="card full-height animated fadeIn">
                             <div class="card-header">
                                 <h1 class="card-title pull-left">Liste des agents</h1>
                                 <router-link :to="{ name: 'agent-create-route' }"

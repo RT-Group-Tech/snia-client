@@ -4,7 +4,7 @@ export default {
 
   mounted() {
     this.loadCharts();
-    
+
   },
 
   methods: {

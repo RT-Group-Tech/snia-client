@@ -759,7 +759,11 @@ label {
     top: 0;
     right: -25%;
     transform: skewX(-32.5deg);
-  }
+    -webkit-transform:;
+    -moz-transform:;
+    -ms-transform:;
+    -o-transform:;
+}
 }
 
 .bubble-shadow {
@@ -774,7 +778,11 @@ label {
     content: "";
     border-radius: 50%;
     background: rgba(255,255,255,.05);
-  }
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
   &:after {
     position: absolute;
     top: -65px;
@@ -784,7 +792,11 @@ label {
     content: "";
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.05);
-  }
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
 }
 
 .curves-shadow {

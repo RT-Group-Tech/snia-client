@@ -1,8 +1,8 @@
 <template>
     <div class="main-panel">
         <div class="container">
-            <div class="panel-header bg-app-gradient">
-                <div class="page-inner py-5">
+            <div class="panel-header bg-primary-gradient">
+                <div class="page-inner py-5 curves-shadow">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
                             <h2 class="text-white pb-2 fw-bold">ENREGISTREMENT AGENT</h2>
@@ -20,7 +20,7 @@
                     <div class="row mt--2">
                         <!-- Infos personnelles agent -->
                         <div class="col-md-6">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-user"></i> Informations personnelles
                                     </h4>
@@ -70,7 +70,7 @@
 
                         <!--  Infos compte utilisateur-->
                         <div class="col-md-6">
-                            <div class="card full-height animated fadeInUp">
+                            <div class="card full-height animated fadeIn">
                                 <div class="card-header">
                                     <h4 class="card-title"><i class="fa fa-user-circle"></i> Informations liées au
                                         compte agent</h4>

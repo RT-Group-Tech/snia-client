@@ -1,10 +1,10 @@
 <template>
     <div class="main-header">
         <!-- Logo Header -->
-        <div class="logo-header" data-background-color="white">
+        <div class="logo-header" data-background-color="blue2">
             <router-link :to="{ name: 'dashboard-route' }" class="logo">
-                <!-- <img src="assets/img/logo_snia.png" alt="navbar brand" > -->
-                <h1 class="display-4">SNIA</h1>
+                <!-- <img src="assets/img/logo_w.png" style="height: 40px;" alt="navbar brand"> -->
+                <!-- <h1 class="fw-bold navbar-brand text-center">SNIA</h1> -->
             </router-link>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
         <!-- End Logo Header -->
 
         <!-- Navbar Header -->
-        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="green2">
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue">
             <div class="container-fluid">
                 <div class="collapse" id="search-nav">
                     <form class="navbar-left navbar-form nav-search mr-md-3">
@@ -128,9 +128,8 @@
                                         <div class="avatar-lg"><img src="assets/img/picture_placeholder.png"
                                                 alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>{{ user.name }}</h4>
-                                            <p class="text-muted">{{ user.email }}</p><a href="#"
-                                                class="btn btn-xs btn-dark btn-sm">Voir mon profil</a>
+                                            <h4 class="fw-bold">{{ user.name }}</h4>
+                                            <p class="text-muted">{{ user.email }}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -161,6 +160,10 @@ export default {
         focusSearch() {
             $('#search-nav').toggleClass("focus");
         },
+
+        /* async searchBar() {
+
+        }, */
 
         async logout() {
             await this.$router.replace({ name: 'login' })

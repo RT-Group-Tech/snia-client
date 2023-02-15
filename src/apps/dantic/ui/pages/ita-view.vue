@@ -1,8 +1,8 @@
 <template>
     <div class="main-panel">
         <div class="container">
-            <div class="panel-header bg-app-gradient">
-                <div class="page-inner py-5">
+            <div class="panel-header bg-primary-gradient">
+                <div class="page-inner py-5 bubble-shadow">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                         <div>
                             <h2 class="text-white pb-2 fw-bold">DANTIC</h2>
@@ -15,7 +15,7 @@
             <div class="page-inner mt--5">
                 <div class="row mt--2">
                     <div class="col-md-12">
-                        <div class="card full-height animated fadeInUp">
+                        <div class="card full-height animated fadeIn">
                             <div class="card-body">
                                 <!-- table pour afficher les ipa & ita -->
                                 <ita-table></ita-table>

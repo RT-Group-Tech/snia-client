@@ -81,6 +81,14 @@ const routes = [
           authRequired: true,
         },
       },
+      {
+        path: "/dantic/secure/test",
+        component: () => import("@/apps/dantic/ui/test"),
+        name: "test-route",
+        meta: {
+          authRequired: true,
+        },
+      },
     ],
   },
 ];

@@ -110,6 +110,12 @@
                         </div>
                     </li>
 
+                    <li class="nav-item" :class="currentRoute === 'test-route' ? 'active' : ''">
+                        <router-link :to="{ name: 'test-route' }" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <p>Components test</p>
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </div>

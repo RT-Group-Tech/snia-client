@@ -23,4 +23,13 @@ app.use(Prototypes);
 app.use(store);
 
 /*monte l'appli sur l'identifiant dont l'ID est dantic-app */
-app.mount("#app");
+if (/Android/i.test(navigator.userAgent)) {
+  alert("Veuillez utiliser un ordinateur pour exécuter cette plateforme !");
+  app.unmount("#app");
+}
+if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
+  alert("Veuillez utiliser un ordinateur pour exécuter cette plateforme !");
+  app.unmount("#app");
+} else {
+  app.mount("#app");
+}

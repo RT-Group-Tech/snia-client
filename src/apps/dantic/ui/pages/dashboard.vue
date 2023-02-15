@@ -135,7 +135,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-7">
-                                        <div class="table-responsive table-hover table-sales">
+                                        <div class="table-responsive table-hover table-sales"
+                                            style="height: 400px; overflow-y: scroll;">
                                             <table class="table">
                                                 <tbody>
                                                     <tr v-for="(region, index) in regions" :key="index"
@@ -159,6 +160,13 @@
                                         </div>
                                     </div>
                                     <div class="col-md-5">
+                                        <div id="myChartLegend">
+                                            <ul class="0-legend html-legend">
+                                                <li><span style="background-color:#038a41"></span>Equatoriale</li>
+                                                <li><span style="background-color:#f2d930"></span>Tropicale</li>
+                                                <li><span style="background-color:#00a5ec"></span>Montagne</li>
+                                            </ul>
+                                        </div>
                                         <div class="map--view">
                                             <map-svg @getRegions="regions = $event" />
                                         </div>
@@ -170,38 +178,20 @@
                 </div>
             </div>
         </div>
-        <!-- <p>
-            
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
-            </button>
-        </p>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-            </div>
-        </div> -->
+
 
 
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
-    </div>
+</div>
 </template>
 
 <script>
 import DashboardMixin from "../../mixins/dashboard"
 import servicesMixins from "../../mixins/services.mixins";
-import d_api from "@/apps/dantic/api"
-function showBsPopover(id) {
-    let color = $(`#${id}`).css('background-color');
-    $(`#${id}`).popover('show')
-}
-function hideBsPopover(id) {
-    $(`#${id}`).popover('hide')
-}
+
+
 export default {
     name: "Dashboard",
     extends: DashboardMixin,
@@ -217,73 +207,7 @@ export default {
                 pass: '1243655',
             },
         }
-    },
-
-    mounted() {
-        $(document).ready(() => {
-            for (let i = 0; i < this.regions.length; i++) {
-                /* let randomColor = Math.floor(Math.random() * 16222215).toString(16); */
-                let id = this.regions[i].getAttribute('id');
-                let title = this.regions[i].getAttribute("ipa-name");
-                let climat = this.regions[i].getAttribute("climat");
-                if (climat.includes("Equatorial")) {
-                    this.regions[i].style.fill = "#038a41";
-                }
-                if (climat.includes("tropical")) {
-                    this.regions[i].style.fill = "#f2d930";
-
-                }
-                if (climat.includes("Montagne")) {
-                    this.regions[i].style.fill = "#00a5ec";
-                }
-
-                this.regions[i].setAttribute("data-content", `Inspection Provinciale Agricole de la province de ${title.bold()}`)
-                this.regions[i].addEventListener('mouseover', () => {
-                    showBsPopover(id)
-                });
-
-
-                this.regions[i].addEventListener('mouseout', () => {
-                    hideBsPopover(id)
-                });
-
-                $(`table #${id}-item`).mouseover(() => {
-                    showBsPopover(id)
-                    $(`#${id}`).addClass("hovered")
-                });
-
-                $(`table #${id}-item`).mouseout(() => {
-                    hideBsPopover(id)
-                    $(`#${id}`).removeClass("hovered")
-                });
-            }
-        })
-        /* for (let i = 0; i < this.regions.length; i++) {
-            let randomColor = Math.floor(Math.random() * 16222215).toString(16);
-            let id = this.regions[i].getAttribute('id');
-            let title = this.regions[i].getAttribute("ipa-name");
-            this.regions[i].style.fill = `#${randomColor}`;
-            this.regions[i].setAttribute("data-content", `Inspection Provinciale Agricole de la province de ${title.bold()}`)
-            this.regions[i].addEventListener('mouseover', () => {
-                showBsPopover(id)
-            });
-
-
-            this.regions[i].addEventListener('mouseout', () => {
-                hideBsPopover(id)
-            });
-
-            $(`table #${id}-item`).mouseover(() => {
-                showBsPopover(id)
-
-            });
-
-            $(`table #${id}-item`).mouseout(() => {
-                hideBsPopover(id)
-
-            });
-        } */
-    },
+    }
 
 }
 </script>

@@ -77,7 +77,7 @@
                                 </span>
                                 <div>
                                     <h5 class="mb-1"><b><a href="#">132 <small>Sales</small></a></b></h5>
-                                    <small class="text-muted">12 waiting payments</small>
+                                    <small class="text-muted">12 payments</small>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 </span>
                                 <div>
                                     <h5 class="mb-1"><b><a href="#">1,352 <small>Members</small></a></b></h5>
-                                    <small class="text-muted">163 registered today</small>
+                                    <small class="text-muted">163 reg. today</small>
                                 </div>
                             </div>
                         </div>
@@ -162,8 +162,6 @@
                                         <div class="map--view">
                                             <map-svg @getRegions="regions = $event" />
                                         </div>
-
-                                        <button class="btn btn-primary" @click="tested"> Test Api</button>
                                     </div>
                                 </div>
                             </div>
@@ -221,22 +219,25 @@ export default {
         }
     },
 
-    methods: {
-        tested() {
-            d_api.createAgent(this.user, (d) => {
-                console.log(this.user, d);
-            });
-            alert(d)
-        }
-    },
-
     mounted() {
         $(document).ready(() => {
             for (let i = 0; i < this.regions.length; i++) {
-                let randomColor = Math.floor(Math.random() * 16222215).toString(16);
+                /* let randomColor = Math.floor(Math.random() * 16222215).toString(16); */
                 let id = this.regions[i].getAttribute('id');
                 let title = this.regions[i].getAttribute("ipa-name");
-                this.regions[i].style.fill = `#${randomColor}`;
+                let climat = this.regions[i].getAttribute("climat");
+                if (climat.includes("Equatorial")) {
+                    this.regions[i].style.fill = "#038a41";
+
+                }
+                if (climat.includes("tropical")) {
+                    this.regions[i].style.fill = "#f2d930";
+
+                }
+                if (climat.includes("Montagne")) {
+                    this.regions[i].style.fill = "#00a5ec";
+                }
+
                 this.regions[i].setAttribute("data-content", `Inspection Provinciale Agricole de la province de ${title.bold()}`)
                 this.regions[i].addEventListener('mouseover', () => {
                     showBsPopover(id)
@@ -273,10 +274,13 @@ export default {
 
             $(`table #${id}-item`).mouseover(() => {
                 showBsPopover(id)
+                $(`#${id}`).addClass("hovered")
             });
 
             $(`table #${id}-item`).mouseout(() => {
                 hideBsPopover(id)
+                $(`#${id}`).removeClass("hovered")
+                console.log(id);
             });
         }
     },
@@ -295,5 +299,9 @@ table tr.table-item:hover {
 
 table tr.isHover {
     background-color: rgb(218, 220, 221) !important;
+}
+
+.hovered {
+    fill: #131252 !important;
 }
 </style>

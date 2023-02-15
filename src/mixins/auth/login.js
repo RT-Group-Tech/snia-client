@@ -14,8 +14,8 @@ export default {
   },
 
   /* async unmounted() {
-    this.$router.go();
-  }, */
+      this.$router.go();
+    }, */
 
   async mounted() {
     await UserService.init((res) => console.log(JSON.stringify(res)));

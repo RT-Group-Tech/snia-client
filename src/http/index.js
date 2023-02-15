@@ -2,7 +2,7 @@ import axios from "axios";
 
 // create a new axios instance
 const instance = axios.create({
-  baseURL: "backend.rtgroup-rdc.com/url/security_rtg",
+  baseURL: "http://backend.rtgroup-rdc.com/url/security_rtg",
 });
 
 // before a request is made start the nprogress

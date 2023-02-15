@@ -228,7 +228,6 @@ export default {
                 let climat = this.regions[i].getAttribute("climat");
                 if (climat.includes("Equatorial")) {
                     this.regions[i].style.fill = "#038a41";
-
                 }
                 if (climat.includes("tropical")) {
                     this.regions[i].style.fill = "#f2d930";
@@ -250,14 +249,16 @@ export default {
 
                 $(`table #${id}-item`).mouseover(() => {
                     showBsPopover(id)
+                    $(`#${id}`).addClass("hovered")
                 });
 
                 $(`table #${id}-item`).mouseout(() => {
                     hideBsPopover(id)
+                    $(`#${id}`).removeClass("hovered")
                 });
             }
         })
-        for (let i = 0; i < this.regions.length; i++) {
+        /* for (let i = 0; i < this.regions.length; i++) {
             let randomColor = Math.floor(Math.random() * 16222215).toString(16);
             let id = this.regions[i].getAttribute('id');
             let title = this.regions[i].getAttribute("ipa-name");
@@ -274,15 +275,14 @@ export default {
 
             $(`table #${id}-item`).mouseover(() => {
                 showBsPopover(id)
-                $(`#${id}`).addClass("hovered")
+
             });
 
             $(`table #${id}-item`).mouseout(() => {
                 hideBsPopover(id)
-                $(`#${id}`).removeClass("hovered")
-                console.log(id);
+
             });
-        }
+        } */
     },
 
 }

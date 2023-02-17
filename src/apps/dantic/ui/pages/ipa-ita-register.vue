@@ -13,11 +13,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="page-inner mt--5">
-                <form novalidate v-if="step === 1" class="needs-validation" id="form-ipa"
-                    @submit.prevent="submittedStepI">
+                <form novalidate v-if="step === 1" class="needs-validation" id="form-ipa" @submit.prevent="submittedStepI">
                     <div class="row mt--2">
-                        <!-- Données IPA -->
+
                         <div class="col-md-12">
                             <div class="card full-height animated fadeIn">
                                 <div class="card-header">
@@ -31,8 +31,8 @@
                                                 <div class="select2-input">
                                                     <select id="provinceSelect" name="basic" class="form-control">
                                                         <option value="">&nbsp;</option>
-                                                        <option v-for="( province, index) in provinces"
-                                                            :value="province" :key="index">{{ province }}</option>
+                                                        <option v-for="( province, index) in provinces" :value="province"
+                                                            :key="index">{{ province }}</option>
                                                     </select>
                                                     {{ ipa.province }}
                                                 </div>
@@ -77,8 +77,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Coordonnée GPS / LONGITUDE <sup
-                                                        class="text-danger">*</sup></label>
+                                                <label>Coordonnée GPS / LONGITUDE <sup class="text-danger">*</sup></label>
                                                 <div class="input-group">
                                                     <input type="number" v-model="ipa.habitant" class="form-control"
                                                         placeholder="Longitude..." required>
@@ -95,8 +94,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Coordonnée GPS / LATITUDE <sup
-                                                        class="text-danger">*</sup></label>
+                                                <label>Coordonnée GPS / LATITUDE <sup class="text-danger">*</sup></label>
                                                 <div class="input-group">
                                                     <input type="number" v-model="ipa.habitant" class="form-control"
                                                         placeholder="Latitude..." required>
@@ -115,9 +113,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Données IPA -->
 
-                        <!--  Données Inspecteur -->
                         <div class="col-md-12">
                             <div class="card full-height animated fadeIn">
                                 <div class="card-header">
@@ -176,9 +172,7 @@
 
                             </div>
                         </div>
-                        <!-- End Inspecteur -->
 
-                        <!-- section climats !-->
                         <div class="col-md-12">
                             <div class="card full-height animated fadeIn">
                                 <div class="card-header">
@@ -189,8 +183,7 @@
                                         <label class="form-label">Sélectionnez un climat !</label>
                                         <div class="selectgroup-pills">
                                             <label class="selectgroup-item">
-                                                <input type="radio" name="value" value="Tropical"
-                                                    class="selectgroup-input">
+                                                <input type="radio" name="value" value="Tropical" class="selectgroup-input">
                                                 <span class="selectgroup-button">Tropical</span>
                                             </label>
                                             <label class="selectgroup-item">
@@ -199,8 +192,7 @@
                                                 <span class="selectgroup-button">Equatorial</span>
                                             </label>
                                             <label class="selectgroup-item">
-                                                <input type="radio" name="value" value="Montagne"
-                                                    class="selectgroup-input">
+                                                <input type="radio" name="value" value="Montagne" class="selectgroup-input">
                                                 <span class="selectgroup-button">Montagne</span>
                                             </label>
                                         </div>
@@ -209,9 +201,7 @@
 
                             </div>
                         </div>
-                        <!-- end section climats !-->
 
-                        <!-- section specifite !-->
                         <div class="col-md-12">
                             <div class="card full-height animated fadeIn">
                                 <div class="card-header">
@@ -254,18 +244,17 @@
 
                                         <div class="clearfix"></div>
                                     </div>
-                                    <!-- end submit -->
+
                                 </div>
 
                             </div>
                         </div>
-                        <!-- end section specifite !-->
 
                     </div>
                 </form>
                 <form novalidate @submit.prevent="submittedStepII" v-else id="form-ita" class="needs-validation">
                     <div class="row mt--2">
-                        <!-- Données ITA -->
+
                         <div class="col-md-12">
                             <div class="card full-height animated fadeIn">
                                 <div class="card-header">
@@ -315,9 +304,8 @@
                                                     <button v-if="index === itas.length - 1" class="btn btn-info"
                                                         @click.prevent="addIta" style="margin-left: 2px;"><i
                                                             class="flaticon-add"></i></button>
-                                                    <button v-else class="btn btn-danger"
-                                                        @click.prevent="removeIta(index)" style="margin-left: 2px;"><i
-                                                            class="fa fa-minus"></i></button>
+                                                    <button v-else class="btn btn-danger" @click.prevent="removeIta(index)"
+                                                        style="margin-left: 2px;"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,8 +315,7 @@
                                     <div class="wizard-action">
                                         <div class="pull-left">
                                             <button @click="step = 1" type="button"
-                                                class="btn btn-next btn-secondary btn-block"><i
-                                                    class="flaticon-back"></i>
+                                                class="btn btn-next btn-secondary btn-block"><i class="flaticon-back"></i>
                                                 Précédent</button>
                                         </div>
                                         <div class="pull-right">
@@ -341,7 +328,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Données ITA-->
+
                     </div>
                 </form>
             </div>
@@ -353,16 +340,16 @@
         <!-- end Global footer component -->
 
         <!-- <div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog"
-            aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor hic voluptates similique? Dolores
-                    adipisci eligendi ab culpa nobis, amet porro provident! Laboriosam, voluptates magnam quidem ut
-                    omnis explicabo officiis impedit.
-                </div>
-            </div>
-        </div> -->
-    </div>
+                                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor hic voluptates similique? Dolores
+                                                        adipisci eligendi ab culpa nobis, amet porro provident! Laboriosam, voluptates magnam quidem ut
+                                                        omnis explicabo officiis impedit.
+                                                    </div>
+                                                </div>
+                                            </div> -->
+</div>
 </template>
 
 <script>

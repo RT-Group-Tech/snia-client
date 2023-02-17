@@ -39,8 +39,8 @@
                 <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
                     <li class="nav-item dropdown hidden-caret">
-                        <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="notification">0</span>
                         </a>
@@ -117,8 +117,7 @@
                     <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="assets/img/picture_placeholder.png" alt="..."
-                                    class="avatar-img rounded-circle">
+                                <img src="assets/img/picture_placeholder.png" alt="..." class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -149,7 +148,7 @@
             </div>
         </nav>
         <!-- End Navbar -->
-    </div>
+</div>
 </template>
 <script>
 import { mapGetters } from "vuex"

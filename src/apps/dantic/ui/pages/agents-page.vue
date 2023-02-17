@@ -34,9 +34,12 @@
                         <div class="card full-height animated fadeIn">
                             <div class="card-header">
                                 <h1 class="card-title pull-left">Liste des agents</h1>
-                                <router-link :to="{ name: 'agent-create-route' }"
-                                    class="btn btn-primary btn-sm pull-right"> <i class="flaticon-add"></i>
-                                    Nouveau agent</router-link>
+                                <!-- <router-link :to="{ name: 'agent-create-route' }" class="btn btn-primary btn-sm pull-right">
+                                                                                                                                        <i class="flaticon-add"></i>
+                                                                                                                                        Nouveau agent</router-link> -->
+                                <button class="btn-primary btn-sm pull-right" @click="showAgentRegisterModal"><i
+                                        class="flaticon-add"></i>
+                                    Nouveau agent</button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -105,10 +108,98 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Agent register modal -->
+        <teleport to='body'>
+            <div class="modal animated fadeInUp" id="agentModal" tabindex="-1" role="dialog"
+                aria-labelledby="agentModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-app-2">
+                            <h5 class="modal-title text-white fw-mediumbold" id="agentModalLabel"> <i
+                                    class="fa fa-user-plus mr-2"></i>
+                                CREATION NOUVEAU AGENT</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="text-white">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-default">
+                                        <label>Nom</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Name"
+                                            value="Hizrian">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-default">
+                                        <label>Postnom</label>
+                                        <input type="email" class="form-control" name="email" placeholder="Name"
+                                            value="hello@example.com">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-default">
+                                        <label>Prénom</label>
+                                        <input type="email" class="form-control" name="email" placeholder="Name"
+                                            value="hello@example.com">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Name"
+                                            value="Hizrian">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Téléphone</label>
+                                        <input type="email" class="form-control" name="email" placeholder="Name"
+                                            value="hello@example.com">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Mot de passe</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Name"
+                                            value="Hizrian">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Confirmation mot de passe</label>
+                                        <input type="email" class="form-control" name="email" placeholder="Name"
+                                            value="hello@example.com">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text-right mt-3">
+                                <button class="btn btn-success" style="margin-right: 4px;">Enregistrer</button>
+                                <button class="btn btn-danger">Fermer</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </teleport>
+        <!-- End Agent reg modal -->
+
+
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
-    </div>
+</div>
 </template>
 
 <script>
@@ -123,6 +214,12 @@ export default {
             agents: 'dantic/GET_AGENTS'
         })
 
+    },
+
+    methods: {
+        showAgentRegisterModal() {
+            $("#agentModal").modal('show')
+        }
     },
 
     mounted() {
@@ -140,7 +237,7 @@ export default {
                 "search": "Recherche"
             }
         })
-        this.$store.dispatch('dantic/viewAgents')
+        this.$store.dispatch('dantic/viewAgents');
     }
 
 

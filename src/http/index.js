@@ -16,4 +16,16 @@ instance.interceptors.response.use((response) => {
   NProgress.done();
   return response;
 });
-export default instance;
+
+export async function request(data) {
+  return new Promise((resolve, reject) => {
+    instance
+      .post("", data)
+      .then(function (result) {
+        var data = result.data;
+        let status = result.status;
+        resolve({ data, status });
+      })
+      .catch((err) => reject(err));
+  });
+}

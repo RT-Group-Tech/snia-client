@@ -1,5 +1,4 @@
 <template>
-    <!-- Sidebar -->
     <div class="sidebar sidebar-style-2">
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
             <div class="sidebar-content">
@@ -35,24 +34,25 @@
                     </div>
                 </div>
                 <ul class="nav nav-primary">
-                    <li class="nav-item" :class="currentRoute === 'dashboard-route' ? 'active' : ''">
-                        <router-link :to="{ name: 'dashboard-route' }" href="#dashboard" class="collapsed"
-                            aria-expanded="false">
-                            <i class="fas fa-home"></i>
-                            <p>Tableau de bord</p>
-                        </router-link>
-                    </li>
                     <li class="nav-section">
                         <span class="sidebar-mini-icon">
                             <i class="fa fa-ellipsis-h"></i>
                         </span>
-                        <h4 class="text-section">Applications</h4>
+                        <h4 class="text-section">Navigations</h4>
                     </li>
+                    <li class="nav-item" :class="currentRoute === 'dashboard-route' ? 'active' : ''">
+                        <router-link :to="{ name: 'dashboard-route' }" href="#dashboard" class="collapsed"
+                            aria-expanded="false">
+                            <i class="icon-home"></i>
+                            <p>Tableau de bord</p>
+                        </router-link>
+                    </li>
+
                     <li class="nav-item"
                         :class="(currentRoute === 'ipa-ita-reg-route') || (currentRoute === 'ipa-view-route') ? 'active' : ''">
                         <a data-toggle="collapse" href="#base">
-                            <i class="fas fa-archway"></i>
-                            <p>IPA</p>
+                            <i class="icon-screen-desktop"></i>
+                            <p>Ipa</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="base">
@@ -72,8 +72,8 @@
                     </li>
                     <li class="nav-item" :class="currentRoute === 'ita-view-route' ? 'active' : ''">
                         <a data-toggle="collapse" href="#sidebarLayouts">
-                            <i class="fas fa-warehouse"></i>
-                            <p>ITA</p>
+                            <i class="icon-screen-desktop"></i>
+                            <p>Ita</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="sidebarLayouts">
@@ -86,29 +86,15 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item"
-                        :class="(currentRoute === 'agent-create-route') || (currentRoute === 'agents-view-route') ? 'active' : ''">
-                        <a data-toggle="collapse" href="#agents">
-                            <i class="fas fa-users"></i>
-                            <p>Agents</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="agents">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <router-link :to="{ name: 'agent-create-route' }">
-                                        <span class="sub-item">Enregistrer Agent</span>
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{ name: 'agents-view-route' }">
-                                        <span class="sub-item">Voir agents</span>
-                                    </router-link>
-                                </li>
 
-                            </ul>
-                        </div>
+                    <li class="nav-item" :class="currentRoute === 'agents-route' ? 'active' : ''">
+                        <router-link :to="{ name: 'agents-route' }" href="#dashboard" class="collapsed"
+                            aria-expanded="false">
+                            <i class="icon-people"></i>
+                            <p>Agents</p>
+                        </router-link>
                     </li>
+
                     <li class="nav-item">
                         <a href="#" class="collapsed" aria-expanded="false">
                             <i class="fas fa-cog"></i>
@@ -126,8 +112,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <!-- End Sidebar -->
+</div>
 </template>
 <script>
 import { mapGetters } from "vuex"

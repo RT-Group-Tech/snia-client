@@ -8302,15 +8302,15 @@ label.error {
 }
 
 .btn-primary {
-    background: #150570 !important;
-    border-color: #150570 !important;
+    background: var(--app-bg-color-accent) !important;
+    border-color: var(--app-bg-color-accent) !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:disabled {
-    background: #150570 !important;
-    border-color: #150570 !important;
+    background: var(--app-bg-color-accent-hover) !important;
+    border-color: var(--app-bg-color-accent-hover) !important;
 }
 
 .btn-secondary {

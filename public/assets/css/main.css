@@ -6,17 +6,18 @@
 :root {
     --app-bg-color: #1269db;
     --app-bg-color-accent: #1572e8;
+    --app-bg-color-accent-hover: #3886ec;
     --app-color2: #ef1f27;
     --app-color3: #fff200;
     --body-color: #edeff5
 }
 
 .bg-app-2 {
-    background-color: #12016d !important;
+    background-color: var(--app-bg-color-accent) !important;
 }
 
 .bg-banner {
-    background-color: #4126da !important;
+    background-color: var(--app-bg-color-accent) !important;
 }
 
 
@@ -34,18 +35,18 @@
 }
 
 .btn-snia:hover {
-    background-color: #311ca5;
+    background-color: var(--app-bg-color-accent);
     color: #fff;
 }
 
 .btn-snia:active,
 .btn-snia:focus {
-    background-color: #311ca5;
+    background-color: var(--app-bg-color);
     color: #fff
 }
 
 .bg-side-login {
-    background-color: #311ca5 !important;
+    background-color: var(--app-bg-color) !important;
 }
 
 .img-login-snia {

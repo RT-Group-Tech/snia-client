@@ -35,10 +35,10 @@
                             <div class="card-header">
                                 <h1 class="card-title pull-left">Liste des agents</h1>
                                 <!-- <router-link :to="{ name: 'agent-create-route' }" class="btn btn-primary btn-sm pull-right">
-                                                                                                                                        <i class="flaticon-add"></i>
-                                                                                                                                        Nouveau agent</router-link> -->
-                                <button class="btn-primary btn-sm pull-right" @click="showAgentRegisterModal"><i
-                                        class="flaticon-add"></i>
+                                                                                                                                                                                                                                                <i class="flaticon-add"></i>
+                                                                                                                                                                                                                                                Nouveau agent</router-link> -->
+                                <button class="btn btn-primary pull-right" @click="showAgentRegisterModal"><i
+                                        class="icon-user-follow"></i>
                                     Nouveau agent</button>
                             </div>
                             <div class="card-body">
@@ -77,9 +77,7 @@
                                                         <img src="assets/img/picture_placeholder.png" alt="photo"
                                                             class="avatar-img rounded">
                                                     </div>
-
                                                 </td>
-
                                                 <td>{{ agent.nom }}</td>
                                                 <td>{{ agent.telephone }}</td>
                                                 <td>{{ agent.email }}</td>
@@ -112,8 +110,8 @@
 
         <!-- Agent register modal -->
         <teleport to='body'>
-            <div class="modal animated fadeInUp" id="agentModal" tabindex="-1" role="dialog"
-                aria-labelledby="agentModalLabel" aria-hidden="true">
+            <div class="modal animated zoomIn" id="agentModal" tabindex="-1" role="dialog" aria-labelledby="agentModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-app-2">
@@ -125,68 +123,68 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row mt-3">
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-default">
-                                        <label>Nom</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Name"
-                                            value="Hizrian">
+                            <form id="agent-form" @submit.prevent="submitAgent">
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Nom</label>
+                                            <input type="text" class="form-control" name="nom"
+                                                placeholder="Saisir le nom de l'agent..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Postnom</label>
+                                            <input type="text" class="form-control" name="postnom"
+                                                placeholder="Saisir postnom..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Prénom</label>
+                                            <input type="text" class="form-control" name="prenom"
+                                                placeholder="Saisir prénom..." required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-default">
-                                        <label>Postnom</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Name"
-                                            value="hello@example.com">
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="Saisir email..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Téléphone</label>
+                                            <input type="tel" class="form-control" name="telephone"
+                                                placeholder="Saisir le n° de téléphone...(+243)" value="+243" required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group form-group-default">
-                                        <label>Prénom</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Name"
-                                            value="hello@example.com">
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Mot de passe</label>
+                                            <input type="password" class="form-control" name="pass"
+                                                placeholder="Saisir mot de passe..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default bg-light">
+                                            <label>Confirmation mot de passe</label>
+                                            <input type="password" class="form-control" name="confirm"
+                                                placeholder="Confirmer mot de passe..." required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <div class="form-group form-group-default">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Name"
-                                            value="Hizrian">
-                                    </div>
+                                <div class="text-right mt-3">
+                                    <button id="submit-btn" type="submit" class="btn btn-success"
+                                        style="margin-right: 4px;">Enregistrer</button>
+                                    <button class="btn btn-danger">Fermer</button>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group form-group-default">
-                                        <label>Téléphone</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Name"
-                                            value="hello@example.com">
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <div class="form-group form-group-default">
-                                        <label>Mot de passe</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Name"
-                                            value="Hizrian">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group form-group-default">
-                                        <label>Confirmation mot de passe</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Name"
-                                            value="hello@example.com">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="text-right mt-3">
-                                <button class="btn btn-success" style="margin-right: 4px;">Enregistrer</button>
-                                <button class="btn btn-danger">Fermer</button>
-                            </div>
+                            </form>
                         </div>
 
                     </div>
@@ -199,7 +197,7 @@
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
-</div>
+    </div>
 </template>
 
 <script>
@@ -219,6 +217,16 @@ export default {
     methods: {
         showAgentRegisterModal() {
             $("#agentModal").modal('show')
+        },
+
+        submitAgent(event) {
+            this.$validForm("agent-form", event, (result, form) => {
+                if (!result) {
+                    this.$animatedFailedTask("submit-btn");
+                } else {
+
+                }
+            });
         }
     },
 
@@ -237,6 +245,7 @@ export default {
                 "search": "Recherche"
             }
         })
+        $('#agents-datatables').scrollbar();
         this.$store.dispatch('dantic/viewAgents');
     }
 

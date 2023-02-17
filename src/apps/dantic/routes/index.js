@@ -60,10 +60,10 @@ const routes = [
                 },
             },
             {
-                path: "/dantic/secure/agent-creation",
+                path: "/dantic/secure/agents",
                 component: () =>
-                    import ("@/apps/dantic/ui/pages/agent-register"),
-                name: "agent-create-route",
+                    import ("@/apps/dantic/ui/pages/agents-page"),
+                name: "agents-route",
                 meta: {
                     authRequired: true,
                 },

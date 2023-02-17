@@ -11,8 +11,8 @@
                         </div>
                         <div class="ml-md-auto py-2 py-md-0">
 
-                            <button class="btn btn-light" @click="checkDevice"> <i class="flaticon-add-user"></i>
-                                utilisateur</button>
+                            <button class="btn btn-light" @click="testRequests"> <i class="icon-user-follow"></i>
+                                Utilisateur</button>
                         </div>
                     </div>
                 </div>
@@ -184,12 +184,14 @@
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
-</div>
+    </div>
 </template>
 
 <script>
 import DashboardMixin from "../../mixins/dashboard"
 import servicesMixins from "../../mixins/services.mixins";
+
+import Api from "../../api"
 
 
 export default {
@@ -207,7 +209,17 @@ export default {
                 pass: '1243655',
             },
         }
-    }
+    },
+    methods: {
+        testRequests() {
+            /* Api.login({ identifiant: "lionnes@gmail.com", pass: "1234" }, (res) => {
+                console.log(res);
+            }) */
+            Api.voirAgents((res) => {
+                console.log(res);
+            });
+        }
+    },
 
 }
 </script>

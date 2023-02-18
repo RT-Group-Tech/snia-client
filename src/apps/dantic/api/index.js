@@ -98,7 +98,8 @@ class Api {
     const { data, status } = await request({
       key: "9356560e3b9554c51aca9f7c997c4e369455e2a7",
     });
-    if (status === 200) callback(data);
+    let agents = data.result.reponse;
+    if (status === 200) callback(agents);
     else callback(false);
   }
 

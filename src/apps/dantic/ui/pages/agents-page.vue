@@ -35,62 +35,52 @@
                             <div class="card-header">
                                 <h1 class="card-title pull-left">Liste des agents</h1>
                                 <!-- <router-link :to="{ name: 'agent-create-route' }" class="btn btn-primary btn-sm pull-right">
-                                                                                                                                                                                                                                                <i class="flaticon-add"></i>
-                                                                                                                                                                                                                                                Nouveau agent</router-link> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="flaticon-add"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Nouveau agent</router-link> -->
                                 <button class="btn btn-primary pull-right" @click="showAgentRegisterModal"><i
                                         class="icon-user-follow"></i>
                                     Nouveau agent</button>
                             </div>
+
                             <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" v-model="searchword" class="form-control"
+                                                    placeholder="Recherche agent..." aria-label="Username"
+                                                    aria-describedby="basic-addon1">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="flaticon-search-1"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table id="agents-datatables" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Photo</th>
                                                 <th>Nom complet</th>
-                                                <th>Téléphone</th>
                                                 <th>E-mail</th>
-                                                <th>Adresse</th>
-                                                <th>Territoire</th>
-                                                <th>Province</th>
-                                                <th>Fonction</th>
+                                                <th>Téléphone</th>
+                                                <th>Status</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Photo</th>
-                                                <th>Nom complet</th>
-                                                <th>Téléphone</th>
-                                                <th>E-mail</th>
-                                                <th>Adresse</th>
-                                                <th>Territoire</th>
-                                                <th>Province</th>
-                                                <th>Fonction</th>
-                                                <th></th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <tr v-for="(agent, index) in agents" :key="index">
-                                                <td>
-                                                    <div class="avatar avatar-sm">
-                                                        <img src="assets/img/picture_placeholder.png" alt="photo"
-                                                            class="avatar-img rounded">
-                                                    </div>
-                                                </td>
-                                                <td>{{ agent.nom }}</td>
-                                                <td>{{ agent.telephone }}</td>
+                                                <td>{{ agent.nom_complet }}</td>
                                                 <td>{{ agent.email }}</td>
-                                                <td>{{ agent.adresse }}</td>
-                                                <td>{{ agent.territoire }}</td>
-                                                <td>{{ agent.province }}</td>
-                                                <td>{{ agent.fonction }}</td>
+                                                <td>{{ agent.telephone }}</td>
+
+                                                <td><span class="text-success fw-bold">{{ agent.agent_status }}</span></td>
                                                 <td>
-                                                    <button type="button" data-toggle="tooltip"
-                                                        title=" Voir agent & modification"
-                                                        class="btn btn-link btn-primary btn-lg"
+                                                    <button type="button" data-toggle="tooltip" title="Voir agent info."
+                                                        class="btn btn-info btn-sm btn-lg"
                                                         data-original-title="Voir agent & modification">
-                                                        <i class="fa fa-edit"></i>
+                                                        Afficher agent
                                                     </button>
                                                 </td>
                                             </tr>
@@ -98,7 +88,6 @@
                                     </table>
                                 </div>
                                 <!-- table pour afficher les ipa & ita -->
-
                                 <!-- end table -->
                             </div>
                         </div>
@@ -128,21 +117,21 @@
                                     <div class="col-md-4">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Nom</label>
-                                            <input type="text" class="form-control" name="nom"
+                                            <input type="text" v-model="name.first" class="form-control" name="nom"
                                                 placeholder="Saisir le nom de l'agent..." required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Postnom</label>
-                                            <input type="text" class="form-control" name="postnom"
+                                            <input type="text" v-model="name.last" class="form-control" name="postnom"
                                                 placeholder="Saisir postnom..." required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Prénom</label>
-                                            <input type="text" class="form-control" name="prenom"
+                                            <input type="text" v-model="name.nick" class="form-control" name="prenom"
                                                 placeholder="Saisir prénom..." required>
                                         </div>
                                     </div>
@@ -151,15 +140,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" name="email"
+                                            <input type="email" v-model="form.email" class="form-control" name="email"
                                                 placeholder="Saisir email..." required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Téléphone</label>
-                                            <input type="tel" class="form-control" name="telephone"
-                                                placeholder="Saisir le n° de téléphone...(+243)" value="+243" required>
+                                            <input type="tel" v-model="form.telephone" class="form-control" name="telephone"
+                                                placeholder="Saisir le n° de téléphone...(+243)" required>
                                         </div>
                                     </div>
                                 </div>
@@ -167,15 +156,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Mot de passe</label>
-                                            <input type="password" class="form-control" name="pass"
+                                            <input type="password" v-model="form.pass" class="form-control" name="pass"
                                                 placeholder="Saisir mot de passe..." required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default bg-light">
                                             <label>Confirmation mot de passe</label>
-                                            <input type="password" class="form-control" name="confirm"
-                                                placeholder="Confirmer mot de passe..." required>
+                                            <input type="password" v-model="form.confirm" class="form-control"
+                                                name="confirm" placeholder="Confirmer mot de passe..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +175,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -201,17 +189,44 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex"
 import servicesMixins from '../../mixins/services.mixins';
+import Api from "@/apps/dantic/api"
 export default {
     name: "Ipa-view",
     mixins: [servicesMixins],
 
-    computed: {
-        ...mapGetters({
-            agents: 'dantic/GET_AGENTS'
-        })
+    data() {
+        return {
+            /*  filter word */
+            searchword: '',
+            /* split full name */
+            name: {
+                first: '',
+                last: '',
+                nick: ''
+            },
+            form: {
+                nom_complet: '',
+                telephone: '',
+                email: '',
+                pass: '',
+                confirm: ''
+            }
+        }
+    },
 
+    computed: {
+
+        /* filter agent from list */
+        agents() {
+            if (this.searchword) {
+                let filtered = this.$store.getters['dantic/GET_AGENTS'];
+                return filtered.filter((agent) => agent.nom_complet.toLowerCase().includes(this.searchword.toLowerCase()));
+            }
+            else {
+                return this.$store.getters['dantic/GET_AGENTS'];
+            }
+        }
     },
 
     methods: {
@@ -220,33 +235,42 @@ export default {
         },
 
         submitAgent(event) {
-            this.$validForm("agent-form", event, (result, form) => {
+            /* agent name completion */
+            this.form.nom_complet = `${this.name.first.toUpperCase()} ${this.name.last.toUpperCase()} ${this.name.nick.toLowerCase()}`;
+            this.$validForm("agent-form", event, async (result, form) => {
                 if (!result) {
                     this.$animatedFailedTask("submit-btn");
                 } else {
-
+                    if (this.form.pass !== this.form.confirm) {
+                        return
+                    }
+                    Api.creerAgent(this.form, (data) => {
+                        $("#agentModal").modal('hide')
+                        console.log(data);
+                        this.$store.dispatch("dantic/viewAgents")
+                    })
                 }
             });
         }
     },
-
     mounted() {
-        /*init dataTable*/
-        $('#agents-datatables').DataTable({
-            "language": {
-                "paginate": {
-                    "previous": "Précédent",
-                    "next": "Suivant"
-                },
-                "lengthMenu": "Afficher _MENU_ enregistrements / page",
-                "zeroRecords": "Aucune données trouvés !",
-                "info": "Afficher _PAGE_ pour _PAGES_",
-                "infoEmpty": "Aucune données à afficher !",
-                "search": "Recherche"
-            }
-        })
-        $('#agents-datatables').scrollbar();
+        /*  $('#agents-datatables').DataTable({
+             "language": {
+                 "paginate": {
+                     "previous": "Précédent",
+                     "next": "Suivant"
+                 },
+                 "zeroRecords": "Aucune données trouvés !",
+                 "info": "Afficher _PAGE_ sur _PAGES_",
+                 "search": "Recherche"
+             }
+         }) */
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         this.$store.dispatch('dantic/viewAgents');
+        /*init dataTable*/
+
     }
 
 

@@ -1,11 +1,12 @@
 import AgentService from "@/database/services/dantic/agent.service";
 import IpaService from "@/database/services/dantic/ipa.service";
+import Api from "@/apps/dantic/api";
 
 const actions = {
   /*Permet de voir tous les agent via la dbTable locale*/
   viewAgents({ commit }) {
-    AgentService.getAll((data) => {
-      commit("SET_AGENTS", data);
+    Api.voirAgents((data) => {
+      commit("SET_AGENTS", data.reverse());
     });
   },
   viewIpas({ commit }) {

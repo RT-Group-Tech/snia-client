@@ -29,35 +29,38 @@
                 </div>
             </div>
             <div class="page-inner mt--5">
+
                 <div class="row mt--2">
                     <div class="col-md-12">
-                        <div class="card full-height animated fadeIn">
-                            <div class="card-header">
-                                <h1 class="card-title pull-left">Liste des agents</h1>
-                                <!-- <router-link :to="{ name: 'agent-create-route' }" class="btn btn-primary btn-sm pull-right">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="flaticon-add"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Nouveau agent</router-link> -->
-                                <button class="btn btn-primary pull-right" @click="showAgentRegisterModal"><i
-                                        class="icon-user-follow"></i>
-                                    Nouveau agent</button>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="text" v-model="searchword" class="form-control"
-                                                    placeholder="Recherche agent..." aria-label="Username"
-                                                    aria-describedby="basic-addon1">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="flaticon-search-1"></i></span>
-                                                </div>
-                                            </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-md-inline-block">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-white">
+                                            <i class="fa fa-search search-icon"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">Filtrer</button>
+                                        <div class="dropdown-menu" x-placement="bottom-start"
+                                            style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <a class="dropdown-item" href="#">Nom</a>
+                                            <a class="dropdown-item" href="#">Status</a>
+                                            <a class="dropdown-item" href="#">Rôle</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <button type="button" class="btn btn-success d-none d-sm-inline-block"><i
+                                    class="icon-user-follow mr-2"></i>Nouveau agent</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card full-height mt-4 animated fadeIn">
+                            <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="agents-datatables" class="display table table-striped table-hover">
                                         <thead>
@@ -170,7 +173,9 @@
                                 </div>
                                 <div class="text-right mt-3">
                                     <button id="submit-btn" type="submit" class="btn btn-success"
-                                        style="margin-right: 4px;">Enregistrer</button>
+                                        :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;"> <i
+                                            v-if="submitLoading" class="fa fa-spinner fa-spin" /> Enregistrer agent
+                                    </button>
                                     <button class="btn btn-danger">Fermer</button>
                                 </div>
                             </form>
@@ -199,6 +204,7 @@ export default {
         return {
             /*  filter word */
             searchword: '',
+            submitLoading: false,
             /* split full name */
             name: {
                 first: '',
@@ -241,10 +247,13 @@ export default {
                 if (!result) {
                     this.$animatedFailedTask("submit-btn");
                 } else {
+
                     if (this.form.pass !== this.form.confirm) {
                         return
                     }
-                    Api.creerAgent(this.form, (data) => {
+                    this.submitLoading = true;
+                    await Api.creerAgent(this.form, (data) => {
+                        this.submitLoading = false;
                         $("#agentModal").modal('hide')
                         console.log(data);
                         this.$store.dispatch("dantic/viewAgents")

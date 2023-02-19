@@ -40,74 +40,17 @@
                         </span>
                         <h4 class="text-section">Navigations</h4>
                     </li>
-                    <li class="nav-item" :class="currentRoute === 'dashboard-route' ? 'active' : ''">
-                        <router-link :to="{ name: 'dashboard-route' }" href="#dashboard" class="collapsed"
-                            aria-expanded="false">
-                            <i class="icon-home"></i>
-                            <p>Tableau de bord</p>
-                        </router-link>
-                    </li>
 
-                    <li class="nav-item"
-                        :class="(currentRoute === 'ipa-ita-reg-route') || (currentRoute === 'ipa-view-route') ? 'active' : ''">
-                        <a data-toggle="collapse" href="#base">
-                            <i class="icon-screen-desktop"></i>
-                            <p>Ipa</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="base">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <router-link :to="{ name: 'ipa-ita-reg-route' }">
-                                        <span class="sub-item">Enregistrer IPA</span>
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{ name: 'ipa-view-route' }">
-                                        <span class="sub-item">Voir IPA</span>
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item" :class="currentRoute === 'ita-view-route' ? 'active' : ''">
-                        <a data-toggle="collapse" href="#sidebarLayouts">
-                            <i class="icon-screen-desktop"></i>
-                            <p>Ita</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="sidebarLayouts">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <router-link :to="{ name: 'ita-view-route' }">
-                                        <span class="sub-item">Voir ITA</span>
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                    <!-- sidebar item navigation -->
+                    <sidebar-item title="Tableau de bord" route-name="dashboard-route" icon="icon-home"/>
 
-                    <li class="nav-item" :class="currentRoute === 'agents-route' ? 'active' : ''">
-                        <router-link :to="{ name: 'agents-route' }" href="#dashboard" class="collapsed"
-                            aria-expanded="false">
-                            <i class="icon-people"></i>
-                            <p>Agents</p>
-                        </router-link>
-                    </li>
+                    <sidebar-item title="Ipa" route-name="ipa-view-route" icon="icon-screen-desktop"/>
 
-                    <li class="nav-item">
-                        <a href="#" class="collapsed" aria-expanded="false">
-                            <i class="fas fa-cog"></i>
-                            <p>Configurations</p>
-                        </a>
-                    </li>
-                    <li class="nav-item" :class="currentRoute === 'test-route' ? 'active' : ''">
-                        <router-link :to="{ name: 'test-route' }" class="collapsed" aria-expanded="false">
-                            <i class="fas fa-home"></i>
-                            <p>Components test</p>
-                        </router-link>
-                    </li>
+                    <sidebar-item title="Ita" route-name="ita-view-route" icon="icon-screen-desktop"/>
 
+                    <sidebar-item title="Agents" route-name="agents-route" icon="icon-people"/>
+
+                    <sidebar-item title="Test" route-name="test-route" icon="icon-settings"/>
 
                 </ul>
             </div>
@@ -125,10 +68,10 @@ export default {
     },
 
     mounted() {
-        setInterval(() => {
+        /*setInterval(() => {
             let route = this.$route.name;
             this.currentRoute = route
-        }, 100);
+        }, 100);*/
         var scrollbarDashboard = $(".sidebar .scrollbar");
         if (scrollbarDashboard.length > 0) {
             scrollbarDashboard.scrollbar();

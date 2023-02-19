@@ -162,9 +162,9 @@
                                     <div class="col-md-5">
                                         <div id="myChartLegend">
                                             <ul class="0-legend html-legend">
-                                                <li><span style="background-color:#038a41"></span>Equatoriale</li>
-                                                <li><span style="background-color:#f2d930"></span>Tropicale</li>
-                                                <li><span style="background-color:#00a5ec"></span>Montagne</li>
+                                                <li title="Climat & zone équatoriale" data-toggle="tooltip"><span style="background-color:#038a41"></span>Equatoriale</li>
+                                                <li title="Climat & zone tropicale" data-toggle="tooltip"><span style="background-color:#f2d930"></span>Tropicale</li>
+                                                <li title="Climat & zone montagneuse" data-toggle="tooltip"><span style="background-color:#00a5ec"></span>Montagne</li>
                                             </ul>
                                         </div>
                                         <div class="map--view">

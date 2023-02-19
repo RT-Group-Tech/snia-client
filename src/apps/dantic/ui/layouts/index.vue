@@ -18,7 +18,6 @@
 /* Layouts imports */
 import HeaderLayout from "./header"
 import SidebarLayout from "./sidebar"
-import scriptLoader from "@/utils/scripts.loader"
 
 export default {
     name: "Main-Layout",

@@ -1,8 +1,12 @@
 import axios from "axios";
 
+let token = localStorage.getItem('userToken');
 // create a new axios instance
 const instance = axios.create({
-  baseURL: "http://backend.rtgroup-rdc.com/url/security_rtg",
+    baseURL: "http://backend.rtgroup-rdc.com/url/security_rtg",
+    headers:{
+        'Authorization': ``
+    }
 });
 
 // before a request is made start the nprogress

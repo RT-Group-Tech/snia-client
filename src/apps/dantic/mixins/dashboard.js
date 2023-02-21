@@ -11,7 +11,7 @@ export default {
   name: "Dashboard-mixin",
 
   mounted() {
-    Swal.fire("Hello !");
+    //Swal.fire("Hello !");
     this.loadCharts();
     this.$initBsTooltip();
     $(document).ready(() => {

@@ -1,28 +1,11 @@
 <template>
-    <div class="main-panel">
-        <div class="container">
-            <div class="panel-header">
-                <div class=" page-inner py-5">
-                    <div class="page-header">
-                        <h4 class="page-title"> Inspection Territorial Agricole </h4>
-                        <ul class="breadcrumbs">
-                            <li class="nav-home">
-                                <router-link :to="{ name: 'dashboard-route' }">
-                                    <i class="flaticon-home"></i>
-                                </router-link>
-                            </li>
-                            <li class="separator">
-                                <i class="flaticon-right-arrow"></i>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">Liste des itas</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="page-inner mt--5">
-                <div class="row mt--2">
+    <div class="modal fade bd-ita-modal-xl" tabindex="-1" role="dialog" aria-labelledby="itaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
                     <div class="col-md-12">
                         <div class="d-flex justify-content-between">
                             <div class="d-md-inline-block">
@@ -40,18 +23,22 @@
                                             style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <a class="dropdown-item" href="#">ITA</a>
                                             <a class="dropdown-item" href="#">Population</a>
-                                            <a class="dropdown-item" href="#">Supérficie</a>
-                                            <a class="dropdown-item" href="#">IPA</a>
+                                            <a class="dropdown-item" href="#">Superficie</a>
+                                            <!-- <a class="dropdown-item" href="#">IPA</a> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" data-toggle="modal" data-target=".bd-create-ita-modal-xl"
-                                class="btn btn-success d-none d-sm-inline-block">
+                            <button type="button" class="btn btn-success d-none d-sm-inline-block" data-toggle="modal"
+                                data-target="#itaModal" data-dismiss="modal">
                                 <i class="flaticon-add mr-1"></i>Nouvelle ita
                             </button>
                         </div>
                     </div>
+
+                </div>
+                <div class="modal-body">
+
                     <div class="col-md-12">
                         <div class="card full-height mt-4 animated fadeIn">
                             <div class="card-body">
@@ -71,11 +58,15 @@
                                                 <td>{{ agent.email }}</td>
                                                 <td>{{ agent.telephone }}</td> -->
 
-                                                <td><span class="text-success fw-bold">{{ agent.agent_status }}</span></td>
+                                                <td>
+                                                    <span class="text-success fw-bold">
+                                                        {{ agent.agent_status }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <button type="button" data-toggle="tooltip" title="Voir agent info."
                                                         class="btn btn-info btn-sm btn-lg"
-                                                        data-original-title="Voir agent & modification">
+                                                        data-original-title="Voir ITA & Modification">
                                                         Afficher ITA
                                                     </button>
                                                 </td>
@@ -88,33 +79,22 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                <div class="modal-footer">
+
+                </div>
+
             </div>
         </div>
-
-        <!-- Modal Create ITA -->
-
-        <ItaCreateModal/>
-
-        <!-- End Modal Create ITA -->
-
-        <!-- Agent register modal -->
-        <!-- <agent-create-modal /> -->
-        <!-- End Agent reg modal -->
-
-        <!-- Global footer component -->
-        <d-footer></d-footer>
-        <!-- end Global footer component -->
-
     </div>
 </template>
 
 <script>
 
-import ItaCreateModal from "../modals/ita-create-modal.vue";
 
-export default {
-    name: "Ipa-view",
-    components: { ItaCreateModal },
-}
+
 </script>
+
+<style></style>

@@ -10,7 +10,7 @@
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
                                 {{ user.name }}
-                                <span class="user-level text-primary">Administrateur</span>
+                                <span class="user-level text-success">Administrateur</span>
                                 <span class="caret"></span>
                             </span>
                         </a>

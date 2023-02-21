@@ -24,12 +24,10 @@
                                 <a href="#">liste des agents</a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
             <div class="page-inner mt--5">
-
                 <div class="row mt--2">
                     <div class="col-md-12">
                         <div class="d-flex justify-content-between">
@@ -42,9 +40,8 @@
                                     </div>
                                     <input type="text" class="form-control" aria-label="Text input with dropdown button">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                            data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">Filtrer</button>
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">Filtrer</button>
                                         <div class="dropdown-menu" x-placement="bottom-start"
                                             style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <a class="dropdown-item" href="#">Nom</a>
@@ -54,7 +51,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" @click="showAgentRegisterModal" class="btn btn-success d-none d-sm-inline-block"><i
+                            <button type="button" @click="showAgentRegisterModal"
+                                class="btn btn-success d-none d-sm-inline-block"><i
                                     class="icon-user-follow mr-2"></i>Nouveau agent</button>
                         </div>
                     </div>
@@ -99,15 +97,14 @@
             </div>
         </div>
 
-
         <!-- Agent register modal -->
-        <agent-create-modal></agent-create-modal>
+        <agent-create-modal />
         <!-- End Agent reg modal -->
-
 
         <!-- Global footer component -->
         <d-footer></d-footer>
         <!-- end Global footer component -->
+
     </div>
 </template>
 
@@ -117,14 +114,13 @@ import servicesMixins from '../../mixins/services.mixins';
 import AgentCreateModal from "../modals/agent-create-modal.vue";
 export default {
     name: "Ipa-view",
-  components: {AgentCreateModal},
+    components: { AgentCreateModal },
     mixins: [servicesMixins],
 
     data() {
         return {
             /*  filter word */
             searchword: '',
-
         }
     },
 
@@ -161,11 +157,8 @@ export default {
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-        this.$store.dispatch('dantic/viewAgents');
+        /* this.$store.dispatch('dantic/viewAgents'); */
         /*init dataTable*/
-
     }
-
-
 }
 </script>

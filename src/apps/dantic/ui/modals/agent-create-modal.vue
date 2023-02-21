@@ -16,9 +16,8 @@
             <form id="agent-form" @submit.prevent="submitAgent">
               <div class="row mt-3">
                 <div class="col-md-4">
-
                   <div class="form-group form-group-default bg-light">
-                    <label>Nom</label>
+                    <label class="fw-extrabold">Nom</label>
                     <input type="text" v-model="name.first" class="form-control" name="nom"
                            placeholder="Saisir le nom de l'agent..." required>
                   </div>
@@ -26,7 +25,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group form-group-default bg-light">
-                    <label>Postnom</label>
+                    <label class="fw-extrabold">Postnom</label>
                     <input type="text" v-model="name.last" class="form-control" name="postnom"
                            placeholder="Saisir postnom..." required>
                   </div>
@@ -34,7 +33,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group form-group-default bg-light">
-                    <label>Prénom</label>
+                    <label class="fw-extrabold">Prénom</label>
                     <input type="text" v-model="name.nick" class="form-control" name="prenom"
                            placeholder="Saisir prénom..." required>
                   </div>
@@ -43,14 +42,14 @@
               <div class="row mt-3">
                 <div class="col-md-6">
                   <div class="form-group form-group-default bg-light">
-                    <label>Email</label>
+                    <label class="fw-extrabold">Email</label>
                     <input type="email" v-model="form.email" class="form-control" name="email"
                            placeholder="Saisir email..." required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group form-group-default bg-light">
-                    <label>Téléphone</label>
+                    <label class="fw-extrabold">Téléphone</label>
                     <input type="tel" v-model="form.telephone" class="form-control" name="telephone"
                            placeholder="Saisir le n° de téléphone...(+243)" required>
                   </div>
@@ -59,14 +58,14 @@
               <div class="row mt-3">
                 <div class="col-md-6">
                   <div class="form-group form-group-default bg-light">
-                    <label>Mot de passe</label>
+                    <label class="fw-extrabold">Mot de passe</label>
                     <input type="password" v-model="form.pass" class="form-control" name="pass"
                            placeholder="Saisir mot de passe..." required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group form-group-default bg-light">
-                    <label>Confirmation mot de passe</label>
+                    <label class="fw-extrabold">Confirmation mot de passe</label>
                     <input type="password" v-model="form.confirm" class="form-control"
                            name="confirm" placeholder="Confirmer mot de passe..." required>
                   </div>

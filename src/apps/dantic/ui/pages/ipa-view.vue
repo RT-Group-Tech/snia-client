@@ -4,7 +4,7 @@
       <div class="panel-header">
         <div class=" page-inner py-5">
           <div class="page-header">
-            <h4 class="page-title">Insp. Agri. Prov.</h4>
+            <h4 class="page-title">Inspections provinciales agricoles</h4>
             <ul class="breadcrumbs">
               <li class="nav-home">
                 <router-link :to="{ name: 'dashboard-route' }">
@@ -30,32 +30,55 @@
               <div class="d-md-inline-block">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                      <span class="input-group-text bg-white">
-                          <i class="fa fa-search search-icon"></i>
-                      </span>
+                    <span class="input-group-text bg-white">
+                      <i class="fa fa-search search-icon"></i>
+                    </span>
                   </div>
                   <input type="text" class="form-control" aria-label="Text input with dropdown button">
                   <div class="input-group-append">
-                    <button class="btn btn-primary dropdown-toggle" type="button"
-                            data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">Filtrer</button>
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Filtrer</button>
                     <div class="dropdown-menu" x-placement="bottom-start"
-                         style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
-                      <a class="dropdown-item" href="#">Nom</a>
-                      <a class="dropdown-item" href="#">Status</a>
-                      <a class="dropdown-item" href="#">Rôle</a>
+                      style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
+                      <a class="dropdown-item" href="#">actif</a>
+
                     </div>
                   </div>
                 </div>
               </div>
               <button type="button" @click="showIpaRegisterModal" class="btn btn-success d-none d-sm-inline-block"><i
-                  class="icon-user-follow mr-2"></i>Nouvelle ipa</button>
+                  class="flaticon-add mr-1"></i>Nouvelle ipa</button>
             </div>
           </div>
           <div class="col-md-12">
-            <div class="card full-height mt-4 animated fadeIn">
-              <div class="card-body">
+            <div class="row mt-4">
+              <div class="col-md-3" v-for="i in 24" :key="i">
+                <div class="card card-pricing">
+                  <div class="card-header bg-transparent">
+                    <h4 class="card-title"><img src="assets/img/icons/city.png" height="20" width="20" class="img-fluid mr-1"> Kasaï central</h4>
+                  </div>
+                  <div class="card-body">
+                    <ul class="specification-list">
+                      <li>
+                        <span class="name-specification">Population</span>
+                        <span class="status-specification">4 000 000</span>
+                      </li>
+                      <li>
+                        <span class="name-specification">Supérficie</span>
+                          <span class="status-specification">450km<sup>2</sup> </span>
+                      </li>
+                        <li>
+                            <span class="name-specification">Total ipas</span>
+                            <span class="status-specification">130
+                                <button type="button" title="voir la liste des itas" data-toggle="tooltip" class="btn btn-icon btn-sm ml-2 btn-black">
+                                    <i class="icon-list"></i>
+                                </button>
+                            </span>
+                        </li>
+                    </ul>
 
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -64,9 +87,9 @@
     </div>
 
 
-    <!-- Agent register modal -->
-    <agent-create-modal></agent-create-modal>
-    <!-- End Agent reg modal -->
+    <!--Ipa register modal -->
+    <ipa-create-modal/>
+    <!-- End Ipa reg modal -->
 
 
     <!-- Global footer component -->
@@ -77,18 +100,23 @@
 
 <script>
 import { mapGetters } from "vuex"
+import IpaCreateModal from "../modals/ipa-create-modal.vue";
 export default {
-    name: "Ipa-view",
+  name: "Ipa-view",
+    components: {IpaCreateModal},
 
-    computed: {
-        ...mapGetters({
-            ipas: 'dantic/GET_IPAS'
-        })
+  computed: {
+    ...mapGetters({
+      ipas: 'dantic/GET_IPAS'
+    })
+  },
+    mounted() {
+        this.$initBsTooltip();
     },
     methods: {
-        showIpaRegisterModal() {
-            $("#ipaModal").modal('show');
-        }
-    },
+    showIpaRegisterModal() {
+      $("#ipaModal").modal('show');
+    }
+  },
 }
 </script>

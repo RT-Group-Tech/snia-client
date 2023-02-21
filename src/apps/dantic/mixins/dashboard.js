@@ -11,9 +11,10 @@ export default {
   name: "Dashboard-mixin",
 
   mounted() {
+    Swal.fire("Hello !");
     this.loadCharts();
+    this.$initBsTooltip();
     $(document).ready(() => {
-      $('[data-toggle="tooltip"]').tooltip();
       for (let i = 0; i < this.regions.length; i++) {
         /* let randomColor = Math.floor(Math.random() * 16222215).toString(16); */
         let id = this.regions[i].getAttribute("id");

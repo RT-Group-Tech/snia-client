@@ -15,13 +15,7 @@
                                 <i class="flaticon-right-arrow"></i>
                             </li>
                             <li class="nav-item">
-                                <a href="#">Agents</a>
-                            </li>
-                            <li class="separator">
-                                <i class="flaticon-right-arrow"></i>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#">liste des agents</a>
+                                <a href="#">Liste des agents</a>
                             </li>
                         </ul>
                     </div>

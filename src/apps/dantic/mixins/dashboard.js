@@ -9,12 +9,10 @@ function hideBsPopover(id) {
 
 export default {
   name: "Dashboard-mixin",
-
   mounted() {
     /* Swal.fire("Hello !"); */
     this.loadCharts();
     this.$initBsTooltip();
-
     /* Svg map init */
     $(document).ready(() => {
       for (let i = 0; i < this.regions.length; i++) {
@@ -104,7 +102,6 @@ export default {
         styleWrapper: true,
         styleText: true,
       });
-
       /**end circles charts init.**/
 
       /**bar charts init */
@@ -163,7 +160,6 @@ export default {
         lineColor: "#ffa534",
         fillColor: "rgba(255, 165, 52, .14)",
       });
-
       /*end bar chart init*/
     },
   },

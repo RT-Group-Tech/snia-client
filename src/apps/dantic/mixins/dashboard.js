@@ -11,11 +11,7 @@ export default {
   name: "Dashboard-mixin",
 
   mounted() {
-<<<<<<< HEAD
     /* Swal.fire("Hello !"); */
-=======
-    //Swal.fire("Hello !");
->>>>>>> be64eee55d234996fba58696f06e20c34239f669
     this.loadCharts();
     this.$initBsTooltip();
 

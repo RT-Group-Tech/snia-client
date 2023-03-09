@@ -128,19 +128,15 @@ export default {
         this.$initBsTooltip();
         this.$store.dispatch('dantic/viewItas')
     },
-
-
-
     methods: {
         showCreateItaModal() {
+            this.$store.state.dantic.selectedIpa = null;
             $("#itaCreateModal").modal('show');
         }
     },
 
     computed: {
         itas() {
-
-
             if (this.searchword) {
                 let filtered = this.$store.getters['dantic/GET_ITAS'];
                 return filtered.filter((ita) => ita.ita.toLowerCase().includes(this.searchword.toLowerCase()));

@@ -4,8 +4,10 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content shadow-lg">
                 <div class="modal-header bg-app-2">
-                    <h5 class="modal-title text-white fw-mediumbold" id="itaModalLabel">
-                        CRÉATION DE LA NOUVELLE INSPECTION TERRITORIALE AGRICOLE </h5>
+                    <h5 v-if="selectedIpa" class="modal-title text-white fw-mediumbold" id="itaModalLabel">
+                        CRÉATION DES ITAS POUR <strong>{{ selectedIpa.province.toUpperCase() }}</strong>
+                    </h5>
+                    <h5 class="modal-title text-white fw-extrabold" v-else>CRÉATION DES ITAS</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
@@ -36,11 +38,12 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6" v-if="!selectedIpa">
                                 <div class="form-group form-group-default bg-light">
                                     <label>Province <sup class="text-danger">*</sup></label>
                                     <div class="select2-input">
-                                        <select id="provinceSelect" v-model="form.ipa_id" name="basic" class="form-control">
+                                        <select id="provinceSelect" v-model="form.ipa_id" name="basic" class="form-control"
+                                            required>
                                             <option value="">&nbsp;</option>
                                             <option v-for="( ipa, index) in ipas" :value="ipa.ipa_id" :key="index">
                                                 {{ ipa.province }}</option>
@@ -96,17 +99,31 @@ export default {
         createIta(event) {
             console.log(JSON.stringify(this.form));
             this.submitLoading = true
+            if (this.selectedIpa !== null) {
+                this.form.ipa_id = this.selectedIpa.ipa_id
+            }
             Api.creerIta(this.form, (res) => {
                 this.submitLoading = false;
                 this.$store.dispatch('dantic/viewItas');
-                console.log(JSON.stringify(res));
+                if (this.selectedIpa !== null) {
+                    this.$store.dispatch('dantic/getItasOfIpa', this.selectedIpa.ipa_id);
+                }
+                this.cleanFields();
             })
+        },
+        cleanFields() {
+            this.form.ita = '';
+            this.form.superficie = '';
+            this.form.total_population = '';
         }
     },
 
     computed: {
         ipas() {
             return this.$store.getters['dantic/GET_IPAS'];
+        },
+        selectedIpa() {
+            return this.$store.state.dantic.selectedIpa;
         }
     }
 }

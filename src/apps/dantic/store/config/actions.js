@@ -19,6 +19,16 @@ const actions = {
       commit("SET_ITAS", data.result.reponse);
     });
   },
+
+  getItasOfIpa({ commit }, id) {
+    return new Promise((resolve) => {
+      Api.voirItasDeIpa(id, (data) => {
+        let ipas = data.result.reponse.datas;
+        commit("SET_ITAOfIPA", ipas.reverse());
+        resolve(true);
+      });
+    });
+  },
 };
 
 export default actions;

@@ -3,6 +3,7 @@ const getters = {
   GET_AGENTS: (state) => state.agents,
   GET_IPAS: (state) => state.ipas,
   GET_ITAS: (state) => state.itas,
+  GET_ITAOfIPA: (state) => state.itasOfIpa,
 };
 
 export default getters;

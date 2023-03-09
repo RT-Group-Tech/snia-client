@@ -77,14 +77,13 @@
                       <li>
                         <span class="name-specification">Total ipas</span>
                         <span class="status-specification">130
-                          <button type="button" @click.prevent="showItaViewModal" title="Voir la liste des itas"
+                          <button type="button" @click.prevent="getItas(ipa)" title="Voir la liste des itas"
                             class="btn btn-icon btn-sm ml-2 btn-info" data-toggle="tooltip">
                             <i class="fas fa-th-list"></i>
                           </button>
                         </span>
                       </li>
                     </ul>
-
                   </div>
                 </div>
               </div>
@@ -140,7 +139,7 @@ export default {
       else {
         return this.$store.getters['dantic/GET_IPAS'];
       }
-    }
+    },
   },
   mounted() {
     this.$initBsTooltip();
@@ -150,9 +149,16 @@ export default {
     showIpaRegisterModal() {
       $("#ipaCreateModal").modal('show');
     },
-    showItaViewModal() {
-      $('#ita-view-modal').modal('show');
+
+    /*Permet d'afficher les itas relatives à une ipa en envoyant son ID*/
+    getItas(ipa) {
+      this.$store.state.dantic.selectedIpa = ipa;
+      this.$store.dispatch('dantic/getItasOfIpa', ipa.ipa_id).then((res) => {
+        $('#ita-view-modal').modal('show');
+
+      });
     }
+
   },
 }
 </script>

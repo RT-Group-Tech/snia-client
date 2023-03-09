@@ -10,7 +10,6 @@
                                 de l'Information et de la Communication</h5>
                         </div>
                         <div class="ml-md-auto py-2 py-md-0">
-
                             <button class="btn btn-light" @click="testRequests"> <i class="icon-user-follow"></i>
                                 Utilisateur</button>
                         </div>
@@ -73,21 +72,18 @@
                         <dashboard-card title="Total ipas" value="234" leading="ipas" icon="fab fa-fort-awesome"
                             bg-color="bg-info">
                         </dashboard-card>
-
                     </div>
 
                     <div class="col-sm-6 col-lg-3">
                         <dashboard-card title="Total itas" value="234" leading="itas" icon="fab fa-fort-awesome-alt"
                             bg-color="bg-secondary">
                         </dashboard-card>
-
                     </div>
 
                     <div class="col-sm-6 col-lg-3">
                         <dashboard-card title="Nombre agents" value="100" leading="agents" icon="icon-people"
                             bg-color="bg-warning">
                         </dashboard-card>
-
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <dashboard-card title="Nbre agriculteurs" value="100" leading="agric." icon="icon-people"

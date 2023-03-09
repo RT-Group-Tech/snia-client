@@ -15,17 +15,19 @@
             <form id="agent-form" @submit.prevent="submitIpa">
               <div class="form-group form-group-default bg-light">
                 <label class="fw-extrabold">Nom ipa</label>
-                <input type="text" class="form-control" name="nom" placeholder="Saisir le nom de l'ipa..." required>
+                <input type="text" v-model="form.province" class="form-control" name="nom"
+                  placeholder="Saisir le nom de l'ipa..." required>
               </div>
               <div class="form-group form-group-default bg-light">
                 <label class="fw-extrabold">Population</label>
-                <input type="text" class="form-control" name="population"
+                <input type="text" class="form-control" v-model="form.total_population" name="population"
                   placeholder="Saisir le nombre de la population..." required>
               </div>
               <div class="form-group form-group-default bg-light">
                 <label class="fw-extrabold">Superficie</label>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="postnom" placeholder="Saisir la superficie..." required>
+                  <input type="text" v-model="form.superficie" class="form-control" name="postnom"
+                    placeholder="Saisir la superficie..." required>
                   <div class="input-group-append p-md-0 bg-transparent">
                     <span class="input-group-text">Km<sup>2</sup> </span>
                   </div>
@@ -47,24 +49,36 @@
 </template>
 
 <script>
+import Api from '@/apps/dantic/api'
 export default {
   name: "ipa-create-modal",
 
   data() {
+    let form = {
+      province: '',
+      total_population: '',
+      superficie: ''
+    }
     return {
-      submitLoading: false
+      submitLoading: false,
+      form: form
     }
   },
   methods: {
     submitIpa(event) {
       this.submitLoading = true;
-
-      setTimeout(() => {
+      Api.creerIpa(this.form, (res) => {
         this.submitLoading = false;
-      }, 1000)
+        this.$store.dispatch('dantic/viewIpas')
+        this.cleanFields();
+      })
+    },
+
+    cleanFields() {
+      this.form.province = '';
+      this.form.superficie = '';
+      this.form.total_population = '';
     }
   }
 }
 </script>
-
-<style scoped></style>

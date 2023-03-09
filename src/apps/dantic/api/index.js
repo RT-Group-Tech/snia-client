@@ -74,6 +74,20 @@ class Api {
   }
 
   /**
+   * voir les itas relatives  à l'Ipa sélectionnée
+   * @param {String} ipaId
+   * @param {void} callback
+   */
+  static async voirItasDeIpa(ipaId, callback) {
+    const { status, data } = await request({
+      key: "c42806c710889ad890b10fb6357d7fc58b04df05",
+      ipa_id: ipaId,
+    });
+    if (status === 200) callback(data);
+    else callback(false);
+  }
+
+  /**
    * Création
    * @param {Object} form
    * @param {void} callback

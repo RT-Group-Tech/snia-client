@@ -11,9 +11,11 @@ export default {
   name: "Dashboard-mixin",
 
   mounted() {
-    Swal.fire("Hello !");
+    /* Swal.fire("Hello !"); */
     this.loadCharts();
     this.$initBsTooltip();
+
+    /* Svg map init */
     $(document).ready(() => {
       for (let i = 0; i < this.regions.length; i++) {
         /* let randomColor = Math.floor(Math.random() * 16222215).toString(16); */

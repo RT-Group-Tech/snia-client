@@ -34,13 +34,13 @@
                                 </div>
 
                             </div>
-                            <div class="form-group form-group-default bg-light">
+                            <!-- <div class="form-group form-group-default bg-light">
                                 <label class="fw-extrabold">IPA</label>
 
-                            </div>
+                            </div> -->
                             <div class="text-right mt-3">
                                 <button id="submit-btn" type="submit" class="btn btn-success" data-toggle="modal"
-                            data-target=".bd-ita-modal-xl"
+                             data-dismiss="modal" @click="closeModal"
                                     :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;"> 
                                     <i v-if="submitLoading" class="fa fa-spinner fa-spin" /> Enregistrer ITA
                                 </button>
@@ -56,6 +56,12 @@
 <script>
 export default {
     name: "ita-create-modal",
+
+    methods:{
+        closeModal(){
+            $(".bd-ita-modal-xl").modal("hide")
+        }
+    }
 }
 </script>
 

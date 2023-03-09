@@ -32,10 +32,11 @@
                                             <i class="fa fa-search search-icon"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                    <input type="text" v-model="searchword" placeholder="recherche ita..."
+                                        class="form-control" aria-label="Text input with dropdown button">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">Filtrer  </button>
+                                            aria-haspopup="true" aria-expanded="false">Filtrer </button>
                                         <div class="dropdown-menu" x-placement="bottom-start"
                                             style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <a class="dropdown-item" href="#">ITA</a>
@@ -46,8 +47,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" data-toggle="modal" data-target=".bd-create-ita-modal-xl"
-                                class="btn btn-success d-none d-sm-inline-block">
+                            <button type="button" title="Création d'une nouvelle ita" data-toggle="tooltip"
+                                class="btn btn-success d-none d-sm-inline-block" @click="showCreateItaModal">
                                 <i class="flaticon-add mr-1"></i>Nouvelle ita
                             </button>
                         </div>
@@ -66,12 +67,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(agent, index) in agents" :key="index">
-                                                <!-- <td>{{ agent.nom_complet }}</td>
-                                                <td>{{ agent.email }}</td>
-                                                <td>{{ agent.telephone }}</td> -->
+                                            <tr v-for="(ita, index) in itas" :key="index">
+                                                <td>{{ ita.ita }}</td>
+                                                <td>{{ ita.total_population }}</td>
+                                                <td>{{ ita.superficie }}</td>
 
-                                                <td><span class="text-success fw-bold">{{ agent.agent_status }}</span></td>
+                                                <td><span class="text-success fw-bold">{{ ita.ipa_id }}</span></td>
                                                 <td>
                                                     <button type="button" data-toggle="tooltip" title="Voir agent info."
                                                         class="btn btn-info btn-sm btn-lg"
@@ -94,7 +95,7 @@
 
         <!-- Modal Create ITA -->
 
-        <ItaCreateModal/>
+        <ItaCreateModal />
 
         <!-- End Modal Create ITA -->
 
@@ -116,5 +117,38 @@ import ItaCreateModal from "../modals/ita-create-modal.vue";
 export default {
     name: "Ipa-view",
     components: { ItaCreateModal },
+
+    data() {
+        return {
+            searchword: ''
+        }
+    },
+
+    mounted() {
+        this.$initBsTooltip();
+        this.$store.dispatch('dantic/viewItas')
+    },
+
+
+
+    methods: {
+        showCreateItaModal() {
+            $("#itaCreateModal").modal('show');
+        }
+    },
+
+    computed: {
+        itas() {
+
+
+            if (this.searchword) {
+                let filtered = this.$store.getters['dantic/GET_ITAS'];
+                return filtered.filter((ita) => ita.ita.toLowerCase().includes(this.searchword.toLowerCase()));
+            }
+            else {
+                return this.$store.getters['dantic/GET_ITAS'];
+            }
+        }
+    }
 }
 </script>

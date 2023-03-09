@@ -10,8 +10,13 @@ const actions = {
     });
   },
   viewIpas({ commit }) {
-    IpaService.getAll((data) => {
-      commit("SET_IPAS", data);
+    Api.voirIpas((data) => {
+      commit("SET_IPAS", data.result.reponse);
+    });
+  },
+  viewItas({ commit }) {
+    Api.voirItas((data) => {
+      commit("SET_ITAS", data.result.reponse);
     });
   },
 };

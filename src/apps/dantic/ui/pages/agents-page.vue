@@ -32,7 +32,8 @@
                                             <i class="fa fa-search search-icon"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                    <input type="text" class="form-control" v-model="searchword"
+                                        placeholder="recherche agent..." aria-label="Text input with dropdown button">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">Filtrer</button>
@@ -151,7 +152,7 @@ export default {
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-        /* this.$store.dispatch('dantic/viewAgents'); */
+        this.$store.dispatch('dantic/viewAgents');
         /*init dataTable*/
     }
 }

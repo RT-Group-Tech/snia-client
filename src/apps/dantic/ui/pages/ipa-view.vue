@@ -34,7 +34,8 @@
                       <i class="fa fa-search search-icon"></i>
                     </span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                  <input type="text" v-model="searchword" placeholder="recherche ipa..." class="form-control"
+                    aria-label="Text input with dropdown button">
                   <div class="input-group-append">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Filtrer </button>
@@ -55,30 +56,30 @@
           </div>
           <div class="col-md-12">
             <div class="row mt-4">
-              <div class="col-md-3" v-for="i in 24" :key="i">
+              <div class="col-md-3" v-for="(ipa, i) in ipas" :key="i">
                 <div class="card card-pricing">
                   <div class="card-header bg-transparent">
                     <h4 class="card-title">
                       <img src="assets/img/icons/city.png" height="20" width="20" class="img-fluid mr-1">
-                      Kasaï central
+                      {{ ipa.province }}
                     </h4>
                   </div>
                   <div class="card-body">
                     <ul class="specification-list">
                       <li>
                         <span class="name-specification">Population</span>
-                        <span class="status-specification">4 000 000</span>
+                        <span class="status-specification">{{ ipa.total_population }}</span>
                       </li>
                       <li>
                         <span class="name-specification">Superficie</span>
-                        <span class="status-specification">450km<sup>2</sup> </span>
+                        <span class="status-specification">{{ ipa.superficie }} km<sup>2</sup> </span>
                       </li>
                       <li>
                         <span class="name-specification">Total ipas</span>
                         <span class="status-specification">130
-                          <button type="button" title="Voir la liste des itas" data-toggle="modal"
-                            data-target=".bd-ita-modal-xl" class="btn btn-icon btn-sm ml-2 btn-black">
-                            <i class="icon-list"></i>
+                          <button type="button" @click.prevent="showItaViewModal" title="Voir la liste des itas"
+                            class="btn btn-icon btn-sm ml-2 btn-info" data-toggle="tooltip">
+                            <i class="fas fa-th-list"></i>
                           </button>
                         </span>
                       </li>
@@ -118,25 +119,39 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
 import IpaCreateModal from "../modals/ipa-create-modal.vue";
 import ItaCreateModal from "../modals/ita-create-modal.vue";
 import ItaListModal from "../modals/ita-list-modal.vue"
 export default {
   name: "Ipa-view",
   components: { IpaCreateModal, ItaCreateModal, ItaListModal },
+  data() {
+    return {
+      searchword: ''
+    }
+  },
 
   computed: {
-    ...mapGetters({
-      ipas: 'dantic/GET_IPAS'
-    })
+    ipas() {
+      if (this.searchword) {
+        let filtered = this.$store.getters['dantic/GET_IPAS'];
+        return filtered.filter((ipa) => ipa.province.toLowerCase().includes(this.searchword.toLowerCase()));
+      }
+      else {
+        return this.$store.getters['dantic/GET_IPAS'];
+      }
+    }
   },
   mounted() {
     this.$initBsTooltip();
+    this.$store.dispatch('dantic/viewIpas')
   },
   methods: {
     showIpaRegisterModal() {
-      $("#ipaModal").modal('show');
+      $("#ipaCreateModal").modal('show');
+    },
+    showItaViewModal() {
+      $('#ita-view-modal').modal('show');
     }
   },
 }

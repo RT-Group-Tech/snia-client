@@ -1,11 +1,9 @@
 <template>
-    <div class="modal fade bd-ita-modal-xl" tabindex="-1" role="dialog" aria-labelledby="itaModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ita-view-modal" tabindex="-1" role="dialog" aria-labelledby="itaModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-xl">
-
             <div class="modal-content">
-
                 <div class="modal-header">
-
                     <div class="col-md-12">
                         <div class="d-flex justify-content-between">
                             <div class="d-md-inline-block">
@@ -18,7 +16,7 @@
                                     <input type="text" class="form-control" aria-label="Text input with dropdown button">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">Filtrer  </button>
+                                            aria-haspopup="true" aria-expanded="false">Filtrer </button>
                                         <div class="dropdown-menu" x-placement="bottom-start"
                                             style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <a class="dropdown-item" href="#">ITA</a>
@@ -29,8 +27,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-success d-none d-sm-inline-block" data-toggle="modal"
-                                data-target="#itaModal" data-dismiss="modal">
+                            <button type="button" @click.prevent="showItaCreateModal"
+                                class="btn btn-success d-none d-sm-inline-block">
                                 <i class="flaticon-add mr-1"></i>Nouvelle ita
                             </button>
                         </div>
@@ -93,7 +91,27 @@
 
 <script>
 
+export default {
+    methods: {
+        showItaCreateModal() {
+            $('#itaCreateModal').modal('show');
+        }
+    },
 
+    computed: {
+        itas() {
+            if (this.searchword) {
+                let filtered = this.$store.getters['dantic/GET_ITAS'];
+                return filtered.filter((ita) => ita.ita.toLowerCase().includes(this.searchword.toLowerCase()));
+            }
+            else {
+                return this.$store.getters['dantic/GET_ITAS'];
+            }
+        }
+    }
+
+
+}
 
 </script>
 

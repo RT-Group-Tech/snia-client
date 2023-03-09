@@ -42,20 +42,19 @@
                     </li>
 
                     <!-- sidebar item navigation -->
-                    <sidebar-item title="Tableau de bord" route-name="dashboard-route" icon="icon-home"/>
+                    <sidebar-item title="Tableau de bord" route-name="dashboard-route" icon="icon-home" />
 
-                    <sidebar-item title="Ipa" route-name="ipa-view-route" icon="icon-screen-desktop"/>
+                    <sidebar-item title="Ipa" route-name="ipa-view-route" icon="fab fa-fort-awesome" />
 
-                    <sidebar-item title="Ita" route-name="ita-view-route" icon="icon-screen-desktop"/>
+                    <sidebar-item title="Ita" route-name="ita-view-route" icon="fab fa-fort-awesome-alt" />
 
-                    <sidebar-item title="Agents" route-name="agents-route" icon="icon-people"/>
+                    <sidebar-item title="Agents" route-name="agents-route" icon="icon-people" />
 
-                    <sidebar-item title="Test" route-name="test-route" icon="icon-settings"/>
-
+                    <!-- <sidebar-item title="Test" route-name="test-route" icon="icon-settings"/> -->
                 </ul>
             </div>
         </div>
-</div>
+    </div>
 </template>
 <script>
 import { mapGetters } from "vuex"

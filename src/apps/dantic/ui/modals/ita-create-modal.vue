@@ -1,69 +1,115 @@
 <template>
-    <div class="modal animated zoomIn bd-create-ita-modal-xl" id="itaModal" tabindex="-1" role="dialog"
-            aria-labelledby="itaModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-app-2">
-                        <h5 class="modal-title text-white fw-mediumbold" id="itaModalLabel">
-                            CRÉATION DE LA NOUVELLE INSPECTION TERRITORIALE AGRICOLE </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="text-white">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="agent-form" @submit.prevent="submitIta">
-                            <div class="form-group form-group-default bg-light">
-                                <label class="fw-extrabold">Nom ita</label>
-                                <input type="text" class="form-control" name="nom" placeholder="Saisir le nom de l'ita..."
-                                    required>
-                            </div>
+    <div class="modal fade" id="itaCreateModal" tabindex="-1" role="dialog" aria-labelledby="itaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header bg-app-2">
+                    <h5 class="modal-title text-white fw-mediumbold" id="itaModalLabel">
+                        CRÉATION DE LA NOUVELLE INSPECTION TERRITORIALE AGRICOLE </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="agent-form" @submit.prevent="createIta">
+                        <div class="form-group form-group-default bg-light">
+                            <label class="fw-extrabold">Nom ita</label>
+                            <input type="text" v-model="form.ita" class="form-control" name="nom"
+                                placeholder="Saisir le nom de l'ita..." required>
+                        </div>
 
-                            <div class="form-group form-group-default bg-light">
-                                <label class="fw-extrabold">Population</label>
-                                <input type="text" class="form-control" name="population"
-                                    placeholder="Saisir le nombre de la population..." required>
-                            </div>
-                            <div class="form-group form-group-default bg-light">
-                                <label class="fw-extrabold">Superficie</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" name="postnom"
-                                        placeholder="Saisir la superficie..." required>
-                                    <div class="input-group-append p-md-0 bg-transparent">
-                                        <span class="input-group-text">Km<sup>2</sup> </span>
+                        <div class="form-group form-group-default bg-light">
+                            <label class="fw-extrabold">Population</label>
+                            <input type="text" v-model="form.total_population" class="form-control" name="population"
+                                placeholder="Saisir le nombre de la population..." required>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default bg-light">
+                                    <label class="fw-extrabold">Superficie</label>
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.superficie" class="form-control" name="postnom"
+                                            placeholder="Saisir la superficie..." required>
                                     </div>
                                 </div>
-
                             </div>
-                            <!-- <div class="form-group form-group-default bg-light">
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default bg-light">
+                                    <label>Province <sup class="text-danger">*</sup></label>
+                                    <div class="select2-input">
+                                        <select id="provinceSelect" v-model="form.ipa_id" name="basic" class="form-control">
+                                            <option value="">&nbsp;</option>
+                                            <option v-for="( ipa, index) in ipas" :value="ipa.ipa_id" :key="index">
+                                                {{ ipa.province }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="form-group form-group-default bg-light">
                                 <label class="fw-extrabold">IPA</label>
-
                             </div> -->
-                            <div class="text-right mt-3">
-                                <button id="submit-btn" type="submit" class="btn btn-success" data-toggle="modal"
-                             data-dismiss="modal" @click="closeModal"
-                                    :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;"> 
-                                    <i v-if="submitLoading" class="fa fa-spinner fa-spin" /> Enregistrer ITA
-                                </button>
-                                <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="text-right mt-3">
+                            <button id="submit-btn" type="submit" class="btn btn-success"
+                                :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;">
+                                <i v-if="submitLoading" class="fa fa-spinner fa-spin" /> Enregistrer ITA
+                            </button>
+                            <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
+
+import Api from '@/apps/dantic/api'
 export default {
     name: "ita-create-modal",
 
-    methods:{
-        closeModal(){
-            $(".bd-ita-modal-xl").modal("hide")
+    data() {
+        let form = {
+            ipa_id: '',
+            ita: '',
+            total_population: '',
+            superficie: ''
+        }
+        return {
+            form: form,
+            submitLoading: false,
+        }
+    },
+
+    methods: {
+        /*Fonction permettant de fermer le modal*/
+        closeModal() {
+            $("#itaCreateModal").modal("hide")
+        },
+        /*Soumettre les données relatives à la création d'une ipa */
+        createIta(event) {
+            console.log(JSON.stringify(this.form));
+            this.submitLoading = true
+            Api.creerIta(this.form, (res) => {
+                this.submitLoading = false;
+                this.$store.dispatch('dantic/viewItas');
+                console.log(JSON.stringify(res));
+            })
+        }
+    },
+
+    computed: {
+        ipas() {
+            return this.$store.getters['dantic/GET_IPAS'];
         }
     }
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -14,8 +14,8 @@
           <div class="modal-body">
             <form id="agent-form" @submit.prevent="submitIpa">
               <div class="form-group form-group-default bg-light">
-                <label class="fw-extrabold">Nom ipa</label>
-                <input type="text" class="form-control" name="nom" placeholder="Saisir le nom de l'ipa..." required>
+                <label class="fw-extrabold">Nom IPA</label>
+                <input type="text" class="form-control" name="nom" placeholder="Saisir le nom de l'IPA..." required>
               </div>
               <div class="form-group form-group-default bg-light">
                 <label class="fw-extrabold">Population</label>

@@ -13,9 +13,9 @@
                 <div class="modal-body">
                     <form id="agent-form" @submit.prevent="createIta">
                         <div class="form-group form-group-default bg-light">
-                            <label class="fw-extrabold">Nom ita</label>
+                            <label class="fw-extrabold">Nom ITA</label>
                             <input type="text" v-model="form.ita" class="form-control" name="nom"
-                                placeholder="Saisir le nom de l'ita..." required>
+                                placeholder="Saisir le nom de l'ITA..." required>
                         </div>
 
                         <div class="form-group form-group-default bg-light">

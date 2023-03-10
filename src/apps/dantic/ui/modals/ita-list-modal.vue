@@ -29,7 +29,7 @@
                             </div>
                             <button type="button" @click.prevent="showItaCreateModal"
                                 class="btn btn-success d-none d-sm-inline-block">
-                                <i class="flaticon-add mr-1"></i>Nouvelle ita
+                                <i class="flaticon-add mr-1"></i>Nouvelle ITA
                             </button>
                         </div>
                     </div>

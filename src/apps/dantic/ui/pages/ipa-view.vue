@@ -15,7 +15,7 @@
                 <i class="flaticon-right-arrow"></i>
               </li>
               <li class="nav-item">
-                <a href="#">Liste des ipas</a>
+                <a href="#">Liste des IPAs</a>
               </li>
             </ul>
 
@@ -34,7 +34,7 @@
                       <i class="fa fa-search search-icon"></i>
                     </span>
                   </div>
-                  <input type="text" v-model="searchword" placeholder="recherche ipa..." class="form-control"
+                  <input type="text" v-model="searchword" placeholder="Rechercher un IPA ..." class="form-control"
                     aria-label="Text input with dropdown button">
                   <div class="input-group-append">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
@@ -50,7 +50,7 @@
                 </div>
               </div>
               <button type="button" @click="showIpaRegisterModal" class="btn btn-success d-none d-sm-inline-block">
-                <i class="flaticon-add mr-1"></i>Nouvelle ipa
+                <i class="flaticon-add mr-1"></i>Nouvelle IPA
               </button>
             </div>
           </div>
@@ -75,9 +75,9 @@
                         <span class="status-specification">{{ ipa.superficie }} km<sup>2</sup> </span>
                       </li>
                       <li>
-                        <span class="name-specification">Total ipas</span>
+                        <span class="name-specification">Total IPA</span>
                         <span class="status-specification">130
-                          <button type="button" @click.prevent="showItaViewModal" title="Voir la liste des itas"
+                          <button type="button" @click.prevent="showItaViewModal" title="Voir la liste des ITAs"
                             class="btn btn-icon btn-sm ml-2 btn-info" data-toggle="tooltip">
                             <i class="fas fa-th-list"></i>
                           </button>

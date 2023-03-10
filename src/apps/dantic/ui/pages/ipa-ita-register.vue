@@ -37,7 +37,7 @@
                                                     {{ ipa.province }}
                                                 </div>
                                                 <div class="invalid-feedback">
-                                                    Selectionnez une province !
+                                                    Sélectionnez une province !
                                                 </div>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="invalid-feedback">
-                                                    nombre d'habitant requis !
+                                                    Nombre d'habitant requis !
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="invalid-feedback">
-                                                    nombre d'habitant requis !
+                                                    Nombre d'habitant requis !
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                                         </span>
                                                     </div>
                                                     <input type="text" v-model="isp.portable" class="form-control"
-                                                        placeholder="n° portable..." required>
+                                                        placeholder="N° portable..." required>
                                                 </div>
                                             </div>
                                         </div>
@@ -205,28 +205,28 @@
                         <div class="col-md-12">
                             <div class="card full-height animated fadeIn">
                                 <div class="card-header">
-                                    <h4 class="card-title"><i class="fa fa-info-circle"></i> Characteristiques
+                                    <h4 class="card-title"><i class="fa fa-info-circle"></i> Caractéristiques
                                         ou
-                                        spécificités</h4>
+                                        Spécificités</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label class="form-label">Sélectionnez une caracteristique !</label>
+                                        <label class="form-label">Sélectionnez une caractéristique !</label>
                                         <div class="selectgroup-pills">
                                             <label class="selectgroup-item">
                                                 <input type="checkbox" name="value" value="hypographie"
                                                     class="selectgroup-input">
-                                                <span class="selectgroup-button">Hypographie danse</span>
+                                                <span class="selectgroup-button">Hydrographie dense</span>
                                             </label>
                                             <label class="selectgroup-item">
                                                 <input type="checkbox" name="value" value="Equatorial"
                                                     class="selectgroup-input">
-                                                <span class="selectgroup-button">caracteristique II</span>
+                                                <span class="selectgroup-button">Caractéristique II</span>
                                             </label>
                                             <label class="selectgroup-item">
                                                 <input type="checkbox" name="value" value="Montagne"
                                                     class="selectgroup-input">
-                                                <span class="selectgroup-button">Autre caracteristique</span>
+                                                <span class="selectgroup-button">Autres Caractéristiques</span>
                                             </label>
                                         </div>
                                     </div>
@@ -237,9 +237,10 @@
                                     <div class="wizard-action">
 
                                         <div class="pull-left">
-                                            <button type="submit" id="btn-next" class="btn btn-next btn-primary"><i
-                                                    class="flaticon-next"></i>
-                                                Suivant</button>
+                                            <button type="submit" id="btn-next" class="btn btn-next btn-primary">
+                                                <i class="flaticon-next"></i>
+                                                Suivant
+                                            </button>
                                         </div>
 
                                         <div class="clearfix"></div>
@@ -295,7 +296,7 @@
                                                 <label>Habitant <sup class="text-danger">*</sup></label>
                                                 <div class="input-group">
                                                     <input type="number" v-model="ita.habitant" class="form-control"
-                                                        placeholder="habitant..." required>
+                                                        placeholder="Nombre d'habitants..." required>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">
                                                             <i class="fa fa-users"></i>

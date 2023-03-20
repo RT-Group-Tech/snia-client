@@ -15,7 +15,7 @@
                                 <i class="flaticon-right-arrow"></i>
                             </li>
                             <li class="nav-item">
-                                <a href="#">Liste des itas</a>
+                                <a href="#">Liste des ITAs</a>
                             </li>
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
                                             <i class="fa fa-search search-icon"></i>
                                         </span>
                                     </div>
-                                    <input type="text" v-model="searchword" placeholder="recherche ita..."
+                                    <input type="text" v-model="searchword" placeholder="Rechercher un ITA..."
                                         class="form-control" aria-label="Text input with dropdown button">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
@@ -49,7 +49,7 @@
                             </div>
                             <button type="button" title="Création d'une nouvelle ita" data-toggle="tooltip"
                                 class="btn btn-success d-none d-sm-inline-block" @click="showCreateItaModal">
-                                <i class="flaticon-add mr-1"></i>Nouvelle ita
+                                <i class="flaticon-add mr-1"></i>Nouvelle ITA
                             </button>
                         </div>
                     </div>

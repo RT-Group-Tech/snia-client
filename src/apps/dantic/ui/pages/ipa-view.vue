@@ -77,11 +77,7 @@
                       <li>
                         <span class="name-specification">Total IPA</span>
                         <span class="status-specification">130
-<<<<<<< HEAD
                           <button type="button" @click.prevent="getItas(ipa)" title="Voir la liste des itas"
-=======
-                          <button type="button" @click.prevent="showItaViewModal" title="Voir la liste des ITAs"
->>>>>>> be2b03945403cac409c2d690fd0a4b0a7cd15179
                             class="btn btn-icon btn-sm ml-2 btn-info" data-toggle="tooltip">
                             <i class="fas fa-th-list"></i>
                           </button>

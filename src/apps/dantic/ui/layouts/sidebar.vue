@@ -19,13 +19,13 @@
                         <div class="collapse in" id="collapseExample">
                             <ul class="nav">
                                 <li>
-                                    <a href="#profile">
+                                    <a href="javascript:void(0)">
                                         <span class="link-collapse">Mon profile</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#settings">
+                                    <a href="javascript:void(0)">
                                         <span class="link-collapse">Parametres</span>
                                     </a>
                                 </li>

@@ -134,9 +134,9 @@
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Mon profl</a>
+                                    <a class="dropdown-item" href="javascript:void(0)">Mon profl</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Parametres comptes</a>
+                                    <a class="dropdown-item" href="javascript:void(0)">Parametres comptes</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:void(0)" @click="logout">Me
                                         Déconnecter</a>
@@ -148,7 +148,7 @@
             </div>
         </nav>
         <!-- End Navbar -->
-</div>
+    </div>
 </template>
 <script>
 import { mapGetters } from "vuex"

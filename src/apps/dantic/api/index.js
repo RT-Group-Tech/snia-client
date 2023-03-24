@@ -130,6 +130,150 @@ class Api {
     if (status === 200) callback(data);
     else callback(false);
   }
+
+  /* Voir les sujets enregistrés dans le systèmes */
+  static async voirFormulairesSujets(callback) {
+    const { data, status } = await request({
+      key: "65bf8cb061d59e48bff8f64af71f640908f81103",
+    });
+    if (status === 200) callback(data);
+    else callback(false);
+  }
+  /* VOir les formulaires enregistrés dans le systèmes */
+  static async voirFormulaires(callback) {
+    const { data, status } = await request({
+      key: "806fea571a3efd2a88285b43100ffaf3b6bdb699",
+    });
+    if (status === 200) callback(data);
+    else callback(false);
+  }
+
+  /**
+   * Création sujet
+   * @param {String} sujet
+   * @param {void} callback(response)
+   */
+  static async creerSujet(sujet, callback) {
+    const { data, status } = await request({
+      key: "d5e8d0821cc11475c8c07786b186f4deb8b4f26c",
+      sujet: sujet,
+    });
+    if (status === 200) callback(data);
+    else callback(false);
+  }
+
+  /**
+   * Création formulaire
+   * @param {String} titre
+   */
+  static async creerFormulaire(titre, callback) {
+    const { data, status } = await request({
+      key: "f038d6de71414e2247f926d7089c794ab5e4bdab",
+      titre: titre,
+    });
+
+    let res = data.result.reponse;
+    return new Promise((resolve) => {
+      if (status === 200 && res.status === "success")
+        resolve({ formulaire_id: res.datas });
+    });
+  }
+
+  /**
+   * Lier formulaire au sujet
+   * @param {Object} form
+   * @param {void} callback(response)
+   */
+  static async lierFormulaireToSubject(form) {
+    const { data, status } = await request({
+      key: "92a5dd7af82ba6c03661201730b46457954776c3",
+      formulaire_id: form.formulaire_id,
+      sujet_id: form.sujet_id,
+    });
+    let res = data.result.reponse;
+    return new Promise((resolve) => {
+      if (status === 200 && res.status === "success") resolve(data);
+    });
+  }
+
+  /**
+   * Création section formulaire au sujet
+   * @param {Object} form
+   * @param {void} callback(response)
+   */
+  static async creerSectionFormulaire(form) {
+    const { data, status } = await request({
+      key: "7b3f20ae607014e48bdc1e8a02ed5f17ec7de9af",
+      formulaire_id: form.formulaire_id,
+      section: form.section,
+    });
+    let res = data.result.reponse;
+    return new Promise((resolve) => {
+      if (status === 200 && res.status === "success")
+        resolve({ formulaire_section_id: res.datas });
+    });
+  }
+
+  /**
+   * Création Formulaire section Details
+   * @param {Object} form
+   * @param {void} callback(response)
+   */
+  static async creerFormulaireSectionDetails(form) {
+    const { data, status } = await request({
+      key: "87e4e76f05ddf374ca292f25d6f53115f5f15eb3",
+      formulaire_section_id: form.formulaire_section_id,
+      detail: form.detail,
+      valeur: form.valeur,
+    });
+    console.log("Terminate on ", JSON.stringify(data));
+    let res = data.result.reponse;
+    return new Promise((resolve) => {
+      if (status === 200 && res.status === "success") resolve(data);
+    });
+  }
+
+  /**
+   * Configuration globale du formulaire
+   * @param {Object} formulaireData
+   * @param {void} callback(response)
+   */
+  static async configurerFormulaire(formulaireData, callback) {
+    let { formulaire_id } = await this.creerFormulaire(formulaireData.titre);
+    if (formulaire_id !== undefined || formulaire_id !== null) {
+      let liaisonReqData = {
+        formulaire_id: formulaire_id,
+        sujet_id: formulaireData.sujet_id,
+      };
+      let liaisonRes = await this.lierFormulaireToSubject(liaisonReqData);
+      /* check formulaire_sujet link success*/
+      if (liaisonRes.result.reponse.status === "success") {
+        for (let i = 0; i < formulaireData.sections.length; i++) {
+          let forms = formulaireData.sections[i];
+
+          let f = {
+            section: forms.section,
+            formulaire_id: formulaire_id,
+          };
+          let { formulaire_section_id } = await this.creerSectionFormulaire(f);
+
+          if (
+            formulaire_section_id !== undefined ||
+            formulaire_section_id !== null
+          ) {
+            for (let j = 0; j < forms.contents.length; j++) {
+              let content = forms.contents[j];
+              content.formulaire_section_id = formulaire_section_id;
+              let contentsRes = await this.creerFormulaireSectionDetails(
+                content
+              );
+            }
+          }
+        }
+        callback(true);
+      }
+    }
+  }
 }
 
 export default Api;

@@ -14,6 +14,14 @@ const setters = {
   SET_ITAOfIPA(state, data) {
     state.itasOfIpa = data;
   },
+
+  SET_SUJETS(state, data) {
+    state.sujets = data;
+  },
+
+  SET_FORMULAIRES(state, data) {
+    state.formulaires = data;
+  },
 };
 
 export default setters;

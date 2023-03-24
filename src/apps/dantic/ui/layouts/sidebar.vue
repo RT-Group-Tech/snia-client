@@ -50,6 +50,8 @@
 
                     <sidebar-item title="Agents" route-name="agents-route" icon="icon-people" />
 
+                    <sidebar-item title="Config. formulaires" route-name="config-form-route" icon="fas fa-pen-square" />
+
                     <!-- <sidebar-item title="Test" route-name="test-route" icon="icon-settings"/> -->
                 </ul>
             </div>

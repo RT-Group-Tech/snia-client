@@ -29,6 +29,24 @@ const actions = {
       });
     });
   },
+
+  voirSujets({ commit }) {
+    return new Promise((resolve) => {
+      Api.voirFormulairesSujets((data) => {
+        let sujets = data.result.reponse;
+        commit("SET_SUJETS", sujets.reverse());
+        resolve(sujets);
+      });
+    });
+  },
+
+  voirFormulaires({ commit }) {
+    Api.voirFormulaires((data) => {
+      let formulaires = data.result.reponse;
+      commit("SET_FORMULAIRES", formulaires.reverse());
+      resolve(formulaires);
+    });
+  },
 };
 
 export default actions;

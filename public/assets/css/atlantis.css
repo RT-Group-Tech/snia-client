@@ -1596,7 +1596,7 @@ body {
 }
 
 .page-with-aside .page-aside {
-    width: 280px;
+    width: 250px;
     min-height: 100vh;
     border-right: 1px solid #f1f1f1;
     padding: 15px 0;

@@ -104,6 +104,7 @@ class Api {
       fonction:form.fonction,
       grade:form.grade,
       sexe:form.sexe,
+      date_naissance:form.date_naissance,
       numero_reference:form.numero_reference,
       email: form.email,
       telephone: form.telephone,

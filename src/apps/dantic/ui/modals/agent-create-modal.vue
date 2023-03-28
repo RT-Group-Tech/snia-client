@@ -72,20 +72,26 @@
                 </div>
               </div>
               <div class="row mt-3">
-                <div class="col-md-6" v-if="form.statut==='Matricule'">
+                <div class="col-md-4" v-if="form.statut==='Matricule'">
                   <div class="form-group form-group-default bg-light">
                     <label class="fw-extrabold">Numéro Matricule</label>
                     <input type="email" v-model="form.numero_reference" class="form-control" name="email"
                            placeholder="Saisir le numéro matricule..." required>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group form-group-default bg-light">
                     <label class="fw-extrabold">Sexe</label>
                     <select name="" id="" class="form-control" v-model="form.sexe">
                       <option value="Masculin">Masculin</option>
                       <option value="Feminin">Feminin</option>
                     </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-group-default bg-light">
+                    <label class="fw-extrabold">Date de naissance</label>
+                    <input type="date" class="form-control" v-model="form.date_naissance">
                   </div>
                 </div>
               </div>
@@ -156,6 +162,7 @@ export default {
         fonction:'Matricule',
         grade:'',
         sexe:'Masculin',
+        date_naissance:'',
         numero_reference:'',
         email: '',
         pass: '',

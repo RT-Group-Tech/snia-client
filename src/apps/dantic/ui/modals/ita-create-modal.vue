@@ -74,9 +74,9 @@
 <script>
 
 import Api from '@/apps/dantic/api'
+
 export default {
     name: "ita-create-modal",
-
     data() {
         let form = {
             ipa_id: '',

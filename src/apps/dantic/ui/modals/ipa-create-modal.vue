@@ -14,14 +14,18 @@
           <div class="modal-body">
             <form id="agent-form" @submit.prevent="submitIpa">
               <div class="form-group form-group-default bg-light">
-                <label class="fw-extrabold">Nom ipa</label>
-                <input type="text" v-model="form.province" class="form-control" name="nom"
-                  placeholder="Saisir le nom de l'ipa..." required>
+                <label class="fw-extrabold">Sélectionner la province</label>
+                <!--<input type="text" v-model="form.province" class="form-control" name="nom"
+                  placeholder="Saisir le nom de l'ipa..." required>!-->
+                <select name="province" id="province" class="form-control" v-model="form.province">
+                  <option value="">-------</option>
+                  <option :value="province" v-for="(province,index) in provinces" :key="index">{{province}}</option>
+                </select>
               </div>
               <div class="form-group form-group-default bg-light">
-                <label class="fw-extrabold">Population</label>
-                <input type="text" class="form-control" v-model="form.total_population" name="population"
-                  placeholder="Saisir le nombre de la population..." required>
+                <label class="fw-extrabold">CODE IPA</label>
+                <input type="text" class="form-control" v-model="form.code_ipa" name="population"
+                  placeholder="Saisir le code de l'ipa..." required>
               </div>
               <div class="form-group form-group-default bg-light">
                 <label class="fw-extrabold">Superficie</label>
@@ -50,15 +54,17 @@
 
 <script>
 import Api from '@/apps/dantic/api'
+import IpaItaRegMixin from "../../mixins/ipa.ita.register"
 export default {
   name: "ipa-create-modal",
-
+  extends: IpaItaRegMixin,
   data() {
     let form = {
       province: '',
-      total_population: '',
+      code_ipa:'',
       superficie: ''
-    }
+    };
+
     return {
       submitLoading: false,
       form: form
@@ -75,10 +81,10 @@ export default {
     },
 
     cleanFields() {
-      this.form.province = '';
+      //this.form.province = '';
       this.form.superficie = '';
-      this.form.total_population = '';
+      this.form.code_ipa="";
     }
-  }
+  },
 }
 </script>

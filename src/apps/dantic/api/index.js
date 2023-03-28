@@ -24,8 +24,8 @@ class Api {
   static async creerIpa(form, callback) {
     const { data, status } = await request({
       key: "2f53b23743d1f836a4da181578aa4b518f0a7294",
+      code_ipa:form.code_ipa,
       province: form.province,
-      total_population: form.total_population,
       superficie: form.superficie,
     });
 

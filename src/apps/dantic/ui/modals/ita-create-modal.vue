@@ -21,9 +21,9 @@
                         </div>
 
                         <div class="form-group form-group-default bg-light">
-                            <label class="fw-extrabold">Population</label>
-                            <input type="text" v-model="form.total_population" class="form-control" name="population"
-                                placeholder="Saisir le nombre de la population..." required>
+                            <label class="fw-extrabold">CODE ITA</label>
+                            <input type="text" v-model="form.code_ita" class="form-control" name="population"
+                                placeholder="Saisir le code de l'ITA" required>
                         </div>
 
 
@@ -81,7 +81,7 @@ export default {
         let form = {
             ipa_id: '',
             ita: '',
-            total_population: '',
+            code_ita: '',
             superficie: ''
         }
         return {
@@ -114,7 +114,7 @@ export default {
         cleanFields() {
             this.form.ita = '';
             this.form.superficie = '';
-            this.form.total_population = '';
+            this.form.code_ita = '';
         }
     },
 

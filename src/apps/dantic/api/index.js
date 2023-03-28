@@ -55,7 +55,7 @@ class Api {
       ipa_id: form.ipa_id,
       ita: form.ita,
       province: form.province,
-      total_population: form.total_population,
+      code_ita: form.code_ita,
       superficie: form.superficie,
     });
     if (status === 200) callback(data);

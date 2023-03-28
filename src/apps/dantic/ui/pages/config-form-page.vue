@@ -1,67 +1,88 @@
 <template>
     <div class="main-panel">
-        <div class="container container-full">
-            <div class="page-inner page-inner-fill">
-                <div class="page-with-aside mail-wrapper bg-white">
-                    <div class="page-aside bg-grey1">
-                        <div class="aside-header">
-                            <div class="description text-uppercase">Configuration formulaires
+        <div class="container">
+            <div class="panel-header">
+                <div class=" page-inner py-5">
+                    <div class="page-header">
+                        <h4 class="page-title">Formulaires</h4>
+                        <ul class="breadcrumbs">
+                            <li class="nav-home">
+                                <router-link :to="{ name: 'dashboard-route' }">
+                                    <i class="flaticon-home"></i>
+                                </router-link>
+                            </li>
+                            <li class="separator">
+                                <i class="flaticon-right-arrow"></i>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#">Configuration formulaires</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="page-inner mt--5">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><i class="fas fa-pen-square"></i> Formulaire configurations</h4>
                             </div>
-                            <a class="btn btn-primary toggle-email-nav" data-toggle="collapse" href="#email-app-nav"
-                                role="button" aria-expanded="false" aria-controls="email-nav">
-                                <span class="btn-label">
-                                    <i class="icon-menu"></i>
-                                </span>
-                                Menu
-                            </a>
-                        </div>
-                        <div class="aside-nav collapse" id="email-app-nav">
-                            <ul class="nav">
-                                <li :class="currentRoute === 'create-subject-subroute' ? 'active' : ''">
-                                    <router-link :to="{ name: 'create-subject-subroute' }">
-                                        <i class="flaticon-pen"></i> Création sujets
-                                    </router-link>
-                                </li>
-
-                                <li :class="currentRoute === 'create-forms-subroute' ? 'active' : ''">
-                                    <router-link :to="{ name: 'create-forms-subroute' }">
-                                        <i class="flaticon-interface-4"></i> Création formulaires
-                                    </router-link>
-                                </li>
-
-                                <li :class="currentRoute === 'formulaire-view-subroute' ? 'active' : ''">
-                                    <router-link :to="{ name: 'formulaire-view-subroute' }">
-                                        <i class="flaticon-interface-6"></i> Voir Formulaires
-                                    </router-link>
-                                </li>
-                            </ul>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-3">
+                                        <div class="nav flex-column nav-pills nav-info nav-pills-no-bd nav-pills-icons"
+                                            id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                            <a class="nav-link active show" id="v-pills-home-tab-icons" data-toggle="pill"
+                                                href="#v-pills-topic" role="tab" aria-controls="v-pills-topic"
+                                                aria-selected="true">
+                                                <i class="flaticon-pen"></i>
+                                                Création sujets
+                                            </a>
+                                            <a class="nav-link" id="v-pills-profile-tab-icons" data-toggle="pill"
+                                                href="#v-pills-forms-config" role="tab" aria-controls="v-pills-forms-config"
+                                                aria-selected="false">
+                                                <i class="flaticon-interface-4"></i>
+                                                Création formulaires
+                                            </a>
+                                            <a class="nav-link" id="v-pills-buy-tab-icons" data-toggle="pill"
+                                                href="#v-pills-forms" role="tab" aria-controls="v-pills-forms"
+                                                aria-selected="false">
+                                                <i class="flaticon-interface-6"></i>
+                                                Liste des formulaires
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            <topic-tab></topic-tab>
+                                            <form-create-tab></form-create-tab>
+                                            <forms-view></forms-view>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <router-view></router-view>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
+import topicTab from "./subpages/formulaires/create-subjects-page.vue"
+import formCreateTab from "./subpages/formulaires/create-forms-page.vue"
+import formsView from "./subpages/formulaires/formulaires-view-page.vue"
 export default {
-    data() {
-        return {
-            currentRoute: ""
-        }
+    components: {
+        topicTab,
+        formCreateTab,
+        formsView
     },
-
     mounted() {
-        setInterval(() => {
-            this.currentRoute = this.$route.name;
-        }, 50);
         this.$store.dispatch("dantic/voirSujets");
-    },
-
-    created() {
-        this.$router.push({ name: 'create-subject-subroute' })
     },
 }
 </script>

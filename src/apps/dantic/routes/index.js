@@ -84,41 +84,6 @@ const routes = [
         meta: {
           authRequired: true,
         },
-        children: [
-          {
-            path: "",
-            component: () =>
-              import(
-                "@/apps/dantic/ui/pages/subpages/formulaires/create-subjects-page"
-              ),
-            name: "create-subject-subroute",
-            meta: {
-              authRequired: true,
-            },
-          },
-          {
-            path: "",
-            component: () =>
-              import(
-                "@/apps/dantic/ui/pages/subpages/formulaires/create-forms-page"
-              ),
-            name: "create-forms-subroute",
-            meta: {
-              authRequired: true,
-            },
-          },
-          {
-            path: "",
-            component: () =>
-              import(
-                "@/apps/dantic/ui/pages/subpages/formulaires/formulaires-view-page"
-              ),
-            name: "formulaire-view-subroute",
-            meta: {
-              authRequired: true,
-            },
-          },
-        ],
       },
     ],
   },

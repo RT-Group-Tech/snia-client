@@ -1,30 +1,31 @@
 <template>
-    <div class="page-content mail-content">
-        <div class="inbox-head d-lg-flex d-block">
-            <h3><i class="flaticon-interface-6 mr-1"></i>Liste des Formulaires </h3>
-            <form action="#" class="ml-auto">
-                <div class="input-group">
-                    <input type="text" placeholder="Search Email" class="form-control">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <i class="fa fa-search search-icon"></i>
-                        </span>
+    <div class="tab-pane fade" id="v-pills-forms" role="tabpanel" aria-labelledby="v-pills-buy-tab-icons">
+        <div class="p-2">
+            <div class="d-lg-flex d-block mb-4">
+                <h3><i class="flaticon-interface-6 mr-1"></i>Liste des Formulaires </h3>
+                <form action="#" class="ml-auto">
+                    <div class="input-group">
+                        <input type="text" placeholder="Recherche formulaire..." class="form-control">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-search search-icon"></i>
+                            </span>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="inbox-body">
-            <div class="email-list">
-                <div class="email-list-item" v-for="(formulaire, i) in formulaires" :key="i">
-                    <div class="email-list-detail"><span class="date float-right"></span><span class="date float-right">
-                            <button class="btn btn-info btn-sm"><i class="fas fa-external-link-alt"></i></button></span>
-                        <span class="from"><i class="flaticon-interface-6 text-info mr-1"></i> {{ formulaire.titre }}</span>
-                    </div>
-                </div>
+                </form>
             </div>
+
+            <ul class="list-group list-group-bordered">
+                <li class="list-group-item d-lg-flex justify-content-between" v-for="(formulaire, i) in formulaires"
+                    :key="i">
+                    <span><i class="flaticon-interface-6 text-info mr-1"></i> {{ formulaire.titre }}</span>
+                    <button class="btn btn-icon btn-info"><i class="flaticon-right-arrow"></i></button>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
+
 
 
 <script>

@@ -100,6 +100,11 @@ class Api {
     const { data, status } = await request({
       key: "702b7602260a75535560f1a21d698a9f51a808b9",
       nom_complet: form.nom_complet,
+      fonction_publique_status:form.statut,
+      fonction:form.fonction,
+      grade:form.grade,
+      sexe:form.sexe,
+      numero_reference:form.numero_reference,
       email: form.email,
       telephone: form.telephone,
       pass: form.pass,

@@ -27,6 +27,8 @@ class Api {
       code_ipa:form.code_ipa,
       province: form.province,
       superficie: form.superficie,
+      longitude:form.longitude,
+      latitude:form.latitude
     });
 
     if (status === 200) callback(data);
@@ -57,6 +59,8 @@ class Api {
       province: form.province,
       code_ita: form.code_ita,
       superficie: form.superficie,
+      longitude:form.longitude,
+      latitude: form.latitude
     });
     if (status === 200) callback(data);
     else callback(false);

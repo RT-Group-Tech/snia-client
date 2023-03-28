@@ -38,6 +38,26 @@
                 </div>
 
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group form-group-default bg-light">
+                    <label class="fw-extrabold">GPS/Longitude</label>
+                    <div class="input-group">
+                      <input type="text" v-model="form.longitude" class="form-control" name="postnom"
+                             placeholder="Saisir la longitude..." required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group form-group-default bg-light">
+                    <label class="fw-extrabold">GPS/Latitude</label>
+                    <div class="input-group">
+                      <input type="text" v-model="form.latitude" class="form-control" name="postnom"
+                             placeholder="Saisir la latitude..." required>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="text-right mt-3">
                 <button id="submit-btn" type="submit" class="btn btn-success" :class="submitLoading ? 'disabled' : ''"
                   style="margin-right: 4px;"> <i v-if="submitLoading" class="fa fa-spinner fa-spin" /> Enregistrer IPA
@@ -62,7 +82,9 @@ export default {
     let form = {
       province: '',
       code_ipa:'',
-      superficie: ''
+      superficie: '',
+      longitude:'',
+      latitude:''
     };
 
     return {
@@ -81,9 +103,11 @@ export default {
     },
 
     cleanFields() {
-      //this.form.province = '';
+      this.form.province = '';
       this.form.superficie = '';
       this.form.code_ipa="";
+      this.form.longitude='';
+      this.form.latitude='';
     }
   },
 }

@@ -34,7 +34,11 @@
                                     <div class="input-group">
                                         <input type="text" v-model="form.superficie" class="form-control" name="postnom"
                                             placeholder="Saisir la superficie..." required>
+                                        <div class="input-group-append p-md-0 bg-transparent">
+                                            <span class="input-group-text">Km<sup>2</sup> </span>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -53,6 +57,26 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default bg-light">
+                                    <label class="fw-extrabold">GPS/Longitude</label>
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.longitude" class="form-control" name="postnom"
+                                               placeholder="Saisir la longitude..." required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default bg-light">
+                                    <label class="fw-extrabold">GPS/Latitude</label>
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.latitude" class="form-control" name="postnom"
+                                               placeholder="Saisir la latitude..." required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- <div class="form-group form-group-default bg-light">
                                 <label class="fw-extrabold">IPA</label>
@@ -82,7 +106,9 @@ export default {
             ipa_id: '',
             ita: '',
             code_ita: '',
-            superficie: ''
+            superficie: '',
+            longitude:'',
+            latitude:''
         }
         return {
             form: form,
@@ -115,6 +141,8 @@ export default {
             this.form.ita = '';
             this.form.superficie = '';
             this.form.code_ita = '';
+            this.form.longitude='';
+            this.form.latitude='';
         }
     },
 

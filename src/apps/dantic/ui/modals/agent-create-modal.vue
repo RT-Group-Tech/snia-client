@@ -57,8 +57,7 @@
                     <label class="fw-extrabold">Grade</label>
                     <select name="" id="" class="form-control" v-model="form.grade">
                       <option value="">-------</option>
-                      <option value="">Grade 1</option>
-                      <option value="">Grade 2</option>
+                        <option v-for="(grade,index) in grades" :key="index" :value="grade">{{grade}}</option>
                     </select>
                   </div>
 
@@ -75,7 +74,7 @@
                 <div class="col-md-4" v-if="form.statut==='Matricule'">
                   <div class="form-group form-group-default bg-light">
                     <label class="fw-extrabold">Numéro Matricule</label>
-                    <input type="email" v-model="form.numero_reference" class="form-control" name="email"
+                    <input type="text" v-model="form.numero_reference" class="form-control" name="email"
                            placeholder="Saisir le numéro matricule..." required>
                   </div>
                 </div>
@@ -147,6 +146,7 @@ export default {
   name: "agent-create-modal",
 
   data() {
+
     return {
       submitLoading: false,
       /* split full name */
@@ -155,11 +155,12 @@ export default {
         last: '',
         nick: ''
       },
+        grades:["Grade 1","Grade 2"],
       form: {
         nom_complet: '',
         telephone: '',
-        statut:'',
-        fonction:'Matricule',
+        statut:'Matricule',
+        fonction:'',
         grade:'',
         sexe:'Masculin',
         date_naissance:'',

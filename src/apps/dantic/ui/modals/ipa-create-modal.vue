@@ -93,11 +93,13 @@ export default {
     }
   },
   methods: {
-    submitIpa(event) {
+     submitIpa(event)
+     {
       this.submitLoading = true;
       Api.creerIpa(this.form, (res) => {
         this.submitLoading = false;
-        this.$store.dispatch('dantic/viewIpas')
+        this.$store.dispatch('dantic/viewIpas');
+        $("#ipaCreateModal").modal('hide')
         this.cleanFields();
       })
     },

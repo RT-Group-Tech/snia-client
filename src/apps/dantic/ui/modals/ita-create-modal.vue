@@ -134,6 +134,7 @@ export default {
                 if (this.selectedIpa !== null) {
                     this.$store.dispatch('dantic/getItasOfIpa', this.selectedIpa.ipa_id);
                 }
+                $("#itaCreateModal").modal('hide')
                 this.cleanFields();
             })
         },

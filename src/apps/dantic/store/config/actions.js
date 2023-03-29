@@ -44,19 +44,21 @@ const actions = {
 
   voirCategories({ commit }) {
     return new Promise((resolve) => {
-      console.log("Voir catégories");
       Api.voirCategories((res) => {
-        commit("SET_CATEGORIES", []);
-        resolve(res);
+        let categories = res.result.culture_categories;
+        commit("SET_CATEGORIES", categories);
+        resolve(categories);
       });
     });
   },
 
   voirFormulaires({ commit }) {
-    Api.voirFormulaires((data) => {
-      let formulaires = data.result.reponse;
-      commit("SET_FORMULAIRES", formulaires.reverse());
-      resolve(formulaires);
+    return new Promise((resolve) => {
+      Api.voirFormulaires((data) => {
+        let formulaires = data.result.formulaires;
+        commit("SET_FORMULAIRES", formulaires.reverse());
+        resolve(formulaires);
+      });
     });
   },
 };

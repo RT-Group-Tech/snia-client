@@ -149,8 +149,7 @@ class Api {
     const { data, status } = await request({
       key: "141b6053fe7e3046487d72f92a30437e5ba0d1a4",
     });
-    let agents = data.result.reponse;
-    if (status === 200) callback(agents);
+    if (status === 200) callback(data);
     else callback(false);
   }
 
@@ -161,7 +160,7 @@ class Api {
    */
   static async creerCulture(form, callback) {
     const { data, status } = await request({
-      key: "8ccd50b3e98abc0e27bec30c9f8c5ab90570ee1c",
+      key: "18edab2a8b33f8b3c7cefbbb3478cb531d52f603",
       culture_categorie_id: form.culture_categorie_id,
       nom: form.nom,
       detail: form.detail,
@@ -260,11 +259,19 @@ class Api {
    * @param {void} callback(response)
    */
   static async creerFormulaireSectionDetails(form) {
+    console.log(JSON.stringify(form));
+    let options = [];
+    if (form.options.length > 0) {
+      form.options.forEach((el) => {
+        options.push(el.model);
+      });
+    }
     const { data, status } = await request({
       key: "87e4e76f05ddf374ca292f25d6f53115f5f15eb3",
       formulaire_section_id: form.formulaire_section_id,
       detail: form.detail,
       valeur: form.valeur,
+      options: options.toString(),
     });
     console.log("Terminate on ", JSON.stringify(data));
     let res = data.result.reponse;
@@ -287,10 +294,8 @@ class Api {
       };
       let liaisonRes = await this.lierFormulaireToSubject(liaisonReqData);
       /* check formulaire_sujet link success*/
-      if (liaisonRes.result.reponse.status === "success")
-      {
-        for (let i = 0; i < formulaireData.sections.length; i++)
-        {
+      if (liaisonRes.result.reponse.status === "success") {
+        for (let i = 0; i < formulaireData.sections.length; i++) {
           let forms = formulaireData.sections[i];
 
           let f = {
@@ -303,8 +308,7 @@ class Api {
             formulaire_section_id !== undefined ||
             formulaire_section_id !== null
           ) {
-            for (let j = 0; j < forms.contents.length; j++)
-            {
+            for (let j = 0; j < forms.contents.length; j++) {
               let content = forms.contents[j];
               content.formulaire_section_id = formulaire_section_id;
               let contentsRes = await this.creerFormulaireSectionDetails(

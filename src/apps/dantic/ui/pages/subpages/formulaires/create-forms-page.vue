@@ -69,23 +69,24 @@
                                     <!-- Formulaire section contents -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Section {{ i + 1 }} contenus/Inputs</label>
+                                            <label>Section {{ i + 1 }} contenus/Champs</label>
                                             <div class="input-group mb-2" v-for="(content, j) in section.contents" :key="j">
                                                 <input type="text" v-model="content.detail" placeholder="Détail"
                                                     class="form-control" required>
-                                                <select name="valeur" @change="onChangeValue"
+                                                <select name="valeur"
+                                                    @change="onChangeValue({ sectionIndex: i, contentIndex: j, value: content.valeur })"
                                                     class="custom-select form-control" id="valeur" required
                                                     v-model="content.valeur">
-                                                    <option value="">Valeur</option>
+                                                    <option value="">Sélectionner valeur</option>
                                                     <option value="text">Zone de texte</option>
                                                     <option value="select">Liste déroulante</option>
-                                                    <option value="checkbox">Zone à cocher</option>
+                                                    <option value="checkbox">Case à cocher</option>
                                                     <!--<option value="file">Zone de fichier</option>!-->
                                                 </select>
                                                 <div class="input-group-append">
                                                     <button v-if="j === section.contents.length - 1"
                                                         class="btn btn-primary btn-icon"
-                                                        @click.prevent="section.contents.push({ detail: '', valeur: '' })">
+                                                        @click.prevent="section.contents.push({ detail: '', valeur: '', options: [] })">
                                                         <i class="flaticon-add"></i></button>
                                                     <button v-else class="btn btn-icon btn-dark"
                                                         @click.prevent="section.contents.splice(j, 1)"> <i
@@ -109,7 +110,7 @@
             </div>
         </form>
 
-        <div class="quick-sidebar">
+        <div class="quick-sidebar" v-if="selectedContentIndex !== null && selectedSectionIndex !== null">
             <a href="javascript:void(0)" @click="closeQuickActionPanel" class="close-quick-sidebar">
                 <i class="flaticon-cross"></i>
             </a>
@@ -119,15 +120,17 @@
                         <form @submit.prevent="submitFormOptions">
                             <div class="tasks-content">
                                 <span class="category-title">Entrer les options</span>
-                                <div class="input-group mb-2" v-for="(opt, index) in options" :key="index">
-                                    <input type="text" v-model="opt.val" placeholder="Entrer une option..."
+                                <div class="input-group mb-2"
+                                    v-for="(opt, index) in form.sections[selectedSectionIndex].contents[selectedContentIndex].options"
+                                    :key="index">
+                                    <input type="text" v-model="opt.model" placeholder="Entrer une option..."
                                         class="form-control" required>
                                     <div class="input-group-append">
-                                        <button class="btn btn-icon btn-primary" @click.prevent="options.push({ val: '' })"
-                                            v-if="index === options.length - 1">
+                                        <button class="btn btn-icon btn-primary" @click.prevent="addOptions"
+                                            v-if="index === form.sections[selectedSectionIndex].contents[selectedContentIndex].options.length - 1">
                                             <i class="flaticon-add"></i></button>
                                         <button v-else class="btn btn-icon btn-dark"
-                                            @click.prevent="options.splice(index, 1)">
+                                            @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.splice(index, 1)">
                                             <i class="icon-trash"></i></button>
                                     </div>
                                 </div>
@@ -156,6 +159,8 @@ export default {
                 sujet_id: '',
                 sections: [],
             },
+            selectedSectionIndex: null,
+            selectedContentIndex: null,
             options: [],
             formLoading: false
         }
@@ -171,11 +176,15 @@ export default {
     },
 
     methods: {
-        onChangeValue(event) {
-            if (event.target.value.includes('checkbox') || event.target.value.includes('select')) {
-                this.options = [];
-                this.options.push({ val: '' });
-                this.openQuickPanelAction();
+        async onChangeValue({ sectionIndex, contentIndex, value }) {
+            console.log(value, sectionIndex, contentIndex);
+            if (value.includes('checkbox') || value.includes('select')) {
+                this.selectedContentIndex = contentIndex;
+                this.selectedSectionIndex = sectionIndex;
+                this.$nextTick(async () => {
+                    await this.addOptions();
+                    await this.openQuickPanelAction();
+                })
             }
         },
         addNewSection() {
@@ -185,12 +194,23 @@ export default {
                     {
                         detail: '',
                         valeur: '',
+                        options: []
                     }
+
                 ]
             });
+            console.log(JSON.stringify(this.form));
         },
 
-        openQuickPanelAction() {
+        async addOptions() {
+            let i = this.selectedSectionIndex;
+            let j = this.selectedContentIndex;
+            this.form.sections[i].contents[j].options.push({ model: '' });
+            console.log(JSON.stringify(this.form));
+        },
+
+        async openQuickPanelAction() {
+
             $("html").addClass("quick_sidebar_open");
             /* $('.scrollbar-outer').scrollbar() */
             /* $('<div class="quick-sidebar-overlay"></div>').insertAfter(
@@ -198,10 +218,14 @@ export default {
             ); */
         },
         closeQuickActionPanel() {
-            this.options = [];
             $("html").removeClass("quick_sidebar_open");
+            this.selectedContentIndex = null;
+            this.selectedSectionIndex = null;
             /* $(".quick-sidebar-overlay").remove(); */
         },
+
+
+        /*envoie des données formulaires au serveur*/
         submitForm(event) {
             this.$validForm('form-formulaires', event, async (result, form) => {
                 if (!result) {
@@ -233,7 +257,15 @@ export default {
         },
 
         submitFormOptions(event) {
-            this.closeQuickActionPanel()
+            /*  let i = this.selectedSectionIndex;
+             let j = this.selectedContentIndex;
+             let parseOptions = this.form.sections[i].contents[j].options;
+             let options = [];
+             parseOptions.forEach((el) => {
+                 options.push(el.model);
+             })
+             console.log(options.toString()); */
+            this.closeQuickActionPanel();
         },
 
         cleanForm(e) {

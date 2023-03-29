@@ -14,8 +14,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Désignation<sup class="text-danger">*</sup></label>
-                                    <input type="text" placeholder="Entrer le titre du formulaire..." class="form-control"
-                                        required>
+                                    <input type="text" v-model="form.nom" placeholder="Entrer le titre du formulaire..."
+                                        class="form-control" required>
                                 </div>
                             </div>
 
@@ -23,11 +23,13 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Sélectionner une catégorie <sup
                                             class="text-danger">*</sup></label>
-                                    <select class="form-control custom-select" id="defaultSelect" required>
+                                    <select class="form-control custom-select" v-model="form.culture_categorie_id"
+                                        id="defaultSelect" required>
                                         <option selected>Sélectionner une catégorie</option>
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
+                                        <option v-for="(cat, index) in categories" :key="index"
+                                            :value="cat.culture_categorie_id">{{ cat.categorie
+                                            }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -35,14 +37,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Détail<sup class="text-danger">*</sup></label>
-                                    <input type="text" placeholder="Entrer un détail..." class="form-control" required>
+                                    <input type="text" v-model="form.detail" placeholder="Entrer un détail..."
+                                        class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Valeur<sup class="text-danger">*</sup></label>
-                                    <input type="text" placeholder="Entrer une valeur..." class="form-control" required>
+                                    <input type="text" v-model="form.valeur" placeholder="Entrer une valeur..."
+                                        class="form-control" required>
                                 </div>
                             </div>
 

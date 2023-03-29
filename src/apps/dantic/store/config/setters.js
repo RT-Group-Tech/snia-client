@@ -22,6 +22,10 @@ const setters = {
   SET_FORMULAIRES(state, data) {
     state.formulaires = data;
   },
+
+  SET_CATEGORIES(state, data) {
+    state.categories = data;
+  },
 };
 
 export default setters;

@@ -71,12 +71,11 @@
                                         </thead>
                                         <tbody>
                                             <tr v-for="(agent, index) in agents" :key="index">
-                                                <td>{{agent.nom_complet}}</td>
-                                                <td>{{agent.numero_reference}}</td>
-                                                <td>{{agent.fonction}}</td>
-                                                <td>{{agent.grade}}</td>
-                                                <td>{{agent.sexe}}</td>
                                                 <td>{{ agent.nom_complet }}</td>
+                                                <td>{{ agent.numero_reference }}</td>
+                                                <td>{{ agent.fonction }}</td>
+                                                <td>{{ agent.grade }}</td>
+                                                <td>{{ agent.sexe }}</td>
                                                 <td>{{ agent.email }}</td>
                                                 <td>{{ agent.telephone }}</td>
 

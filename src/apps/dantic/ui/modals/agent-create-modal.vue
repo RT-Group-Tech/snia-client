@@ -1,8 +1,8 @@
 <template>
   <teleport to='body'>
-    <div class="modal animated zoomIn" id="agentModal" tabindex="-1" role="dialog" aria-labelledby="agentModalLabel"
+    <div class="modal fade" id="agentModal" tabindex="-1" role="dialog" aria-labelledby="agentModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header bg-app-2">
             <h5 class="modal-title text-white fw-mediumbold" id="agentModalLabel">
@@ -57,7 +57,7 @@
                     <label class="fw-extrabold">Grade</label>
                     <select name="" id="" class="form-control" v-model="form.grade">
                       <option value="">-------</option>
-                        <option v-for="(grade,index) in grades" :key="index" :value="grade">{{grade}}</option>
+                      <option v-for="(grade, index) in grades" :key="index" :value="grade">{{ grade }}</option>
                     </select>
                   </div>
 
@@ -66,16 +66,16 @@
                   <div class="form-group form-group-default bg-light">
                     <label class="fw-extrabold">Fonction</label>
                     <input type="text" v-model="form.fonction" class="form-control" name="prenom"
-                           placeholder="Saisir prénom..." required>
+                      placeholder="Saisir prénom..." required>
                   </div>
                 </div>
               </div>
               <div class="row mt-3">
-                <div class="col-md-4" v-if="form.statut==='Matricule'">
+                <div class="col-md-4" v-if="form.statut === 'Matricule'">
                   <div class="form-group form-group-default bg-light">
                     <label class="fw-extrabold">Numéro Matricule</label>
                     <input type="text" v-model="form.numero_reference" class="form-control" name="email"
-                           placeholder="Saisir le numéro matricule..." required>
+                      placeholder="Saisir le numéro matricule..." required>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -155,23 +155,22 @@ export default {
         last: '',
         nick: ''
       },
-        grades:["Grade 1","Grade 2"],
+      grades: ["Grade 1", "Grade 2"],
       form: {
         nom_complet: '',
         telephone: '',
-        statut:'Matricule',
-        fonction:'',
-        grade:'',
-        sexe:'Masculin',
-        date_naissance:'',
-        numero_reference:'',
+        statut: 'Matricule',
+        fonction: '',
+        grade: '',
+        sexe: 'Masculin',
+        date_naissance: '',
+        numero_reference: '',
         email: '',
         pass: '',
         confirm: ''
       }
     }
   },
-
   methods: {
     submitAgent(event) {
       /* agent name splitting */

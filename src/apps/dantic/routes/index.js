@@ -30,14 +30,6 @@ const routes = [
         },
       },
       {
-        path: "/dantic/secure/ipa-ita-register",
-        component: () => import("@/apps/dantic/ui/pages/ipa-ita-register"),
-        name: "ipa-ita-reg-route",
-        meta: {
-          authRequired: true,
-        },
-      },
-      {
         path: "/dantic/secure/ipa-view",
         component: () => import("@/apps/dantic/ui/pages/ipa-view"),
         name: "ipa-view-route",
@@ -81,6 +73,14 @@ const routes = [
         path: "/dantic/secure/config.formulaires",
         component: () => import("@/apps/dantic/ui/pages/config-form-page"),
         name: "config-form-route",
+        meta: {
+          authRequired: true,
+        },
+      },
+      {
+        path: "/dantic/secure/cultures",
+        component: () => import("@/apps/dantic/ui/pages/cultures-page"),
+        name: "culture-route",
         meta: {
           authRequired: true,
         },

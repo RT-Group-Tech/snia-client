@@ -9,11 +9,13 @@ const actions = {
       commit("SET_AGENTS", data.reverse());
     });
   },
+
   viewIpas({ commit }) {
     Api.voirIpas((data) => {
       commit("SET_IPAS", data.result.reponse);
     });
   },
+
   viewItas({ commit }) {
     Api.voirItas((data) => {
       commit("SET_ITAS", data.result.reponse);
@@ -36,6 +38,16 @@ const actions = {
         let sujets = data.result.reponse;
         commit("SET_SUJETS", sujets.reverse());
         resolve(sujets);
+      });
+    });
+  },
+
+  voirCategories({ commit }) {
+    return new Promise((resolve) => {
+      console.log("Voir catégories");
+      Api.voirCategories((res) => {
+        commit("SET_CATEGORIES", []);
+        resolve(res);
       });
     });
   },

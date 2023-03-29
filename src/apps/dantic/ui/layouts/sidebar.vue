@@ -42,7 +42,7 @@
                     </li>
 
                     <!-- sidebar item navigation -->
-                    <sidebar-item title="Tableau de bord" route-name="dashboard-route" icon="icon-home" />
+                    <sidebar-item title="Tableau de bord" route-name="dashboard-route" icon="icon-grid" />
 
                     <sidebar-item title="Ipa" route-name="ipa-view-route" icon="fab fa-fort-awesome" />
 

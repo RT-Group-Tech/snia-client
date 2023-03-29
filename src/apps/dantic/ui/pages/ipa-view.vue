@@ -77,9 +77,11 @@
                       <li>
                         <span class="name-specification">Total IPA</span>
                         <span class="status-specification">130
-                          <button type="button" @click.prevent="getItas(ipa)" title="Voir la liste des itas"
-                            class="btn btn-icon btn-sm ml-2 btn-info" data-toggle="tooltip">
-                            <i class="fas fa-th-list"></i>
+                          <button type="button" :disabled="itaLoading === ipa.ipa_id" @click.prevent="getItas(ipa)"
+                            title="Voir la liste des itas" class="btn btn-icon btn-sm ml-2 btn-info"
+                            data-toggle="tooltip">
+                            <i v-if="itaLoading === ipa.ipa_id" class="fa fa-spinner fa-spin"></i>
+                            <i v-else class="fas fa-th-list"></i>
                           </button>
                         </span>
                       </li>
@@ -126,7 +128,8 @@ export default {
   components: { IpaCreateModal, ItaCreateModal, ItaListModal },
   data() {
     return {
-      searchword: ''
+      searchword: '',
+      itaLoading: ''
     }
   },
 
@@ -153,7 +156,9 @@ export default {
     /*Permet d'afficher les itas relatives à une ipa en envoyant son ID*/
     getItas(ipa) {
       this.$store.state.dantic.selectedIpa = ipa;
+      this.itaLoading = ipa.ipa_id
       this.$store.dispatch('dantic/getItasOfIpa', ipa.ipa_id).then((res) => {
+        this.itaLoading = '';
         $('#ita-view-modal').modal('show');
 
       });

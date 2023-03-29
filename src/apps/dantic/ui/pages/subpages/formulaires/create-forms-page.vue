@@ -110,7 +110,8 @@
             </div>
         </form>
 
-        <div class="quick-sidebar" v-if="selectedContentIndex !== null && selectedSectionIndex !== null">
+        <div class="quick-sidebar animated fadeInRight"
+            v-if="selectedContentIndex !== null && selectedSectionIndex !== null">
             <a href="javascript:void(0)" @click="closeQuickActionPanel" class="close-quick-sidebar">
                 <i class="flaticon-cross"></i>
             </a>

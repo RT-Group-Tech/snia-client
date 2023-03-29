@@ -366,6 +366,7 @@ export default {
         return {
             itas: [],
             ipa: {
+                code_ita:'',
                 province: '',
                 superficie: '',
                 habitant: '',

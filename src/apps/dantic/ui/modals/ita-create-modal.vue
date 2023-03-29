@@ -21,9 +21,9 @@
                         </div>
 
                         <div class="form-group form-group-default bg-light">
-                            <label class="fw-extrabold">Population</label>
-                            <input type="text" v-model="form.total_population" class="form-control" name="population"
-                                placeholder="Saisir le nombre de la population..." required>
+                            <label class="fw-extrabold">CODE ITA</label>
+                            <input type="text" v-model="form.code_ita" class="form-control" name="population"
+                                placeholder="Saisir le code de l'ITA" required>
                         </div>
 
 
@@ -34,7 +34,11 @@
                                     <div class="input-group">
                                         <input type="text" v-model="form.superficie" class="form-control" name="postnom"
                                             placeholder="Saisir la superficie..." required>
+                                        <div class="input-group-append p-md-0 bg-transparent">
+                                            <span class="input-group-text">Km<sup>2</sup> </span>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -53,6 +57,26 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default bg-light">
+                                    <label class="fw-extrabold">GPS/Longitude</label>
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.longitude" class="form-control" name="postnom"
+                                               placeholder="Saisir la longitude..." required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default bg-light">
+                                    <label class="fw-extrabold">GPS/Latitude</label>
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.latitude" class="form-control" name="postnom"
+                                               placeholder="Saisir la latitude..." required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- <div class="form-group form-group-default bg-light">
                                 <label class="fw-extrabold">IPA</label>
@@ -74,15 +98,17 @@
 <script>
 
 import Api from '@/apps/dantic/api'
+
 export default {
     name: "ita-create-modal",
-
     data() {
         let form = {
             ipa_id: '',
             ita: '',
-            total_population: '',
-            superficie: ''
+            code_ita: '',
+            superficie: '',
+            longitude:'',
+            latitude:''
         }
         return {
             form: form,
@@ -108,13 +134,16 @@ export default {
                 if (this.selectedIpa !== null) {
                     this.$store.dispatch('dantic/getItasOfIpa', this.selectedIpa.ipa_id);
                 }
+                $("#itaCreateModal").modal('hide')
                 this.cleanFields();
             })
         },
         cleanFields() {
             this.form.ita = '';
             this.form.superficie = '';
-            this.form.total_population = '';
+            this.form.code_ita = '';
+            this.form.longitude='';
+            this.form.latitude='';
         }
     },
 

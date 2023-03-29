@@ -3,6 +3,7 @@
         <table id="ipa-datatables" class="display table table-striped table-hover">
             <thead>
                 <tr>
+                    <th>CODE IPA</th>
                     <th>IPA</th>
                     <th>Nombre d'habitants</th>
                     <th>Superficie</th>
@@ -12,6 +13,7 @@
             </thead>
             <tfoot>
                 <tr>
+                    <th>CODE IPA</th>
                     <th>IPA</th>
                     <th>Nombre d'habitants</th>
                     <th>Superficie</th>
@@ -21,6 +23,7 @@
             </tfoot>
             <tbody>
                 <tr v-for="(ipa, index) in data" :key="index">
+                    <td>{{ipa.code_ita}}</td>
                     <td>{{ ipa.province }}</td>
                     <td>{{ ipa.habitant }}</td>
                     <td>{{ ipa.superficie }}km<sup>2</sup></td>

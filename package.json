@@ -10,9 +10,13 @@
     "dependencies": {
         "axios": "^1.2.3",
         "core-js": "^3.8.3",
+        "datatables.net-buttons-dt": "^2.3.6",
+        "datatables.net-dt": "^1.13.4",
+        "datatables.net-select-dt": "^1.6.2",
         "expose-loader": "^4.0.0",
         "http": "^0.0.1-security",
         "jquery": "^3.6.3",
+        "jszip": "^3.10.1",
         "nano-sql": "^1.8.5",
         "vue": "^3.2.13",
         "vue-router": "^4.1.6",

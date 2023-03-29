@@ -32,6 +32,7 @@
                 </div>
             </div>
 
+            <!-- section !-->
             <div class="accordion" :id="`section${i}`" v-for="(section, i) in form.sections" :key="i">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between" aria-expanded="true" aria-controls="collapseOne"
@@ -68,7 +69,7 @@
                                     <!-- Formulaire section contents -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Section {{ i + 1 }} contenus</label>
+                                            <label>Section {{ i + 1 }} contenus/Inputs</label>
                                             <div class="input-group mb-2" v-for="(content, j) in section.contents" :key="j">
                                                 <input type="text" v-model="content.detail" placeholder="Détail"
                                                     class="form-control" required>
@@ -79,7 +80,7 @@
                                                     <option value="text">Zone de texte</option>
                                                     <option value="select">Liste déroulante</option>
                                                     <option value="checkbox">Zone à cocher</option>
-                                                    <option value="file">Zone de fichier</option>
+                                                    <!--<option value="file">Zone de fichier</option>!-->
                                                 </select>
                                                 <div class="input-group-append">
                                                     <button v-if="j === section.contents.length - 1"

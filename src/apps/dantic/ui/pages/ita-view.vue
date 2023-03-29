@@ -57,13 +57,14 @@
                         <div class="card full-height mt-4 animated fadeIn">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="agents-datatables" class="display table table-striped table-hover">
+                                    <table id="ipa-datatables" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <th>ITA</th>
                                                 <th>Population</th>
                                                 <th>Superficie</th>
                                                 <th>IPA</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -114,6 +115,17 @@
 
 import ItaCreateModal from "../modals/ita-create-modal.vue";
 
+
+// Import module pour datatable
+import dataTableConfig from "@/utils/datatable.fr.config.js"
+
+import 'jquery'
+
+import jszip from 'jszip';
+import DataTable from 'datatables.net-dt';
+import 'datatables.net-buttons-dt';
+import 'datatables.net-buttons/js/buttons.html5.mjs';
+import 'datatables.net-select-dt';
 export default {
     name: "Ipa-view",
     components: { ItaCreateModal },
@@ -127,6 +139,35 @@ export default {
     mounted() {
         this.$initBsTooltip();
         this.$store.dispatch('dantic/viewItas')
+
+        // Init module pour datatable
+        let config = JSON.parse(dataTableConfig);
+
+        $("#ipa-datatables")
+        .DataTable({
+          "language": config,
+          dom: 'Bfrtip',
+          buttons: [
+            {
+              extend: 'excel',
+              exportOptions: {
+                columns: 'th:not(:last-child)',
+
+              },
+             className: 'rounded'
+            },
+            
+          ],
+        //   rowId: 'id',
+          stateSave: true,
+          select: {
+            style: 'multi',
+            blurable: true,
+            // className: 'row-selected',
+          }
+
+        })
+
     },
     methods: {
         showCreateItaModal() {

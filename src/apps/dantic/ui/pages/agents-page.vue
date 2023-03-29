@@ -173,36 +173,6 @@ export default {
             $('[data-toggle="tooltip"]').tooltip();
         });
         this.$store.dispatch('dantic/viewAgents');
-        /*init dataTable*/
-
-
-        // Init module pour datatable
-        let config = JSON.parse(dataTableConfig);
-
-        $("#agents-datatables")
-        .DataTable({
-          "language": config,
-          dom: 'Bfrtip',
-          buttons: [
-            {
-              extend: 'excel',
-              exportOptions: {
-                columns: 'th:not(:last-child)',
-
-              },
-             className: 'rounded'
-            },
-            
-          ],
-        //   rowId: 'id',
-          stateSave: true,
-          select: {
-            style: 'multi',
-            blurable: true,
-            // className: 'row-selected',
-          }
-
-        })
     }
 }
 </script>

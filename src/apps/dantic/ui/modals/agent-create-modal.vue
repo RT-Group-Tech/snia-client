@@ -144,9 +144,7 @@
 import Api from "../../api";
 export default {
   name: "agent-create-modal",
-
   data() {
-
     return {
       submitLoading: false,
       /* split full name */

@@ -287,8 +287,10 @@ class Api {
       };
       let liaisonRes = await this.lierFormulaireToSubject(liaisonReqData);
       /* check formulaire_sujet link success*/
-      if (liaisonRes.result.reponse.status === "success") {
-        for (let i = 0; i < formulaireData.sections.length; i++) {
+      if (liaisonRes.result.reponse.status === "success")
+      {
+        for (let i = 0; i < formulaireData.sections.length; i++)
+        {
           let forms = formulaireData.sections[i];
 
           let f = {
@@ -301,7 +303,8 @@ class Api {
             formulaire_section_id !== undefined ||
             formulaire_section_id !== null
           ) {
-            for (let j = 0; j < forms.contents.length; j++) {
+            for (let j = 0; j < forms.contents.length; j++)
+            {
               let content = forms.contents[j];
               content.formulaire_section_id = formulaire_section_id;
               let contentsRes = await this.creerFormulaireSectionDetails(

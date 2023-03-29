@@ -21,17 +21,18 @@
                                     required>
                                 <div class="input-group-append">
                                     <button @click.prevent="forms.push({ data: '' })" v-if="index === forms.length - 1"
-                                        class="btn btn-primary btn-icon" type="submit"> <i
-                                            class="flaticon-add"></i></button>
+                                        class="btn btn-primary btn-icon" type="submit"> <i class="flaticon-add"></i>
+                                    </button>
                                     <button @click.prevent="forms.splice(index, 1)" v-else class="btn btn-dark btn-icon">
-                                        <i class="icon-trash"></i></button>
+                                        <i class="icon-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" :disabled="formLoading" id="submit-btn" class="btn btn-success mr-2"><i
-                                v-if="formLoading" class="fa fa-spinner fa-spin mr-2"></i>Sauvegarder</button>
+                        <button type="submit" :disabled="formLoading" class="btn btn-success mr-2"><i v-if="formLoading"
+                                class="fa fa-spinner fa-spin mr-2"></i>Sauvegarder</button>
                         <button type="reset" class="btn btn-danger">Annuler</button>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="tab-pane fade" id="v-pills-forms-config" role="tabpanel" aria-labelledby="v-pills-home-tab-icons">
-        <form @submit.prevent="submitForm" id="form-sujet">
+        <form @submit.prevent="submitForm" id="form-formulaires">
             <div class="accordion accordion-secondary">
                 <div class="card">
                     <div class="card-body">
@@ -17,7 +17,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Sélectionner un sujet de liaison</label>
-                                    <select v-model="form.sujet_id" class="form-control form-control" id="defaultSelect"
+                                    <select v-model="form.sujet_id" class="form-control custom-select" id="defaultSelect"
                                         required>
                                         <option selected>Sélectionner un sujet</option>
                                         <option v-for="data in sujets" :key="data.sujet_id" :value="data.sujet_id">{{
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="card-footer" v-if="(i === form.sections.length - 1)">
-                        <button type="submit" :disabled="formLoading" id="submit-btn" class="btn btn-success mr-2"><i
+                        <button type="submit" :disabled="formLoading" id="forms-submit-btn" class="btn btn-success mr-2"><i
                                 v-if="formLoading" class="fa fa-spinner fa-spin mr-2"></i>Sauvegarder</button>
                         <button type="reset" class="btn btn-danger">Annuler</button>
                     </div>
@@ -115,7 +115,7 @@
             <div class="quick-sidebar-wrapper">
                 <div class="quick-wrapper tasks-wrapper">
                     <div class="tasks-scroll scrollbar-outer">
-                        <form>
+                        <form @submit.prevent="submitFormOptions">
                             <div class="tasks-content">
                                 <span class="category-title">Entrer les options</span>
                                 <div class="input-group mb-2" v-for="(opt, index) in options" :key="index">
@@ -166,7 +166,7 @@ export default {
         }
     },
     created() {
-        this.addNewSection();
+        this.cleanForm('');
     },
 
     methods: {
@@ -202,9 +202,9 @@ export default {
             /* $(".quick-sidebar-overlay").remove(); */
         },
         submitForm(event) {
-            this.$validForm('form', event, async (result, form) => {
+            this.$validForm('form-formulaires', event, async (result, form) => {
                 if (!result) {
-                    this.$animatedFailedTask("submit-btn");
+                    this.$animatedFailedTask("forms-submit-btn");
                 } else {
                     this.formLoading = true
                     Api.configurerFormulaire(this.form, (res) => {
@@ -229,6 +229,10 @@ export default {
                 }
             })
 
+        },
+
+        submitFormOptions(event) {
+            this.closeQuickActionPanel()
         },
 
         cleanForm(e) {

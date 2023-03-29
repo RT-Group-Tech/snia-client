@@ -14,7 +14,7 @@
             </button>
             <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
             <div class="nav-toggle">
-                <button class="btn btn-toggle toggle-sidebar">
+                <button class="btn btn-toggle toggle-sidebar" @click.prevent="minimizeSidebar">
                     <i class="icon-menu"></i>
                 </button>
             </div>
@@ -155,10 +155,35 @@ import { mapGetters } from "vuex"
 export default {
     name: 'Header-Layout',
 
+    data() {
+        return {
+            sidebarMinimized: false
+        }
+    },
+
     methods: {
         focusSearch() {
             $('#search-nav').toggleClass("focus");
         },
+
+        /* Minimize sidebar */
+        minimizeSidebar() {
+            if (this.sidebarMinimized) {
+                $(".wrapper").removeClass("sidebar_minimize");
+                $(".toggle-sidebar").removeClass("toggled");
+                $(".toggle-sidebar").html('<i class="icon-menu"></i>');
+                this.sidebarMinimized = false;
+            }
+            else {
+
+                $(".wrapper").addClass("sidebar_minimize");
+                $(".toggle-sidebar").addClass("toggled");
+                $(".toggle-sidebar").html('<i class="icon-options-vertical"></i>');
+                this.sidebarMinimized = true;
+            }
+
+        },
+        maximizeSidebar() { },
 
         /* async searchBar() {
 

@@ -200,18 +200,15 @@ export default {
 
                 ]
             });
-            console.log(JSON.stringify(this.form));
         },
 
         async addOptions() {
             let i = this.selectedSectionIndex;
             let j = this.selectedContentIndex;
             this.form.sections[i].contents[j].options.push({ model: '' });
-            console.log(JSON.stringify(this.form));
         },
 
         async openQuickPanelAction() {
-
             $("html").addClass("quick_sidebar_open");
             /* $('.scrollbar-outer').scrollbar() */
             /* $('<div class="quick-sidebar-overlay"></div>').insertAfter(

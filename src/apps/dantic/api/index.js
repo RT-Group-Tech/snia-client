@@ -321,6 +321,46 @@ class Api {
       }
     }
   }
+
+  /**
+   * Modification section formulaire
+   * @param {Object} sectionData
+   * @param {resolve, reject} true|false
+   */
+  static async modifierSectionFormulaire(s) {
+    console.log(JSON.stringify(s));
+    let req1 = await request({
+      key: "42f39eeec46be85329dc54480a9a2e72ba3a5653",
+      formulaire_section_id: s.formulaire_section_id,
+      formulaire_id: s.formulaire_id,
+      section: s.section,
+    });
+    console.log(JSON.stringify(req1));
+    if (req1.status === 200) {
+      for (let i = 0; i < s.inputs.length; i++) {
+        let input = s.inputs[i];
+        let opts = [];
+        if (input.options !== undefined) {
+          input.options.forEach((el) => {
+            opts.push(el.input_option);
+          });
+          console.log(opts.toString());
+        }
+
+        var req2 = await request({
+          key: "f895191d72dc1488483a26c0f9dbd93b3a405fc8",
+          formulaire_input_id: input.formulaire_input_id,
+          formulaire_section_id: s.formulaire_section_id,
+          input: input.input,
+          input_type: input.input_type,
+          options: opts.toString(),
+        });
+        console.log(JSON.stringify(req2));
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 export default Api;

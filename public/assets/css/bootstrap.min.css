@@ -5941,7 +5941,7 @@ button.close {
     align-items: center;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    padding: 1rem;
+    padding: .8rem;
     border-top: 1px solid #e9ecef
 }
 

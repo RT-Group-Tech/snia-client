@@ -233,24 +233,18 @@ export default {
                     this.$animatedFailedTask("forms-submit-btn");
                 } else {
                     this.formLoading = true
-                    Api.configurerFormulaire(this.form, (res) => {
+                    Api.configurerFormulaire(this.form, async (res) => {
                         this.formLoading = false
                         this.cleanForm(event);
-                        $.notify(
-                            {
-                                icon: "fas fa-check",
-                                title: "Succès !",
-                                message: "Configuration du formulaire effectué avec succès !",
-                            },
-                            {
-                                type: "success",
-                                placement: {
-                                    from: "bottom",
-                                    align: "right",
-                                },
-                                time: 1000,
-                            }
-                        );
+                        Swal.fire({
+                            title: 'Succès !',
+                            text: "Formulaire créé avec succès !",
+                            icon: 'success',
+                            timer: 4000,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                        });
+                        await this.$store.dispatch('dantic/voirFormulaires')
                     })
                 }
             })

@@ -181,7 +181,7 @@ class Api {
   /* VOir les formulaires enregistrés dans le systèmes */
   static async voirFormulaires(callback) {
     const { data, status } = await request({
-      key: "806fea571a3efd2a88285b43100ffaf3b6bdb699",
+      key: "44daa070bcc93a83a0af787630620c35f3b4be6f",
     });
     if (status === 200) callback(data);
     else callback(false);

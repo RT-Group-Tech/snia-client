@@ -211,6 +211,7 @@ export default {
                                 text: "Les modifications ont été effectuées avec succès !",
                                 icon: 'success',
                                 showCancelButton: false,
+                                showConfirmButton: false,
                                 timer: 3000
                             })
                         }

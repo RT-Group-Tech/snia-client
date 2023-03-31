@@ -328,14 +328,14 @@ class Api {
    * @param {resolve, reject} true|false
    */
   static async modifierSectionFormulaire(s) {
-    console.log(JSON.stringify(s));
+    console.log("input length", s.inputs.length, JSON.stringify(s.inputs));
     let req1 = await request({
       key: "42f39eeec46be85329dc54480a9a2e72ba3a5653",
       formulaire_section_id: s.formulaire_section_id,
       formulaire_id: s.formulaire_id,
       section: s.section,
     });
-    console.log(JSON.stringify(req1));
+    console.log("section update", JSON.stringify(req1));
     if (req1.status === 200) {
       for (let i = 0; i < s.inputs.length; i++) {
         let input = s.inputs[i];
@@ -355,9 +355,9 @@ class Api {
           input_type: input.input_type,
           options: opts.toString(),
         });
-        console.log(JSON.stringify(req2));
-        return true;
+        console.log("input update", JSON.stringify(req2));
       }
+      return true;
     }
     return false;
   }

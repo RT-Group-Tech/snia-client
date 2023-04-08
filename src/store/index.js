@@ -10,9 +10,7 @@ const store = createStore({
     dantic: danticStore,
     auth: authStore,
   },
-  getters: {
-    
-  },
+  getters: {},
   mutations: {},
   state: {},
   actions: {},

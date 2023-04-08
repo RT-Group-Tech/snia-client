@@ -65,7 +65,7 @@ class UserService {
         } else {
           access = false;
         }
-        callback(access);
+        callback(access, res);
       });
   }
 }

@@ -29,6 +29,7 @@
         "@vue/cli-plugin-babel": "~5.0.0",
         "@vue/cli-plugin-eslint": "~5.0.0",
         "@vue/cli-service": "~5.0.0",
+
         "eslint": "^7.32.0",
         "eslint-plugin-vue": "^8.0.3",
         "node-sass": "^8.0.0",
@@ -55,7 +56,8 @@
             "no-empty": "off",
             "no-redeclare": "off",
             "no-useless-escape": "off",
-            "no-control-regex": "off"
+            "no-control-regex": "off",
+            "vue/no-unused-components": "off"
         }
     },
     "browserslist": [

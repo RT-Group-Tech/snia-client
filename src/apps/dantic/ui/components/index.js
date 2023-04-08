@@ -1,8 +1,8 @@
-import Footer from "./footer";
-import IpaTables from "./ipa-table";
-import ITables from "./ita-table";
-import SidebarItem from "./sidebar-item.vue";
-import DashboardCard from "./dashboard-card.vue";
+import Footer from "./src/footer";
+import IpaTables from "./src/ipa-table";
+import ITables from "./src/ita-table";
+import SidebarItem from "./src/sidebar-item.vue";
+import DashboardCard from "./src/dashboard-card.vue";
 
 export default {
   install: (app, options) => {

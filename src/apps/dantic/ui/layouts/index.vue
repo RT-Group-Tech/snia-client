@@ -13,11 +13,12 @@
         <!-- End Router view -->
     </div>
 </template>
-
+ 
 <script>
+import '@/assets/css/atlantis.css'
 /* Layouts imports */
-import HeaderLayout from "./header"
-import SidebarLayout from "./sidebar"
+import HeaderLayout from "./src/header"
+import SidebarLayout from "./src/sidebar"
 
 export default {
     name: "Main-Layout",
@@ -32,6 +33,11 @@ export default {
         $(document).ready(() => {
             $('.scrollbar-inner').scrollbar();
         });
+        this.$store.dispatch("auth/refreshLoggedUser");
+    },
+    methods: {
+        /*Load web font*/
+
     },
 
 }

@@ -2,18 +2,7 @@ import { beforeAuth } from "@/middlewares/auth";
 const routes = [
   //redirect to home
   {
-    path: "/:pathMatch(.*)*",
-    name: "notfound",
-    component: () => import("@/views/public/error/404"),
-  },
-
-  {
-    path: "/",
-    name: "login",
-    component: () => import("@/views/auth/login"),
-  },
-  {
-    path: "/dantic/secure",
+    path: "/dantic/secure/",
     component: () => import("@/apps/dantic/ui/layouts"),
     name: "dantic-secure-route",
     beforeEnter: beforeAuth,

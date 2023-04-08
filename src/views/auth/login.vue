@@ -86,7 +86,8 @@
     </div>
 </template>
 <script>
-import AuthMixin from "@/mixins/auth/login"
+import AuthMixin from "@/mixins/auth/login";
+import '@/assets/css/atlantis.css'
 export default {
     name: "Login",
     extends: AuthMixin,

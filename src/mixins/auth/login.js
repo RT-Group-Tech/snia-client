@@ -14,8 +14,8 @@ export default {
   },
 
   /* async unmounted() {
-            this.$router.go();
-          }, */
+                                this.$router.go();
+                              }, */
 
   async mounted() {
     await UserService.init((res) => console.log(JSON.stringify(res)));
@@ -45,10 +45,21 @@ export default {
             email: this.user.email,
             password: this.user.password,
           };
-          UserService.login(user, async (result) => {
+          UserService.login(user, async (result, res) => {
             if (result) {
               await this.$store.dispatch("auth/refreshLoggedUser");
-              await this.$router.push({ name: "dantic-secure-route" });
+              let user = res[0];
+              if (user.email.includes("ita")) {
+                this.$router
+                  .push({
+                    name: "ita-secure-route",
+                  })
+                  .then(() => this.$router.go());
+              } else {
+                await this.$router.push({
+                  name: "dantic-secure-route",
+                });
+              }
             } else {
               /*create a simple animation shake when task is failed */
               this.$animatedFailedTask("login-box");
@@ -56,7 +67,7 @@ export default {
               form.reset();
               $.notify(
                 {
-                  icon: "fa fa-info",
+                  icon: "fas fa-info",
                   title: "Opération echoué!",
                   message: "identifiant ou mot de passe erroné !",
                 },
@@ -96,6 +107,11 @@ export default {
             {
               name: "Chris Tenday",
               email: "chris@gmail.com",
+              password: "12345",
+            },
+            {
+              name: "Tenday Chris",
+              email: "chris@ita.com",
               password: "12345",
             },
             {

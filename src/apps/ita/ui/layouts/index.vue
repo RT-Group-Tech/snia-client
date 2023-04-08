@@ -10,7 +10,6 @@
 
     </div>
 </template>
-
 <script>
 import '@/assets/css/atlantis2.css'
 import TopHeader from "./src/topheader.vue"

@@ -14,8 +14,8 @@ export default {
   },
 
   /* async unmounted() {
-                                this.$router.go();
-                              }, */
+                                  this.$router.go();
+                                }, */
 
   async mounted() {
     await UserService.init((res) => console.log(JSON.stringify(res)));
@@ -50,11 +50,9 @@ export default {
               await this.$store.dispatch("auth/refreshLoggedUser");
               let user = res[0];
               if (user.email.includes("ita")) {
-                this.$router
-                  .push({
-                    name: "ita-secure-route",
-                  })
-                  .then(() => this.$router.go());
+                this.$router.push({
+                  name: "ita-secure-route",
+                });
               } else {
                 await this.$router.push({
                   name: "dantic-secure-route",

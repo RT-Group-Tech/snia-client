@@ -2,6 +2,17 @@
     <div class="main-panel">
         <div class="container">
             <div class="page-inner">
+                <div class="page-header">
+                    <h4 class="page-title">Tableau de bord</h4>
+                    <ul class="breadcrumbs">
+                        <li class="nav-home">
+                            <a href="javascript:void(0)">
+                                <i class="flaticon-home"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
                 <div class="row">
                     <div class="col-sm-6 col-lg-3">
                         <div class="card p-3">

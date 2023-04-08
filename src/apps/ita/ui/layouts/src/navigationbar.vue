@@ -7,14 +7,14 @@
             </h3>
             <ul class="nav page-navigation page-navigation-info bg-white">
                 <li class="nav-item submenu active">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="javascript:void(0)">
                         <i class="link-icon icon-screen-desktop"></i>
                         <span class="menu-title">Tableau de bord</span>
                     </a>
 
                 </li>
                 <li class="nav-item submenu">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="javascript:void(0)">
                         <i class="link-icon icon-home"></i>
                         <span class="menu-title">Secteur</span>
                     </a>
@@ -31,7 +31,7 @@
                     </div>
                 </li>
                 <li class="nav-item submenu">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="javascript:void(0)">
                         <i class="link-icon icon-people"></i>
                         <span class="menu-title">Agents</span>
                     </a>
@@ -49,7 +49,7 @@
                 </li>
 
                 <li class="nav-item submenu">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="javascript:void(0)">
                         <i class="link-icon icon-people"></i>
                         <span class="menu-title">Agriculteur</span>
                     </a>

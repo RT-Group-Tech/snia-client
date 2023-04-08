@@ -9,7 +9,7 @@
             </button>
             <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
             <!-- Logo Header -->
-            <a href="#" class="logo d-flex align-items-center">
+            <a href="javascript:void(0)" class="logo d-flex align-items-center">
 
                 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                 <svg class="navbar-brand" fill="#ffffff" width="40px" height="40px" viewBox="0 0 50 50"
@@ -44,12 +44,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link quick-sidebar-toggler">
+                            <a href="javascript:void(0)" class="nav-link quick-sidebar-toggler">
                                 <i class="fa fa-th"></i>
                             </a>
                         </li>
                         <li class="nav-item dropdown hidden-caret">
-                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)"
+                                aria-expanded="false">
                                 <div class="avatar-sm">
                                     <img src="assets/img/picture_placeholder.png" alt="..."
                                         class="avatar-img rounded-circle">

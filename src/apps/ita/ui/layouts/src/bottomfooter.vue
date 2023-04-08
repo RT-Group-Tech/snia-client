@@ -4,7 +4,7 @@
             <nav class="pull-left">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="javascript:void(0)">
                             Aide ?
                         </a>
                     </li>

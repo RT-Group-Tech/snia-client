@@ -3,7 +3,7 @@
         <div class="container">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Tableau de bord</h4>
+                    <h4 class="page-title">ITA Tableau de bord</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="javascript:void(0)">

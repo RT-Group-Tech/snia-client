@@ -50,10 +50,11 @@
 
                     <sidebar-item title="Agents" route-name="agents-route" icon="icon-people" />
 
-                    <sidebar-item title="Cultures" route-name="culture-route" icon="fas fa-leaf" />
+                    <sidebar-item title="Cultures" route-name="culture-route" icon="icon-share-alt" />
 
-                    <sidebar-item title="Formulaires" route-name="config-form-route" icon="fas fa-pen-square" />
+                    <sidebar-item title="Formulaires" route-name="config-form-route" icon="icon-note" />
 
+                    <sidebar-item title="Données collectées" route-name="collect-route" icon="icon-folder-alt" />
                     <!-- <sidebar-item title="Test" route-name="test-route" icon="icon-settings"/> -->
                 </ul>
             </div>

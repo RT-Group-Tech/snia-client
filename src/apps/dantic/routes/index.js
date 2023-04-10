@@ -68,8 +68,16 @@ const routes = [
       },
       {
         path: "/dantic/secure/cultures",
-        component: () => import("@/apps/dantic/ui/pages/cultures-page"),
+        component: () => import("@/apps/dantic/ui/pages/cultures-page.vue"),
         name: "culture-route",
+        meta: {
+          authRequired: true,
+        },
+      },
+      {
+        path: "/dantic/secure/collectes",
+        component: () => import("@/apps/dantic/ui/pages/data-collect-page"),
+        name: "collect-route",
         meta: {
           authRequired: true,
         },

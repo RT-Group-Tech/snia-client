@@ -1,22 +1,17 @@
 <template>
     <footer class="footer">
-        <div class="container-fluid">
+        <div class="container">
             <nav class="pull-left">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="display: none;">
-                            Aide
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="display: none;">
-                            Licenses
+                        <a class="nav-link" href="javascript:void(0)">
+                            Aide ?
                         </a>
                     </li>
                 </ul>
             </nav>
             <div class="copyright ml-auto">
-                2023 @<a href="#">Snia</a>
+                Snia RDC. Production PAM.
             </div>
         </div>
     </footer>

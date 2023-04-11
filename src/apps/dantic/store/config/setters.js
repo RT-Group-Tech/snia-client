@@ -26,6 +26,10 @@ const setters = {
   SET_CATEGORIES(state, data) {
     state.categories = data;
   },
+
+  SET_COLLECTES(state, data) {
+    state.collectes = data;
+  },
 };
 
 export default setters;

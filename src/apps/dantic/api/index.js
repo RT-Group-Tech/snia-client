@@ -361,6 +361,15 @@ class Api {
     }
     return false;
   }
+
+  static async voirDonneesCollectes(callback) {
+    const { data, status } = await request({
+      key: "999e6e3f651b4b6fd7eb12acfcc8e2ca2a9c34fb",
+    });
+    let donneesCollectes = data.result.collectes;
+    if (status === 200) callback(donneesCollectes);
+    else callback([]);
+  }
 }
 
 export default Api;

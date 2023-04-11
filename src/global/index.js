@@ -17,5 +17,13 @@ export default {
         $('[data-toggle="tooltip"]').tooltip();
       });
     };
+
+    app.config.globalProperties.$filters = {
+      sortLength(text, length, suffix) {
+        var sorted =
+          text.length > length ? text.substring(0, length) + suffix : text;
+        return sorted;
+      },
+    };
   },
 };

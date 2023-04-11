@@ -61,6 +61,15 @@ const actions = {
       });
     });
   },
+
+  voirCollectes({ commit }) {
+    return new Promise((resolve) => {
+      Api.voirDonneesCollectes((data) => {
+        commit("SET_COLLECTES", data.reverse());
+        resolve(data);
+      });
+    });
+  },
 };
 
 export default actions;

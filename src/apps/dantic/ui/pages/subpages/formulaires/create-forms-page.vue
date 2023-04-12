@@ -81,6 +81,9 @@
                                                     <option value="text">Zone de texte</option>
                                                     <option value="select">Liste déroulante</option>
                                                     <option value="checkbox">Case à cocher</option>
+                                                    <option value="file">Fichier</option>
+                                                    <option value="date">Date</option>
+                                                    <option value="number">Numéro</option>
                                                     <!--<option value="file">Zone de fichier</option>!-->
                                                 </select>
                                                 <div class="input-group-append">

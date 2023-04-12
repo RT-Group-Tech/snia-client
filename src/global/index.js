@@ -24,6 +24,10 @@ export default {
           text.length > length ? text.substring(0, length) + suffix : text;
         return sorted;
       },
+
+      capitalize(text) {
+        return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+      },
     };
   },
 };

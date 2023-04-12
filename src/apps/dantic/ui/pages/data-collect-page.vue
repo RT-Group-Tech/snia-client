@@ -93,8 +93,6 @@ export default {
 
     mounted() {
         this.$store.dispatch('dantic/voirCollectes')
-
-
     }
 }
 </script>

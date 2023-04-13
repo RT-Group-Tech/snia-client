@@ -6,11 +6,11 @@
                 <div class="close-menu"> <i class="flaticon-cross"></i></div>
             </h3>
             <ul class="nav page-navigation page-navigation-info bg-white">
-                <li class="nav-item submenu active">
-                    <a class="nav-link" href="javascript:void(0)">
+                <li class="nav-item submenu" :class="`${$route.name === 'ita-dashboard-route' ? 'active' : ''}`">
+                    <router-link class="nav-link" :to="{ name: 'ita-dashboard-route' }">
                         <i class="link-icon icon-screen-desktop"></i>
                         <span class="menu-title">Tableau de bord</span>
-                    </a>
+                    </router-link>
 
                 </li>
                 <li class="nav-item submenu">
@@ -65,6 +65,13 @@
                         </ul>
                     </div>
                 </li>
+
+                <li class="nav-item submenu" :class="`${$route.name === 'ita-collect-route' ? 'active' : ''}`">
+                    <router-link class="nav-link" :to="{ name: 'ita-collect-route' }">
+                        <i class="link-icon icon-folder-alt"></i>
+                        <span class="menu-title">Données collectées</span>
+                    </router-link>
+                </li>
             </ul>
         </div>
     </div>
@@ -72,6 +79,12 @@
 
 <script>
 export default {
-    name: "NavigationBar"
+    name: "NavigationBar",
+    data() {
+        return {
+            currentRoute: ''
+        }
+    },
+
 }
 </script>

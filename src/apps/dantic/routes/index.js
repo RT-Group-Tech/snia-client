@@ -2,7 +2,7 @@ import { beforeAuth } from "@/middlewares/auth";
 const routes = [
   //redirect to home
   {
-    path: "/dantic/secure/",
+    path: "/dantic/secure",
     component: () => import("@/apps/dantic/ui/layouts"),
     name: "dantic-secure-route",
     beforeEnter: beforeAuth,
@@ -76,8 +76,8 @@ const routes = [
       },
       {
         path: "/dantic/secure/collectes",
-        component: () => import("@/apps/dantic/ui/pages/data-collect-page"),
-        name: "collect-route",
+        component: () => import("@/views/public/pages/data-collect-page"),
+        name: "ipa-collect-route",
         meta: {
           authRequired: true,
         },

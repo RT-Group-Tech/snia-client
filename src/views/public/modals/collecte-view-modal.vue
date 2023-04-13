@@ -36,8 +36,6 @@
 
 <script>
 
-
-
 export default {
     name: "CollecteViewModal",
 
@@ -47,9 +45,6 @@ export default {
             default: () => { },
         }
     }
-
-
-
 }
 
 </script>

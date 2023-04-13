@@ -1,14 +1,12 @@
 const states = {
-    count: 0,
-    agents: [],
-    ipas: [],
-    itas: [],
-    selectedIpa: null,
-    itasOfIpa: [],
-    sujets: [] /* Formulaire sujets */ ,
-    formulaires: [] /*Liste des formulaires */ ,
-    categories: [] /*Liste des categories cultures */ ,
-    collectes: [] /*Liste des données collectées */
+  count: 0,
+  agents: [],
+  ipas: [],
+  itas: [],
+  selectedIpa: null,
+  itasOfIpa: [],
+  formulaires: [] /*Liste des formulaires */,
+  categories: [] /*Liste des categories cultures */,
 };
 
 export default states;

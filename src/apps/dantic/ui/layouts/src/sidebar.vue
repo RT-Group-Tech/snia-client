@@ -54,7 +54,7 @@
 
                     <sidebar-item title="Formulaires" route-name="config-form-route" icon="icon-note" />
 
-                    <sidebar-item title="Données collectées" route-name="collect-route" icon="icon-folder-alt" />
+                    <sidebar-item title="Données collectées" route-name="ipa-collect-route" icon="icon-folder-alt" />
                     <!-- <sidebar-item title="Test" route-name="test-route" icon="icon-settings"/> -->
                 </ul>
             </div>

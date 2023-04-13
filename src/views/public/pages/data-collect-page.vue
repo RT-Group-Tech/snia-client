@@ -76,7 +76,7 @@
 
 
         <!-- Global footer component -->
-        <d-footer></d-footer>
+        <d-footer v-if="$route.name === 'ipa-collect-route'"></d-footer>
         <!-- end Global footer component -->
 
 
@@ -106,16 +106,16 @@ export default {
     computed: {
         collectes() {
             if (this.selectSujet.length > 0) {
-                let filtered = this.$store.getters['dantic/GET_COLLECTES'];
+                let filtered = this.$store.getters.GET_COLLECTES;
                 return filtered;
             }
             else {
-                return this.$store.getters['dantic/GET_COLLECTES']
+                return this.$store.getters.GET_COLLECTES
             }
 
         },
         sujets() {
-            return this.$store.getters['dantic/GET_SUJETS']
+            return this.$store.getters.GET_SUJETS
         }
     },
 
@@ -127,8 +127,8 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch('dantic/voirCollectes');
-        this.$store.dispatch("dantic/voirSujets");
+        this.$store.dispatch('voirCollectes');
+        this.$store.dispatch("voirSujets");
     }
 }
 </script>

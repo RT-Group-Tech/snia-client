@@ -15,20 +15,12 @@ const setters = {
     state.itasOfIpa = data;
   },
 
-  SET_SUJETS(state, data) {
-    state.sujets = data;
-  },
-
   SET_FORMULAIRES(state, data) {
     state.formulaires = data;
   },
 
   SET_CATEGORIES(state, data) {
     state.categories = data;
-  },
-
-  SET_COLLECTES(state, data) {
-    state.collectes = data;
   },
 };
 

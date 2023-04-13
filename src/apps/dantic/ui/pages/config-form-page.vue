@@ -82,7 +82,7 @@ export default {
         formsView
     },
     mounted() {
-        this.$store.dispatch("dantic/voirSujets");
+        this.$store.dispatch("voirSujets");
     },
 }
 </script>

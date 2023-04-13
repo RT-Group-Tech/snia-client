@@ -172,7 +172,7 @@ export default {
 
     computed: {
         sujets() {
-            return this.$store.getters['dantic/GET_SUJETS']
+            return this.$store.getters.GET_SUJETS
         }
     },
     created() {

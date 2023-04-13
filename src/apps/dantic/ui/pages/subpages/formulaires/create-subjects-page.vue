@@ -90,7 +90,7 @@ export default {
                             time: 1000,
                         }
                     );
-                    await this.$store.dispatch('dantic/voirSujets')
+                    await this.$store.dispatch('voirSujets')
                 }
 
 

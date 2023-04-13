@@ -32,16 +32,6 @@ const actions = {
     });
   },
 
-  voirSujets({ commit }) {
-    return new Promise((resolve) => {
-      Api.voirFormulairesSujets((data) => {
-        let sujets = data.result.reponse;
-        commit("SET_SUJETS", sujets.reverse());
-        resolve(sujets);
-      });
-    });
-  },
-
   voirCategories({ commit }) {
     return new Promise((resolve) => {
       Api.voirCategories((res) => {
@@ -58,15 +48,6 @@ const actions = {
         let formulaires = data.result.formulaires;
         commit("SET_FORMULAIRES", formulaires.reverse());
         resolve(formulaires);
-      });
-    });
-  },
-
-  voirCollectes({ commit }) {
-    return new Promise((resolve) => {
-      Api.voirDonneesCollectes((data) => {
-        commit("SET_COLLECTES", data.reverse());
-        resolve(data);
       });
     });
   },

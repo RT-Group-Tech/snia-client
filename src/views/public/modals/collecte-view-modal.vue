@@ -1,13 +1,13 @@
 <template>
     <div class="modal fade" id="collecte-view-modal" tabindex="-1" role="dialog" aria-labelledby="itaModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="card-title fw-extrabold">
+                    <h5 class="card-title fw-extrabold">
                         <i class="fas fa-folder-open mr-1"></i>
                         {{ collecte.titre }}
-                    </h4>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>

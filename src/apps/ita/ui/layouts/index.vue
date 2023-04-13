@@ -25,9 +25,7 @@ export default {
 
     mounted() {
         this.$router.push({ name: "ita-dashboard-route" });
-        $(document).ready(() => {
-            $('.scrollbar-inner').scrollbar();
-        });
+        /* $('.wrapper .scrollbar-inner').scrollbar(); */
     }
 }
 </script>

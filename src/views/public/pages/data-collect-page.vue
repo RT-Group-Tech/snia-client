@@ -2,17 +2,9 @@
     <div class="main-panel">
         <div class="container">
             <div class="panel-header">
-                <div class=" page-inner py-5">
+                <div class=" page-inner">
                     <div class="page-header">
                         <h4 class="page-title">Données collectées</h4>
-                        <ul class="breadcrumbs">
-                            <li class="nav-home">
-                                <router-link :to="{ name: 'dashboard-route' }">
-                                    <i class="flaticon-home"></i>
-                                </router-link>
-                            </li>
-
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -62,7 +54,8 @@
                         <div class="card folder-card rounded" @click.prevent="showCollecte(collecte)">
                             <div class="card-body p-3 text-center">
                                 <div class="h1 m-0"> <i class="fas fa-folder fa-2x" style="color: #1572e8"></i> </div>
-                                <div class="text-muted mb-2">{{ $filters.sortLength(collecte.titre, 22, '...') }}</div>
+                                <div class="text-muted mb-2">{{ $filters.capitalize($filters.sortLength(collecte.titre, 22,
+                                    '...')) }}</div>
                                 <div class="text-right text-muted">
                                     <small style="font-size: 10px;" class="fw-mediumbold"><i
                                             class="icon-calendar mr-1"></i>20/12/2023</small>

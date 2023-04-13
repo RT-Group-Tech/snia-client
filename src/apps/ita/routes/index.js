@@ -26,6 +26,14 @@ const routes = [
           authRequired: true,
         },
       },
+      {
+        path: "/ita/secure/secteurs",
+        component: () => import("@/apps/ita/ui/pages/ita.secteurs"),
+        name: "ita-secteurs-route",
+        meta: {
+          authRequired: true,
+        },
+      },
     ],
   },
 ];

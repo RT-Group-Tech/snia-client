@@ -2,10 +2,12 @@
     <div class="main-header">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="blue2">
-            <router-link :to="{ name: 'dashboard-route' }" class="logo">
-                <!-- <img src="assets/img/logo_w.png" style="height: 40px;" alt="navbar brand"> -->
-                <!-- <h1 class="fw-bold navbar-brand text-center">SNIA</h1> -->
-            </router-link>
+            <div class="logo-holder logo-1">
+                <router-link :to="{ name: 'dashboard-route' }" class="logo">
+                    <h3 style="letter-spacing: 8.5px;">SNIA RDC</h3>
+                    <p>Interface dantic</p>
+                </router-link>
+            </div>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                 data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
@@ -152,6 +154,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex"
+import '@/assets/css/logo.css'
 export default {
     name: 'Header-Layout',
 

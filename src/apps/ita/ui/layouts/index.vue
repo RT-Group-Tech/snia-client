@@ -7,7 +7,6 @@
         <!-- layout routes view here... -->
         <router-view />
         <bottom-footer />
-
     </div>
 </template>
 <script>

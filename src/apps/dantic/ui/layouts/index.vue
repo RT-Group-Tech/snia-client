@@ -16,6 +16,7 @@
  
 <script>
 import '@/assets/css/atlantis.css'
+
 /* Layouts imports */
 import HeaderLayout from "./src/header"
 import SidebarLayout from "./src/sidebar"

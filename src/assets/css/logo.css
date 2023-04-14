@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Bangers|Cinzel:400,700,900|Lato:100,300,400,700,900|Lobster|Lora:400,700|Mansalva|Muli:200,300,400,600,700,800,900|Open+Sans:300,400,600,700,800|Oswald:200,300,400,500,600,700|Roboto:100,300,400,500,700,900&display=swap");
+
+/* Used Google Fonts */
+
+.logo-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 12px;
+}
+
+
+/* Logo-1 */
+
+.logo-1 h3 {
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.logo-1 p {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #f5f3ec;
+    font-weight: 400;
+}

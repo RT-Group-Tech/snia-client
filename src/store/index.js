@@ -29,20 +29,25 @@ const store = createStore({
   state: {
     collectes: [] /*Liste des données collectées */,
     sujets: [] /* Formulaire sujets */,
+    dataLoading: false,
   },
   actions: {
-    voirSujets({ commit }) {
+    voirSujets({ commit, state }) {
       return new Promise((resolve) => {
+        state.dataLoading = true;
         Api.voirFormulairesSujets((data) => {
+          state.dataLoading = false;
           let sujets = data.result.reponse;
           commit("SET_SUJETS", sujets.reverse());
           resolve(sujets);
         });
       });
     },
-    voirCollectes({ commit }) {
+    voirCollectes({ commit, state }) {
       return new Promise((resolve) => {
+        state.dataLoading = true;
         Api.voirDonneesCollectes((data) => {
+          state.dataLoading = false;
           commit("SET_COLLECTES", data.reverse());
           resolve(data);
         });

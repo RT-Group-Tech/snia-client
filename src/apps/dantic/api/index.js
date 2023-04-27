@@ -253,16 +253,18 @@ class Api {
   static async creerFormulaireSectionDetails(form) {
     console.log(JSON.stringify(form));
     let options = [];
-    if (form.options.length > 0) {
-      form.options.forEach((el) => {
-        options.push(el.model);
-      });
+    if (form.options !== undefined) {
+      if (form.options.length > 0) {
+        form.options.forEach((el) => {
+          options.push(el.model);
+        });
+      }
     }
     const { data, status } = await request({
       key: "87e4e76f05ddf374ca292f25d6f53115f5f15eb3",
       formulaire_section_id: form.formulaire_section_id,
-      detail: form.detail,
-      valeur: form.valeur,
+      input: form.input,
+      input_type: form.input_type,
       options: options.toString(),
     });
     console.log("Terminate on ", JSON.stringify(data));
@@ -320,7 +322,7 @@ class Api {
    * @param {resolve, reject} true|false
    */
   static async modifierSectionFormulaire(s) {
-    /* console.log("input length", s.inputs.length, JSON.stringify(s.inputs)); */
+    console.log("input length", s.inputs.length, JSON.stringify(s));
     let req1 = await request({
       key: "42f39eeec46be85329dc54480a9a2e72ba3a5653",
       formulaire_section_id: s.formulaire_section_id,
@@ -331,27 +333,44 @@ class Api {
     if (req1.status === 200) {
       for (let i = 0; i < s.inputs.length; i++) {
         let input = s.inputs[i];
-        let opts = [];
-        if (input.options !== undefined) {
-          input.options.forEach((el) => {
-            opts.push(el.input_option);
-          });
-          console.log(opts.toString());
-        }
+        if (input.formulaire_input_id === undefined) {
+          input.formulaire_section_id = s.formulaire_section_id;
+          let fieldRes = await this.creerFormulaireSectionDetails(input);
+          console.log("Nouveau champs=>", JSON.stringify(fieldRes));
+        } else {
+          let opts = [];
+          if (input.options !== undefined) {
+            input.options.forEach((el) => {
+              opts.push(el.input_option);
+            });
+            console.log(opts.toString());
+          }
 
-        var req2 = await request({
-          key: "f895191d72dc1488483a26c0f9dbd93b3a405fc8",
-          formulaire_input_id: input.formulaire_input_id,
-          formulaire_section_id: s.formulaire_section_id,
-          input: input.input,
-          input_type: input.input_type,
-          options: opts.toString(),
-        });
-        /* console.log("input update", JSON.stringify(req2)); */
+          var req2 = await request({
+            key: "f895191d72dc1488483a26c0f9dbd93b3a405fc8",
+            formulaire_input_id: input.formulaire_input_id,
+            formulaire_section_id: s.formulaire_section_id,
+            input: input.input,
+            input_type: input.input_type,
+            options: opts.toString(),
+          });
+          /* console.log("input update", JSON.stringify(req2)); */
+        }
       }
       return true;
     }
     return false;
+  }
+
+  static async supprimerFormulaire(formulaireId, callback) {
+    let { data, status } = await request({
+      key: "e464b90fb62cb10624551926bb58084884905ba3",
+      formulaire_id: formulaireId,
+    });
+    let res = data.result.reponse.status;
+    console.log(JSON.stringify(data));
+    if (status == 200 && res === "success") callback(true);
+    else callback(false);
   }
 }
 

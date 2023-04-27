@@ -3,20 +3,10 @@
         <form @submit.prevent="submitForm" id="form-sujet">
             <div class="accordion accordion-secondary">
                 <div class="card">
-                    <div class="card-header" aria-expanded="true" aria-controls="collapseOne" role="button">
-                        <div class="span-icon">
-                            <div class="flaticon-pen"></div>
-                        </div>
-                        <div class="span-title">
-                            Créer les sujets
-                        </div>
-
-                    </div>
-
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <div class="form-group">
                             <label for="to" class="col-form-label mb-2">Sujet</label>
-                            <div class="input-group mb-3" v-for="(form, index) in forms" :key="index">
+                            <div class="input-group mb-2" v-for="(form, index) in forms" :key="index">
                                 <input type="text" v-model="form.data" placeholder="Entrer le sujet..." class="form-control"
                                     required>
                                 <div class="input-group-append">

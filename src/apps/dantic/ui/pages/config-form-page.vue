@@ -37,7 +37,7 @@
                                             <a class="nav-link active show" id="v-pills-home-tab-icons" data-toggle="pill"
                                                 href="#v-pills-topic" role="tab" aria-controls="v-pills-topic"
                                                 aria-selected="true">
-                                                <i class="flaticon-pen"></i>
+                                                <i class="fas fa-pen-square"></i>
                                                 Création sujets
                                             </a>
                                             <a class="nav-link" id="v-pills-profile-tab-icons" data-toggle="pill"

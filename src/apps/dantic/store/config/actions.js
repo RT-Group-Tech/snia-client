@@ -4,8 +4,10 @@ import Api from "@/apps/dantic/api";
 
 const actions = {
   /*Permet de voir tous les agent via la dbTable locale*/
-  viewAgents({ commit }) {
+  viewAgents({ commit, state }) {
+    state.dataLoading = true;
     Api.voirAgents((data) => {
+      state.dataLoading = false;
       commit("SET_AGENTS", data.reverse());
     });
   },

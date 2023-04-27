@@ -17,12 +17,16 @@
 
             <!-- formulaires list -->
             <ul class="list-group list-group-bordered">
-                <li class="list-group-item d-lg-flex justify-content-between" v-for="(formulaire, i) in formulaires"
-                    :key="i">
-                    <span><i class="flaticon-interface-6 text-info mr-1"></i> {{ formulaire.titre }}</span>
+                <li class="list-group-item d-lg-flex align-items-center justify-content-between"
+                    v-for="(formulaire, i) in formulaires" :key="i">
+                    <span><i class="flaticon-interface-6 text-info mr-1"></i> {{
+                        $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }}</span>
                     <div>
-                        <button class="btn btn-icon btn-danger mr-1" @click.prevent="deleteFormulaire(i)"><i
-                                class="icon-trash"></i></button>
+                        <button :disabled="deleteLoading === formulaire.formulaire_id" class="btn btn-icon btn-danger mr-1"
+                            @click.prevent="deleteFormulaire(formulaire.formulaire_id)">
+                            <i v-if="deleteLoading === formulaire.formulaire_id" class="fa fa-spinner fa-spin" />
+                            <i v-else class="icon-trash"></i>
+                        </button>
                         <button class="btn btn-icon btn-info" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"><i class="icon-share-alt"></i></button>
                         <ul class="dropdown-menu" role="menu" x-placement="right-start"
@@ -34,9 +38,14 @@
                             <li v-for="(section, i) in formulaire.sections" :key="i">
                                 <a class="dropdown-item d-flex justify-content-between pt-2 pb-2" href="javascript:void(0)"
                                     @click.prevent="getSection(section)">
-                                    <span>{{ section.section }}</span><i class="fas fa-edit text-info"></i>
+                                    <span>{{ $filters.capitalize(section.section) }}</span><i
+                                        class="fas fa-edit text-info"></i>
                                 </a>
                                 <div class="dropdown-divider"></div>
+                            </li>
+                            <li class="text-center">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-primary"><i class="flaticon-add"></i>
+                                    Ajouter section</a>
                             </li>
                         </ul>
                     </div>
@@ -60,7 +69,7 @@
                             </button>
                         </div>
 
-                        <div class="modal-body">
+                        <div class="modal-body" v-if="selectedSection.section !== undefined">
                             <div class="row">
                                 <!-- Formulaire section titre -->
                                 <div class="col-md-12">
@@ -73,7 +82,13 @@
                                 <!-- Formulaire section contents -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Contenus/Champs <sup class="text-danger">*</sup></label>
+                                        <label class="d-flex justify-content-between"
+                                            :class="`${selectedSection.inputs.length > 0 ? 'border-bottom' : ''}`"><span>Contenus/Champs
+                                                <sup class="text-danger">*</sup></span> <button
+                                                v-if="selectedSection.inputs.length == 0"
+                                                class="btn btn-icon btn-sm btn-info"
+                                                @click.prevent="selectedSection.inputs.push({ input: '', input_type: '' })">
+                                                <i class="flaticon-add"></i></button></label>
                                         <div v-for="(content, j) in selectedSection.inputs" :key="j">
                                             <div class="input-group mb-2">
                                                 <input type="text" v-model="content.input" placeholder="Détail"
@@ -85,10 +100,16 @@
                                                     <option value="text">Zone de texte</option>
                                                     <option value="select">Liste déroulante</option>
                                                     <option value="checkbox">Case à cocher</option>
-                                                    <!--<option value="file">Zone de fichier</option>!-->
+                                                    <option value="file">Fichier</option>
+                                                    <option value="date">Date</option>
+                                                    <option value="number">Numéro</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-icon btn-dark"
+                                                    <button class="btn btn-icon btn-info"
+                                                        v-if="(j === selectedSection.inputs.length - 1)"
+                                                        @click.prevent="selectedSection.inputs.push({ input: '', input_type: '' })">
+                                                        <i class="flaticon-add"></i></button>
+                                                    <button v-else class="btn btn-icon btn-dark"
                                                         @click.prevent="selectedSection.inputs.splice(j, 1)"> <i
                                                             class="icon-trash"></i></button>
                                                 </div>
@@ -105,7 +126,7 @@
                                                         <div class="input-group-append">
                                                             <button class="btn btn-icon btn-info" v-if="k === 0"
                                                                 @click.prevent="content.options.push({ input_option: '' })">
-                                                                <i class="flaticon-close"></i>
+                                                                <i class="flaticon-add"></i>
                                                             </button>
                                                             <button v-else class="btn btn-icon btn-dark"
                                                                 @click.prevent="content.options.splice(k, 1)"> <i
@@ -149,6 +170,7 @@ export default {
         return {
             searchWord: '',
             selectedSection: {},
+            deleteLoading: '',
             submitLoading: false,
         }
     },
@@ -195,7 +217,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonColor: '#31ce36',
                 cancelButtonColor: '#f25961',
-                confirmButtonText: 'Oui, supprimer',
+                confirmButtonText: 'Oui, modifier',
                 cancelButtonText: "Non, fermer",
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -232,7 +254,21 @@ export default {
                 cancelButtonText: "Non, fermer",
             }).then((result) => {
                 if (result.isConfirmed) {
-
+                    this.deleteLoading = id;
+                    Api.supprimerFormulaire(id, (isDone) => {
+                        this.deleteLoading = false;
+                        if (isDone) {
+                            this.$store.dispatch('dantic/voirFormulaires');
+                            Swal.fire({
+                                title: 'Success',
+                                text: "Formulaire supprimé avec succès !",
+                                icon: 'success',
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 3000
+                            })
+                        }
+                    })
                 }
             });
         }

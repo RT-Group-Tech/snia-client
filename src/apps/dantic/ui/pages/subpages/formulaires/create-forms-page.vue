@@ -3,8 +3,8 @@
         <form @submit.prevent="submitForm" id="form-formulaires">
             <div class="accordion accordion-secondary">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card-body p-0">
+                        <div class="row mb-2">
                             <!-- Formulaire liaison avec le sujet -->
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -35,8 +35,8 @@
             <!-- section !-->
             <div class="accordion" :id="`section${i}`" v-for="(section, i) in form.sections" :key="i">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between" aria-expanded="true" aria-controls="collapseOne"
-                        role="button">
+                    <div class="card-header p-0 d-flex justify-content-between" aria-expanded="true"
+                        aria-controls="collapseOne" role="button">
                         <div class="span-icon">
                             <div class="flaticon-interface-4"></div>
                         </div>
@@ -44,13 +44,13 @@
                             SECTION {{ i + 1 }}
                         </div>
                         <div>
-                            <button v-if="i === form.sections.length - 1" class="btn btn-icon btn-success"
+                            <button v-if="i === form.sections.length - 1" class="btn m-1 btn-icon btn-success"
                                 @click.prevent="addNewSection"> <i class="flaticon-add"></i></button>
-                            <button v-else class="btn btn-icon btn-dark" @click.prevent="form.sections.splice(i, 1)">
+                            <button v-else class="btn m-1 btn-icon btn-dark" @click.prevent="form.sections.splice(i, 1)">
                                 <i class="icon-trash"></i> </button>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <div class="row">
                             <!-- Formulaire sections -->
                             <div class="col-md-12 mt-2">
@@ -71,25 +71,26 @@
                                         <div class="form-group">
                                             <label>Section {{ i + 1 }} contenus/Champs</label>
                                             <div class="input-group mb-2" v-for="(content, j) in section.contents" :key="j">
-                                                <input type="text" v-model="content.detail" placeholder="Détail"
+                                                <input type="text" v-model="content.input" placeholder="Détail"
                                                     class="form-control" required>
-                                                <select name="valeur"
-                                                    @change="onChangeValue({ sectionIndex: i, contentIndex: j, value: content.valeur })"
-                                                    class="custom-select form-control" id="valeur" required
-                                                    v-model="content.valeur">
-                                                    <option value="">Sélectionner valeur</option>
+                                                <select name="input_type"
+                                                    @change="onChangeValue({ sectionIndex: i, contentIndex: j, value: content.input_type })"
+                                                    class="custom-select form-control" id="input_type" required
+                                                    v-model="content.input_type">
+                                                    <option value="">Sélectionner </option>
                                                     <option value="text">Zone de texte</option>
                                                     <option value="select">Liste déroulante</option>
                                                     <option value="checkbox">Case à cocher</option>
                                                     <option value="file">Fichier</option>
                                                     <option value="date">Date</option>
                                                     <option value="number">Numéro</option>
-                                                    <!--<option value="file">Zone de fichier</option>!-->
+                                                    <!--<option value="file"
+                                                    >Zone de fichier</option>!-->
                                                 </select>
                                                 <div class="input-group-append">
                                                     <button v-if="j === section.contents.length - 1"
                                                         class="btn btn-primary btn-icon"
-                                                        @click.prevent="section.contents.push({ detail: '', valeur: '', options: [] })">
+                                                        @click.prevent="section.contents.push({ input: '', input_type: '', options: [] })">
                                                         <i class="flaticon-add"></i></button>
                                                     <button v-else class="btn btn-icon btn-dark"
                                                         @click.prevent="section.contents.splice(j, 1)"> <i
@@ -196,8 +197,8 @@ export default {
                 section: '',
                 contents: [
                     {
-                        detail: '',
-                        valeur: '',
+                        input: '',
+                        input_type: '',
                         options: []
                     }
 

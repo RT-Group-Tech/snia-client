@@ -1,4 +1,3 @@
-import "@/assets/vendor/select2/select2.full.min.js";
 export default {
   name: "Ita-Ipa-Register-Mixin",
 

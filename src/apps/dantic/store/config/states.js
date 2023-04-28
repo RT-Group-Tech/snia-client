@@ -7,6 +7,7 @@ const states = {
   itasOfIpa: [],
   formulaires: [] /*Liste des formulaires */,
   categories: [] /*Liste des categories cultures */,
+  dataLoading: false,
 };
 
 export default states;

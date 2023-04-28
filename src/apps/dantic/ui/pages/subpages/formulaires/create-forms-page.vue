@@ -128,7 +128,7 @@
                                 <div class="input-group mb-2"
                                     v-for="(opt, index) in form.sections[selectedSectionIndex].contents[selectedContentIndex].options"
                                     :key="index">
-                                    <input type="text" v-model="opt.model" placeholder="Entrer une option..."
+                                    <input type="text" v-model="opt.input_option" placeholder="Entrer une option..."
                                         class="form-control" required>
                                     <div class="input-group-append">
                                         <button class="btn btn-icon btn-primary" @click.prevent="addOptions"
@@ -209,7 +209,7 @@ export default {
         async addOptions() {
             let i = this.selectedSectionIndex;
             let j = this.selectedContentIndex;
-            this.form.sections[i].contents[j].options.push({ model: '' });
+            this.form.sections[i].contents[j].options.push({ input_option: '' });
         },
 
         async openQuickPanelAction() {

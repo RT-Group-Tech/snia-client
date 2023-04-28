@@ -254,11 +254,9 @@ class Api {
     console.log(JSON.stringify(form));
     let options = [];
     if (form.options !== undefined) {
-      if (form.options.length > 0) {
-        form.options.forEach((el) => {
-          options.push(el.model);
-        });
-      }
+      form.options.forEach((el) => {
+        options.push(el.input_option);
+      });
     }
     const { data, status } = await request({
       key: "87e4e76f05ddf374ca292f25d6f53115f5f15eb3",

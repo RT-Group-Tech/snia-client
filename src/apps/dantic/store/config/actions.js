@@ -44,9 +44,11 @@ const actions = {
     });
   },
 
-  voirFormulaires({ commit }) {
+  voirFormulaires({ commit, state }) {
     return new Promise((resolve) => {
+      state.dataLoading = true;
       Api.voirFormulaires((data) => {
+        state.dataLoading = false;
         let formulaires = data.result.formulaires;
         commit("SET_FORMULAIRES", formulaires.reverse());
         resolve(formulaires);

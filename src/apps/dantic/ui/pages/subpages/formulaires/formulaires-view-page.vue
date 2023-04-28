@@ -44,13 +44,17 @@
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li class="text-center">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-primary"><i class="flaticon-add"></i>
+                                <a href="javascript:void(0)" @click.prevent="addNewSection(formulaire)"
+                                    class="btn btn-sm btn-primary"><i class="flaticon-add"></i>
                                     Ajouter section</a>
                             </li>
                         </ul>
                     </div>
                 </li>
             </ul>
+            <!--             <div v-show="viewLoading" class="d-flex justify-content-center mt-4 align-items-center w-100 h-50">
+                <i class="fa fa-3x fa-spinner fa-spin text-muted"></i>
+            </div> -->
             <!-- End formulaire list -->
         </div>
 
@@ -145,7 +149,7 @@
 
                         <div class="modal-footer">
                             <div class="text-right mt-3">
-                                <button id="submit-btn" type="submit" class="btn btn-success"
+                                <button :disabled="submitLoading" id="submit-btn" type="submit" class="btn btn-success"
                                     :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;"> <i
                                         v-if="submitLoading" class="fa fa-spinner fa-spin" /> Sauvegarder les
                                     modifications
@@ -169,7 +173,9 @@ export default {
     data() {
         return {
             searchWord: '',
-            selectedSection: {},
+            selectedSection: {
+
+            },
             deleteLoading: '',
             submitLoading: false,
         }
@@ -186,10 +192,30 @@ export default {
                 return filtered.filter((f) => f.titre.toLowerCase().includes(this.searchWord.toLowerCase()));
             }
             return this.$store.getters['dantic/GET_FORMULAIRES']
+        },
+        viewLoading() {
+            return this.$store.state.dantic.dataLoading;
         }
     },
 
     methods: {
+        addNewSection(formulaire) {
+            this.selectedSection = {
+                section: '',
+                formulaire_id: formulaire.formulaire_id,
+                inputs: [
+                    {
+                        input: '',
+                        input_type: '',
+                        options: []
+                    }
+
+                ]
+            }
+            this.$nextTick(() => {
+                $("#formulaireEditModal").modal('show');
+            });
+        },
         addOpts(content) {
             console.log(content.input_type);
             if (content.input_type.includes('select') || content.input_type.includes('checkbox')) {
@@ -219,25 +245,50 @@ export default {
                 cancelButtonColor: '#f25961',
                 confirmButtonText: 'Oui, modifier',
                 cancelButtonText: "Non, fermer",
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                    this.submitLoading = true
-                    Api.modifierSectionFormulaire(this.selectedSection).then((res) => {
-                        this.submitLoading = false;
-                        console.log(res);
-                        if (res) {
+                    this.submitLoading = true;
+                    if (this.selectedSection.formulaire_section_id === undefined) {
+                        let { formulaire_section_id } = await Api.creerSectionFormulaire(this.selectedSection);
+                        if (formulaire_section_id !== null) {
+                            for (let i = 0; i < this.selectedSection.inputs.length; i++) {
+                                let input = this.selectedSection.inputs[i];
+                                input.formulaire_section_id = formulaire_section_id;
+                                await Api.creerFormulaireSectionDetails(input);
+                            }
+                            this.submitLoading = false;
                             $('#formulaireEditModal').modal('hide');
                             this.$store.dispatch('dantic/voirFormulaires');
                             Swal.fire({
                                 title: 'Success',
-                                text: "Les modifications ont été effectuées avec succès !",
+                                text: "Nouvelles section ajoutée avec succès !",
                                 icon: 'success',
                                 showCancelButton: false,
                                 showConfirmButton: false,
                                 timer: 3000
                             })
                         }
-                    })
+                        return;
+                    }
+                    else {
+                        Api.modifierSectionFormulaire(this.selectedSection).then((res) => {
+                            this.submitLoading = false;
+                            console.log(res);
+                            if (res) {
+                                $('#formulaireEditModal').modal('hide');
+                                this.$store.dispatch('dantic/voirFormulaires');
+                                Swal.fire({
+                                    title: 'Success',
+                                    text: "Les modifications ont été effectuées avec succès !",
+                                    icon: 'success',
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                })
+                            }
+                        })
+                    }
+
                 }
             });
 

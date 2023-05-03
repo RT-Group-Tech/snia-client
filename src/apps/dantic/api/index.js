@@ -370,6 +370,13 @@ class Api {
         if (status == 200 && res === "success") callback(true);
         else callback(false);
     }
+
+    static async editFormTitre(data)
+    {
+        data.key="a306375b18af9454030614b49285fcc3e1361376";
+
+        await request(data);
+    }
 }
 
 export default Api;

@@ -219,7 +219,18 @@ export default {
                     /**
                      * Lancer la requete de mise a jour du titre.
                      */
+
                     formulaire.titre=result.value;
+                    var data={
+                      formulaire_id: formulaire.formulaire_id,
+                      titre:formulaire.titre
+                    };
+
+                    /**
+                     * Call to the Api.
+                     */
+                    Api.editFormTitre(data);
+
 
                     console.log(result);
                 }

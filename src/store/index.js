@@ -48,7 +48,10 @@ const store = createStore({
         state.dataLoading = true;
         Api.voirDonneesCollectes((data) => {
           state.dataLoading = false;
-          commit("SET_COLLECTES", data.reverse());
+          //console.clear();
+          //console.log("collectes data..");
+          //console.log(data);
+          commit("SET_COLLECTES", data);
           resolve(data);
         });
       });

@@ -57,7 +57,7 @@
                                 <div class="text-muted mb-2">{{ $filters.capitalize($filters.sortLength(collecte.titre, 22,
                                     '...')) }}</div>
                                 <div class="text-right text-muted">
-                                    <small style="font-size: 10px;" class="fw-mediumbold"><i
+                                    <small style="display:none; font-size: 10px;" class="fw-mediumbold"><i
                                             class="icon-calendar mr-1"></i>20/12/2023</small>
                                 </div>
                             </div>
@@ -76,7 +76,6 @@
         <!--  Modal pour voir les détails de la collecte -->
         <collecte-view-modal :collecte="selectedCollecte"></collecte-view-modal>
         <!-- End modal -->
-
 
     </div>
 </template>
@@ -98,7 +97,8 @@ export default {
     },
     computed: {
         collectes() {
-            if (this.selectSujet.length > 0) {
+            if (this.selectSujet.length > 0)
+            {
                 let filtered = this.$store.getters.GET_COLLECTES;
                 return filtered;
             }
@@ -115,6 +115,7 @@ export default {
     methods: {
         showCollecte(collecte) {
             this.selectedCollecte = collecte;
+
             this.$nextTick(() => $('#collecte-view-modal').modal('show'))
         }
     },

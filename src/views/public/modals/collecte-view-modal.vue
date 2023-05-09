@@ -18,8 +18,8 @@
                             <h6 class="card-title fw-extrabold"><span class="fa fa-calendar-check"></span> Collecte du  {{collecteView.date_enregistrement}}</h6>
                         </div>
                         <div class="col-md-3">
-                            <select name="" id="" class="form-control" >
-                                <option value="" v-for="d in collecte.collectes" :key="d" @click.prevent="setCollecteView(d)">{{d.date_enregistrement}}</option>
+                            <select name="" id="" class="form-control" v-model="collecteView">
+                                <option v-for="d in collecte.collectes" :key="d" :value="d">{{d.date_enregistrement}}</option>
                             </select>
                         </div>
                     </div>

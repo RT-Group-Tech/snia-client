@@ -138,6 +138,12 @@
                                             @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.splice(index, 1)">
                                             <i class="icon-trash"></i></button>
                                     </div>
+                                    <div class="input-group" style="padding-top: 10px; padding-bottom: 10px;">
+                                        <button @click.prevent="configSousInputs(opt)" type="button" style="border: 0; background-color: transparent; cursor: pointer; border:1px solid black; border-radius:3px;"><span class="fa fa-plus-circle"></span> Parametrage sous champs</button>
+                                    </div>
+                                    <!-- sous inputs !-->
+                                    <sous-inputs v-if="opt.sous_inputs!==undefined || opt.sous_inputs===true "></sous-inputs>
+                                    <!-- end sous inputs !-->
                                 </div>
                                 <span class="category-title"></span>
                                 <div class="d-flex">
@@ -155,8 +161,12 @@
 
 <script>
 import Api from '@/apps/dantic/api';
+import sousInputs from './sous-inputs'
 export default {
     name: 'Create-Forms-Page',
+    components:{
+        sousInputs
+    },
     data() {
         return {
             form: {
@@ -181,6 +191,11 @@ export default {
     },
 
     methods: {
+        configSousInputs(option)
+        {
+            option.sous_inputs=true;
+        }
+        ,
         async onChangeValue({ sectionIndex, contentIndex, value }) {
             console.log(value, sectionIndex, contentIndex);
             if (value.includes('checkbox') || value.includes('select')) {

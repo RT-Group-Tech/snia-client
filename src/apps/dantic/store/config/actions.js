@@ -37,7 +37,8 @@ const actions = {
   voirCategories({ commit }) {
     return new Promise((resolve) => {
       Api.voirCategories((res) => {
-        let categories = res.result.culture_categories;
+
+        let categories = res.result.reponse.data;
         commit("SET_CATEGORIES", categories);
         resolve(categories);
       });

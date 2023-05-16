@@ -146,7 +146,6 @@
                                 <!--End Formulaire section contents -->
                             </div>
                         </div>
-
                         <div class="modal-footer">
                             <div class="text-right mt-3">
                                 <button :disabled="submitLoading" id="submit-btn" type="submit" class="btn btn-success"

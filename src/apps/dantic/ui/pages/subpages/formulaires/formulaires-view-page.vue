@@ -19,16 +19,19 @@
             <ul class="list-group list-group-bordered">
                 <li class="list-group-item d-lg-flex align-items-center justify-content-between"
                     v-for="(formulaire, i) in formulaires" :key="i">
-                    <span><i class="flaticon-interface-6 text-info mr-1"></i> {{
-                        $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }}</span>
+                    <span><i class="flaticon-interface-6 text-info mr-1"></i> {{$filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }} </span>
                     <div>
+                        <button class="btn btn-icon btn-success mr-1" type="button"
+                                ><i class="icon-pencil" @click.prevent="updateFormTitre(formulaire)"></i></button>
+
+                        <button class="btn btn-icon btn-info mr-1" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="icon-information"></i></button>
+
                         <button :disabled="deleteLoading === formulaire.formulaire_id" class="btn btn-icon btn-danger mr-1"
-                            @click.prevent="deleteFormulaire(formulaire.formulaire_id)">
+                                @click.prevent="deleteFormulaire(formulaire.formulaire_id)">
                             <i v-if="deleteLoading === formulaire.formulaire_id" class="fa fa-spinner fa-spin" />
                             <i v-else class="icon-trash"></i>
                         </button>
-                        <button class="btn btn-icon btn-info" type="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><i class="icon-share-alt"></i></button>
                         <ul class="dropdown-menu" role="menu" x-placement="right-start"
                             style="position: absolute; transform: translate3d(119px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
                             <h6 class="dropdown-header fw-extrabold text-primary">
@@ -198,6 +201,40 @@ export default {
     },
 
     methods: {
+        updateFormTitre(formulaire) /** Method pour mettre à jour le titre d'un formulaire */
+        {
+            console.log("dsdsds");
+            this.$swal({
+                text:"Modifier le titre du formulaire",
+                input:'text',
+                inputValue:formulaire.titre,
+                showConfirmButton:true,
+                showCancelButton:true,
+                confirmButtonText:"Modifier",
+                cancelButtonText:"Annuler"
+            }).then((result)=>{
+                if(result.isConfirmed)
+                {
+                    /**
+                     * Lancer la requete de mise a jour du titre.
+                     */
+
+                    formulaire.titre=result.value;
+                    var data={
+                      formulaire_id: formulaire.formulaire_id,
+                      titre:formulaire.titre
+                    };
+
+                    /**
+                     * Call to the Api.
+                     */
+                    Api.editFormTitre(data);
+
+
+                    console.log(result);
+                }
+            });
+        },
         addNewSection(formulaire) {
             this.selectedSection = {
                 section: '',

@@ -5,7 +5,7 @@ class GlobalApi {
     const { data, status } = await request({
       key: "999e6e3f651b4b6fd7eb12acfcc8e2ca2a9c34fb",
     });
-    let donneesCollectes = data.result.collectes;
+    let donneesCollectes = data.result.formulaires;
     if (status === 200) callback(donneesCollectes);
     else callback([]);
   }

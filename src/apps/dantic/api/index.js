@@ -335,17 +335,44 @@ class Api {
             data.type=sousInputs[i].type;
 
             var res=await request(data);
-            //console.clear();
-            //console.log("sous inputs res:");
             //console.log(res);
             var reponse=res.data.result.reponse;
 
-            /**
-             *
-             */
+            if(reponse.status!==undefined && reponse.status==="success")
+            {
+                if(sousInputs[i].options!==undefined && sousInputs[i].options.length>0)
+                {
+                    /**
+                     * Enregistrer les options des sous inputs si nécessaires.
+                     */
+                    await Api.saveSousInputOptions(reponse.formulaire_sous_input_id,sousInputs[i].options);
+                }
+            }
         }
 
+    }
 
+    /**
+     * Enregistrer les options d'un sous champ.
+     * @param formulaireSousInputId
+     * @param options
+     * @returns {Promise<void>}
+     */
+    static async saveSousInputOptions(formulaireSousInputId,options)
+    {
+        var data={
+            key:"fb71b7ba4037aba288e227ccfe974a8fc3e5c109",
+            formulaire_sous_input_id:formulaireSousInputId
+        };
+
+        for(var i=0; i<options.length; i++)
+        {
+            data.sous_input_option=options[i];
+            var res=await request(data);
+            //console.log(data); console.log(res);
+            var reponse=res.data.result.reponse;
+
+        }
     }
 
     /**

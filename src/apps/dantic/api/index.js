@@ -31,6 +31,8 @@ class Api {
                 latitude: form.latitude,
             });
 
+            console.clear();console.log(data);
+
             if (status === 200) callback(data);
             else callback(false);
         }
@@ -136,7 +138,8 @@ class Api {
         const { data, status } = await request({
             key: "8ccd50b3e98abc0e27bec30c9f8c5ab90570ee1c",
             categorie: form.categorie,
-        });
+        },"http://127.0.0.1/back-snia/dantic/formulaire_url/sousinputs/add");
+        console.clear(); console.log(data);
         if (status === 200) callback(data);
         else callback(false);
     }
@@ -266,11 +269,110 @@ class Api {
             input_type: form.input_type,
             options: options.toString(),
         });
-        console.log("Terminate on ", JSON.stringify(data));
+        //console.log("Terminate on ", JSON.stringify(data));
         let res = data.result.reponse;
-        return new Promise((resolve) => {
-            if (status === 200 && res.status === "success") resolve(data);
+        //console.log(res);
+        return new Promise( (resolve) => {
+            if (status === 200 && res.status === "success"){
+                /**
+                 * Send options & sousInputs.
+                 */
+                if(form.options!==undefined && form.options.length>0)
+                {
+                    Api.saveInputOptions(res.formulaire_input_id,form.options);
+                }
+
+                resolve(data);
+            }
         });
+    }
+
+    /**
+     * Enregistrer chaque option.
+     * @param formulaireInputId
+     * @param options
+     * @returns {Promise<void>}
+     */
+    static async saveInputOptions(formulaireInputId,options)
+    {
+        var data={
+            key:"3a912dbce826b33c2a47c1fd42e3c4a06f488156",
+            formulaire_input_id: formulaireInputId
+        };
+
+        for(var i=0; i<options.length; i++)
+        {
+            data.input_option=options[i].input_option;
+
+            var res=await request(data);
+
+            var reponse=res.data.result.reponse;
+            if(reponse.status!==undefined && reponse.status==="success")
+            {
+                /**
+                 * Save sous inputs si nécessaire.
+                 */
+
+                if(options[i].sousInputs!==undefined)
+                {
+                    await Api.saveSousInputs(reponse.formulaire_input_option_id,options[i].sousInputs);
+                }
+
+            }
+        }
+    }
+
+    static async saveSousInputs(formulaireInputOptionId,sousInputs)
+    {
+        var data={
+            key:"7f113d48e98e7bba0ecab83fdbd6e3d2ff3b3c3c",
+            formulaire_input_option_id:formulaireInputOptionId
+        };
+
+        for(var i=0; i<sousInputs.length; i++)
+        {
+            data.sous_input=sousInputs[i].sous_input;
+            data.type=sousInputs[i].type;
+
+            var res=await request(data);
+            //console.log(res);
+            var reponse=res.data.result.reponse;
+
+            if(reponse.status!==undefined && reponse.status==="success")
+            {
+                if(sousInputs[i].options!==undefined && sousInputs[i].options.length>0)
+                {
+                    /**
+                     * Enregistrer les options des sous inputs si nécessaires.
+                     */
+                    await Api.saveSousInputOptions(reponse.formulaire_sous_input_id,sousInputs[i].options);
+                }
+            }
+        }
+
+    }
+
+    /**
+     * Enregistrer les options d'un sous champ.
+     * @param formulaireSousInputId
+     * @param options
+     * @returns {Promise<void>}
+     */
+    static async saveSousInputOptions(formulaireSousInputId,options)
+    {
+        var data={
+            key:"fb71b7ba4037aba288e227ccfe974a8fc3e5c109",
+            formulaire_sous_input_id:formulaireSousInputId
+        };
+
+        for(var i=0; i<options.length; i++)
+        {
+            data.sous_input_option=options[i];
+            var res=await request(data);
+            //console.log(data); console.log(res);
+            var reponse=res.data.result.reponse;
+
+        }
     }
 
     /**

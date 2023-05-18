@@ -142,7 +142,7 @@
                                         <button @click.prevent="configSousInputs(opt)" type="button" style="border: 0; background-color: transparent; cursor: pointer; border:1px solid black; border-radius:3px;"><span class="fa fa-plus-circle"></span> Parametrage sous champs</button>
                                     </div>
                                     <!-- sous inputs !-->
-                                    <sous-inputs v-if="opt.sous_inputs!==undefined || opt.sous_inputs===true "></sous-inputs>
+                                    <sous-inputs @onsave="saveSousInputs" :index="index" v-if="opt.configSousInputs!==undefined || opt.configSousInputs===true "></sous-inputs>
                                     <!-- end sous inputs !-->
                                 </div>
                                 <span class="category-title"></span>
@@ -177,7 +177,9 @@ export default {
             selectedSectionIndex: null,
             selectedContentIndex: null,
             options: [],
-            formLoading: false
+            formLoading: false,
+            test:"Hello",
+            op:null
         }
     },
 
@@ -191,9 +193,16 @@ export default {
     },
 
     methods: {
-        configSousInputs(option)
+        saveSousInputs(data,index)
         {
-            option.sous_inputs=true;
+            var option=this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[index];
+            option.sousInputs=data;
+
+        }
+        ,
+        configSousInputs(option,val=true)
+        {
+            option.configSousInputs=val;
         }
         ,
         async onChangeValue({ sectionIndex, contentIndex, value }) {
@@ -244,6 +253,7 @@ export default {
 
         /*envoie des données formulaires au serveur*/
         submitForm(event) {
+
             this.$validForm('form-formulaires', event, async (result, form) => {
                 if (!result) {
                     this.$animatedFailedTask("forms-submit-btn");

@@ -22,7 +22,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"><i class="fas fa-leaf mr-2"></i>Création cultures</h4>
+                                <h4 class="card-title fw-bold">Menu Culture</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -32,13 +32,13 @@
                                             <a class="nav-link active show" id="v-pills-home-tab-icons" data-toggle="pill"
                                                 href="#v-pills-categories" role="tab" aria-controls="v-pills-categories"
                                                 aria-selected="true">
-                                                <i class="icon-plus"></i>
+                                                <i class="flaticon-add"></i>
                                                 Création catégories
                                             </a>
                                             <a class="nav-link" id="v-pills-profile-tab-icons" data-toggle="pill"
                                                 href="#v-pills-cultures" role="tab" aria-controls="v-pills-cultures"
                                                 aria-selected="false">
-                                                <i class="fas fa-leaf"></i>
+                                                <i class="flaticon-add"></i>
                                                 Création cultures
                                             </a>
 

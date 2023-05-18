@@ -14,8 +14,8 @@ export default {
   },
 
   /* async unmounted() {
-                                  this.$router.go();
-                                }, */
+                                      this.$router.go();
+                                    }, */
 
   async mounted() {
     await UserService.init((res) => console.log(JSON.stringify(res)));
@@ -48,16 +48,9 @@ export default {
           UserService.login(user, async (result, res) => {
             if (result) {
               await this.$store.dispatch("auth/refreshLoggedUser");
-              let user = res[0];
-              if (user.email.includes("ita")) {
-                this.$router.push({
-                  name: "ita-secure-route",
-                });
-              } else {
-                await this.$router.push({
-                  name: "dantic-secure-route",
-                });
-              }
+              this.$router.push({
+                name: "choices",
+              });
             } else {
               /*create a simple animation shake when task is failed */
               this.$animatedFailedTask("login-box");
@@ -94,6 +87,7 @@ export default {
     },
 
     async initDefaultUsers() {
+      localStorage.clear("userToken");
       await UserService.all(async (rows) => {
         if (rows.length === 0) {
           let users = [

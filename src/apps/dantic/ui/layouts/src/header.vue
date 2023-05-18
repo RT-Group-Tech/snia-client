@@ -4,7 +4,7 @@
         <div class="logo-header" data-background-color="blue2">
             <div class="logo-holder logo-1">
                 <router-link :to="{ name: 'dashboard-route' }" class="logo">
-                    <h3 style="letter-spacing: 8.5px;">SNIA RDC</h3>
+                    <h3>SNIA RDC</h3>
                     <p>Interface dantic</p>
                 </router-link>
             </div>

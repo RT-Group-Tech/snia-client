@@ -4,12 +4,12 @@
             <div class="accordion accordion-secondary">
                 <div class="card">
                     <div class="card-header" aria-expanded="true" aria-controls="collapseOne" role="button">
-                        <div class="span-title text-uppercase">
+                        <div class="span-title text-uppercase fw-extrabold">
                             Création cultures
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

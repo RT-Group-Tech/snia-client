@@ -11,7 +11,7 @@
             <!-- Logo Header -->
             <div class="logo-holder logo-1">
                 <router-link :to="{ name: 'ita-dashboard-route' }">
-                    <h3 style="letter-spacing: 5.0px;">SNIA RDC</h3>
+                    <h3>SNIA RDC</h3>
                     <p>Interface ita</p>
                 </router-link>
             </div>
@@ -60,8 +60,8 @@
                                             <div class="avatar-lg"><img src="assets/img/picture_placeholder.png"
                                                     alt="image profile" class="avatar-img rounded"></div>
                                             <div class="u-text">
-                                                <h4 class="fw-bold">Gaston</h4>
-                                                <p class="text-muted">gastondelimond@gmail.com</p>
+                                                <h4 class="fw-bold">{{ user.name }}</h4>
+                                                <p class="text-muted">{{ user.email }}</p>
                                             </div>
                                         </div>
                                     </li>
@@ -88,6 +88,24 @@
 <script>
 import '@/assets/css/logo.css'
 export default {
-    name: "ItaHeader"
+    name: "ItaHeader",
+
+    async mounted() {
+        await this.$store.dispatch("auth/refreshLoggedUser")
+    },
+
+    computed: {
+        user() {
+            return this.$store.getters['auth/GET_USER']
+        }
+    },
+
+    methods: {
+        async logout() {
+            await this.$router.replace({ name: 'login' })
+            await this.$store.dispatch("auth/loggedOut")
+            await this.$store.dispatch("auth/refreshLoggedUser")
+        }
+    }
 }
 </script>

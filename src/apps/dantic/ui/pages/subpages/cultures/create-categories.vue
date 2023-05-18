@@ -5,15 +5,15 @@
                 <div class="card">
                     <div class="card-header" aria-expanded="true" aria-controls="collapseOne" role="button">
 
-                        <div class="span-title text-uppercase">
+                        <div class="span-title text-uppercase fw-extrabold">
                             Création catégories
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <div class="form-group">
                             <label for="to" class="col-form-label mb-2">Catégorie</label>
-                            <div class="input-group mb-3" v-for="(form, index) in forms" :key="index">
+                            <div class="input-group mb-2" v-for="(form, index) in forms" :key="index">
                                 <input type="text" v-model="form.categorie" placeholder="Entrer une catégorie..."
                                     class="form-control" required>
                                 <div class="input-group-append">

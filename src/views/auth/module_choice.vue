@@ -1,17 +1,20 @@
 <template>
     <div class="wrapper bubble-shadow" data-background-color="blue">
-        <div class="choice-module">
-            <div class="container">
-                <div class="row mt-5 vertical-center flex align-items-center justify-content-center">
+        <div class="choice-module h-100 w-100">
+            <div class="container d-flex h-100">
+                <div class="row my-auto w-100 mx-auto justify-content-center align-items-center">
                     <div class="col-md-12 mb-3">
-                        <h1 class="text-center text-white">Bienvenue agent <strong>{{ user }}</strong>!</h1>
-                        <p class="text-center text-white">Dans quelle module voulez-vous vous loguer ??</p>
+                        <h1 class="text-center text-white">Bienvenue agent <strong> <i class="icon-user mx-2"></i>{{
+                            user.name }}</strong>!
+                        </h1>
+                        <p class="text-center text-white">Veuillez sélectionner une module dans laquelle vs voulez vous
+                            loguer !</p>
                     </div>
                     <div class="col-6 col-sm-4 col-lg-2" v-for="(mod, index) in modules" :key="index">
-                        <div class="card choice-card">
+                        <div class="card choice-card" @click.prevent="() => toggleChoice(mod)">
                             <div class="card-body p-3 text-center">
-                                <div class="h1 m-0"><i class="icon-lock-open"></i></div>
-                                <div class="mb-3 title">{{ mod }}</div>
+                                <div class="h1 m-0"><i class="icon-lock"></i></div>
+                                <div class="mb-3 title fw-mediumbold">{{ mod }}</div>
                             </div>
                         </div>
                     </div>
@@ -31,23 +34,45 @@ export default {
             modules: ["DANTIC", "IPA", "ITA", "Autres"],
         };
     },
-
-    mounted() {
-        this.$store.dispatch('refreshLoggedUser');
+    async mounted() {
+        await this.$store.dispatch("auth/refreshLoggedUser")
     },
     computed: {
         user() {
             return this.$store.getters['auth/GET_USER']
         }
-    }
+    },
+    methods: {
+        toggleChoice(choice) {
+            let module = choice.toLowerCase();
+            if (this.user) {
+                if (module.includes('dantic')) {
+                    this.$router.push({
+                        name: "dantic-secure-route",
+                    });
+                } else if (module.includes('ita')) {
+                    this.$router.push({
+                        name: "ita-secure-route",
+                    });
+                }
+                else {
+                    Swal.fire({
+                        title: "Module non disponible",
+                        text: "Impossible de vous loguer dans cette module sélectionnée!",
+                        icon: 'warning',
+                        timer: 3000,
+                        showConfirmButton: false,
+                        showCancelButton: false,
+                    });
+                }
+            }
+        }
+    },
 }
 </script>
 
-<style scoped src="@/assets/css/atlantis.css"></style>
-<style scoped>
+<style>
 .choice-module {
-    height: 100vh;
-    width: 100%;
     background-color: #1572E8;
     overflow-x: hidden;
     overflow-y: auto;
@@ -59,19 +84,14 @@ export default {
 }
 
 .choice-module .choice-card:hover {
-    background-color: #3f0252;
+    background-color: #010f3c;
+    border: none !important;
     box-shadow: 0px;
 }
 
 .choice-module .choice-card:hover .card-body {
     color: #ffffff !important;
 }
-
-.vertical-center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
 </style>
+
+<style scoped src="@/assets/css/atlantis.css"></style>

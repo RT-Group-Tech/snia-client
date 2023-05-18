@@ -17,10 +17,14 @@ const routes = [
     path: "/choices",
     name: "choices",
     component: () => import("@/views/auth/module_choice"),
-    /* beforeEnter: beforeAuth,
-        meta: {
-          authRequired: true,
-        }, */
+    beforeEnter: (to, from, next) => {
+      let user = localStorage.getItem("userToken");
+      if (user === null || user === undefined) {
+        next({ name: "login" });
+      } else {
+        next();
+      }
+    },
   },
 
   /*modules routes */

@@ -66,7 +66,7 @@
         <teleport to="body">
             <div class="modal fade" id="formulaireEditModal" tabindex="-1" role="dialog" aria-labelledby="ipaModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                     <form class="modal-content" @submit.prevent="updateSectionFormulaire">
                         <div class="modal-header bg-app-2">
                             <h4 class="modal-title text-white fw-mediumbold" id="ipaModalLabel">
@@ -113,8 +113,7 @@
                                                     <option value="number">Numéro</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-icon btn-info"
-                                                        v-if="(j === selectedSection.inputs.length - 1)"
+                                                    <button class="btn btn-icon btn-info" v-if="(j === 0)"
                                                         @click.prevent="selectedSection.inputs.push({ input: '', input_type: '' })">
                                                         <i class="flaticon-add"></i></button>
                                                     <button v-else class="btn btn-icon btn-dark"
@@ -123,23 +122,58 @@
                                                 </div>
                                             </div>
                                             <div v-if="content.options !== undefined" class="row align-items-end">
-                                                <div class="offset-md-6 col-md-6" v-if="content.options.length > 0">
-                                                    <h6 class="fw-extrabold text-capitalize">{{ content.input }} options
-                                                    </h6>
-                                                    <div class="input-group mb-1 mt-2" v-for="(opt, k) in content.options"
-                                                        :key="k">
-                                                        <input type="text" v-model="opt.input_option"
-                                                            placeholder="Entrer une option..." class="form-control"
-                                                            required>
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-icon btn-info" v-if="k === 0"
-                                                                @click.prevent="content.options.push({ input_option: '' })">
-                                                                <i class="flaticon-add"></i>
-                                                            </button>
-                                                            <button v-else class="btn btn-icon btn-dark"
-                                                                @click.prevent="content.options.splice(k, 1)"> <i
-                                                                    class="icon-trash"></i>
-                                                            </button>
+                                                <div class="offset-md-4 col-md-8" v-if="content.options.length > 0">
+                                                    <div class="card p-2">
+                                                        <h6 class="fw-extrabold text-capitalize">{{ content.input }} options
+                                                        </h6>
+
+                                                        <div v-for="(opt, k) in content.options" :key="k">
+                                                            <div class="input-group mb-1 mt-2">
+                                                                <input type="text" v-model="opt.input_option"
+                                                                    placeholder="Entrer une option..." class="form-control"
+                                                                    required>
+                                                                <div class="input-group-append">
+                                                                    <button class="btn btn-icon btn-info" v-if="k === 0"
+                                                                        @click.prevent="content.options.push({ input_option: '' })">
+                                                                        <i class="flaticon-add"></i>
+                                                                    </button>
+                                                                    <button v-else class="btn btn-icon btn-dark"
+                                                                        @click.prevent="content.options.splice(k, 1)"> <i
+                                                                            class="icon-trash"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <button v-if="opt.sous_inputs === undefined"
+                                                                class="btn btn-sm btn-outline-dark"> <i
+                                                                    class="flaticon-add mr-1"></i> Parametrage sous
+                                                                champs</button>
+                                                            <div class="card p-2 bg-light mt-1 mb-0"
+                                                                v-if="opt.sous_inputs !== undefined && opt.sous_inputs.length > 0">
+                                                                <h6 class="fw-extrabold text-capitalize">{{ opt.input_option
+                                                                }} champs
+                                                                </h6>
+                                                                <div class="input-group mt-2"
+                                                                    v-for="(child, index) in opt.sous_inputs" :key="index">
+                                                                    <input type="text" v-model="child.sous_input"
+                                                                        placeholder="Détail"
+                                                                        class="form-control text-capitalize" required>
+                                                                    <select name="valeur" class="custom-select form-control"
+                                                                        id="valeur" required v-model="child.type">
+                                                                        <option value="">Sélectionner valeur</option>
+                                                                        <option value="text">Zone de texte</option>
+                                                                        <option value="select">Liste déroulante</option>
+                                                                        <option value="checkbox">Case à cocher</option>
+                                                                        <option value="file">Fichier</option>
+                                                                        <option value="date">Date</option>
+                                                                        <option value="number">Numéro</option>
+                                                                    </select>
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-icon btn-dark">
+                                                                            <i class="icon-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

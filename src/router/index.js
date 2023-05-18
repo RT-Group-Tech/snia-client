@@ -1,10 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import { checkUser } from "@/middlewares/auth";
-//import { getCurrentInstance } from "vue";
 
-/* const instace = getCurrentInstance();
-  console.log(instace.attrs);
-*/
 import routes from "@/routes";
 const router = createRouter({
   /* base: process.env.BASE_URL, */
@@ -26,5 +22,4 @@ router.onError((error) => {
     window.location.reload();
   }
 });
-
 export default router;

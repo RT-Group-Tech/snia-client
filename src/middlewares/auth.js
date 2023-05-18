@@ -15,7 +15,6 @@ export function beforeAuth(to, from, next) {
 }
 
 export function checkUser(from, to, next) {
-    console.log("check user is called");
     if (to.meta.authRequired) {
         const user = store.getters["auth/GET_USER"];
         if (user === null || user === undefined) {

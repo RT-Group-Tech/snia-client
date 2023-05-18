@@ -114,7 +114,7 @@
             </div>
         </form>
 
-        <div class="quick-sidebar animated fadeInRight"
+        <div class="quick-sidebar animated fadeInRight" tabindex="-1"
             v-if="selectedContentIndex !== null && selectedSectionIndex !== null">
             <a href="javascript:void(0)" @click="closeQuickActionPanel" class="close-quick-sidebar">
                 <i class="flaticon-cross"></i>
@@ -125,25 +125,31 @@
                         <form @submit.prevent="submitFormOptions">
                             <div class="tasks-content">
                                 <span class="category-title">Entrer les options</span>
-                                <div class="input-group mb-2"
-                                    v-for="(opt, index) in form.sections[selectedSectionIndex].contents[selectedContentIndex].options"
+                                <div v-for="(opt, index) in form.sections[selectedSectionIndex].contents[selectedContentIndex].options"
                                     :key="index">
-                                    <input type="text" v-model="opt.input_option" placeholder="Entrer une option..."
-                                        class="form-control" required>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-icon btn-primary" @click.prevent="addOptions"
-                                            v-if="index === form.sections[selectedSectionIndex].contents[selectedContentIndex].options.length - 1">
-                                            <i class="flaticon-add"></i></button>
-                                        <button v-else class="btn btn-icon btn-dark"
-                                            @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.splice(index, 1)">
-                                            <i class="icon-trash"></i></button>
+                                    <div class="input-group mb-2">
+                                        <input type="text" v-model="opt.input_option" placeholder="Entrer une option..."
+                                            class="form-control" required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-icon btn-primary" @click.prevent="addOptions"
+                                                v-if="index === form.sections[selectedSectionIndex].contents[selectedContentIndex].options.length - 1">
+                                                <i class="flaticon-add"></i></button>
+                                            <button v-else class="btn btn-icon btn-dark"
+                                                @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.splice(index, 1)">
+                                                <i class="icon-trash"></i></button>
+                                        </div>
+
+                                        <!-- sous inputs !-->
+                                        <sous-inputs @onsave="saveSousInputs" :index="index"
+                                            v-if="opt.configSousInputs !== undefined || opt.configSousInputs === true"></sous-inputs>
+                                        <!-- end sous inputs !-->
                                     </div>
-                                    <div class="input-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <button @click.prevent="configSousInputs(opt)" type="button" style="border: 0; background-color: transparent; cursor: pointer; border:1px solid black; border-radius:3px;"><span class="fa fa-plus-circle"></span> Parametrage sous champs</button>
-                                    </div>
-                                    <!-- sous inputs !-->
-                                    <sous-inputs @onsave="saveSousInputs" :index="index" v-if="opt.configSousInputs!==undefined || opt.configSousInputs===true "></sous-inputs>
-                                    <!-- end sous inputs !-->
+
+                                    <button class="btn btn-sm btn-outline-dark mb-1" v-show="!opt.configSousInputs"
+                                        type="button" @click.prevent="configSousInputs(opt)"> <i
+                                            class="flaticon-add mr-1"></i>
+                                        Parametrage sous champs
+                                    </button>
                                 </div>
                                 <span class="category-title"></span>
                                 <div class="d-flex">
@@ -164,7 +170,7 @@ import Api from '@/apps/dantic/api';
 import sousInputs from './sous-inputs'
 export default {
     name: 'Create-Forms-Page',
-    components:{
+    components: {
         sousInputs
     },
     data() {
@@ -178,8 +184,8 @@ export default {
             selectedContentIndex: null,
             options: [],
             formLoading: false,
-            test:"Hello",
-            op:null
+            test: "Hello",
+            op: null
         }
     },
 
@@ -193,16 +199,14 @@ export default {
     },
 
     methods: {
-        saveSousInputs(data,index)
-        {
-            var option=this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[index];
-            option.sousInputs=data;
+        saveSousInputs(data, index) {
+            var option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[index];
+            option.sousInputs = data;
 
         }
         ,
-        configSousInputs(option,val=true)
-        {
-            option.configSousInputs=val;
+        configSousInputs(option, val = true) {
+            option.configSousInputs = val;
         }
         ,
         async onChangeValue({ sectionIndex, contentIndex, value }) {

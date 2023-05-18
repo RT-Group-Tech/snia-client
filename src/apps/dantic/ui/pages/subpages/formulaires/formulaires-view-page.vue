@@ -143,10 +143,10 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                            <button v-if="opt.sous_inputs === undefined"
+                                                            <!--  <button v-if="opt.sous_inputs === undefined"
                                                                 class="btn btn-sm btn-outline-dark"> <i
                                                                     class="flaticon-add mr-1"></i> Parametrage sous
-                                                                champs</button>
+                                                                champs</button> -->
                                                             <div class="card p-2 bg-light mt-1 mb-0"
                                                                 v-if="opt.sous_inputs !== undefined && opt.sous_inputs.length > 0">
                                                                 <h6 class="fw-extrabold text-capitalize">{{ opt.input_option
@@ -156,9 +156,11 @@
                                                                     v-for="(child, index) in opt.sous_inputs" :key="index">
                                                                     <input type="text" v-model="child.sous_input"
                                                                         placeholder="Détail"
-                                                                        class="form-control text-capitalize" required>
-                                                                    <select name="valeur" class="custom-select form-control"
-                                                                        id="valeur" required v-model="child.type">
+                                                                        class="form-control text-capitalize" required
+                                                                        disabled>
+                                                                    <select name="valeur" disabled
+                                                                        class="custom-select form-control" id="valeur"
+                                                                        required v-model="child.type">
                                                                         <option value="">Sélectionner valeur</option>
                                                                         <option value="text">Zone de texte</option>
                                                                         <option value="select">Liste déroulante</option>
@@ -167,11 +169,11 @@
                                                                         <option value="date">Date</option>
                                                                         <option value="number">Numéro</option>
                                                                     </select>
-                                                                    <div class="input-group-append">
+                                                                    <!-- <div class="input-group-append">
                                                                         <button class="btn btn-icon btn-dark">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>

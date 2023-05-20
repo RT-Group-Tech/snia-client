@@ -13,6 +13,10 @@ import Components from "@/components";
 /*App Module Setups imports*/
 import DanticApp from "@/apps/dantic";
 
+/*Setup perfect scroll bar*/
+import PerfectScrollbar from "vue3-perfect-scrollbar";
+import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
+
 /*App instance*/
 const app = createApp(App);
 
@@ -27,6 +31,11 @@ app.use(Globals);
 
 /*All Components*/
 app.use(Components);
+
+/*use perfect scrollbar*/
+app.use(PerfectScrollbar, {
+  watchOptions: true,
+});
 
 /*Modules init*/
 app.use(DanticApp);

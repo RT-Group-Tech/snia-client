@@ -27,3 +27,8 @@
     color: #f5f3ec;
     font-weight: 400;
 }
+
+.ps__rail-x,
+.ps__rail-y {
+    opacity: 0.6;
+}

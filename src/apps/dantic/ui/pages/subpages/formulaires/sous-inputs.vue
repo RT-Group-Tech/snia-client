@@ -21,8 +21,7 @@
                             <option value="number">Numéro</option>
                             <!--<option value="file"
                             >Zone de fichier</option>!-->
-                        </select>
-
+                        </select>*
 
                         <div class="input-group-append" @click.prevent="addSousInput">
                             <button type="button" class="btn btn-primary btn-icon">

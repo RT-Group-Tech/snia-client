@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper horizontal-layout-2 scrollbar-inner">
+    <div class="wrapper horizontal-layout-2">
         <div class="main-header" data-background-color="blue">
             <top-header />
             <navigation-bar />

@@ -31,9 +31,7 @@ export default {
     async mounted() {
         this.$router.push({ name: "dashboard-route" });
         this.$store.dispatch('dantic/viewIpas')
-        $(document).ready(() => {
-            $('.scrollbar-inner').scrollbar();
-        });
+        $('.scrollbar-inner').scrollbar();
         this.$store.dispatch("auth/refreshLoggedUser");
     },
     methods: {

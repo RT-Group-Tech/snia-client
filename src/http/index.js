@@ -21,7 +21,7 @@ instance.interceptors.response.use((response) => {
   return response;
 });
 
-export async function request(data,url=null) {
+export async function request(data, url = null) {
   return new Promise((resolve, reject) => {
     instance
       .post("", data)

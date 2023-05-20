@@ -22,6 +22,38 @@
                 </div>
             </div>
         </div>
+        <bs-modal title="Custom modal" id="myModal" size="modal-lg">
+            <template #body-content>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates inventore cupiditate sunt porro
+                    reiciendis amet, incidunt impedit laboriosam quod, voluptas, distinctio dolore ad quibusdam! Ipsa
+                    doloribus totam deserunt debitis illo?</p>
+
+                <fieldset>
+                    <legend class="d-flex justify-content-between align-items-center p-1">
+                        <span id="title">
+                            Section title
+                        </span>
+                        <button class="btn btn-icon btn-sm btn-primary"> <i class="flaticon-add"></i></button>
+                    </legend>
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="name"></label>
+                            <input type="text" class="form-control" id="name" placeholder="enter your name..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nick"></label>
+                            <input type="text" class="form-control" id="nick" placeholder="enter nick name..." required>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </template>
+            <template #footer-content>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </template>
+        </bs-modal>
+
     </div>
 </template>
 
@@ -35,6 +67,7 @@ export default {
         };
     },
     async mounted() {
+
         await this.$store.dispatch("auth/refreshLoggedUser")
     },
     computed: {
@@ -55,6 +88,9 @@ export default {
                         name: "ita-secure-route",
                     });
                 }
+                else if (module.includes('autres')) {
+                    this.showModal();
+                }
                 else {
                     Swal.fire({
                         title: "Module non disponible",
@@ -66,12 +102,50 @@ export default {
                     });
                 }
             }
+        },
+
+        showModal() {
+            let modal = $("#myModal");
+            modal.modal('show');
         }
     },
 }
 </script>
 
-<style>
+<style scoped>
+/* fieldset {
+    border: 1px solid#eee;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+legend {
+    padding: 0 10px;
+    font-size: 15px;
+    font-weight: 600;
+} */
+
+fieldset {
+    font-family: sans-serif;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+fieldset legend {
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    color: #010f3c;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px
+}
+
+fieldset legend span {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
 .choice-module {
     background-color: #1572E8;
     overflow-x: hidden;

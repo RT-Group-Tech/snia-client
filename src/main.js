@@ -13,9 +13,12 @@ import Components from "@/components";
 /*App Module Setups imports*/
 import DanticApp from "@/apps/dantic";
 
-/*Setup perfect scroll bar*/
+/*import perfect scroll bar*/
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
+
+/* import vue-bs */
+import { BootstrapVue } from "bootstrap-vue";
 
 /*App instance*/
 const app = createApp(App);

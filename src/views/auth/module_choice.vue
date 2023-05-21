@@ -22,45 +22,21 @@
                 </div>
             </div>
         </div>
-        <bs-modal title="Custom modal" id="myModal" size="modal-lg">
-            <template #body-content>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates inventore cupiditate sunt porro
-                    reiciendis amet, incidunt impedit laboriosam quod, voluptas, distinctio dolore ad quibusdam! Ipsa
-                    doloribus totam deserunt debitis illo?</p>
-
-                <fieldset>
-                    <legend class="d-flex justify-content-between align-items-center p-1">
-                        <span id="title">
-                            Section title
-                        </span>
-                        <button class="btn btn-icon btn-sm btn-primary"> <i class="flaticon-add"></i></button>
-                    </legend>
-
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <label for="name"></label>
-                            <input type="text" class="form-control" id="name" placeholder="enter your name..." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nick"></label>
-                            <input type="text" class="form-control" id="nick" placeholder="enter nick name..." required>
-                        </div>
-                    </div>
-                </fieldset>
-
-            </template>
-            <template #footer-content>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </template>
-        </bs-modal>
-
+        <formulaire-config-modal></formulaire-config-modal>
     </div>
 </template>
 
 <script>
+import FormulaireConfigModal from '../../apps/dantic/ui/modals/formulaire-config-modal'
+
 export default {
+
     name: 'ModuleChoice',
 
+    components: {
+        FormulaireConfigModal,
+
+    },
     data() {
         return {
             modules: ["DANTIC", "IPA", "ITA", "Autres"],
@@ -104,8 +80,14 @@ export default {
             }
         },
 
+        triggerSubmit(e) {
+            $('#myForm').submit((e) => {
+                console.log(JSON.stringify(e.target.value));
+            })
+        },
+
         showModal() {
-            let modal = $("#myModal");
+            let modal = $("#configModal");
             modal.modal('show');
         }
     },
@@ -125,26 +107,7 @@ legend {
     font-weight: 600;
 } */
 
-fieldset {
-    font-family: sans-serif;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    padding: 8px;
-}
 
-fieldset legend {
-    background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    color: #010f3c;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 5px
-}
-
-fieldset legend span {
-    text-transform: uppercase;
-    font-size: 12px;
-}
 
 .choice-module {
     background-color: #1572E8;

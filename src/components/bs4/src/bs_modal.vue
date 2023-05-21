@@ -1,12 +1,12 @@
 <template>
     <teleport to="body">
         <!-- The Modal -->
-        <div class="modal fade" :id="id">
+        <div class="modal fade" :id="id" data-backdrop="static">
             <div :class="size" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title fw-bold">{{ title }}</h4>
+                    <div class="modal-header bg-light">
+                        <h4 class="modal-title"> <strong>{{ title }}</strong></h4>
                         <button type="button" class="close" data-dismiss="modal"><i
                                 class="icon-close text-danger"></i></button>
                     </div>
@@ -32,6 +32,11 @@
 .ps__rail-y {
     opacity: 1;
 }
+
+.modal .modal-dialog .modal-content {
+    border-radius: 0px !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
 </style>
 <script>
 
@@ -54,6 +59,11 @@ export default {
                 return ['modal-sm', 'modal-lg', 'modal-xl'].includes(val)
             }
         }
-    }
+    },
+    methods: {
+        hideModal() {
+            $(`${this.id}`).modal('hide')
+        }
+    },
 }
 </script>

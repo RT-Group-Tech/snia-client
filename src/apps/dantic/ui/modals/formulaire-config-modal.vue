@@ -103,43 +103,46 @@
                     <input type="text" v-model="opt.input_option" placeholder="Entrer une option..." class="form-control"
                         required>
                     <div class="input-group-append">
-                        <button class="btn btn-icon bg-grey2" @click.prevent="addOptions" v-if="index === 0">
+                        <button class="btn btn-icon bg-grey2"
+                            @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.push({ input_option: '' })"
+                            v-if="index === 0">
                             <i class="flaticon-add text-primary"></i></button>
                         <button v-else class="btn btn-icon bg-grey2"
                             @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.splice(index, 1)">
                             <i class="icon-trash text-danger"></i></button>
                     </div>
-
                 </div>
                 <bs-popover title="Configuration sous champs" toggle-class="btn-outline-dark btn-sm mb-2"
-                    toggle-icon="flaticon-add" toggle-label="Ajouter champs" @onToggle="addSousOptions(index)">
+                    toggle-icon="flaticon-add" toggle-label="Ajouter sous champs (optionnel)"
+                    @onToggle="addSousOptions(index)">
                     <template #content>
-                        <div class="input-group mb-2" v-for="(sousInput, k) in opt.sousInputs" :key="k">
-                            <input type="text" v-model="sousInput.sous_input" class="form-control"
-                                placeholder="Sous champs libellé">
-                            <div class="input-group-append" id="button-addon1">
-                                <button v-if="k === 0" class="btn btn-icon bg-grey2"
-                                    @click.prevent="opt.sousInputs.push({ sous_input: '', type: 'text', options: [] })"
-                                    type="button">
-                                    <i class="flaticon-add text-primary"></i>
-                                </button>
-                                <button v-else class="btn btn-icon bg-grey2" @click.prevent="opt.sousInputs.splice(k, 1)"
-                                    type="button">
-                                    <i class="icon-trash text-danger"></i>
-                                </button>
+                        <form @submit.prevent="submitSousOptions">
+                            <div class="input-group mb-2" v-for="(sousInput, k) in opt.sousInputs" :key="k">
+                                <input type="text" v-model="sousInput.sous_input" class="form-control"
+                                    placeholder="Sous champs libellé">
+                                <div class="input-group-append" id="button-addon1">
+                                    <button v-if="k === 0" class="btn btn-icon bg-grey2"
+                                        @click.prevent="opt.sousInputs.push({ sous_input: '', type: 'text', options: [] })"
+                                        type="button">
+                                        <i class="flaticon-add text-primary"></i>
+                                    </button>
+                                    <button v-else class="btn btn-icon bg-grey2"
+                                        @click.prevent="opt.sousInputs.splice(k, 1)" type="button">
+                                        <i class="icon-trash text-danger"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="d-flex justify-content-between mb-2">
-                            <button @click.prevent="closePopover"
-                                class="btn btn-primary mt-1 mr-2 flex-fill text-uppercase">
-                                Valider & sauvegarder</button>
-                            <button class="btn btn-dark text-uppercase mt-1" @click.prevent="closePopover">Fermer</button>
-                        </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <button type="submit" class="btn btn-primary mt-1 mr-2 flex-fill text-uppercase">
+                                    Valider & sauvegarder</button>
+                                <button class="btn btn-dark text-uppercase mt-1"
+                                    @click.prevent="closePopover(index)">Annuler</button>
+                            </div>
+                        </form>
                     </template>
                 </bs-popover>
             </div>
-
         </template>
         <template #footer-content>
             <button type="button" data-dismiss="modal" class="btn btn-primary mr-2">
@@ -170,16 +173,18 @@ export default {
         this.addNewSection();
         this.$initBsTooltip();
     },
-
+    unmounted() {
+        this.cleanField();
+    },
     methods: {
         submitted(event) {
             console.log(JSON.stringify(this.form));
-            ("#configModal").modal("hide");
-            this.form = {
-                titre: '',
-                sujet_id: '',
-                sections: [],
-            };
+            this.formLoading = true;
+            setTimeout(() => {
+                this.formLoading = false;
+                this.cleanField();
+            }, 3000)
+
         },
         /*Lorsque l'on selectionne un type de champs*/
         onChangeValue({ sectionIndex, contentIndex, value }) {
@@ -202,7 +207,6 @@ export default {
                         input_type: '',
                         options: []
                     }
-
                 ]
             });
         },
@@ -211,20 +215,33 @@ export default {
         async addOptions() {
             let i = this.selectedSectionIndex;
             let j = this.selectedContentIndex;
-            this.form.sections[i].contents[j].options.push({ input_option: '' });
+            if (this.form.sections[i].contents[j].options.length === 0) {
+                this.form.sections[i].contents[j].options.push({ input_option: '' });
+            }
         },
 
         /*Ajout des sous options à une option d'une section*/
         addSousOptions(optIndex) {
             let option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[optIndex];
-            option.sousInputs = [];
-            this.$nextTick(() => {
-                option.sousInputs.push({
-                    sous_input: "",
-                    type: "text",
-                    options: []
-                })
-            });
+            if (option.sousInputs === undefined) {
+                option.sousInputs = [];
+                this.$nextTick(() => {
+                    option.sousInputs.push({
+                        sous_input: "",
+                        type: "text",
+                        options: []
+                    })
+                });
+            }
+            else {
+                if (option.sousInputs.length === 0) {
+                    option.sousInputs.push({
+                        sous_input: "",
+                        type: "text",
+                        options: []
+                    })
+                }
+            }
         },
 
         /*Soumettre le formulaire*/
@@ -249,13 +266,29 @@ export default {
             });
         },
 
-        /* close sous options popover */
-        closePopover() {
+        submitSousOptions(event) {
             $('.bs-popover-auto').popover('hide');
+        },
+
+        /* close sous options popover */
+        closePopover(index) {
+            $('.bs-popover-auto').popover('hide');
+            let option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[index];
+            option.sousInputs = [];
         },
         /* close options modal */
         closeOptionsModal() {
             $('optionsModal').modal('hide');
+        },
+
+        cleanField() {
+            $("#configModal").modal("hide");
+            this.form = {
+                titre: '',
+                sujet_id: '',
+                sections: [],
+            };
+            this.addNewSection();
         }
     }
 }

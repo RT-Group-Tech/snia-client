@@ -58,10 +58,12 @@ export default {
             offset: 10,
             animation: true,
         });
-        console.log(this.$refs.container);
+
         $(this.$refs.caller).on('hidden.bs.popover', () => {
-            if (this.$refs.container !== null) {
+            try {
                 this.$refs.container.prepend(content);
+            } catch (e) {
+                console.log(e);
             }
         });
     },

@@ -116,17 +116,6 @@ import servicesMixins from '../../mixins/services.mixins';
 
 import AgentCreateModal from "../modals/agent-create-modal.vue";
 
-// Import module pour datatable
-import dataTableConfig from "@/utils/datatable.fr.config.js"
-
-import 'jquery'
-
-import jszip from 'jszip';
-import DataTable from 'datatables.net-dt';
-import 'datatables.net-buttons-dt';
-import 'datatables.net-buttons/js/buttons.html5.mjs';
-import 'datatables.net-select-dt';
-
 export default {
     name: "Ipa-view",
     components: { AgentCreateModal },

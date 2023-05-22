@@ -17,9 +17,6 @@ import DanticApp from "@/apps/dantic";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 
-/* import vue-bs */
-import { BootstrapVue } from "bootstrap-vue";
-
 /*App instance*/
 const app = createApp(App);
 
@@ -37,7 +34,7 @@ app.use(Components);
 
 /*use perfect scrollbar*/
 app.use(PerfectScrollbar, {
-  watchOptions: true,
+    watchOptions: true,
 });
 
 /*Modules init*/
@@ -45,12 +42,12 @@ app.use(DanticApp);
 
 /*Devices restrictions */
 if (/Android/i.test(navigator.userAgent)) {
-  alert("Veuillez utiliser un ordinateur pour exécuter cette plateforme !");
-  app.unmount("#app");
+    alert("Veuillez utiliser un ordinateur pour exécuter cette plateforme !");
+    app.unmount("#app");
 }
 if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
-  alert("Veuillez utiliser un ordinateur pour exécuter cette plateforme !");
-  app.unmount("#app");
+    alert("Veuillez utiliser un ordinateur pour exécuter cette plateforme !");
+    app.unmount("#app");
 } else {
-  app.mount("#app");
+    app.mount("#app");
 }

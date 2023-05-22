@@ -40,24 +40,24 @@
                                                 <i class="fas fa-pen-square"></i>
                                                 Création sujets
                                             </a>
-                                            <a class="nav-link" id="v-pills-profile-tab-icons" data-toggle="pill"
+                                            <!-- <a class="nav-link" id="v-pills-profile-tab-icons" data-toggle="pill"
                                                 href="#v-pills-forms-config" role="tab" aria-controls="v-pills-forms-config"
                                                 aria-selected="false">
                                                 <i class="flaticon-interface-4"></i>
                                                 Création formulaires
-                                            </a>
+                                            </a> -->
                                             <a class="nav-link" id="v-pills-buy-tab-icons" data-toggle="pill"
                                                 href="#v-pills-forms" role="tab" aria-controls="v-pills-forms"
                                                 aria-selected="false">
                                                 <i class="flaticon-interface-6"></i>
-                                                Liste des formulaires
+                                                Formulaires
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <div class="tab-content" id="v-pills-tabContent">
                                             <topic-tab></topic-tab>
-                                            <form-create-tab></form-create-tab>
+                                            <!-- <form-create-tab></form-create-tab> -->
                                             <forms-view></forms-view>
                                         </div>
                                     </div>

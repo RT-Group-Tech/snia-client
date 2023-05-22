@@ -1,9 +1,9 @@
 <template>
     <div class="tab-pane fade" id="v-pills-forms" role="tabpanel" aria-labelledby="v-pills-buy-tab-icons">
         <div class="p-2">
-            <div class="d-lg-flex d-block mb-2">
+            <div class="d-flex align-items-center mb-2">
                 <h3 class="fw-extrabold">Liste des Formulaires </h3>
-                <button class="btn ml-auto btn-sm btn-primary" @click="openFormulaireConfigModal"><i
+                <button class="btn ml-auto btn-primary" @click="openFormulaireConfigModal"><i
                         class="flaticon-add mr-2"></i>Nouveau
                     formulaire</button>
             </div>

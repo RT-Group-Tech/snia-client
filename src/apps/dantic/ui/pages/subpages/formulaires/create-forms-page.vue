@@ -203,8 +203,7 @@ export default {
             var option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[index];
             option.sousInputs = data;
 
-        }
-        ,
+        },
         configSousInputs(option, val = true) {
             option.configSousInputs = val;
         }

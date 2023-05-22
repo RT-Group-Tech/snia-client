@@ -5,8 +5,9 @@
 
             </slot>
         </div>
-        <button ref="caller" :class="toggleClass" class="btn Popover__Caller"> <i :class="toggleIcon"></i> {{ toggleLabel
-        }}</button>
+        <button ref="caller" @click.prevent="$emit('onToggle')" :class="toggleClass" class="btn Popover__Caller"> <i
+                :class="toggleIcon"></i> {{ toggleLabel
+                }}</button>
     </div>
 </template>
 

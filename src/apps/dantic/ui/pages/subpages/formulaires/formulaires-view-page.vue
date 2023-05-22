@@ -1,18 +1,19 @@
 <template>
     <div class="tab-pane fade" id="v-pills-forms" role="tabpanel" aria-labelledby="v-pills-buy-tab-icons">
         <div class="p-2">
-            <div class="d-lg-flex d-block mb-4">
+            <div class="d-lg-flex d-block mb-2">
                 <h3 class="fw-extrabold">Liste des Formulaires </h3>
-                <form action="#" class="ml-auto">
-                    <div class="input-group">
-                        <input type="text" v-model="searchWord" placeholder="Recherche formulaire..." class="form-control">
-                        <div class="input-group-append">
-                            <span class="input-group-text">
-                                <i class="fa fa-search search-icon"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
+                <button class="btn ml-auto btn-sm btn-primary" @click="openFormulaireConfigModal"><i
+                        class="flaticon-add mr-2"></i>Nouveau
+                    formulaire</button>
+            </div>
+            <div class="input-group m-0">
+                <input type="text" v-model="searchWord" placeholder="Recherche formulaire..." class="form-control">
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="fa fa-search search-icon"></i>
+                    </span>
+                </div>
             </div>
 
             <!-- formulaires list -->
@@ -202,13 +203,22 @@
         </teleport>
         <!-- end edit modal -->
 
+        <!-- formulaire config modal -->
+        <formulaire-config-modal />
+        <!-- End formulaire config modal -->
+
     </div>
 </template>
 
 <script>
-import Api from '@/apps/dantic/api'
+import Api from '@/apps/dantic/api';
+import formulaireConfigModal from '@/apps/dantic/ui/modals/formulaire-config-modal.vue'
 export default {
     name: 'Formulaires-View-Page',
+
+    components: {
+        formulaireConfigModal
+    },
     data() {
         return {
             searchWord: '',
@@ -392,6 +402,9 @@ export default {
                     })
                 }
             });
+        },
+        openFormulaireConfigModal() {
+            $('#configModal').modal('show');
         }
     }
 }

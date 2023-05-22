@@ -1,7 +1,7 @@
 <template>
     <teleport to="body">
         <!-- The Modal -->
-        <div class="modal fade" :id="id" data-backdrop="static">
+        <form class="modal fade" :id="id" data-backdrop="static" @submit.prevent="$emit('submit', $event)">
             <div :class="size" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <!-- Modal Header -->
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </teleport>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <fieldset class="mb-1">
-        <legend class="d-flex justify-content-between align-items-center p-1 pl-2 bg-primary">
+        <legend class="d-flex justify-content-between align-items-center p-1 pl-2" style="background-color: #007bff;">
             <span id="title" class="text-white">
                 {{ title }}
             </span>

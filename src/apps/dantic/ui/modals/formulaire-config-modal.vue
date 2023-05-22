@@ -1,5 +1,5 @@
 <template>
-    <bs-modal title="Configuration formulaire" id="configModal" size="modal-xl">
+    <bs-modal @submit="submitted" title="Configuration formulaire" id="configModal" size="modal-xl">
         <template #body-content>
             <fieldset
                 style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; border-radius: 5px;"
@@ -9,7 +9,8 @@
                     <div class="col-md-6">
                         <div>
                             <label class="fw-bold mb-1">Formulaire titre <sup class="text-danger">*</sup></label>
-                            <input type="text" placeholder="Entrer le titre du formulaire..." class="form-control" required>
+                            <input type="text" v-model="form.titre" placeholder="Entrer le titre du formulaire..."
+                                class="form-control" required>
                         </div>
                     </div>
 
@@ -17,10 +18,10 @@
                         <div>
                             <label class="fw-bold mb-1">Sélectionner un sujet de liaison <sup
                                     class="text-danger">*</sup></label>
-                            <select class="form-control custom-select" id="defaultSelect" required>
-                                <option selected>Sélectionner un sujet</option>
-                                <option selected>Sélectionner un sujet</option>
-                                <option selected>Sélectionner un sujet</option>
+                            <select v-model="form.sujet_id" class="form-control custom-select" id="defaultSelect" required>
+                                <option value="" selected>Sélectionner un sujet</option>
+                                <option value="1" selected>Sélectionner un sujet</option>
+                                <option value="2" selected>Sélectionner un sujet</option>
                             </select>
                         </div>
                     </div>
@@ -29,7 +30,6 @@
                     <!-- End formulaire liaison -->
                 </div>
             </fieldset>
-
             <group-caption :title="`Section ` + (index + 1)" v-for="(section, index) in form.sections" :key="index">
                 <template #actions>
                     <button v-if="index === 0" class="btn btn-icon btn-sm btn-light btn-rounded"
@@ -90,9 +90,8 @@
             </group-caption>
         </template>
         <template #footer-content>
-            <button type="button" class="btn btn-success" @click.prevent="submitted"> <i class="flaticon-check"></i>
-                Soumettre la
-                configuration</button>
+            <button type="submit" :disabled="formLoading" id="forms-submit-btn" class="btn btn-success"><i
+                    v-if="formLoading" class="fa fa-spinner fa-spin mr-2"></i>Soumettre la configuration</button>
         </template>
     </bs-modal>
     <bs-modal v-if="selectedContentIndex !== null && selectedSectionIndex !== null" id="optionsModal"
@@ -132,7 +131,8 @@
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
-                            <button class="btn btn-primary mt-1 mr-2 flex-fill text-uppercase">
+                            <button @click.prevent="closePopover"
+                                class="btn btn-primary mt-1 mr-2 flex-fill text-uppercase">
                                 Valider & sauvegarder</button>
                             <button class="btn btn-dark text-uppercase mt-1" @click.prevent="closePopover">Fermer</button>
                         </div>
@@ -142,8 +142,9 @@
 
         </template>
         <template #footer-content>
-            <button type="button" class="btn btn-primary mr-2"> <i class="flaticon-add"></i> Soumettre la
-                Valider les options</button>
+            <button type="button" data-dismiss="modal" class="btn btn-primary mr-2">
+                <i class="flaticon-add"></i> Valider les options
+            </button>
         </template>
     </bs-modal>
 </template>
@@ -171,8 +172,14 @@ export default {
     },
 
     methods: {
-        submitted() {
+        submitted(event) {
             console.log(JSON.stringify(this.form));
+            ("#configModal").modal("hide");
+            this.form = {
+                titre: '',
+                sujet_id: '',
+                sections: [],
+            };
         },
         /*Lorsque l'on selectionne un type de champs*/
         onChangeValue({ sectionIndex, contentIndex, value }) {
@@ -199,12 +206,14 @@ export default {
                 ]
             });
         },
+
         /*Ajout d'une options à une section*/
         async addOptions() {
             let i = this.selectedSectionIndex;
             let j = this.selectedContentIndex;
             this.form.sections[i].contents[j].options.push({ input_option: '' });
         },
+
         /*Ajout des sous options à une option d'une section*/
         addSousOptions(optIndex) {
             let option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[optIndex];
@@ -217,6 +226,29 @@ export default {
                 })
             });
         },
+
+        /*Soumettre le formulaire*/
+        submitForm(event) {
+            Api.configurerFormulaire(this.form, async (res) => {
+                this.formLoading = false
+                Swal.fire({
+                    title: 'Succès !',
+                    text: "Formulaire créé avec succès !",
+                    icon: 'success',
+                    timer: 4000,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                });
+                await this.$store.dispatch('dantic/voirFormulaires');
+                $("configModal").modal('hide');
+                this.form = {
+                    titre: '',
+                    sujet_id: '',
+                    sections: [],
+                };
+            });
+        },
+
         /* close sous options popover */
         closePopover() {
             $('.bs-popover-auto').popover('hide');

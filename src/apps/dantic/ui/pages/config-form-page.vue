@@ -2,7 +2,7 @@
     <div class="main-panel">
         <div class="container">
             <div class="panel-header">
-                <div class=" page-inner py-5">
+                <div class=" page-inner py-4">
                     <div class="page-header">
                         <h4 class="page-title">Formulaires</h4>
                         <ul class="breadcrumbs">

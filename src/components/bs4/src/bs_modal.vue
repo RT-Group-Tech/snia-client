@@ -7,7 +7,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header bg-light">
                         <h4 class="modal-title"> <strong>{{ title }}</strong></h4>
-                        <button type="button" class="close" data-dismiss="modal"><i
+                        <button type="button" class="close" @click.prevent="$emit('onClose')" data-dismiss="modal"><i
                                 class="icon-close text-danger"></i></button>
                     </div>
 
@@ -42,6 +42,10 @@
 
 export default {
     name: "Custom-modal",
+
+    mounted() {
+        this.$emit('onLoad')
+    },
 
     props: {
         id: {

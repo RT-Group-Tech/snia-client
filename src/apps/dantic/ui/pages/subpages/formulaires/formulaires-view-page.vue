@@ -7,7 +7,7 @@
                         class="flaticon-add mr-2"></i>Nouveau
                     formulaire</button>
             </div>
-            <div class="input-group m-0">
+            <div class="input-group m-0 mb-2">
                 <input type="text" v-model="searchWord" placeholder="Recherche formulaire..." class="form-control">
                 <div class="input-group-append">
                     <span class="input-group-text">
@@ -62,146 +62,148 @@
             </div> -->
             <!-- End formulaire list -->
         </div>
-
         <!-- formulaire edit modal -->
-        <teleport to="body">
-            <div class="modal fade" id="formulaireEditModal" tabindex="-1" role="dialog" aria-labelledby="ipaModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
-                    <form class="modal-content" @submit.prevent="updateSectionFormulaire">
-                        <div class="modal-header bg-app-2">
-                            <h4 class="modal-title text-white fw-mediumbold" id="ipaModalLabel">
-                                <i class="fas fa-edit mr-1"></i>Edition formulaire
-                            </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" class="text-white">&times;</span>
-                            </button>
-                        </div>
+        <bs-modal size="modal-xl" id="formulaireEditModal" @submit="updateSectionFormulaire"
+            title="Edition formulaire section">
+            <template #body-content>
+                <group-caption v-if="selectedSection.section !== undefined" :title="`Section ` + selectedSection.section">
+                    <template #actions>
+                        <button class="btn btn-icon btn-sm btn-primary btn-rounded"> <i class=" text-primary"></i></button>
+                    </template>
 
-                        <div class="modal-body" v-if="selectedSection.section !== undefined">
-                            <div class="row">
-                                <!-- Formulaire section titre -->
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Section <sup class="text-danger">*</sup></label>
-                                        <input type="text" v-model="selectedSection.section" class="form-control"
-                                            placeholder="Entrer le titre de la section..." required>
-                                    </div>
+                    <template #content>
+                        <div class="row m-0">
+                            <!-- Formulaire section titre -->
+                            <div class="col-md-12">
+                                <div class="mb-1">
+                                    <label class="fw-bold mb-1">Section titre <sup class="text-danger">*</sup></label>
+                                    <input type="text" class="form-control" v-model="selectedSection.section"
+                                        placeholder="Entrer le titre de la section..." required>
                                 </div>
-                                <!-- Formulaire section contents -->
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="d-flex justify-content-between"
-                                            :class="`${selectedSection.inputs.length > 0 ? 'border-bottom' : ''}`"><span>Contenus/Champs
-                                                <sup class="text-danger">*</sup></span> <button
-                                                v-if="selectedSection.inputs.length == 0"
-                                                class="btn btn-icon btn-sm btn-info"
-                                                @click.prevent="selectedSection.inputs.push({ input: '', input_type: '' })">
-                                                <i class="flaticon-add"></i></button></label>
-                                        <div v-for="(content, j) in selectedSection.inputs" :key="j">
-                                            <div class="input-group mb-2">
-                                                <input type="text" v-model="content.input" placeholder="Détail"
-                                                    class="form-control text-capitalize" required>
-                                                <select name="valeur" @change="addOpts(content)"
-                                                    class="custom-select form-control" id="valeur" required
-                                                    v-model="content.input_type">
-                                                    <option value="">Sélectionner valeur</option>
-                                                    <option value="text">Zone de texte</option>
-                                                    <option value="select">Liste déroulante</option>
-                                                    <option value="checkbox">Case à cocher</option>
-                                                    <option value="file">Fichier</option>
-                                                    <option value="date">Date</option>
-                                                    <option value="number">Numéro</option>
-                                                </select>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-icon btn-info" v-if="(j === 0)"
-                                                        @click.prevent="selectedSection.inputs.push({ input: '', input_type: '' })">
-                                                        <i class="flaticon-add"></i></button>
-                                                    <button v-else class="btn btn-icon btn-dark"
-                                                        @click.prevent="selectedSection.inputs.splice(j, 1)"> <i
-                                                            class="icon-trash"></i></button>
-                                                </div>
-                                            </div>
-                                            <div v-if="content.options !== undefined" class="row align-items-end">
-                                                <div class="offset-md-4 col-md-8" v-if="content.options.length > 0">
-                                                    <div class="card p-2">
-                                                        <h6 class="fw-extrabold text-capitalize">{{ content.input }} options
-                                                        </h6>
+                            </div>
+                            <!-- End Formulaire section titre -->
 
-                                                        <div v-for="(opt, k) in content.options" :key="k">
-                                                            <div class="input-group mb-1 mt-2">
-                                                                <input type="text" v-model="opt.input_option"
-                                                                    placeholder="Entrer une option..." class="form-control"
-                                                                    required>
-                                                                <div class="input-group-append">
-                                                                    <button class="btn btn-icon btn-info" v-if="k === 0"
-                                                                        @click.prevent="content.options.push({ input_option: '' })">
-                                                                        <i class="flaticon-add"></i>
-                                                                    </button>
-                                                                    <button v-else class="btn btn-icon btn-dark"
-                                                                        @click.prevent="content.options.splice(k, 1)"> <i
-                                                                            class="icon-trash"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                            <!--  <button v-if="opt.sous_inputs === undefined"
-                                                                class="btn btn-sm btn-outline-dark"> <i
-                                                                    class="flaticon-add mr-1"></i> Parametrage sous
-                                                                champs</button> -->
-                                                            <div class="card p-2 bg-light mt-1 mb-0"
-                                                                v-if="opt.sous_inputs !== undefined && opt.sous_inputs.length > 0">
-                                                                <h6 class="fw-extrabold text-capitalize">{{ opt.input_option
-                                                                }} champs
-                                                                </h6>
-                                                                <div class="input-group mt-2"
-                                                                    v-for="(child, index) in opt.sous_inputs" :key="index">
-                                                                    <input type="text" v-model="child.sous_input"
-                                                                        placeholder="Détail"
-                                                                        class="form-control text-capitalize" required
-                                                                        disabled>
-                                                                    <select name="valeur" disabled
-                                                                        class="custom-select form-control" id="valeur"
-                                                                        required v-model="child.type">
-                                                                        <option value="">Sélectionner valeur</option>
-                                                                        <option value="text">Zone de texte</option>
-                                                                        <option value="select">Liste déroulante</option>
-                                                                        <option value="checkbox">Case à cocher</option>
-                                                                        <option value="file">Fichier</option>
-                                                                        <option value="date">Date</option>
-                                                                        <option value="number">Numéro</option>
-                                                                    </select>
-                                                                    <!-- <div class="input-group-append">
-                                                                        <button class="btn btn-icon btn-dark">
-                                                                            <i class="icon-trash"></i>
-                                                                        </button>
-                                                                    </div> -->
-                                                                </div>
+                            <!-- Formulaire section inputs -->
+                            <div class="col-md-12">
+                                <div>
+                                    <label class="fw-bold mb-1">Section contenus/Champs <sup
+                                            class="text-danger">*</sup></label>
+
+                                    <div class="input-group mb-2" v-for="( content, i ) in selectedSection.inputs "
+                                        :key="i">
+                                        <input type="text" placeholder="Libellé" v-model="content.input"
+                                            class="form-control" required>
+                                        <select name="input_type" @change="addOpts(content)"
+                                            class="custom-select form-control" id="input_type" v-model="content.input_type"
+                                            required>
+                                            <option value="">Sélectionner un type de champs</option>
+                                            <option value="text">Zone de texte</option>
+                                            <option value="select">Liste déroulante</option>
+                                            <option value="checkbox">Case à cocher</option>
+                                            <option value="file">Fichier</option>
+                                            <option value="date">Date</option>
+                                            <option value="number">Numéro</option>
+                                            <!--<option value="file">Zone de fichier</option>!-->
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button type="button" title="Voir les champs" @click="showOpt"
+                                                v-if="content.options !== undefined" data-toggle="tooltip"
+                                                class="btn btn-info btn-icon">
+                                                <i class="icon-list"></i>
+                                            </button>
+
+                                            <!-- sous options modal -->
+                                            <bs-modal id="optionsModal" title="Entrer les options">
+                                                <template #body-content v-if="content.options !== undefined">
+                                                    <div v-for="( opt, index ) in  content.options" :key="index">
+                                                        <div class="input-group">
+                                                            <input type="text" v-model="opt.input_option"
+                                                                placeholder="Entrer une option..." class="form-control"
+                                                                required>
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-icon bg-grey2"
+                                                                    @click.prevent="content.options.push({ input_option: '' })"
+                                                                    v-if="index === 0">
+                                                                    <i class="flaticon-add text-primary"></i></button>
+                                                                <button v-else class="btn btn-icon bg-grey2"
+                                                                    @click.prevent="content.options.splice(index, 1)">
+                                                                    <i class="icon-trash text-danger"></i></button>
                                                             </div>
                                                         </div>
+                                                        <bs-popover title="Configuration sous champs"
+                                                            toggle-class="btn-outline-dark btn-sm border-top-0 mb-2"
+                                                            toggle-icon="flaticon-add"
+                                                            toggle-label="Ajouter sous champs (optionnel)">
+                                                            <template #content>
+                                                                <div class="input-group mb-2"
+                                                                    v-for="( sousInput, k ) in  opt.sousInputs " :key="k">
+                                                                    <input type="text" v-model="sousInput.sous_input"
+                                                                        class="form-control"
+                                                                        placeholder="Sous champs libellé">
+                                                                    <div class="input-group-append" id="button-addon1">
+                                                                        <button v-if="k === 0" class="btn btn-icon bg-grey2"
+                                                                            @click.prevent="opt.sousInputs.push({ sous_input: '', type: 'text', options: [] })"
+                                                                            type="button">
+                                                                            <i class="flaticon-add text-primary"></i>
+                                                                        </button>
+                                                                        <button v-else class="btn btn-icon bg-grey2"
+                                                                            @click.prevent="opt.sousInputs.splice(k, 1)"
+                                                                            type="button">
+                                                                            <i class="icon-trash text-danger"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="d-flex justify-content-between mb-2">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary mt-1 mr-2 flex-fill text-uppercase">
+                                                                        Valider & sauvegarder</button>
+                                                                    <button
+                                                                        class="btn btn-dark text-uppercase mt-1">Annuler</button>
+                                                                </div>
+                                                            </template>
+                                                        </bs-popover>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </template>
+                                                <template #footer-content>
+                                                    <button type="button" data-dismiss="modal" class="btn btn-primary mr-2">
+                                                        <i class="flaticon-add"></i> Valider les options
+                                                    </button>
+                                                </template>
+                                            </bs-modal>
+                                            <!-- End sous options modal -->
+                                            <button title="Ajouter un champs" v-if="i === 0"
+                                                @click.prevent="selectedSection.inputs.push({ input: '', input_type: '', options: [] })"
+                                                data-toggle="tooltip" class="btn bg-grey2 btn-icon">
+                                                <i class="flaticon-add text-primary"></i>
+                                            </button>
+                                            <button title="Effacer ce champs" v-else
+                                                @click.prevent="selectedSection.inputs.splice(i, 1)" data-toggle="tooltip"
+                                                class="btn bg-grey2 btn-icon">
+                                                <i class="icon-trash text-danger"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <!--End Formulaire section contents -->
                             </div>
+                            <!--End Formulaire section inputs -->
                         </div>
-                        <div class="modal-footer">
-                            <div class="text-right mt-3">
-                                <button :disabled="submitLoading" id="submit-btn" type="submit" class="btn btn-success"
-                                    :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;"> <i
-                                        v-if="submitLoading" class="fa fa-spinner fa-spin" /> Sauvegarder les
-                                    modifications
-                                </button>
-                                <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </teleport>
-        <!-- end edit modal -->
+                    </template>
+                </group-caption>
+            </template>
+            <template #footer-content>
+                <button :disabled="submitLoading" id="submit-btn" type="submit" class="btn btn-success"
+                    :class="submitLoading ? 'disabled' : ''" style="margin-right: 4px;"> <i v-if="submitLoading"
+                        class="fa fa-spinner fa-spin" /> Sauvegarder les
+                    modifications
+                </button>
+                <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
+            </template>
+        </bs-modal>
+        <!-- End formulaire edit modal -->
+
+
+
 
         <!-- formulaire config modal -->
         <formulaire-config-modal />
@@ -222,10 +224,9 @@ export default {
     data() {
         return {
             searchWord: '',
-            selectedSection: {
-
-            },
+            selectedSection: {},
             deleteLoading: '',
+            isNew: false, //Quand l'on crée un nouveau formulaire...
             submitLoading: false,
         }
     },
@@ -280,6 +281,7 @@ export default {
             });
         },
         addNewSection(formulaire) {
+            this.isNew = false; /*Pour valider si c'est un nouveau formulaire ou une modif.*/
             this.selectedSection = {
                 section: '',
                 formulaire_id: formulaire.formulaire_id,
@@ -289,7 +291,6 @@ export default {
                         input_type: '',
                         options: []
                     }
-
                 ]
             }
             this.$nextTick(() => {
@@ -297,7 +298,6 @@ export default {
             });
         },
         addOpts(content) {
-            console.log(content.input_type);
             if (content.input_type.includes('select') || content.input_type.includes('checkbox')) {
                 content.options = [];
                 content.options.push({ input_option: '' })
@@ -308,8 +308,11 @@ export default {
                 }
             }
         },
+        showOpt() {
+            $("#optionsModal").modal('show');
+        },
         getSection(section) {
-
+            /*Lorsqu'il s'agit de l'affichage de la section pour une eventuelle modification*/
             this.selectedSection = section;
             this.$nextTick(() => {
                 $("#formulaireEditModal").modal('show');
@@ -404,6 +407,7 @@ export default {
             });
         },
         openFormulaireConfigModal() {
+            this.$store.dispatch('dantic/getSection', null)
             $('#configModal').modal('show');
         }
     }

@@ -49,11 +49,11 @@
                         </div>
                         <!-- End Formulaire section titre -->
 
-                        <!-- Formulaire section contents -->
+                        <!-- Formulaire section inputs -->
                         <div class="col-md-12">
                             <div>
                                 <label class="fw-bold mb-1">Section contenus/Champs <sup class="text-danger">*</sup></label>
-                                <div class="input-group mb-2" v-for="(content, i) in section.contents" :key="i">
+                                <div class="input-group mb-2" v-for="(content, i) in section.inputs" :key="i">
                                     <input type="text" placeholder="Libellé" v-model="content.input" class="form-control"
                                         required>
                                     <select name="input_type"
@@ -71,12 +71,12 @@
                                     </select>
                                     <div class="input-group-append">
                                         <button title="Ajouter un champs" v-if="i === 0"
-                                            @click.prevent="section.contents.push({ input: '', input_type: '', options: [] })"
+                                            @click.prevent="section.inputs.push({ input: '', input_type: '', options: [] })"
                                             data-toggle="tooltip" class="btn bg-grey2 btn-icon">
                                             <i class="flaticon-add text-primary"></i>
                                         </button>
                                         <button title="Effacer ce champs" v-else
-                                            @click.prevent="section.contents.splice(i, 1)" data-toggle="tooltip"
+                                            @click.prevent="section.inputs.splice(i, 1)" data-toggle="tooltip"
                                             class="btn bg-grey2 btn-icon">
                                             <i class="icon-trash text-danger"></i>
                                         </button>
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--End Formulaire section contents -->
+                        <!--End Formulaire section inputs -->
                     </div>
                 </template>
             </group-caption>
@@ -97,22 +97,22 @@
     <bs-modal v-if="selectedContentIndex !== null && selectedSectionIndex !== null" id="optionsModal"
         title="Entrer les options">
         <template #body-content>
-            <div v-for="(opt, index) in form.sections[selectedSectionIndex].contents[selectedContentIndex].options"
+            <div v-for="(opt, index) in form.sections[selectedSectionIndex].inputs[selectedContentIndex].options"
                 :key="index">
-                <div class="input-group mb-2">
+                <div class="input-group">
                     <input type="text" v-model="opt.input_option" placeholder="Entrer une option..." class="form-control"
                         required>
                     <div class="input-group-append">
                         <button class="btn btn-icon bg-grey2"
-                            @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.push({ input_option: '' })"
+                            @click.prevent="form.sections[selectedSectionIndex].inputs[selectedContentIndex].options.push({ input_option: '' })"
                             v-if="index === 0">
                             <i class="flaticon-add text-primary"></i></button>
                         <button v-else class="btn btn-icon bg-grey2"
-                            @click.prevent="form.sections[selectedSectionIndex].contents[selectedContentIndex].options.splice(index, 1)">
+                            @click.prevent="form.sections[selectedSectionIndex].inputs[selectedContentIndex].options.splice(index, 1)">
                             <i class="icon-trash text-danger"></i></button>
                     </div>
                 </div>
-                <bs-popover title="Configuration sous champs" toggle-class="btn-outline-dark btn-sm mb-2"
+                <bs-popover title="Configuration sous champs" toggle-class="btn-outline-dark btn-sm border-top-0 mb-2"
                     toggle-icon="flaticon-add" toggle-label="Ajouter sous champs (optionnel)"
                     @onToggle="addSousOptions(index)">
                     <template #content>
@@ -201,7 +201,7 @@ export default {
         addNewSection() {
             this.form.sections.push({
                 section: '',
-                contents: [
+                inputs: [
                     {
                         input: '',
                         input_type: '',
@@ -215,14 +215,14 @@ export default {
         async addOptions() {
             let i = this.selectedSectionIndex;
             let j = this.selectedContentIndex;
-            if (this.form.sections[i].contents[j].options.length === 0) {
-                this.form.sections[i].contents[j].options.push({ input_option: '' });
+            if (this.form.sections[i].inputs[j].options.length === 0) {
+                this.form.sections[i].inputs[j].options.push({ input_option: '' });
             }
         },
 
         /*Ajout des sous options à une option d'une section*/
         addSousOptions(optIndex) {
-            let option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[optIndex];
+            let option = this.form.sections[this.selectedSectionIndex].inputs[this.selectedContentIndex].options[optIndex];
             if (option.sousInputs === undefined) {
                 option.sousInputs = [];
                 this.$nextTick(() => {
@@ -273,7 +273,7 @@ export default {
         /* close sous options popover */
         closePopover(index) {
             $('.bs-popover-auto').popover('hide');
-            let option = this.form.sections[this.selectedSectionIndex].contents[this.selectedContentIndex].options[index];
+            let option = this.form.sections[this.selectedSectionIndex].inputs[this.selectedContentIndex].options[index];
             option.sousInputs = [];
         },
         /* close options modal */

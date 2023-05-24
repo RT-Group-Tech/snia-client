@@ -24,7 +24,8 @@
                         {{ $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }} </span>
                     <div class="d-flex">
                         <bs-popover title="Modifier le titre du formulaire" trigger-class="popover-title" placement="right"
-                            toggle-class="btn-icon d-block btn-success mr-1" toggle-icon="icon-pencil">
+                            toggle-class="btn-icon d-block btn-success mr-1" toggle-icon="icon-pencil"
+                            @onToggle="$closeBsPopover('popover-title')">
                             <template #content>
                                 <form @submit.prevent="updateFormTitre(formulaire)">
                                     <div class="input-group mb-2">

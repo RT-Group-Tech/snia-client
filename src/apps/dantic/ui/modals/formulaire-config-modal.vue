@@ -54,34 +54,46 @@
                             <div>
                                 <label class="fw-bold mb-1">Section contenus/Champs <sup class="text-danger">*</sup></label>
 
-                                <div class="input-group mb-2" v-for="( content, i ) in  section.inputs " :key="i">
-                                    <input type="text" placeholder="Libellé" v-model="content.input" class="form-control"
-                                        required>
-                                    <select name="input_type"
-                                        @change="onChangeValue({ sectionIndex: index, contentIndex: i, value: content.input_type })"
-                                        class="custom-select form-control" id="input_type" v-model="content.input_type"
-                                        required>
-                                        <option value="">Sélectionner un type de champs</option>
-                                        <option value="text">Zone de texte</option>
-                                        <option value="select">Liste déroulante</option>
-                                        <option value="checkbox">Case à cocher</option>
-                                        <option value="file">Fichier</option>
-                                        <option value="date">Date</option>
-                                        <option value="number">Numéro</option>
-                                        <!--<option value="file">Zone de fichier</option>!-->
-                                    </select>
-                                    <div class="input-group-append">
-                                        <button title="Ajouter un champs" v-if="i === 0"
-                                            @click.prevent="section.inputs.push({ input: '', input_type: '', options: [] })"
-                                            data-toggle="tooltip" class="btn bg-grey2 btn-icon">
-                                            <i class="flaticon-add text-primary"></i>
-                                        </button>
-                                        <button title="Effacer ce champs" v-else
-                                            @click.prevent="section.inputs.splice(i, 1)" data-toggle="tooltip"
-                                            class="btn bg-grey2 btn-icon">
-                                            <i class="icon-trash text-danger"></i>
-                                        </button>
+                                <div class="mb-2" v-for="( content, i ) in  section.inputs " :key="i">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Libellé" v-model="content.input"
+                                            class="form-control"
+                                            :class="content.options !== undefined && content.options.length > 0 ? 'input-attach-btn' : ''"
+                                            required>
+                                        <select name="input_type"
+                                            @change="onChangeValue({ sectionIndex: index, contentIndex: i, value: content.input_type })"
+                                            class="custom-select form-control" id="input_type" v-model="content.input_type"
+                                            required>
+                                            <option value="">Sélectionner un type de champs</option>
+                                            <option value="text">Zone de texte</option>
+                                            <option value="select">Liste déroulante</option>
+                                            <option value="checkbox">Case à cocher</option>
+                                            <option value="file">Fichier</option>
+                                            <option value="date">Date</option>
+                                            <option value="number">Numéro</option>
+                                            <!--<option value="file">Zone de fichier</option>!-->
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button title="Ajouter un champs" v-if="i === 0"
+                                                @click.prevent="section.inputs.push({ input: '', input_type: '', options: [] })"
+                                                data-toggle="tooltip" class="btn bg-grey2 btn-icon">
+                                                <i class="flaticon-add text-primary"></i>
+                                            </button>
+                                            <button title="Effacer ce champs" v-else
+                                                @click.prevent="section.inputs.splice(i, 1)" data-toggle="tooltip"
+                                                class="btn bg-grey2 btn-icon">
+                                                <i class="icon-trash text-danger"></i>
+                                            </button>
+                                        </div>
                                     </div>
+                                    <!-- Permet de voir ou ajouter des options s'ils existent -->
+                                    <button type="button" title="Voir les options"
+                                        @click="onChangeValue({ sectionIndex: index, contentIndex: i, value: content.input_type, trigger: 'click' })"
+                                        v-if="content.options !== undefined && content.options.length > 0"
+                                        data-toggle="tooltip" class="btn btn-info btn-attach btn-sm">
+                                        <i class="icon-list mr-2"></i> Voir/ajouter les options
+                                    </button>
+                                    <!-- End -->
                                 </div>
                             </div>
                         </div>
@@ -103,8 +115,8 @@
             <div v-for="( opt, index ) in  form.sections[selectedSectionIndex].inputs[selectedContentIndex].options "
                 :key="index">
                 <div class="input-group">
-                    <input type="text" v-model="opt.input_option" placeholder="Entrer une option..." class="form-control"
-                        required>
+                    <input type="text" v-model="opt.input_option" placeholder="Entrer une option..."
+                        class="form-control input-attach-btn" required>
                     <div class="input-group-append">
                         <button class="btn btn-icon bg-grey2"
                             @click.prevent="form.sections[selectedSectionIndex].inputs[selectedContentIndex].options.push({ input_option: '' })"
@@ -116,14 +128,15 @@
                     </div>
                 </div>
                 <bs-popover title="Configuration sous champs" trigger-class="p-sousChamps" placement="left"
-                    toggle-class="btn-outline-dark btn-sm mb-2" toggle-icon="flaticon-add"
+                    toggle-class="btn-outline-dark btn-sm btn-attach mb-2" toggle-icon="flaticon-add"
                     toggle-label="Ajouter sous champs (optionnel)" @onToggle="addSousOptions(index)">
                     <template #content>
-                        <form @submit.prevent="submitSousChamps">
+                        <form @submit.prevent="$closeBsPopover('p-sousChamps')">
                             <div class="mb-2" v-for="( sousInput, k ) in  opt.sous_inputs " :key="k">
                                 <div class="input-group">
                                     <input type="text" v-model="sousInput.sous_input" class="form-control"
-                                        placeholder="Sous champs libellé">
+                                        placeholder="Sous champs libellé"
+                                        :class="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0 ? 'input-attach-btn' : ''">
                                     <select name="input_type" @change="onChangeSousOption(sousInput, k)"
                                         class="custom-select form-control" id="input_type" v-model="sousInput.type"
                                         required>
@@ -150,10 +163,10 @@
                                 </div>
                                 <bs-popover v-if="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0"
                                     title="Configuration sous options" trigger-class="p-sousOptions" placement="bottom"
-                                    toggle-class="btn-dark btn-sm mb-2" toggle-icon="flaticon-add"
+                                    toggle-class="btn-dark btn-attach btn-sm mb-2" toggle-icon="flaticon-add"
                                     toggle-label="Ajouter sous options">
                                     <template #content>
-                                        <form @submit.prevent="submitSousOptions">
+                                        <form @submit.prevent="$closeBsPopover('p-sousOptions')">
                                             <div class="input-group mb-2" v-for="( sopt, j ) in  sousInput.sous_options"
                                                 :key="j">
                                                 <input type="text" v-model="sopt.sous_input_option" class="form-control"
@@ -224,18 +237,29 @@ export default {
     methods: {
 
         /*Lorsque l'on selectionne un type de champs*/
-        onChangeValue({ sectionIndex, contentIndex, value }) {
-            if (value.includes('checkbox') || value.includes('select')) {
+        onChangeValue({ sectionIndex, contentIndex, value, trigger = null }) {
+            if (trigger !== null) {
                 this.selectedContentIndex = contentIndex;
                 this.selectedSectionIndex = sectionIndex;
                 this.$nextTick(async () => {
-                    await this.addOptions();
                     $("#optionsModal").modal('show');
-                })
+                });
+                return;
             }
+            else {
+                if (value.includes('checkbox') || value.includes('select')) {
+                    this.selectedContentIndex = contentIndex;
+                    this.selectedSectionIndex = sectionIndex;
+                    this.$nextTick(async () => {
+                        await this.addOptions();
+                        $("#optionsModal").modal('show');
+                    })
+                }
+            }
+
+
         },
         onChangeSousOption(sousInput, index) {
-
             if (sousInput.type.includes('checkbox') || sousInput.type.includes('select')) {
                 sousInput.sous_options = [];
                 sousInput.sous_options.push({ sous_input_option: '' });
@@ -309,19 +333,9 @@ export default {
                 this.cleanField();
             });
         },
-
-        submitSousChamps(event) {
-            this.$closePopover('p-sousChamps')
-
-        },
-        submitSousOptions(event) {
-
-            this.$closePopover('p-sousOptions')
-        },
         /* close sous options popover */
         closePopover(index) {
-
-            this.$closePopover('p-sousChamps')
+            this.$closeBsPopover('p-sousChamps')
             let option = this.form.sections[this.selectedSectionIndex].inputs[this.selectedContentIndex].options[index];
             option.sous_inputs = [];
         },

@@ -5,38 +5,41 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import VueSweetalert2 from "vue-sweetalert2";
 
 export default {
-  install: (app, options) => {
-    app.config.globalProperties.$animatedFailedTask = animatedFailedTask;
-    app.config.globalProperties.$validForm = validForm;
-    app.config.globalProperties.$notify = notify;
-    app.use(VueSweetalert2);
+    install: (app, options) => {
+        app.config.globalProperties.$animatedFailedTask = animatedFailedTask;
+        app.config.globalProperties.$validForm = validForm;
+        app.config.globalProperties.$notify = notify;
+        app.use(VueSweetalert2);
 
-    window.Swal = app.config.globalProperties.$swal;
-    app.config.globalProperties.$initBsTooltip = () => {
-      $(document).ready(() => {
-        $('[data-toggle="tooltip"]').tooltip();
-      });
-    };
-    app.config.globalProperties.$closeBsPopover = (className) => {
-      $(`.${className}`).popover("hide");
-    };
-    app.config.globalProperties.$closeBsModal = (modalId) => {
-      $(`#${modalId}`).modal("hide");
-    };
-    app.config.globalProperties.$showBsModal = (modalId) => {
-      $(`#${modalId}`).modal("show");
-    };
+        window.Swal = app.config.globalProperties.$swal;
+        app.config.globalProperties.$initBsTooltip = () => {
+            $(document).ready(() => {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        };
+        app.config.globalProperties.$closeBsPopover = (className) => {
+            $(`.${className}`).popover("hide");
+        };
+        app.config.globalProperties.$showBsPopover = (className) => {
+            $(`.${className}`).popover("show");
+        };
+        app.config.globalProperties.$closeBsModal = (modalId) => {
+            $(`#${modalId}`).modal("hide");
+        };
+        app.config.globalProperties.$showBsModal = (modalId) => {
+            $(`#${modalId}`).modal("show");
+        };
 
-    app.config.globalProperties.$filters = {
-      sortLength(text, length, suffix) {
-        var sorted =
-          text.length > length ? text.substring(0, length) + suffix : text;
-        return sorted;
-      },
+        app.config.globalProperties.$filters = {
+            sortLength(text, length, suffix) {
+                var sorted =
+                    text.length > length ? text.substring(0, length) + suffix : text;
+                return sorted;
+            },
 
-      capitalize(text) {
-        return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-      },
-    };
-  },
+            capitalize(text) {
+                return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+            },
+        };
+    },
 };

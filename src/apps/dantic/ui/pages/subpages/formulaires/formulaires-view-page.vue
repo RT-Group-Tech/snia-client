@@ -23,16 +23,13 @@
                     <span><i class="flaticon-interface-6 text-info mr-1"></i>
                         {{ $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }} </span>
                     <div class="d-flex">
-
                         <bs-popover title="Modifier le titre du formulaire" trigger-class="popover-title" placement="right"
                             toggle-class="btn-icon d-block btn-success mr-1" toggle-icon="icon-pencil">
                             <template #content>
                                 <form @submit.prevent="updateFormTitre(formulaire)">
                                     <div class="input-group mb-2">
-
                                         <input type="text" v-model="formulaire.titre" class="form-control"
                                             placeholder="Entrer formulaire titre...">
-
                                     </div>
 
                                     <div class="d-flex justify-content-between">
@@ -115,8 +112,9 @@
 
                                     <div class=" mb-2" v-for="( content, i ) in selectedSection.inputs " :key="i">
                                         <div class="input-group">
-                                            <input type="text" placeholder="Libellé" v-model="content.input"
-                                                class="form-control" required>
+                                            <input type="text"
+                                                :class="content.options !== undefined && content.options.length > 0 ? 'input-attach-btn' : ''"
+                                                placeholder="Libellé" v-model="content.input" class="form-control" required>
                                             <select name="input_type" @change="addOpts(content, i)"
                                                 class="custom-select form-control" id="input_type"
                                                 v-model="content.input_type" required>
@@ -142,12 +140,13 @@
                                                 </button>
                                             </div>
                                         </div>
-
+                                        <!-- Permet de voir ou ajouter des options s'ils existent -->
                                         <button type="button" title="Voir les options" @click="showOpt(content, i)"
                                             v-if="content.options !== undefined && content.options.length > 0"
                                             data-toggle="tooltip" class="btn btn-info btn-attach btn-sm">
                                             <i class="icon-list mr-2"></i> Voir/ajouter les options
                                         </button>
+                                        <!-- End -->
 
                                     </div>
                                 </div>
@@ -174,7 +173,7 @@
                 <div v-for="( opt, k ) in  selectedOptions" :key="k">
                     <div class="input-group">
                         <input type="text" v-model="opt.input_option" placeholder="Entrer une option..."
-                            class="form-control" required>
+                            class="form-control input-attach-btn" required>
                         <div class="input-group-append">
                             <button class="btn btn-icon bg-grey2"
                                 @click.prevent="selectedOptions.push({ input_option: '' })" v-if="k === 0">
@@ -189,9 +188,9 @@
                         <template #content>
                             <form @submit.prevent="$closeBsPopover('pop-sousChamps')">
                                 <div v-for="( sousInput, k ) in  opt.sous_inputs " :key="k" class="mb-2">
-
                                     <div class="input-group">
                                         <input type="text" v-model="sousInput.sous_input" class="form-control"
+                                            :class="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0 ? 'input-attach-btn' : ''"
                                             placeholder="Sous champs libellé">
                                         <select name="input_type" @change="onChangeSousOption(sousInput)"
                                             class="custom-select form-control" id="input_type" v-model="sousInput.type"
@@ -221,13 +220,12 @@
                                     <bs-popover
                                         v-if="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0"
                                         title="Sous options" trigger-class="pop-sousOptions" placement="bottom"
-                                        toggle-class="btn btn-info btn-sm" toggle-icon="flaticon-add"
+                                        toggle-class="btn btn-info btn-sm btn-attach" toggle-icon="flaticon-add"
                                         toggle-label="Voir/ajouter sous options">
                                         <template #content>
                                             <form @submit.prevent="$closeBsPopover('pop-sousOptions')">
                                                 <div class="input-group mb-2" v-for="( sopt, j ) in  sousInput.sous_options"
                                                     :key="j">
-
                                                     <input type="text" v-model="sopt.sous_input_option" class="form-control"
                                                         placeholder="Sous option libellé">
                                                     <div class="input-group-append" id="button-addon1">
@@ -330,7 +328,8 @@ export default {
     },
 
     methods: {
-        updateFormTitre(formulaire) /** Method pour mettre à jour le titre d'un formulaire */ {
+        /** Method pour mettre à jour le titre d'un formulaire */
+        updateFormTitre(formulaire) {
             /**
                      * Lancer la requete de mise a jour du titre.
                      */
@@ -349,6 +348,8 @@ export default {
             });
 
         },
+
+        /*Ajoute une nouvelle section à un formulaire  existant*/
         addNewSection(formulaire) {
             this.isNew = false; /*Pour valider si c'est un nouveau formulaire ou une modif.*/
             this.selectedSection = {

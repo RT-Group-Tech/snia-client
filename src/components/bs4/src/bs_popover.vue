@@ -18,6 +18,11 @@
     overflow-y: auto !important;
     white-space: pre-wrap !important;
 }
+
+.btn-attach {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
 </style>
 <script>
 export default {

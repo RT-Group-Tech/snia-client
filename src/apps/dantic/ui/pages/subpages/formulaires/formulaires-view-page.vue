@@ -287,7 +287,7 @@ export default {
         /*End*/
         /*Pour permettre de recuperer la totalité des infos sur une section nouvellement crée */
         /*Vue la lentance du serveur lors de l'enregistrements des nouvelles options de la sections...*/
-        /* this.timer = setInterval(() => { this.$store.dispatch('dantic/voirFormulaires') }, 4000) */
+        this.timer = setInterval(() => { this.$store.dispatch('dantic/voirFormulaires') }, 4000)
     },
     unmounted() {
         /*Cancel runtime statment*/

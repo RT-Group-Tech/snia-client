@@ -14,7 +14,7 @@
 <style scoped src="@/assets/css/atlantis.css"></style>
 <style scope>
 .popover-body {
-    max-height: 200px !important;
+    max-height: 300px !important;
     overflow-y: auto !important;
     white-space: pre-wrap !important;
 }
@@ -26,6 +26,14 @@ export default {
             type: String,
             required: false,
             default: ''
+        },
+        triggerClass: {
+            type: String,
+            default: ""
+        },
+        placement: {
+            type: String,
+            default: "auto"
         },
         toggleClass: {
             type: String,
@@ -52,13 +60,15 @@ export default {
             title: this.title,
             html: true,
             trigger: 'click',
-            placement: 'auto',
+            placement: (context, src) => {
+                $(context).addClass(this.triggerClass)
+                return this.placement;
+            },
             sanitize: false,
             content: content,
             offset: 10,
             animation: true,
         });
-
         $(this.$refs.caller).on('hidden.bs.popover', () => {
             try {
                 this.$refs.container.prepend(content);

@@ -81,7 +81,7 @@ export default {
              * Display the swal to user input option.
              */
             this.$swal({
-                text: "Entrez une ooption",
+                text: "Entrez une option",
                 input: 'text',
                 showConfirmButton: true,
                 showCancelButton: true,

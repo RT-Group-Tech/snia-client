@@ -43,10 +43,6 @@
 export default {
     name: "Custom-modal",
 
-    mounted() {
-        this.$emit('onLoad')
-    },
-
     props: {
         id: {
             type: String,

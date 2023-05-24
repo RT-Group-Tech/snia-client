@@ -99,6 +99,7 @@
     <bs-modal v-if="selectedContentIndex !== null && selectedSectionIndex !== null" id="optionsModal"
         title="Entrer les options">
         <template #body-content>
+
             <div v-for="( opt, index ) in  form.sections[selectedSectionIndex].inputs[selectedContentIndex].options "
                 :key="index">
                 <div class="input-group">
@@ -114,27 +115,69 @@
                             <i class="icon-trash text-danger"></i></button>
                     </div>
                 </div>
-                <bs-popover title="Configuration sous champs" toggle-class="btn-outline-dark btn-sm border-top-0 mb-2"
-                    toggle-icon="flaticon-add" toggle-label="Ajouter sous champs (optionnel)"
-                    @onToggle="addSousOptions(index)">
+                <bs-popover title="Configuration sous champs" trigger-class="p-sousChamps" placement="left"
+                    toggle-class="btn-outline-dark btn-sm mb-2" toggle-icon="flaticon-add"
+                    toggle-label="Ajouter sous champs (optionnel)" @onToggle="addSousOptions(index)">
                     <template #content>
-                        <form @submit.prevent="submitSousOptions">
-                            <div class="input-group mb-2" v-for="( sousInput, k ) in  opt.sousInputs " :key="k">
-                                <input type="text" v-model="sousInput.sous_input" class="form-control"
-                                    placeholder="Sous champs libellé">
-                                <div class="input-group-append" id="button-addon1">
-                                    <button v-if="k === 0" class="btn btn-icon bg-grey2"
-                                        @click.prevent="opt.sousInputs.push({ sous_input: '', type: 'text', options: [] })"
-                                        type="button">
-                                        <i class="flaticon-add text-primary"></i>
-                                    </button>
-                                    <button v-else class="btn btn-icon bg-grey2"
-                                        @click.prevent="opt.sousInputs.splice(k, 1)" type="button">
-                                        <i class="icon-trash text-danger"></i>
-                                    </button>
+                        <form @submit.prevent="submitSousChamps">
+                            <div class="mb-2" v-for="( sousInput, k ) in  opt.sous_inputs " :key="k">
+                                <div class="input-group">
+                                    <input type="text" v-model="sousInput.sous_input" class="form-control"
+                                        placeholder="Sous champs libellé">
+                                    <select name="input_type" @change="onChangeSousOption(sousInput, k)"
+                                        class="custom-select form-control" id="input_type" v-model="sousInput.type"
+                                        required>
+                                        <option value="" selected>Sélectionner un type </option>
+                                        <option value="text">Zone de texte</option>
+                                        <option value="select">Liste déroulante</option>
+                                        <option value="checkbox">Case à cocher</option>
+                                        <option value="file">Fichier</option>
+                                        <option value="date">Date</option>
+                                        <option value="number">Numéro</option>
+                                        <!--<option value="file">Zone de fichier</option>!-->
+                                    </select>
+                                    <div class="input-group-append" id="button-addon1">
+                                        <button v-if="k === 0" class="btn btn-icon bg-grey2"
+                                            @click.prevent="opt.sous_inputs.push({ sous_input: '', type: '', options: [] })"
+                                            type="button">
+                                            <i class="flaticon-add text-primary"></i>
+                                        </button>
+                                        <button v-else class="btn btn-icon bg-grey2"
+                                            @click.prevent="opt.sous_inputs.splice(k, 1)" type="button">
+                                            <i class="icon-trash text-danger"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                                <bs-popover v-if="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0"
+                                    title="Configuration sous options" trigger-class="p-sousOptions" placement="bottom"
+                                    toggle-class="btn-dark btn-sm mb-2" toggle-icon="flaticon-add"
+                                    toggle-label="Ajouter sous options">
+                                    <template #content>
+                                        <form @submit.prevent="submitSousOptions">
+                                            <div class="input-group mb-2" v-for="( sopt, j ) in  sousInput.sous_options"
+                                                :key="j">
+                                                <input type="text" v-model="sopt.sous_input_option" class="form-control"
+                                                    placeholder="Sous champs libellé">
+                                                <div class="input-group-append" id="button-addon1">
+                                                    <button v-if="j === 0" class="btn btn-icon bg-grey2"
+                                                        @click.prevent="sousInput.sous_options.push({ sous_input_option: '' })"
+                                                        type="button">
+                                                        <i class="flaticon-add text-primary"></i>
+                                                    </button>
+                                                    <button v-else class="btn btn-icon bg-grey2"
+                                                        @click.prevent="sousInput.sous_options.splice(j, 1)" type="button">
+                                                        <i class="icon-trash text-danger"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
 
+                                            <button type="submit" class="btn btn-primary mt-1 mr-2">
+                                                Valider & Fermer
+                                            </button>
+                                        </form>
+                                    </template>
+                                </bs-popover>
+                            </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <button type="submit" class="btn btn-primary mt-1 mr-2 flex-fill text-uppercase">
                                     Valider & sauvegarder</button>
@@ -168,6 +211,7 @@ export default {
             },
             selectedSectionIndex: null,
             selectedContentIndex: null,
+            sousInputIndex: null,
             formLoading: false,
         }
     },
@@ -188,6 +232,17 @@ export default {
                     await this.addOptions();
                     $("#optionsModal").modal('show');
                 })
+            }
+        },
+        onChangeSousOption(sousInput, index) {
+
+            if (sousInput.type.includes('checkbox') || sousInput.type.includes('select')) {
+                sousInput.sous_options = [];
+                sousInput.sous_options.push({ sous_input_option: '' });
+
+            }
+            else {
+                sousInput.sous_options = [];
             }
         },
         /* Ajout d'une nouvelle section */
@@ -216,22 +271,22 @@ export default {
         /*Ajout des sous options à une option d'une section*/
         addSousOptions(optIndex) {
             let option = this.form.sections[this.selectedSectionIndex].inputs[this.selectedContentIndex].options[optIndex];
-            if (option.sousInputs === undefined) {
-                option.sousInputs = [];
+            if (option.sous_inputs === undefined) {
+                option.sous_inputs = [];
                 this.$nextTick(() => {
-                    option.sousInputs.push({
+                    option.sous_inputs.push({
                         sous_input: "",
-                        type: "text",
-                        options: []
+                        type: "",
+                        sous_options: []
                     })
                 });
             }
             else {
-                if (option.sousInputs.length === 0) {
-                    option.sousInputs.push({
+                if (option.sous_inputs.length === 0) {
+                    option.sous_inputs.push({
                         sous_input: "",
-                        type: "text",
-                        options: []
+                        type: "",
+                        sous_options: []
                     })
                 }
             }
@@ -255,15 +310,17 @@ export default {
             });
         },
 
-        submitSousOptions(event) {
-            $('.bs-popover-auto').popover('hide');
+        submitSousChamps(event) {
+            $('.p-sousChamps').popover('hide');
         },
-
+        submitSousOptions(event) {
+            $('.p-sousOptions').popover('hide');
+        },
         /* close sous options popover */
         closePopover(index) {
-            $('.bs-popover-auto').popover('hide');
+            $('.p-sousChamps').popover('hide');
             let option = this.form.sections[this.selectedSectionIndex].inputs[this.selectedContentIndex].options[index];
-            option.sousInputs = [];
+            option.sous_inputs = [];
         },
 
         /* close options modal */

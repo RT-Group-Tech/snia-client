@@ -311,21 +311,24 @@ export default {
         },
 
         submitSousChamps(event) {
-            $('.p-sousChamps').popover('hide');
+            this.$closePopover('p-sousChamps')
+
         },
         submitSousOptions(event) {
-            $('.p-sousOptions').popover('hide');
+
+            this.$closePopover('p-sousOptions')
         },
         /* close sous options popover */
         closePopover(index) {
-            $('.p-sousChamps').popover('hide');
+
+            this.$closePopover('p-sousChamps')
             let option = this.form.sections[this.selectedSectionIndex].inputs[this.selectedContentIndex].options[index];
             option.sous_inputs = [];
         },
 
         /* close options modal */
         closeOptionsModal() {
-            $('optionsModal').modal('hide');
+            this.$closeBsModal('optionsModal')
         },
 
 

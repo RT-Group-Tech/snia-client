@@ -17,6 +17,15 @@ export default {
         $('[data-toggle="tooltip"]').tooltip();
       });
     };
+    app.config.globalProperties.$closeBsPopover = (className) => {
+      $(`.${className}`).popover("hide");
+    };
+    app.config.globalProperties.$closeBsModal = (modalId) => {
+      $(`#${modalId}`).modal("hide");
+    };
+    app.config.globalProperties.$showBsModal = (modalId) => {
+      $(`#${modalId}`).modal("show");
+    };
 
     app.config.globalProperties.$filters = {
       sortLength(text, length, suffix) {

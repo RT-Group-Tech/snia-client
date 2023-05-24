@@ -3,7 +3,7 @@
         <div class="p-2">
             <div class="d-flex align-items-center mb-2">
                 <h3 class="fw-extrabold">Liste des Formulaires </h3>
-                <button class="btn ml-auto btn-primary" @click="openFormulaireConfigModal"><i
+                <button class="btn ml-auto btn-primary" @click="$showBsModal('configModal')"><i
                         class="flaticon-add mr-2"></i>Nouveau
                     formulaire</button>
             </div>
@@ -22,9 +22,33 @@
                     v-for="(formulaire, i) in formulaires" :key="i">
                     <span><i class="flaticon-interface-6 text-info mr-1"></i>
                         {{ $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }} </span>
-                    <div>
-                        <button class="btn btn-icon btn-success mr-1" type="button"><i class="icon-pencil"
-                                @click.prevent="updateFormTitre(formulaire)"></i></button>
+                    <div class="d-flex">
+
+                        <bs-popover title="Modifier le titre du formulaire" trigger-class="popover-title" placement="right"
+                            toggle-class="btn-icon d-block btn-success mr-1" toggle-icon="icon-pencil">
+                            <template #content>
+                                <form @submit.prevent="updateFormTitre(formulaire)">
+                                    <div class="input-group mb-2">
+
+                                        <input type="text" v-model="formulaire.titre" class="form-control"
+                                            placeholder="Entrer formulaire titre...">
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <button :disabled="updateLoading === formulaire.formulaire_id" type="submit"
+                                            class="btn btn-success flex-fill mr-2">
+                                            <i v-if="updateLoading === formulaire.formulaire_id"
+                                                class="fa fa-spinner fa-spin mr-2" />Sauvegarder les modification
+                                        </button>
+                                        <button type="button" class="btn btn-danger"
+                                            @click.prevent="$closeBsPopover('popover-title')">
+                                            Fermer
+                                        </button>
+                                    </div>
+                                </form>
+                            </template>
+                        </bs-popover>
 
                         <button class="btn btn-icon btn-info mr-1" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"><i class="icon-information"></i></button>
@@ -163,7 +187,7 @@
                         toggle-class="btn btn-info btn-sm btn-attach mb-2" toggle-icon="flaticon-add"
                         toggle-label="Voir/ajouter sous champs" @onToggle="onToggleSousOptions(opt)">
                         <template #content>
-                            <form @submit.prevent="closePopover">
+                            <form @submit.prevent="$closeBsPopover('pop-sousChamps')">
                                 <div v-for="( sousInput, k ) in  opt.sous_inputs " :key="k" class="mb-2">
 
                                     <div class="input-group">
@@ -200,7 +224,7 @@
                                         toggle-class="btn btn-info btn-sm" toggle-icon="flaticon-add"
                                         toggle-label="Voir/ajouter sous options">
                                         <template #content>
-                                            <form @submit.prevent="closePopSousOption">
+                                            <form @submit.prevent="$closeBsPopover('pop-sousOptions')">
                                                 <div class="input-group mb-2" v-for="( sopt, j ) in  sousInput.sous_options"
                                                     :key="j">
 
@@ -273,6 +297,7 @@ export default {
             searchWord: '',
             selectedSection: {},
             deleteLoading: '',
+            updateLoading: '',
             isNew: false, //Quand l'on crée un nouveau formulaire...
             submitLoading: false,
             selectedOptions: [],
@@ -287,7 +312,7 @@ export default {
         /*End*/
         /*Pour permettre de recuperer la totalité des infos sur une section nouvellement crée */
         /*Vue la lentance du serveur lors de l'enregistrements des nouvelles options de la sections...*/
-        this.timer = setInterval(() => { this.$store.dispatch('dantic/voirFormulaires') }, 4000)
+        /* this.timer = setInterval(() => { this.$store.dispatch('dantic/voirFormulaires') }, 4000) */
     },
     unmounted() {
         /*Cancel runtime statment*/
@@ -306,35 +331,23 @@ export default {
 
     methods: {
         updateFormTitre(formulaire) /** Method pour mettre à jour le titre d'un formulaire */ {
-            this.$swal({
-                text: "Modifier le titre du formulaire",
-                input: 'text',
-                inputValue: formulaire.titre,
-                showConfirmButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Modifier",
-                cancelButtonText: "Annuler"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    /**
+            /**
                      * Lancer la requete de mise a jour du titre.
                      */
+            var data = {
+                formulaire_id: formulaire.formulaire_id,
+                titre: formulaire.titre
+            };
 
-                    formulaire.titre = result.value;
-                    var data = {
-                        formulaire_id: formulaire.formulaire_id,
-                        titre: formulaire.titre
-                    };
-
-                    /**
-                     * Call to the Api.
-                     */
-                    Api.editFormTitre(data);
-
-
-                    console.log(result);
-                }
+            /**
+             * Call to the Api.
+             */
+            this.updateLoading = formulaire.formulaire_id;
+            Api.editFormTitre(data).then((_) => {
+                this.updateLoading = ''
+                this.$closeBsPopover("popover-title");
             });
+
         },
         addNewSection(formulaire) {
             this.isNew = false; /*Pour valider si c'est un nouveau formulaire ou une modif.*/
@@ -495,20 +508,6 @@ export default {
                 }
             });
         },
-
-        /*Fermer le modal qui permet de créer les sous options*/
-        closePopover() {
-            $('.pop-sousChamps').popover('hide');
-        },
-
-        closePopSousOption() {
-            $('.pop-sousOptions').popover('hide');
-        },
-
-        /* Lancement du modal qui permet de configurer un formulaire ! */
-        openFormulaireConfigModal() {
-            $('#configModal').modal('show');
-        }
     }
 }
 </script>

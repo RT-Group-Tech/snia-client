@@ -254,6 +254,10 @@ export default {
                         await this.addOptions();
                         $("#optionsModal").modal('show');
                     })
+                } else {
+                    let i = this.selectedSectionIndex;
+                    let j = this.selectedContentIndex;
+                    this.form.sections[i].inputs[j].options = [];
                 }
             }
 

@@ -65,7 +65,7 @@ export default {
                     });
                 }
                 else if (module.includes('autres')) {
-                    this.showModal();
+                    console.log("others");
                 }
                 else {
                     Swal.fire({

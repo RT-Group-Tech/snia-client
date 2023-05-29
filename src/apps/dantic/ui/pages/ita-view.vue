@@ -96,7 +96,7 @@
 
         <!-- Modal Create ITA -->
 
-        <ItaCreateModal />
+        <ita-create-modal />
 
         <!-- End Modal Create ITA -->
 

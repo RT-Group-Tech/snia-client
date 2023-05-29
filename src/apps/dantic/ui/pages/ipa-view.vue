@@ -78,8 +78,7 @@
                         <span class="name-specification">Total IPA</span>
                         <span class="status-specification">130
                           <button type="button" :disabled="itaLoading === ipa.ipa_id" @click.prevent="getItas(ipa)"
-                            title="Voir la liste des itas" class="btn btn-icon btn-sm ml-2 btn-info"
-                            data-toggle="tooltip">
+                            title="Voir la liste des itas" class="btn btn-icon btn-sm ml-2 btn-info">
                             <i v-if="itaLoading === ipa.ipa_id" class="fa fa-spinner fa-spin"></i>
                             <i v-else class="fas fa-th-list"></i>
                           </button>

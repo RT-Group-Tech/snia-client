@@ -14,7 +14,7 @@
 <style scoped src="@/assets/css/atlantis.css"></style>
 <style scope>
 .popover-body {
-    max-height: 300px !important;
+    max-height: 230px !important;
     overflow-y: auto !important;
     white-space: pre-wrap !important;
 }

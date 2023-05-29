@@ -1,64 +1,51 @@
 <template>
-    <div class="modal fade" id="collecte-view-modal" tabindex="-1" role="dialog" aria-labelledby="itaModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="card-title fw-extrabold">
-                        <i class="fas fa-folder-open mr-1"></i>
-                        {{ collecte.titre }}
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="text-white">&times;</span>
-                    </button>
+    <bs-modal id="collecte-view-modal" size="modal-xl" :title="collecte.titre">
+        <template #body-content>
+            <div class="row">
+                <div class="col-md-9">
+                    <h6 class="card-title fw-extrabold"><span class="fa fa-calendar-check"></span> Collecte du
+                        {{ collecteView.date_enregistrement }}</h6>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <h6 class="card-title fw-extrabold"><span class="fa fa-calendar-check"></span> Collecte du  {{collecteView.date_enregistrement}}</h6>
-                        </div>
-                        <div class="col-md-3">
-                            <select name="" id="" class="form-control" v-model="collecteView">
-                                <option v-for="d in collecte.collectes" :key="d" :value="d">{{d.date_enregistrement}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6" v-for="(data, i) in collecteView.data" :key="i">
-                            <div class="form-group form-group-default">
-                                <label class="text-info fw-extrabold">{{ data.input }}</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control fw-extrabold text-dark" name="name"
-                                           placeholder="Name" :value="data.valeur" disabled>
-                                    <div class="input-group-append p-md-0 bg-transparent">
-                                        <span class="input-group-text fa fa-ban" @click.prevent="reportData" style="cursor:pointer;"> </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <select name="" id="" class="form-control" v-model="collecteView">
+                        <option v-for="d in collecte.collectes" :key="d" :value="d">{{ d.date_enregistrement }}
+                        </option>
+                    </select>
                 </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-success"> <i class="icon-printer mr-1"></i> Imprimer</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                </div>
-
             </div>
-        </div>
-    </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6" v-for="(data, i) in collecteView.data" :key="i">
+                    <div class="form-group form-group-default">
+                        <label class="text-info fw-extrabold">{{ data.input }}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control fw-extrabold text-dark" name="name" placeholder="Name"
+                                :value="data.valeur" disabled>
+                            <div class="input-group-append p-md-0 bg-transparent">
+                                <span class="input-group-text fa fa-ban" @click.prevent="reportData"
+                                    style="cursor:pointer;"> </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template #footer-content>
+            <button class="btn btn-success"> <i class="icon-printer mr-1"></i> Imprimer</button>
+            <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
+        </template>
+    </bs-modal>
 </template>
 
 <script>
 
 export default {
     name: "CollecteViewModal",
-    data(){
+    data() {
         return {
-            collecteView:{}
+            collecteView: {}
         }
     },
     props: {
@@ -69,24 +56,22 @@ export default {
             },
         }
     },
-    computed:{
+    computed: {
 
     },
-    methods:{
-        reportData()
-        {
+    methods: {
+        reportData() {
             this.$swal({
-                text:"Voulez-vous signaler cette donnée?",
-                showConfirmButton:true,
-                showCancelButton:true,
-                confirmButtonText:"Oui",
-                cancelButtonText:"Non",
-                confirmButtonColor:'green',
-                cancelButtonColor:'red'
-            }).then((result)=>{
+                text: "Voulez-vous signaler cette donnée?",
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Oui",
+                cancelButtonText: "Non",
+                confirmButtonColor: 'green',
+                cancelButtonColor: 'red'
+            }).then((result) => {
 
-                if(result.isConfirmed)
-                {
+                if (result.isConfirmed) {
                     /**
                      * Signaler cette donnée.
                      */
@@ -94,18 +79,16 @@ export default {
 
             });
         },
-        setCollecteView(collecteData)
-        {
-            this.collecteView=collecteData;
+        setCollecteView(collecteData) {
+            this.collecteView = collecteData;
         }
     },
-    mounted(){
+    mounted() {
 
     },
-    watch:{
-        collecte(newValue)
-        {
-            this.collecteView=newValue.collectes[0];
+    watch: {
+        collecte(newValue) {
+            this.collecteView = newValue.collectes[0];
         }
     }
 }

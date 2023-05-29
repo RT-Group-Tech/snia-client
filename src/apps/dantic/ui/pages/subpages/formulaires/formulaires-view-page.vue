@@ -192,7 +192,7 @@
                                     <div class="input-group">
                                         <input type="text" v-model="sousInput.sous_input" class="form-control"
                                             :class="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0 ? 'input-attach-btn' : ''"
-                                            placeholder="Sous champs libellé">
+                                            placeholder="Sous champs libellé" required>
                                         <select name="input_type" @change="onChangeSousOption(sousInput)"
                                             class="custom-select form-control" id="input_type" v-model="sousInput.type"
                                             required>

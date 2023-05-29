@@ -136,7 +136,8 @@
                                 <div class="input-group">
                                     <input type="text" v-model="sousInput.sous_input" class="form-control"
                                         placeholder="Sous champs libellé"
-                                        :class="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0 ? 'input-attach-btn' : ''">
+                                        :class="sousInput.sous_options !== undefined && sousInput.sous_options.length > 0 ? 'input-attach-btn' : ''"
+                                        required>
                                     <select name="input_type" @change="onChangeSousOption(sousInput, k)"
                                         class="custom-select form-control" id="input_type" v-model="sousInput.type"
                                         required>

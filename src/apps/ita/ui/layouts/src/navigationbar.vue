@@ -48,7 +48,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item submenu">
+                <li class="nav-item submenu" style="display: none;">
                     <a class="nav-link" href="javascript:void(0)">
                         <i class="link-icon icon-people"></i>
                         <span class="menu-title">Agriculteur</span>
@@ -70,6 +70,12 @@
                     <router-link class="nav-link" :to="{ name: 'ita-collect-route' }">
                         <i class="link-icon icon-folder-alt"></i>
                         <span class="menu-title">Données collectées</span>
+                    </router-link>
+                </li>
+                <li class="nav-item submenu" :class="`${currentRoute === 'reporting-route' ? 'active' : ''}`">
+                    <router-link class="nav-link" :to="{ name: 'reporting-route' }">
+                        <i class="link-icon icon-printer"></i>
+                        <span class="menu-title">Rapports</span>
                     </router-link>
                 </li>
             </ul>

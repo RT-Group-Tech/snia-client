@@ -21,16 +21,22 @@
                                 <input type="date" class="form-control" id="datepicker1" placeholder="Du...">
                                 <input type="date" placeholder="Au..." class="form-control" id="datepicker2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-success" style="text-transform: uppercase; font-weight: bold;"><span class="fa fa-print"></span> Générer</button>
+                                    <button type="button" class="btn btn-success" style="text-transform: uppercase; font-weight: bold;" @click.prevent="generateReport"> Générer</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <section_loader height="300"></section_loader>
+                <div class="row" v-if="launchedReportGeneration">
+                    <div class="col-md-12" >
+                        <section_loader :loading="processing">
+                            <div style="min-height:300px; display:flex; justify-content:center;">
+                                <div>
+                                    <a :href="reportGenerated" target="_blank" class="btn btn" style="border:1px solid blue; border-radius:5px; margin-top: 120px;"><span class="fa fa-download"></span> Télécharger rapport</a>
+                                </div>
+                            </div>
+                        </section_loader>
                     </div>
                 </div>
                 <!--<div class="row" v-else>
@@ -65,7 +71,44 @@
 
     export default {
         name: "reporting-page",
-        components:{section_loader}
+        components:{section_loader},
+        data(){
+          return {
+              reportDocumentReady:false,
+              launchedReportGeneration:false,
+              reportGenerated:null,
+              processing:true
+          }
+        },
+        methods:{
+            generateReport()
+            {
+                this.reset();
+
+                this.launchedReportGeneration=true;
+                this.$store.dispatch("generateReporting").then((reponse)=>{
+                    console.log("res:");
+                    console.log(reponse);
+                    if(reponse.reponse!==undefined)
+                    {
+                        reponse=reponse.reponse;
+
+                        if(reponse.status!==undefined && reponse.status==="success")
+                        {
+                            this.processing=false;
+                            this.reportGenerated=reponse.document;
+                        }
+                    }
+                });
+            },
+            reset()
+            {
+                this.reportDocumentReady=false;
+                this.launchedReportGeneration=false;
+                this.reportGenerated=null;
+                this.processing=true;
+            }
+        }
 
     }
 </script>

@@ -8,9 +8,9 @@
 <template>
   <div>
     <!-- loader !-->
-    <div id="loader" v-if="!showLoader" :style="`min-height:${height}px; display:flex; justify-content:center;`">
-      <img src="assets/img/section_loader.gif" class="mfp-img-mobile"
-        style="width: 70px; height: 70px; display: block; margin: auto" />
+    <div id="loader" v-if="loading" :style="`min-height:${height}px; display:flex; justify-content:center;`">
+      <img src="assets/img/doc_gif_2.gif" class="mfp-img-mobile"
+        style="width: 270px; height: 200px; display: block; margin: auto" />
     </div>
     <!-- End- loader !-->
     <slot v-else></slot>
@@ -20,7 +20,20 @@
 
 <script>
 export default {
-  props: ["showLoader", "height"],
+  props: {
+    loading:{
+      type: Boolean,
+      default:true
+    },
+    dataLoaded:{
+      type:Boolean,
+      default:false
+    },
+    height:{
+      type:Number,
+      default:300
+    }
+  },
   mounted() { },
 };
 </script>

@@ -18,5 +18,15 @@ class GlobalApi {
     if (status === 200) callback(data);
     else callback(false);
   }
+
+  static async genererRaport(callback)
+  {
+    var data={
+      key:"9fceada2874804cd75ff649fc94b02de4e664dc8"
+    };
+    var res=await request(data);
+    callback(res.data.result);
+
+  }
 }
 export default GlobalApi;

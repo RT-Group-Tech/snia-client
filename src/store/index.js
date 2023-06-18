@@ -6,6 +6,7 @@ import itaStore from "@/apps/ita/store";
 import authStore from "./modules/auth";
 
 import Api from "@/api";
+import GlobalApi from "../api";
 
 /*Crée un store central global qui permet d'ajouter des tiers modules */
 const store = createStore({
@@ -53,6 +54,14 @@ const store = createStore({
         });
       });
     },
+    generateReporting()
+    {
+      return new Promise((resolve)=>{
+        GlobalApi.genererRaport((reponse)=>{
+          resolve(reponse);
+        });
+      });
+    }
   },
 });
 

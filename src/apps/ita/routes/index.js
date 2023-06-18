@@ -34,6 +34,14 @@ const routes = [
           authRequired: true,
         },
       },
+      {
+        path: "/ita/secure/reporting",
+        component: () => import("@/views/public/pages/reporting-page"),
+        name: "reporting-route",
+        meta: {
+          authRequired: true,
+        },
+      }
     ],
   },
 ];

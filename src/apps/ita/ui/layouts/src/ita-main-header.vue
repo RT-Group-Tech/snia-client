@@ -34,8 +34,10 @@
                                 Menu
                             </a>
                             <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="boards.html">Voir secteur</a>
-                                <a class="dropdown-item" href="projects.html">Créer secteur</a>
+                                <a class="dropdown-item" href="javascript:void(0)"
+                                    @click.prevent="$router.push({ name: 'ita-secteurs-route' })">Voir secteur</a>
+                                <a class="dropdown-item" href="javascript:void(0)" @click.prevent="createNewSecteur">Créer
+                                    secteur</a>
                             </div>
                         </li>
 
@@ -107,6 +109,15 @@
 <script>
 import AuthView from '@/mixins/auth/logview'
 export default {
-    mixins: [AuthView]
+    mixins: [AuthView],
+
+    methods: {
+        createNewSecteur() {
+            this.$router.push({ name: 'ita-secteurs-route' });
+            setTimeout(() => {
+                this.$schowBsModal("secteurCreateModal");
+            }, 1000);
+        }
+    },
 }
 </script>

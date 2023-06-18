@@ -18,32 +18,24 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <formulaire-config-modal></formulaire-config-modal>
     </div>
 </template>
 
 <script>
-import FormulaireConfigModal from '../../apps/dantic/ui/modals/formulaire-config-modal'
 
 export default {
 
     name: 'ModuleChoice',
 
-    components: {
-        FormulaireConfigModal,
-
-    },
     data() {
         return {
-            modules: ["DANTIC", "IPA", "ITA", "Autres"],
+            modules: ["DANTIC", "IPA", "ITA", "SENASEM"],
         };
     },
     async mounted() {
-
         await this.$store.dispatch("auth/refreshLoggedUser")
     },
     computed: {
@@ -64,8 +56,10 @@ export default {
                         name: "ita-secure-route",
                     });
                 }
-                else if (module.includes('autres')) {
-                    console.log("others");
+                else if (module.includes('senasem')) {
+                    this.$router.push({
+                        name: "senasem-secure-route",
+                    });
                 }
                 else {
                     Swal.fire({
@@ -95,20 +89,6 @@ export default {
 </script>
 
 <style scoped>
-/* fieldset {
-    border: 1px solid#eee;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-legend {
-    padding: 0 10px;
-    font-size: 15px;
-    font-weight: 600;
-} */
-
-
-
 .choice-module {
     background-color: #1572E8;
     overflow-x: hidden;

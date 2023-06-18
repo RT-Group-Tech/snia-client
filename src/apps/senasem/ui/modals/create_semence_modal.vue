@@ -1,0 +1,56 @@
+<template>
+    <bs-modal id="createSemenceModal" title="Nouvelle Semence certifié" size="modal-lg">
+        <template #body-content>
+            <div class="row m-0">
+                <div class="col-md-6">
+                    <div>
+                        <label class="fw-bold mb-1">Sélectionnez une culture <sup class="text-danger">*</sup></label>
+                        <div class="mb-2">
+                            <select class="custom-select form-control" required>
+                                <option value="">---Sélectionnez une culture---</option>
+                                <option value="text">Culture 1</option>
+                                <option value="text">Culture 2</option>
+                                <option value="text">Culture 3</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label class="fw-bold mb-1">Libellé de la semence <sup class="text-danger">*</sup></label>
+                        <input type="text" class="form-control" placeholder="Entrer le libellé de la semence..." required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-1">
+                        <label class="fw-bold mb-1">L'image de la semence <sup class="text-danger">*</sup></label>
+                        <input type="file" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template #footer-content>
+            <button type="submit" :disabled="formLoading" id="forms-submit-btn" class="btn btn-success mr-1"><i
+                    v-if="formLoading" class="fa fa-spinner fa-spin mr-2"></i>Soumettre les données</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" @click.prevent="cleanField">Fermer</button>
+        </template>
+    </bs-modal>
+</template>
+
+<script>
+export default {
+    name: 'CreateSemenceModal',
+    data() {
+        return {
+            formLoading: false
+        }
+    },
+
+    methods: {
+        cleanField() {
+
+        }
+    },
+}
+</script>

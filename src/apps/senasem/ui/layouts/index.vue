@@ -2,13 +2,13 @@
     <div class="wrapper horizontal-layout-3">
 
         <!--  main header -->
-        <ita-main-header />
+        <main-header />
         <!-- End main header -->
 
         <router-view />
 
         <!-- main footer -->
-        <ita-main-footer />
+        <main-footer />
         <!-- End footer -->
 
 
@@ -17,8 +17,8 @@
 
 <script>
 import '@/assets/css/atlantis2.css';
-import itaMainHeader from './src/ita-main-header';
-import itaMainFooter from './src/ita-main-footer'
+import mainHeader from './src/main-header';
+import mainFooter from './src/main-footer'
 
 function customBackgroundColor() {
     $('*[data-background-color="custom"]').each(function () {
@@ -63,18 +63,18 @@ function fixedMainHeader() {
 export default {
     name: "SenasemModule",
     components: {
-        itaMainHeader,
-        itaMainFooter
+        mainHeader,
+        mainFooter
+    },
+
+    mounted() {
+        this.$router.push({ name: 'senasem-dashboard-route' })
     },
 
     /*Vue create state hook*/
     created() {
         this.fixedMainHeader();
         this.customBackgroundColor();
-    },
-
-    mounted() {
-        this.$router.push({ name: 'ita-dashboard-route' });
     },
 
     /*Vue method hook*/

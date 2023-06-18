@@ -1,37 +1,64 @@
 <template>
     <div class="main-panel">
-        <div class="container">
-            <div class="page-inner">
-                <div class="page-header">
-                    <h4 class="page-title">ITA Secteurs</h4>
-                    <ul class="breadcrumbs">
-                        <li class="nav-home">
-                            <router-link :to="{ name: 'ita-dashboard-route' }">
-                                <i class="flaticon-home"></i>
-                            </router-link>
-                        </li>
-                    </ul>
+        <div class="bg-primary2 pt-4 pb-5">
+            <div class="container text-white py-2">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <h1 class="mb-3">Secteur</h1>
+                        <h5 class="op-7 mb-3">Créer & voir les secteurs !</h5>
+                    </div>
+                    <div class="ml-auto">
+                        <button type="button" class="btn btn-success" @click.prevent="$showBsModal('secteurCreateModal')">
+                            <i class="flaticon-add"></i> Nouvelle ITA</button>
+                    </div>
                 </div>
-
-                <ul class="list-group list-group-bordered" v-if="secteurs.length > 0">
-                    <li class="list-group-item bg-light d-flex justify-content-between align-items-center">
-                        <h3 class="fw-extrabold">Liste des secteurs</h3>
-                        <button class="btn btn-info" @click="showSecteurCreateModal"> <i class="flaticon-add mr-1 fs-2"></i>
-                            Créer les secteurs</button>
-                    </li>
-
-                    <li v-for="(data, i) in secteurs" :key="i"
-                        class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ data.secteur }}
-                        <button class="btn btn-dark btn-icon btn-sm" data-toggle="tooltip" title="Suppression secteur">
-                            <i class="icon-trash"></i>
-                        </button>
-                    </li>
-                </ul>
             </div>
         </div>
-        <secteur-create-modal />
+
+        <div class="container mt--5">
+            <div class="page-inner mt--3">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-lg-12">
+                        <div class="row row-card-no-pd">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-head-row">
+                                            <h4 class="card-title">Liste de secteurs</h4>
+
+                                        </div>
+                                        <p class="card-category">
+                                            Tous les secteurs
+                                        </p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="list-group list-group-bordered" v-if="secteurs.length > 0">
+                                                    <li v-for="(data, i) in secteurs" :key="i"
+                                                        class="list-group-item d-flex justify-content-between align-items-center">
+                                                        {{ data.secteur }}
+                                                        <button class="btn btn-dark btn-icon btn-sm" data-toggle="tooltip"
+                                                            title="Suppression secteur">
+                                                            <i class="icon-trash"></i>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
+    <secteur-create-modal />
 </template>
 
 <script>

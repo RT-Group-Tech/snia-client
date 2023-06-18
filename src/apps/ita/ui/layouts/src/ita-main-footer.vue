@@ -4,14 +4,15 @@
             <nav class="pull-left">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">
-                            Aide ?
+                        <a class="nav-link" href="#">
+                            SNIA rdc
                         </a>
                     </li>
+
                 </ul>
             </nav>
             <div class="copyright ml-auto">
-                Snia RDC. Production PAM.
+                all right reserved <i class="fa fa-heart heart text-danger"></i> by <a href="rtgroup-rdc.com">RT GROUP</a>
             </div>
         </div>
     </footer>

@@ -1,36 +1,38 @@
 <template>
-    <div class="wrapper scrollbar-inner horizontal-layout-3">
+    <div class="wrapper horizontal-layout-3">
 
         <!--  main header -->
-        <ita-main-header />
+        <main-header />
         <!-- End main header -->
 
         <router-view />
 
         <!-- main footer -->
-        <ita-main-footer />
+        <main-footer />
         <!-- End footer -->
-
+        <create-fertilisant-modal />
 
     </div>
 </template>
 
 <script>
-import itaMainHeader from './src/ita-main-header';
-import itaMainFooter from './src/ita-main-footer';
+import mainHeader from './src/main-header';
+import mainFooter from './src/main-footer';
+import createFertilisantModal from '../modals/create_fertilisant_modal';
 import utilities from '@/mixins/public/utils';
 
-
 export default {
-    name: "ItaModule",
+    name: "SenaficModule",
     mixins: [utilities],
     components: {
-        itaMainHeader,
-        itaMainFooter
+        mainHeader,
+        mainFooter,
+        createFertilisantModal
     },
+
     mounted() {
-        $('.scrollbar-inner').scrollbar();
-        this.$router.push({ name: 'ita-dashboard-route' });
+
+        this.$router.push({ name: 'senafic-dashboard-route' })
     },
 
     beforeMount() {

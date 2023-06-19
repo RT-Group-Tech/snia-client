@@ -2,6 +2,8 @@ import { createStore } from "vuex";
 
 /*modules imports*/
 import danticStore from "@/apps/dantic/store";
+import senaficStore from "@/apps/senafic/store";
+import senasemStore from "@/apps/senasem/store";
 import itaStore from "@/apps/ita/store";
 import authStore from "./modules/auth";
 
@@ -12,6 +14,8 @@ import GlobalApi from "../api";
 const store = createStore({
   modules: {
     dantic: danticStore,
+    senasem: senasemStore,
+    senafic: senaficStore,
     auth: authStore,
     ita: itaStore,
   },

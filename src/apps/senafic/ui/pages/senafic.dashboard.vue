@@ -5,13 +5,15 @@
             <div class="container text-white py-2">
                 <div class="d-flex align-items-center">
                     <div class="mr-3">
-                        <h1 class="mb-3">Bienvenue sur le module SENASEM</h1>
-                        <h5 class="op-7 mb-3">Le Service national de semences de la Rép. Dém du Congo</h5>
+                        <h1 class="mb-3">Bienvenue sur le module SENAFIC</h1>
+                        <h5 class="op-7 mb-3">Le Service national des Fertilisants et des Intrants Connexes de la Rép. Dém
+                            du Congo</h5>
                     </div>
                     <div class="ml-auto">
-                        <button type="button" class="btn btn-success" @click.prevent="$showBsModal('createSemenceModal')">
-                            <i class="flaticon-add"></i> Nouvelle semence
-                            certifiée</button>
+                        <button type="button" class="btn btn-success"
+                            @click.prevent="$showBsModal('createFertilisantModal')">
+                            <i class="flaticon-add"></i> Nouveau fertilisant
+                        </button>
                     </div>
                 </div>
             </div>
@@ -23,7 +25,7 @@
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre des semences</div>
+                                <div class="text-muted m-0">Nombre des Fertilisants</div>
                                 <div class="h1 mb-3 fw-extrabold ">43</div>
                             </div>
                         </div>
@@ -31,7 +33,7 @@
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre d'agents SENASEM</div>
+                                <div class="text-muted m-0">Intrants Connexes de SENAFIC</div>
                                 <div class="h1 mb-3 fw-extrabold">17</div>
                             </div>
                         </div>
@@ -39,7 +41,7 @@
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Semences certifiées</div>
+                                <div class="text-muted m-0">Nombres des agents</div>
                                 <div class="h1 mb-3 fw-extrabold">700</div>
                             </div>
                         </div>
@@ -52,7 +54,7 @@
                         <div class="card animated fadeInUp">
                             <div class="card-header">
                                 <div class="card-head-row d-flex justify-content-between">
-                                    <h4 class="card-title">Liste de semences certifiées</h4>
+                                    <h4 class="card-title">Liste des fertilisants</h4>
                                     <form>
                                         <div class="input-group">
                                             <input type="text" placeholder="Recherche ..." class="form-control">
@@ -65,7 +67,7 @@
                                     </form>
                                 </div>
                                 <p class="card-category">
-                                    il s'agit de la liste exhaustive de toutes les semences certifiées répertoriées</p>
+                                    il s'agit de la liste exhaustive de tous les fertilisants répertoriés !</p>
                             </div>
                             <div class="card-body m-0">
                                 <div class="row">
@@ -73,29 +75,17 @@
                                         <div class="table-responsive table-hover table-sales">
                                             <table class="table">
                                                 <thead>
-                                                    <th>
-                                                        Image
-                                                    </th>
-                                                    <th>
-                                                        Libelle de la semence
-                                                    </th>
-                                                    <th class="text-right">
-                                                        Culture
-                                                    </th>
+                                                    <th>Image</th>
+                                                    <th>Libellé du fertilisant</th>
                                                 </thead>
                                                 <tbody>
-
                                                     <tr v-for="i in 10" :key="i">
                                                         <td>
                                                             <div class="flag">
                                                                 <img src="assets/img/flags/id.png" alt="indonesia">
                                                             </div>
                                                         </td>
-                                                        <td>Lorem ipsum Dolerte</td>
-                                                        <td class="text-right">
-                                                            Sit lorem pasma
-                                                        </td>
-
+                                                        <td>Lorem ipsum doleret</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -117,3 +107,4 @@ export default {
     name: "Dashboard",
 }
 </script>
+

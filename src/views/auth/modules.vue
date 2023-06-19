@@ -50,29 +50,42 @@ export default {
         toggleChoice(choice) {
             let module = choice.toLowerCase();
             if (this.user) {
-                if (module.includes('dantic')) {
-                    this.$router.push({
-                        name: "dantic-secure-route",
-                    });
-                } else if (module.includes('ita')) {
-                    this.$router.push({
-                        name: "ita-secure-route",
-                    });
-                }
-                else if (module.includes('senasem')) {
-                    this.$router.push({
-                        name: "senasem-secure-route",
-                    });
-                }
-                else {
-                    Swal.fire({
-                        title: "Module non disponible",
-                        text: "Impossible de vous loguer dans cette module sélectionnée!",
-                        icon: 'warning',
-                        timer: 3000,
-                        showConfirmButton: false,
-                        showCancelButton: false,
-                    });
+                switch (module) {
+                    case 'dantic':
+                        this.$router.push({
+                            name: "dantic-secure-route",
+                        });
+                        break;
+                    case 'ita':
+                        this.$router.push({
+                            name: "ita-secure-route",
+                        });
+                        break
+                    case 'senasem':
+                        this.$router.push({
+                            name: "senasem-secure-route",
+                        });
+                        break
+                    case 'dprotv':
+                        this.$router.push({
+                            name: "dprotv-secure-route",
+                        });
+                        break
+                    case 'senafic':
+                        this.$router.push({
+                            name: "senafic-secure-route",
+                        });
+                        break
+                    default:
+                        Swal.fire({
+                            title: "Module non disponible",
+                            text: "Impossible de vous loguer dans cette module sélectionnée!",
+                            icon: 'warning',
+                            timer: 3000,
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                        });
+                        break;
                 }
             }
         },

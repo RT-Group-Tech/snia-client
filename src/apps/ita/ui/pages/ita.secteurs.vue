@@ -9,7 +9,7 @@
                     </div>
                     <div class="ml-auto">
                         <button type="button" class="btn btn-success" @click.prevent="$showBsModal('secteurCreateModal')">
-                            <i class="flaticon-add"></i> Nouvelle ITA</button>
+                            <i class="flaticon-add"></i> Nouveau secteur</button>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <div class="col-12 col-sm-12 col-lg-12">
                         <div class="row row-card-no-pd">
                             <div class="col-md-12">
-                                <div class="card">
+                                <div class="card full-height">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -35,6 +35,12 @@
                                                         </button>
                                                     </li>
                                                 </ul>
+
+                                                <div v-else class="p-5">
+                                                    <h2 class="text-center fw-extrabold text-danger">Aucun secteur trouvé !
+                                                    </h2>
+                                                </div>
+
                                             </div>
 
                                         </div>

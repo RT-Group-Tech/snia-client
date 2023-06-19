@@ -1,38 +1,37 @@
 <template>
-    <div class="wrapper scrollbar-inner horizontal-layout-3">
-
+    <div class="wrapper horizontal-layout-3">
         <!--  main header -->
-        <ita-main-header />
+        <main-header />
         <!-- End main header -->
 
         <router-view />
 
         <!-- main footer -->
-        <ita-main-footer />
+        <main-footer />
         <!-- End footer -->
-
+        <create-produit-modal />
 
     </div>
 </template>
 
 <script>
-import itaMainHeader from './src/ita-main-header';
-import itaMainFooter from './src/ita-main-footer';
+import mainHeader from './src/main-header';
+import mainFooter from './src/main-footer';
 import utilities from '@/mixins/public/utils';
-
+import createProduitModal from '../modals/create_produit_modal';
 
 export default {
-    name: "ItaModule",
+    name: "SenasemModule",
     mixins: [utilities],
     components: {
-        itaMainHeader,
-        itaMainFooter
-    },
-    mounted() {
-        $('.scrollbar-inner').scrollbar();
-        this.$router.push({ name: 'ita-dashboard-route' });
+        mainHeader,
+        mainFooter,
+        createProduitModal
     },
 
+    mounted() {
+        this.$router.push({ name: 'dprotv-dashboard-route' })
+    },
     beforeMount() {
         require('@/assets/css/atlantis2.css');
     },

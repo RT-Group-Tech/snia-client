@@ -1,6 +1,8 @@
 import danticRoutes from "@/apps/dantic/routes";
 import itaRoutes from "@/apps/ita/routes";
 import senasemRoutes from "@/apps/senasem/routes";
+import senaficRoutes from "@/apps/senafic/routes";
+import dprotvRoutes from "@/apps/dprotv/routes";
 /* import { beforeAuth } from "@/middlewares/auth"; */
 
 const routes = [
@@ -34,6 +36,10 @@ const routes = [
   ...itaRoutes, //ita routes
 
   ...senasemRoutes, //senasem routes
+
+  ...senaficRoutes, //senafic routes
+
+  ...dprotvRoutes, //dprotv routes
 ];
 
 export default routes;

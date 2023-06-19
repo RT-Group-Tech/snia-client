@@ -5,13 +5,14 @@
             <div class="container text-white py-2">
                 <div class="d-flex align-items-center">
                     <div class="mr-3">
-                        <h1 class="mb-3">Bienvenue sur le module SENASEM</h1>
-                        <h5 class="op-7 mb-3">Le Service national de semences de la Rép. Dém du Congo</h5>
+                        <h1 class="mb-3">Bienvenue sur le module DPROTV</h1>
+                        <h5 class="op-7 mb-3">La Direction des Produits Phytosanitaires de la Rép. Dém
+                            du Congo</h5>
                     </div>
                     <div class="ml-auto">
-                        <button type="button" class="btn btn-success" @click.prevent="$showBsModal('createSemenceModal')">
-                            <i class="flaticon-add"></i> Nouvelle semence
-                            certifiée</button>
+                        <button type="button" class="btn btn-success" @click.prevent="$showBsModal('createProduitModal')">
+                            <i class="flaticon-add"></i> Nouveau produit phyto certifié
+                        </button>
                     </div>
                 </div>
             </div>
@@ -23,7 +24,7 @@
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre des semences</div>
+                                <div class="text-muted m-0">Nombre des produits phyto</div>
                                 <div class="h1 mb-3 fw-extrabold ">43</div>
                             </div>
                         </div>
@@ -31,15 +32,7 @@
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre d'agents SENASEM</div>
-                                <div class="h1 mb-3 fw-extrabold">17</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-lg-2">
-                        <div class="card animated zoomIn">
-                            <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Semences certifiées</div>
+                                <div class="text-muted m-0">Nombres des agents</div>
                                 <div class="h1 mb-3 fw-extrabold">700</div>
                             </div>
                         </div>
@@ -52,7 +45,7 @@
                         <div class="card animated fadeInUp">
                             <div class="card-header">
                                 <div class="card-head-row d-flex justify-content-between">
-                                    <h4 class="card-title">Liste de semences certifiées</h4>
+                                    <h4 class="card-title">Liste des produits phytosanitaires certifiés</h4>
                                     <form>
                                         <div class="input-group">
                                             <input type="text" placeholder="Recherche ..." class="form-control">
@@ -65,7 +58,8 @@
                                     </form>
                                 </div>
                                 <p class="card-category">
-                                    il s'agit de la liste exhaustive de toutes les semences certifiées répertoriées</p>
+                                    il s'agit de la liste exhaustive de tous les produits phytosanitaires certifiés
+                                    repertoriés !</p>
                             </div>
                             <div class="card-body m-0">
                                 <div class="row">
@@ -77,26 +71,19 @@
                                                         Image
                                                     </th>
                                                     <th>
-                                                        Libelle de la semence
-                                                    </th>
-                                                    <th class="text-right">
-                                                        Culture
+                                                        Libellé du produit phyto.
                                                     </th>
                                                 </thead>
                                                 <tbody>
-
                                                     <tr v-for="i in 10" :key="i">
                                                         <td>
                                                             <div class="flag">
                                                                 <img src="assets/img/flags/id.png" alt="indonesia">
                                                             </div>
                                                         </td>
-                                                        <td>Lorem ipsum Dolerte</td>
-                                                        <td class="text-right">
-                                                            Sit lorem pasma
-                                                        </td>
-
+                                                        <td>Lorem Ipsum</td>
                                                     </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -117,3 +104,4 @@ export default {
     name: "Dashboard",
 }
 </script>
+

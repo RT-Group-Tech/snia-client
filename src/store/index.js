@@ -12,67 +12,75 @@ import GlobalApi from "../api";
 
 /*Crée un store central global qui permet d'ajouter des tiers modules */
 const store = createStore({
-  modules: {
-    dantic: danticStore,
-    senasem: senasemStore,
-    senafic: senaficStore,
-    auth: authStore,
-    ita: itaStore,
-  },
-  getters: {
-    GET_COLLECTES: (state) => state.collectes,
-    GET_SUJETS: (state) => state.sujets,
-    GET_CSS: (state) => state.css,
-  },
-  mutations: {
-    SET_SUJETS(state, data) {
-      state.sujets = data;
+    modules: {
+        dantic: danticStore,
+        senasem: senasemStore,
+        senafic: senaficStore,
+        auth: authStore,
+        ita: itaStore,
     },
-    SET_COLLECTES(state, data) {
-      state.collectes = data;
+    getters: {
+        GET_COLLECTES: (state) => state.collectes,
+        GET_SUJETS: (state) => state.sujets,
+        GET_CULTURES: (state) => state.cultures,
     },
-    SET_CSS(state, data) {
-      state.css = data;
+    mutations: {
+        SET_SUJETS(state, data) {
+            state.sujets = data;
+        },
+        SET_COLLECTES(state, data) {
+            state.collectes = data;
+        },
+        SET_CULTURES(state, data) {
+            state.cultures = data;
+        },
     },
-  },
-  state: {
-    collectes: [] /*Liste des données collectées */,
-    sujets: [] /* Formulaire sujets */,
-    dataLoading: false,
-    css: "",
-  },
-  actions: {
-    voirSujets({ commit, state }) {
-      return new Promise((resolve) => {
-        state.dataLoading = true;
-        Api.voirFormulairesSujets((data) => {
-          state.dataLoading = false;
-          let sujets = data.result.reponse;
-          commit("SET_SUJETS", sujets.reverse());
-          resolve(sujets);
-        });
-      });
+    state: {
+        collectes: [] /*Liste des données collectées */ ,
+        sujets: [] /* Formulaire sujets */ ,
+        cultures: [], //*Liste des cultures * */
     },
-    voirCollectes({ commit, state }) {
-      return new Promise((resolve) => {
-        state.dataLoading = true;
-        Api.voirDonneesCollectes((data) => {
-          state.dataLoading = false;
-          commit("SET_COLLECTES", data);
-          resolve(data);
-        });
-      });
+    actions: {
+        voirSujets({ commit, state }) {
+            return new Promise((resolve) => {
+                state.dataLoading = true;
+                Api.voirFormulairesSujets((data) => {
+                    state.dataLoading = false;
+                    let sujets = data.result.reponse;
+                    commit("SET_SUJETS", sujets.reverse());
+                    resolve(sujets);
+                });
+            });
+        },
+        /****
+         *
+         */
+        voirCollectes({ commit, state }) {
+            return new Promise((resolve) => {
+                state.dataLoading = true;
+                Api.voirDonneesCollectes((data) => {
+                    state.dataLoading = false;
+                    commit("SET_COLLECTES", data);
+                    resolve(data);
+                });
+            });
+        },
+        voirCultures({ commit }) {
+            return new Promise((resolve) => {
+                GlobalApi.voirCultures((data) => {
+                    commit("GET_CULTURES", data);
+                    resolve(data);
+                });
+            });
+        },
+        generateReporting() {
+            return new Promise((resolve) => {
+                GlobalApi.genererRaport((reponse) => {
+                    resolve(reponse);
+                });
+            });
+        },
     },
-    generateReporting() {
-      return new Promise((resolve) => {
-        GlobalApi.genererRaport((reponse) => {
-          resolve(reponse);
-        });
-      });
-    },
-
-    loadCss({ commit }, css) {},
-  },
 });
 
 export default store;

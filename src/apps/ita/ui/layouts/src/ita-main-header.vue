@@ -10,7 +10,8 @@
                 </button>
                 <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
                 <!-- Logo Header -->
-                <a href="" class="logo d-flex align-items-center justify-content-center mt-2">
+                <a href="javascript:void(0)" @click.prevent="$router.push({ name: 'ita-dashboard-route' })"
+                    class="logo d-flex align-items-center justify-content-center mt-2">
                     <h2 class="fw-bold text-white">ITA</h2>
                 </a>
                 <!-- End Logo Header -->

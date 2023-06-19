@@ -15,7 +15,7 @@
         </div>
     </div>
 </template>
-
+<style scoped src="@/assets/css/atlantis.css"></style>
 <script>
 export default {
     name: "NotFound",

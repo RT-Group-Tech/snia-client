@@ -1,20 +1,24 @@
 <template>
     <div class="wrapper bubble-shadow" data-background-color="blue">
         <div class="choice-module h-100 w-100">
-            <div class="container d-flex h-100">
-                <div class="row my-auto w-100 mx-auto justify-content-center align-items-center">
-                    <div class="col-md-12 mb-3">
-                        <h1 class="text-center text-white">Bienvenue agent <strong> <i class="icon-user mx-2"></i>{{
-                            user.name }}</strong>!
-                        </h1>
-                        <p class="text-center text-white">Veuillez sélectionner une module dans laquelle vs voulez vous
-                            loguer !</p>
-                    </div>
-                    <div class="col-6 col-sm-4 col-lg-2" v-for="(mod, index) in modules" :key="index">
-                        <div class="card choice-card" @click.prevent="() => toggleChoice(mod)">
-                            <div class="card-body p-3 text-center">
-                                <div class="h1 m-0"><i class="icon-lock"></i></div>
-                                <div class="mb-3 title fw-mediumbold">{{ mod }}</div>
+            <div class="container h-100 mx-5">
+                <div class="container d-flex h-100">
+                    <div class="row my-auto w-75 mx-auto justify-content-center align-items-center">
+                        <div class="col-md-12 mb-3">
+                            <h1 class="text-center text-white animated zoomIn">Bienvenue agent <strong> <i
+                                        class="icon-user mx-2"></i>{{
+                                            user.name }}</strong>!
+                            </h1>
+                            <p class="text-center text-white animated fadeInUp">Veuillez sélectionner un module dans
+                                lequel vs voulez vous
+                                loguer !</p>
+                        </div>
+                        <div class="col-3 col-sm-3 col-lg-2" v-for="(mod, index) in modules" :key="index">
+                            <div class="card choice-card animated flipInX" @click.prevent="() => toggleChoice(mod)">
+                                <div class="card-body p-3 text-center">
+                                    <div class="h1 m-0"><i class="icon-lock"></i></div>
+                                    <div class="mb-3 title fw-mediumbold">{{ mod }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -27,17 +31,16 @@
 <script>
 
 export default {
-
-    name: 'ModuleChoice',
-
+    name: 'Modules',
     data() {
         return {
-            modules: ["DANTIC", "IPA", "ITA", "SENASEM"],
+            modules: ["DANTIC", "IPA", "ITA", "SENASEM", "SENAFIC", "DPROTV"],
         };
     },
     async mounted() {
         await this.$store.dispatch("auth/refreshLoggedUser")
     },
+
     computed: {
         user() {
             return this.$store.getters['auth/GET_USER']
@@ -100,6 +103,8 @@ export default {
     cursor: pointer;
 }
 
+
+
 .choice-module .choice-card:hover {
     background-color: #010f3c;
     border: none !important;
@@ -108,6 +113,16 @@ export default {
 
 .choice-module .choice-card:hover .card-body {
     color: #ffffff !important;
+}
+
+.disabled {
+    background-color: #dadadaeb !important;
+    border: none;
+    cursor: not-allowed !important;
+}
+
+.disabled:hover .card-body {
+    color: #3e3c3c !important;
 }
 </style>
 

@@ -18,6 +18,7 @@ const store = createStore({
   getters: {
     GET_COLLECTES: (state) => state.collectes,
     GET_SUJETS: (state) => state.sujets,
+    GET_CSS: (state) => state.css,
   },
   mutations: {
     SET_SUJETS(state, data) {
@@ -26,11 +27,15 @@ const store = createStore({
     SET_COLLECTES(state, data) {
       state.collectes = data;
     },
+    SET_CSS(state, data) {
+      state.css = data;
+    },
   },
   state: {
     collectes: [] /*Liste des données collectées */,
     sujets: [] /* Formulaire sujets */,
     dataLoading: false,
+    css: "",
   },
   actions: {
     voirSujets({ commit, state }) {
@@ -54,14 +59,15 @@ const store = createStore({
         });
       });
     },
-    generateReporting()
-    {
-      return new Promise((resolve)=>{
-        GlobalApi.genererRaport((reponse)=>{
+    generateReporting() {
+      return new Promise((resolve) => {
+        GlobalApi.genererRaport((reponse) => {
           resolve(reponse);
         });
       });
-    }
+    },
+
+    loadCss({ commit }, css) {},
   },
 });
 

@@ -1,4 +1,4 @@
-import http from "@/http";
+import { request } from "@/http";
 
 class Api {
   /**

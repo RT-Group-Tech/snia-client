@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import '@/assets/css/atlantis2.css';
 import itaMainHeader from './src/ita-main-header';
 import itaMainFooter from './src/ita-main-footer'
 
@@ -82,6 +81,13 @@ export default {
     methods: {
         fixedMainHeader: fixedMainHeader,
         customBackgroundColor: customBackgroundColor
+    },
+
+    beforeMount() {
+        require('@/assets/css/atlantis2.css');
+    },
+    unmounted() {
+        this.$router.go();
     },
 }
 </script>

@@ -19,7 +19,7 @@
             <div class="page-inner mt--5">
                 <div class="row mt--2">
                     <div class="col-md-6">
-                        <div class="card full-height animated flipInX">
+                        <div class="card full-height animated zoomIn">
                             <div class="card-body">
                                 <div class="card-title">Statistiques</div>
                                 <div class="card-category">Informations à propos des statistiques du module</div>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card full-height animated flipInX">
+                        <div class="card full-height animated zoomIn">
                             <div class="card-body">
                                 <div class="card-title">Total des statistiques du module</div>
                                 <div class="row py-3">

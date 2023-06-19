@@ -14,8 +14,8 @@ export default {
   },
 
   /* async unmounted() {
-                                      this.$router.go();
-                                    }, */
+                                        this.$router.go();
+                                      }, */
 
   async mounted() {
     await UserService.init((res) => console.log(JSON.stringify(res)));
@@ -49,7 +49,7 @@ export default {
             if (result) {
               await this.$store.dispatch("auth/refreshLoggedUser");
               this.$router.push({
-                name: "choices",
+                name: "modules",
               });
             } else {
               /*create a simple animation shake when task is failed */

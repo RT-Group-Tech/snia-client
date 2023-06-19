@@ -66,7 +66,7 @@ export default {
             html: true,
             trigger: 'click',
             placement: (context, src) => {
-                $(context).addClass(this.triggerClass)
+                $(context).addClass(this.triggerClass);
                 return this.placement;
             },
             sanitize: false,
@@ -87,6 +87,10 @@ export default {
 </script>
 
 <style scoped>
+.popover {
+    min-width: 440px !important;
+}
+
 .Popover__Container>.Popover__Content {
     display: none;
 }

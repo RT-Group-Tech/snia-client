@@ -15,8 +15,6 @@
 </template>
  
 <script>
-import '@/assets/css/atlantis.css'
-
 /* Layouts imports */
 import HeaderLayout from "./src/header"
 import SidebarLayout from "./src/sidebar"
@@ -27,12 +25,18 @@ export default {
         HeaderLayout,
         SidebarLayout
     },
+    beforeMount() {
+        require('@/assets/css/atlantis.css');
+    },
 
     async mounted() {
         this.$router.push({ name: "dashboard-route" });
         this.$store.dispatch('dantic/viewIpas')
         $('.scrollbar-inner').scrollbar();
         this.$store.dispatch("auth/refreshLoggedUser");
+    },
+    unmounted() {
+        this.$router.go();
     },
     methods: {
         /*Load web font*/

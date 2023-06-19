@@ -1,5 +1,5 @@
 <template>
-    <bs-modal id="createSemenceModal" title="Nouvelle Semence certifié" size="modal-lg">
+    <bs-modal @submit="submitForm" id="createSemenceModal" title="Nouvelle Semence certifié" size="modal-lg">
         <template #body-content>
             <div class="row m-0">
                 <div class="col-md-6">
@@ -12,7 +12,6 @@
                                 <option value="text">Culture 2</option>
                                 <option value="text">Culture 3</option>
                             </select>
-
                         </div>
                     </div>
                 </div>
@@ -40,6 +39,7 @@
 </template>
 
 <script>
+import Api from "../../api"
 export default {
     name: 'CreateSemenceModal',
     data() {
@@ -62,6 +62,29 @@ export default {
 
         uploadImage(event) {
             this.form.image = event.target.files[0];
+        },
+
+        submitForm(event) {
+            Api.creerSemence(this.form).then((result) => {
+                if (result) {
+                    Swal({
+                        icon: 'success',
+                        title: 'Effectué avec succès !',
+                        text: 'La nouvelle semence a été créée avec success !',
+                        timer: 3000,
+                        showConfirmButton: false,
+                    });
+                }
+            })
+                .catch((e) => {
+                    Swal({
+                        icon: 'warning',
+                        title: 'Echec de l\'Opération !',
+                        text: 'Une erreur est servenue lors de l\'envoi de données au serveur!',
+                        timer: 3000,
+                        showConfirmButton: false,
+                    });
+                })
         }
     },
 }

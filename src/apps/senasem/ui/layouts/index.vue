@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import '@/assets/css/atlantis2.css';
 import mainHeader from './src/main-header';
 import mainFooter from './src/main-footer';
 import createSemenceModal from '../modals/create_semence_modal'
@@ -84,6 +83,13 @@ export default {
     methods: {
         fixedMainHeader: fixedMainHeader,
         customBackgroundColor: customBackgroundColor
+    },
+
+    beforeMount() {
+        require('@/assets/css/atlantis2.css');
+    },
+    unmounted() {
+        this.$router.go();
     },
 }
 </script>

@@ -5,7 +5,7 @@
             <div :class="size" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <!-- Modal Header -->
-                    <div class="modal-header bg-light">
+                    <div class="modal-header">
                         <h4 class="modal-title"> <strong>{{ title }}</strong></h4>
                         <button type="button" class="close" @click.prevent="$emit('onClose')" data-dismiss="modal"><i
                                 class="icon-close text-danger"></i></button>

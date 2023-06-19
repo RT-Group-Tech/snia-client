@@ -12,7 +12,7 @@
                 </ul>
             </nav>
             <div class="copyright ml-auto">
-                all right reserved <i class="fa fa-heart heart text-danger"></i> by <a href="rtgroup-rdc.com">RT GROUP</a>
+                powered <i class="icon-globe text-info"></i> by <a href="rtgroup-rdc.com">RT GROUP</a>
             </div>
         </div>
     </footer>

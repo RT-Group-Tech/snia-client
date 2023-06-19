@@ -1,5 +1,5 @@
 <template>
-    <bs-modal @submit.prevent="submitSecteur" id="secteurCreateModal" title="Création secteur">
+    <bs-modal @submit="submitSecteur" id="secteurCreateModal" title="Création secteur" size="modal-lg">
         <template #body-content>
             <div>
                 <label for="to" class="col-form-label mb-2">Désignation secteur</label>

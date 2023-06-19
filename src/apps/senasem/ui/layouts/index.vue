@@ -10,7 +10,7 @@
         <!-- main footer -->
         <main-footer />
         <!-- End footer -->
-
+        <create-semence-modal />
 
     </div>
 </template>
@@ -18,7 +18,8 @@
 <script>
 import '@/assets/css/atlantis2.css';
 import mainHeader from './src/main-header';
-import mainFooter from './src/main-footer'
+import mainFooter from './src/main-footer';
+import createSemenceModal from '../modals/create_semence_modal'
 
 function customBackgroundColor() {
     $('*[data-background-color="custom"]').each(function () {
@@ -64,10 +65,12 @@ export default {
     name: "SenasemModule",
     components: {
         mainHeader,
-        mainFooter
+        mainFooter,
+        createSemenceModal
     },
 
     mounted() {
+
         this.$router.push({ name: 'senasem-dashboard-route' })
     },
 

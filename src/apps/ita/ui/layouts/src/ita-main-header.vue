@@ -22,9 +22,10 @@
                             Menu
                             <div class="close-menu"> <i class="flaticon-cross"></i></div>
                         </h3>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="javascript:void(0)"
+                                @click.prevent="$router.push({ name: 'ita-dashboard-route' })" id="navbarDropdown"
+                                role="button">
                                 Tableau de bord
                             </a>
                         </li>
@@ -36,7 +37,8 @@
                             <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="javascript:void(0)"
                                     @click.prevent="$router.push({ name: 'ita-secteurs-route' })">Voir secteur</a>
-                                <a class="dropdown-item" href="javascript:void(0)" @click.prevent="createNewSecteur">Créer
+                                <a class="dropdown-item" href="javascript:void(0)"
+                                    @click.prevent="$showBsModal('secteurCreateModal')">Créer
                                     secteur</a>
                             </div>
                         </li>
@@ -54,7 +56,7 @@
                                 <ul class="dropdown-menu dropdown-search animated fadeIn">
                                     <form class="navbar-left navbar-form nav-search">
                                         <div class="input-group">
-                                            <input type="text" placeholder="Search ..." class="form-control">
+                                            <input type="text" placeholder="Recherche ..." class="form-control">
                                         </div>
                                     </form>
                                 </ul>
@@ -104,20 +106,17 @@
             </div>
         </div>
     </div>
+    <secteur-create-modal />
 </template>
 
 <script>
-import AuthView from '@/mixins/auth/logview'
+import AuthView from '@/mixins/auth/logview';
+import secteurCreateModal from "../../modals/ita.secteurs-create-modal"
 export default {
     mixins: [AuthView],
+    components: {
+        secteurCreateModal
+    }
 
-    methods: {
-        createNewSecteur() {
-            this.$router.push({ name: 'ita-secteurs-route' });
-            setTimeout(() => {
-                this.$schowBsModal("secteurCreateModal");
-            }, 1000);
-        }
-    },
 }
 </script>

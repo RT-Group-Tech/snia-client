@@ -4,7 +4,7 @@
             <div class="container text-white py-2">
                 <div class="d-flex align-items-center">
                     <div class="mr-3">
-                        <h1 class="mb-3">Bienvenue sur la module ITA</h1>
+                        <h1 class="mb-3">Bienvenue sur le module ITA</h1>
                         <h5 class="op-7 mb-3">Inspéction Territoriale Agricole de la Rép. Dém du Congo</h5>
                     </div>
                     <div class="ml-auto">

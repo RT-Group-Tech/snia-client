@@ -1,11 +1,11 @@
 <template>
-    <div class="main-panel">
+    <div class="main-panel scrollbar-inner">
 
         <div class="bg-primary2 pt-4 pb-5">
             <div class="container text-white py-2">
                 <div class="d-flex align-items-center">
                     <div class="mr-3">
-                        <h1 class="mb-3">Bienvenue sur la module SENASEM</h1>
+                        <h1 class="mb-3">Bienvenue sur le module SENASEM</h1>
                         <h5 class="op-7 mb-3">Le Service national de semences de la Rép. Dém du Congo</h5>
                     </div>
                     <div class="ml-auto">
@@ -51,14 +51,23 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-head-row">
+                                <div class="card-head-row d-flex justify-content-between">
                                     <h4 class="card-title">Liste de semences certifiées</h4>
-
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Recherche ..." class="form-control">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-search">
+                                                    <i class="fa fa-search search-icon"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <p class="card-category">
                                     il s'agit de la liste exhaustive de toutes les semences certifiées répertoriées</p>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body m-0">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive table-hover table-sales">
@@ -161,15 +170,10 @@
             </div>
         </div>
     </div>
-    <create-semence-modal />
 </template>
-
 <script>
-import createSemenceModal from '../modals/create_semence_modal'
+
 export default {
     name: "Dashboard",
-    components: {
-        createSemenceModal
-    }
 }
 </script>

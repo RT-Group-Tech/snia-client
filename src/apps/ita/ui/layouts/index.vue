@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper horizontal-layout-3">
+    <div class="wrapper scrollbar-inner horizontal-layout-3">
 
         <!--  main header -->
         <ita-main-header />
@@ -74,6 +74,7 @@ export default {
     },
 
     mounted() {
+        $('.scrollbar-inner').scrollbar();
         this.$router.push({ name: 'ita-dashboard-route' });
     },
 

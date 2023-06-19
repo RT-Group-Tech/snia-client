@@ -6,7 +6,7 @@
                     <div>
                         <label class="fw-bold mb-1">Sélectionnez une culture <sup class="text-danger">*</sup></label>
                         <div class="mb-2">
-                            <select class="custom-select form-control" required>
+                            <select class="custom-select form-control" v-model="form.culture_id" required>
                                 <option value="">---Sélectionnez une culture---</option>
                                 <option value="text">Culture 1</option>
                                 <option value="text">Culture 2</option>
@@ -19,13 +19,14 @@
                 <div class="col-md-6">
                     <div class="mb-1">
                         <label class="fw-bold mb-1">Libellé de la semence <sup class="text-danger">*</sup></label>
-                        <input type="text" class="form-control" placeholder="Entrer le libellé de la semence..." required>
+                        <input type="text" v-model="form.libelle" class="form-control"
+                            placeholder="Entrer le libellé de la semence..." required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="mb-1">
                         <label class="fw-bold mb-1">L'image de la semence <sup class="text-danger">*</sup></label>
-                        <input type="file" class="form-control" required>
+                        <input type="file" @change="uploadImage" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -43,13 +44,24 @@ export default {
     name: 'CreateSemenceModal',
     data() {
         return {
-            formLoading: false
+            formLoading: false,
+            form: {
+                libelle: '',
+                culture_id: '',
+                image: ''
+            }
         }
     },
 
     methods: {
         cleanField() {
+            this.form.image = '';
+            this.form.culture_id = '';
+            this.form.libelle = '';
+        },
 
+        uploadImage(event) {
+            this.form.image = event.target.files[0];
         }
     },
 }

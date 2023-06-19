@@ -22,15 +22,6 @@
                         <div class="row row-card-no-pd">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <div class="card-head-row">
-                                            <h4 class="card-title">Liste de secteurs</h4>
-
-                                        </div>
-                                        <p class="card-category">
-                                            Tous les secteurs
-                                        </p>
-                                    </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">

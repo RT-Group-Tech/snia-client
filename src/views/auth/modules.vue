@@ -14,12 +14,13 @@
                                 loguer !</p>
                         </div>
                         <div class="col-3 col-sm-3 col-lg-2" v-for="(mod, index) in modules" :key="index">
-                            <div class="card choice-card animated flipInX" @click.prevent="() => toggleChoice(mod)">
+                            <button class="card btn w-100 p-0 choice-card animated zoomIn" :disabled="!mod.enabled"
+                                @click.prevent="() => toggleChoice(mod)">
                                 <div class="card-body p-3 text-center">
                                     <div class="h1 m-0"><i class="icon-lock"></i></div>
-                                    <div class="mb-3 title fw-mediumbold">{{ mod }}</div>
+                                    <div class="mb-3 title fw-mediumbold">{{ mod.name }}</div>
                                 </div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -33,8 +34,35 @@
 export default {
     name: 'Modules',
     data() {
+        let modules = [
+            {
+                name: "DANTIC",
+                enabled: true,
+            },
+            {
+                name: "IPA",
+                enabled: false,
+            },
+
+            {
+                name: "ITA",
+                enabled: true,
+            },
+            {
+                name: "SENASEM",
+                enabled: true,
+            },
+            {
+                name: "SENAFIC",
+                enabled: true,
+            },
+            {
+                name: "DPROTV",
+                enabled: true,
+            },
+        ];
         return {
-            modules: ["DANTIC", "IPA", "ITA", "SENASEM", "SENAFIC", "DPROTV"],
+            modules: modules,
         };
     },
     async mounted() {
@@ -48,9 +76,9 @@ export default {
     },
     methods: {
         toggleChoice(choice) {
-            let module = choice.toLowerCase();
+            let mod = choice.name.toLowerCase();
             if (this.user) {
-                switch (module) {
+                switch (mod) {
                     case 'dantic':
                         this.$router.push({
                             name: "dantic-secure-route",
@@ -113,7 +141,6 @@ export default {
 
 .choice-module .choice-card {
     transition: .3s ease-in-out;
-    cursor: pointer;
 }
 
 

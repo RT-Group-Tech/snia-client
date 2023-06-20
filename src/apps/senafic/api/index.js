@@ -9,7 +9,7 @@ class Api {
      */
     static async creerFertilisant(form) {
         const { data, status } = await request({
-            key: "",
+            key: "c3dbca6ab6c27ab4228f579cc4939e7b7a4b768a",
             fertilisant: form.libelle,
             image: form.image,
         });
@@ -26,7 +26,7 @@ class Api {
      */
     static async voirFertilisant(callback) {
         const { data, status } = await request({
-            key: "",
+            key: "c367484f52a3b74989f77b3f8a1e2e108f044871",
         });
         if (status === 200 && data.status === "success") callback(data);
         else callback(null);

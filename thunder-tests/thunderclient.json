@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "2999777e-ae94-4322-a78d-30759227f8a7",
+    "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+    "containerId": "",
+    "name": "view data",
+    "url": "https://backend.rtgroup-rdc.com/url/security_rtg",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-06-20T12:18:37.215Z",
+    "modified": "2023-06-20T12:20:58.646Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "key",
+          "value": "e50b370cabc326d227bbf6242fe3dafcf4a3dca8"
+        }
+      ]
+    },
+    "tests": []
+  }
+]

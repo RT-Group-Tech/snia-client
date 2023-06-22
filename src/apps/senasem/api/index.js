@@ -13,7 +13,8 @@ class Api {
             culture_id: form.culture_id,
             semence: form.libelle,
             image: form.image,
-        });
+        },"/senasem/semences/add");
+        console.clear(); console.log(data);
         return new Promise((resolve, reject) => {
             if (status == 200 && data.status === "success") {
                 resolve(true);

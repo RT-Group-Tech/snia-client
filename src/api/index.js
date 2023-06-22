@@ -47,13 +47,15 @@ class GlobalApi {
     static async login(agent,callback)
     {
         var data={
-            key:"",
             identifiant:agent.identifiant,
             pass:agent.pass
         };
 
-        var res =await request(data,"/connexion/connexion_url");
-        callback(res.data.result);
+        var res =await request(data,"/connexion/connexion_url/login");
+
+        res=res.data;
+
+        callback(res);
     }
 }
 export default GlobalApi;

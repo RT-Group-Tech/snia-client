@@ -51,7 +51,6 @@ class UserService {
 
   static login(user, callback)
   {
-      GlobalApi.login();
     nSQL("userdb")
       .query("select")
       .where([

@@ -42,8 +42,8 @@ export default {
           /*end shake animation*/
         } else {
           let user = {
-            email: this.user.email,
-            password: this.user.password,
+            identifiant: this.user.email,
+            pass: this.user.password,
           };
 
           /**
@@ -51,12 +51,18 @@ export default {
            */
 
           GlobalApi.login(user,async (result, res) => {
-            if (result) {
+
+            if (result.reponse!==undefined && result.reponse.status==="success")
+            {
+              var reponse=result.reponse;
+              localStorage.setItem("userToken", JSON.stringify(reponse.data));
               await this.$store.dispatch("auth/refreshLoggedUser");
               this.$router.push({
                 name: "modules",
               });
-            } else {
+            }
+            else
+              {
               /*create a simple animation shake when task is failed */
               this.$animatedFailedTask("login-box");
               /*end shake animation*/

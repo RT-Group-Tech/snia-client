@@ -112,6 +112,7 @@ class Api {
       email: form.email,
       telephone: form.telephone,
       pass: form.pass,
+      access:form.access
     });
     if (status === 200) callback(data);
     else callback(false);

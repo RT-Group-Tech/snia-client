@@ -97,19 +97,29 @@
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group form-group-default bg-light">
             <label class="fw-extrabold">Mot de passe</label>
             <input type="password" v-model="form.pass" class="form-control" name="pass"
               placeholder="Saisir le mot de passe..." required>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group form-group-default bg-light">
             <label class="fw-extrabold">Confirmation mot de passe</label>
             <input type="password" v-model="form.confirm" class="form-control" name="confirm"
               placeholder="Confirmer mot de passe..." required>
           </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group form-group-default bg-light">
+            <label class="fw-extrabold">Accès système</label>
+            <select name="" id="" class="form-control" v-model="form.access">
+              <option value="">-------</option>
+              <option v-for="(ac, index) in access" :key="index" :value="ac">{{ ac }}</option>
+            </select>
+          </div>
+
         </div>
       </div>
     </template>
@@ -136,6 +146,7 @@ export default {
         nick: ''
       },
       grades: ["Grade 1", "Grade 2"],
+      access:["dantic","dprotv","senasem","senafic","tablette"],
       form: {
         nom_complet: '',
         telephone: '',
@@ -147,7 +158,8 @@ export default {
         numero_reference: '',
         email: '',
         pass: '',
-        confirm: ''
+        confirm: '',
+        access:''
       }
     }
   },

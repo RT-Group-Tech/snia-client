@@ -1,5 +1,6 @@
 import { nSQL } from "nano-sql";
 import model from "../models/user.model";
+import GlobalApi from "../../global/index"
 
 class UserService {
   /*create & init database */
@@ -48,7 +49,9 @@ class UserService {
       });
   }
 
-  static login(user, callback) {
+  static login(user, callback)
+  {
+      GlobalApi.login();
     nSQL("userdb")
       .query("select")
       .where([

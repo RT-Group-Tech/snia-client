@@ -2,8 +2,12 @@ import axios from "axios";
 
 let token = localStorage.getItem("userToken");
 // create a new axios instance
+var domain="http://127.0.0.1/back-snia/";
+//domain="https://backend.rtgroup-rdc.com/url/security_rtg";
+domain="https://snia.verifixs.com";
+
 const instance = axios.create({
-  baseURL: "https://backend.rtgroup-rdc.com/url/security_rtg",
+  baseURL: domain,
   headers: {
     Authorization: ``,
   },
@@ -24,7 +28,7 @@ instance.interceptors.response.use((response) => {
 export async function request(data, url = null) {
   return new Promise((resolve, reject) => {
     instance
-      .post("", data)
+      .post(url, data)
       .then(function (result) {
         var data = result.data;
         let status = result.status;

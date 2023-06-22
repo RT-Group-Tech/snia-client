@@ -7,7 +7,7 @@
                         <div class="col-md-12 mb-3">
                             <h1 class="text-center text-white animated zoomIn">Bienvenue agent <strong> <i
                                         class="icon-user mx-2"></i>{{
-                                            user.name }}</strong>!
+                                            user.nom_complet }}</strong>!
                             </h1>
                             <p class="text-center text-white animated fadeInUp">Veuillez-vous connecter au module adéquat selon votre niveau d'accès</p>
                         </div>
@@ -41,7 +41,6 @@ export default {
                 name: "IPA",
                 enabled: false,
             },
-
             {
                 name: "ITA",
                 enabled: true,

@@ -42,7 +42,6 @@
                                 <a class="dropdown-item" href="javascript:void(0)">Voir semences</a>
                             </div>
                         </li>
-
                     </ul>
                 </nav>
                 <nav class="navbar navbar-header navbar-expand-lg p-0">

@@ -9,9 +9,7 @@
                                         class="icon-user mx-2"></i>{{
                                             user.name }}</strong>!
                             </h1>
-                            <p class="text-center text-white animated fadeInUp">Veuillez sélectionner un module dans
-                                lequel vs voulez vous
-                                loguer !</p>
+                            <p class="text-center text-white animated fadeInUp">Veuillez-vous connecter au module adéquat selon votre niveau d'accès</p>
                         </div>
                         <div class="col-3 col-sm-3 col-lg-2" v-for="(mod, index) in modules" :key="index">
                             <button class="card btn w-100 p-0 choice-card animated zoomIn" :disabled="!mod.enabled"

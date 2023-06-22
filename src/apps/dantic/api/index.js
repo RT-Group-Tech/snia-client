@@ -12,7 +12,7 @@ class Api {
       identifiant: form.identifiant,
       pass: form.pass,
     };
-    const { data, status } = await request(user);
+    const { data, status } = await request(user,"/connexion/connexion_url");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -29,7 +29,7 @@ class Api {
       superficie: form.superficie,
       longitude: form.longitude,
       latitude: form.latitude,
-    });
+    },"/dantic/ipa_url/safeguardIpa");
 
     console.clear();
     console.log(data);
@@ -44,7 +44,7 @@ class Api {
   static async voirIpas(callback) {
     const { data, status } = await request({
       key: "01b5cbf370c7cb6029604d06b8fdc80c90ea8ac1",
-    });
+    },"/dantic/ipa_url/viewIpa");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -64,7 +64,7 @@ class Api {
       superficie: form.superficie,
       longitude: form.longitude,
       latitude: form.latitude,
-    });
+    },"/dantic/ita_url/safeguardIta");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -75,7 +75,7 @@ class Api {
   static async voirItas(callback) {
     const { data, status } = await request({
       key: "c93877c55c4ab3d7961672578263d6de728a3984",
-    });
+    },"/dantic/ita_url/viewIta");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -89,7 +89,7 @@ class Api {
     const { status, data } = await request({
       key: "c42806c710889ad890b10fb6357d7fc58b04df05",
       ipa_id: ipaId,
-    });
+    },"/dantic/ipa_url/viewItaById");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -113,7 +113,8 @@ class Api {
       telephone: form.telephone,
       pass: form.pass,
       access:form.access
-    });
+    },"/dantic/agent_url/safeguardAgent");
+    console.clear(); console.log(data);
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -125,8 +126,8 @@ class Api {
   static async voirAgents(callback) {
     const { data, status } = await request({
       key: "9356560e3b9554c51aca9f7c997c4e369455e2a7",
-    });
-    let agents = data.result.reponse;
+    },"/dantic/agent_url/viewAgent");
+    let agents = data.reponse;
     if (status === 200) callback(agents);
     else callback(false);
   }
@@ -142,7 +143,7 @@ class Api {
         key: "8ccd50b3e98abc0e27bec30c9f8c5ab90570ee1c",
         categorie: form.categorie,
       },
-      "http://127.0.0.1/back-snia/dantic/formulaire_url/sousinputs/add"
+      "/dantic/culture_url/safeguardcategorie"
     );
     console.clear();
     console.log(data);
@@ -157,7 +158,7 @@ class Api {
   static async voirCategories(callback) {
     const { data, status } = await request({
       key: "141b6053fe7e3046487d72f92a30437e5ba0d1a4",
-    });
+    },"/dantic/culture_url/viewcategories");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -174,7 +175,7 @@ class Api {
       nom: form.nom,
       detail: form.detail,
       valeur: form.valeur,
-    });
+    },"/dantic/culture_url/safeguardculture");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -183,7 +184,7 @@ class Api {
   static async voirFormulaires(callback) {
     const { data, status } = await request({
       key: "44daa070bcc93a83a0af787630620c35f3b4be6f",
-    });
+    },"/dantic/formulaire_url/viewformulaire");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -197,7 +198,7 @@ class Api {
     const { data, status } = await request({
       key: "d5e8d0821cc11475c8c07786b186f4deb8b4f26c",
       sujet: sujet,
-    });
+    },"/dantic/formulaire_url/safeguardsujet");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -210,9 +211,9 @@ class Api {
     const { data, status } = await request({
       key: "f038d6de71414e2247f926d7089c794ab5e4bdab",
       titre: titre,
-    });
+    },"/dantic/formulaire_url/safeguardformulaire");
 
-    let res = data.result.reponse;
+    let res = data.reponse;
     return new Promise((resolve) => {
       if (status === 200 && res.status === "success")
         resolve({ formulaire_id: res.datas });
@@ -229,8 +230,8 @@ class Api {
       key: "92a5dd7af82ba6c03661201730b46457954776c3",
       formulaire_id: form.formulaire_id,
       sujet_id: form.sujet_id,
-    });
-    let res = data.result.reponse;
+    },"/dantic/formulaire_url/linkformulaire");
+    let res = data.reponse;
     return new Promise((resolve) => {
       if (status === 200 && res.status === "success") resolve(data);
     });
@@ -246,8 +247,8 @@ class Api {
       key: "7b3f20ae607014e48bdc1e8a02ed5f17ec7de9af",
       formulaire_id: form.formulaire_id,
       section: form.section,
-    });
-    let res = data.result.reponse;
+    },"/dantic/formulaire_url/safeguardsection");
+    let res = data.reponse;
     return new Promise((resolve) => {
       if (status === 200 && res.status === "success")
         resolve({ formulaire_section_id: res.datas });
@@ -276,7 +277,7 @@ class Api {
       options: options.toString(),
     });
     //console.log("Terminate on ", JSON.stringify(data));
-    let res = data.result.reponse;
+    let res = data.reponse;
     //console.log(res);
     return new Promise((resolve) => {
       if (status === 200 && res.status === "success") {
@@ -307,7 +308,7 @@ class Api {
       data.input_option = options[i].input_option;
       var res = await request(data);
 
-      var reponse = res.data.result.reponse;
+      var reponse = res.data.reponse;
       console.log(JSON.stringify(reponse));
       if (reponse.status !== undefined && reponse.status === "success") {
         /**
@@ -336,7 +337,7 @@ class Api {
 
       var res = await request(data);
       //console.log(res);
-      var reponse = res.data.result.reponse;
+      var reponse = res.data.reponse;
       console.log(JSON.stringify(reponse));
 
       if (reponse.status !== undefined && reponse.status === "success") {
@@ -373,7 +374,7 @@ class Api {
       data.sous_input_option = sous_options[i].sous_input_option;
       var res = await request(data);
       //console.log(data); console.log(res);
-      var reponse = res.data.result.reponse;
+      var reponse = res.data.reponse;
     }
   }
 

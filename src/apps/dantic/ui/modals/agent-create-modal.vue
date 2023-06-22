@@ -169,10 +169,23 @@ export default {
       this.form.nom_complet = `${this.name.first.toUpperCase()} ${this.name.last.toUpperCase()} ${this.name.nick.toLowerCase()}`;
       /*End agent name splitting*/
 
-      this.$validForm("agent-form", event, async (result, form) => {
-        if (!result) {
+      this.submitLoading = true;
+       Api.creerAgent(this.form, (data) => {
+        this.submitLoading = false;
+        $("#agentModal").modal('hide')
+        console.log(data);
+        this.$store.dispatch("dantic/viewAgents")
+      })
+
+      this.$validForm("agent-form", event, async (result, form) =>
+      {
+        console.clear(); console.log("dsds"); console.log(this.form);
+        if (!result)
+        {
           this.$animatedFailedTask("submit-btn");
-        } else {
+        }
+        else
+          {
           if (this.form.pass !== this.form.confirm) {
             return
           }
@@ -184,6 +197,7 @@ export default {
             this.$store.dispatch("dantic/viewAgents")
           })
         }
+
       });
     }
   }

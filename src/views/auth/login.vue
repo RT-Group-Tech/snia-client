@@ -38,8 +38,10 @@
                                 <a href="#" class="link float-right fw-mediumbold">Mot de passe perdu?</a>
                             </div>
                             <div class="form-action mb-3">
-                                <button type="submit" id="btn-login" class="btn btn-snia  btn-full btn-login">
-                                    <i class="icon-login"></i> &nbsp;
+                                <button :disabled="loginLoading" type="submit" id="btn-login"
+                                    class="btn btn-snia  btn-full btn-login">
+                                    <i v-if="loginLoading" class="fa fa-spinner fa-spin mr-2"></i>
+                                    <i v-else class="icon-login"></i> &nbsp;
                                     Connexion</button>
                             </div>
                         </div>

@@ -129,7 +129,8 @@
                                         <div class="avatar-lg"><img src="assets/img/picture_placeholder.png"
                                                 alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4 class="fw-bold">{{ user.name }}</h4>
+                                            <h4 class="fw-bold">{{ user.nom_complet
+                                            }}</h4>
                                             <p class="text-muted">{{ user.email }}</p>
                                         </div>
                                     </div>

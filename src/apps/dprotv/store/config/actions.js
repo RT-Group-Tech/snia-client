@@ -7,7 +7,9 @@ const actions = {
   viewProduitsPhyto({ commit }) {
     Api.voirProduitsPhyto((data) => {
       if (data !== null) {
-        commit("SET_PROD", data.reverse());
+        if (data.produit_phytosanitaires !== undefined) {
+          commit("SET_PROD", data.produit_phytosanitaires.reverse());
+        }
       }
     });
   },

@@ -1,5 +1,7 @@
 import { request } from "@/http";
 
+import { useStore } from "vuex";
+
 class Api {
   /**
    * Creation d'un nouveau fertilisant
@@ -8,14 +10,16 @@ class Api {
    * @return promise
    */
   static async creerFertilisant(form) {
-    const { data, status } = await request({
-      key: "c3dbca6ab6c27ab4228f579cc4939e7b7a4b768a",
-      fertilisant: form.libelle,
-      image: form.image,
-    });
-    console.log(data);
+    const { data, status } = await request(
+      {
+        fertilisant: form.libelle,
+        image: form.image,
+      },
+      "/senafic/fertilisants/add"
+    );
+
     return new Promise((resolve, reject) => {
-      if (status == 200 && data.status === "success") {
+      if (status == 200 && data.reponse.status === "success") {
         resolve(true);
       } else reject(false);
     });
@@ -25,11 +29,9 @@ class Api {
    * Affichage de la liste des semences certifiées enregistrées
    * @callback data
    */
-  static async voirFertilisant(callback) {
-    const { data, status } = await request({
-      key: "c367484f52a3b74989f77b3f8a1e2e108f044871",
-    });
-    if (status === 200 && data.status === "success") callback(data);
+  static async voirFertilisants(callback) {
+    const { data, status } = await request(null, "/senafic/fertilisants/view");
+    if (status === 200) callback(data);
     else callback(null);
   }
 }

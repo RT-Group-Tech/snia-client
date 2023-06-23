@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <div class="mb-1">
                         <label class="fw-bold mb-1">L'image de la semence <sup class="text-danger">*</sup></label>
-                        <input type="file" @change="uploadImage" class="form-control" required>
+                        <input type="file" ref="fileInput" @change="uploadImage" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -53,6 +53,10 @@ export default {
         }
     },
 
+    beforeMount() {
+        this.cleanField();
+    },
+
     methods: {
         cleanField() {
             this.form.image = '';
@@ -65,8 +69,13 @@ export default {
         },
 
         submitForm(event) {
+            this.formLoading = true;
             Api.creerSemence(this.form).then((result) => {
+                this.formLoading = false;
                 if (result) {
+                    this.cleanField();
+                    this.$refs.fileInput.value = null;
+                    this.$store.dispatch('senasem/viewSemences');
                     Swal({
                         icon: 'success',
                         title: 'Effectué avec succès !',
@@ -77,6 +86,7 @@ export default {
                 }
             })
                 .catch((e) => {
+                    this.formLoading = false;
                     Swal({
                         icon: 'warning',
                         title: 'Echec de l\'Opération !',

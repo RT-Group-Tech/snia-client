@@ -8,13 +8,13 @@
                         <label class="fw-bold mb-1">Libellé du produit phytosanitaires <sup
                                 class="text-danger">*</sup></label>
                         <input type="text" v-model="form.libelle" class="form-control"
-                            placeholder="Entrer le libellé du fertilisant..." required>
+                            placeholder="Entrer le libellé du produit phytosanitaire..." required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="mb-1">
                         <label class="fw-bold mb-1">L'image du produit <sup class="text-danger">*</sup></label>
-                        <input type="file" @change="uploadImage" class="form-control" required>
+                        <input type="file" ref="inputFile" @change="uploadImage" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,10 @@ export default {
         }
     },
 
+    beforeMount() {
+        this.cleanField();
+    },
+
     methods: {
         cleanField() {
             this.form.image = '';
@@ -52,8 +56,13 @@ export default {
         },
 
         submitForm(event) {
+            this.formLoading = true;
             Api.creerProduitPhyto(this.form).then((result) => {
+                this.formLoading = false;
                 if (result) {
+                    this.$refs.inputFile.value = null;
+                    this.cleanField();
+                    this.$store.dispatch('dprotv/viewProduitsPhyto');
                     Swal({
                         icon: 'success',
                         title: 'Effectué avec succès !',
@@ -64,6 +73,7 @@ export default {
                 }
             })
                 .catch((e) => {
+                    this.formLoading = false;
                     Swal({
                         icon: 'warning',
                         title: 'Echec de l\'Opération !',

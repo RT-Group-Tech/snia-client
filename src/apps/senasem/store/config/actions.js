@@ -7,7 +7,9 @@ const actions = {
   viewSemences({ commit }) {
     Api.voirSemences((data) => {
       if (data !== null) {
-        commit("SET_SEMENCES", data.reverse());
+        if (data.semences !== undefined) {
+          commit("SET_SEMENCES", data.semences.reverse());
+        }
       }
     });
   },

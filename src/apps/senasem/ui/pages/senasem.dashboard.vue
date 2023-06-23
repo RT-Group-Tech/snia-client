@@ -55,7 +55,8 @@
                                     <h4 class="card-title">Liste de semences certifiées</h4>
                                     <form>
                                         <div class="input-group">
-                                            <input type="text" placeholder="Recherche ..." class="form-control">
+                                            <input type="text" v-model="searchWord" placeholder="Recherche ..."
+                                                class="form-control">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-search">
                                                     <i class="fa fa-search search-icon"></i>
@@ -85,13 +86,13 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    <tr v-for="i in 10" :key="i">
+                                                    <tr v-for="(sem, i) in semences" :key="i">
                                                         <td>
                                                             <div class="flag">
                                                                 <img src="assets/img/flags/id.png" alt="indonesia">
                                                             </div>
                                                         </td>
-                                                        <td>Lorem ipsum Dolerte</td>
+                                                        <td>{{ sem.nom }}</td>
                                                         <td class="text-right">
                                                             Sit lorem pasma
                                                         </td>
@@ -115,5 +116,27 @@
 
 export default {
     name: "Dashboard",
+
+    data() {
+        return {
+            searchWord: ''
+        }
+    },
+
+    mounted() {
+        this.$store.dispatch('senasem/viewSemences');
+    },
+
+    computed: {
+        semences() {
+            if (this.searchWord) {
+                let filtered = this.$store.getters['senasem/GET_SEMENCES'];
+                return filtered.filter((s) => s.nom.toLowerCase().includes(this.searchWord.toLowerCase()));
+            }
+            else {
+                return this.$store.getters['senasem/GET_SEMENCES'];
+            }
+        }
+    }
 }
 </script>

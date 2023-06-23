@@ -1,5 +1,5 @@
 const getters = {
-    GET_FERT: (state) => state.semences,
+  GET_FERT: (state) => state.fertilisants,
 };
 
 export default getters;

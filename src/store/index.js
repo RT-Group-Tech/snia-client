@@ -4,6 +4,7 @@ import { createStore } from "vuex";
 import danticStore from "@/apps/dantic/store";
 import senaficStore from "@/apps/senafic/store";
 import senasemStore from "@/apps/senasem/store";
+import dprotvStore from "@/apps/dprotv/store";
 import itaStore from "@/apps/ita/store";
 import authStore from "./modules/auth";
 
@@ -16,6 +17,7 @@ const store = createStore({
     dantic: danticStore,
     senasem: senasemStore,
     senafic: senaficStore,
+    dprotv: dprotvStore,
     auth: authStore,
     ita: itaStore,
   },
@@ -38,7 +40,33 @@ const store = createStore({
   state: {
     collectes: [] /*Liste des données collectées */,
     sujets: [] /* Formulaire sujets */,
-    cultures: [], //*Liste des cultures * */
+    cultures: [], //*Liste des cultures * */,
+    modules: [
+      {
+        name: "DANTIC",
+        enabled: false,
+      },
+      {
+        name: "IPA",
+        enabled: false,
+      },
+      {
+        name: "ITA",
+        enabled: false,
+      },
+      {
+        name: "SENASEM",
+        enabled: false,
+      },
+      {
+        name: "SENAFIC",
+        enabled: false,
+      },
+      {
+        name: "DPROTV",
+        enabled: false,
+      },
+    ],
   },
   actions: {
     voirSujets({ commit, state }) {

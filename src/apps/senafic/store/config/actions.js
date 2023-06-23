@@ -1,13 +1,15 @@
-import Api from "@/apps/senasem/api";
+import Api from "@/apps/senafic/api";
 
 const actions = {
   /**Permet de voir les semences via le store
    * @callback
    */
   viewFertilisants({ commit }) {
-    Api.voirSemences((data) => {
+    Api.voirFertilisants((data) => {
       if (data !== null) {
-        commit("SET_FERT", data.reverse());
+        if (data.fertilisants !== undefined) {
+          commit("SET_FERT", data.fertilisants.reverse());
+        }
       }
     });
   },

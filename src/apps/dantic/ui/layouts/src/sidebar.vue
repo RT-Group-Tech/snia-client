@@ -9,8 +9,8 @@
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
-                                {{ user.name }}
-                                <span class="user-level text-success">Administrateur</span>
+                                {{ $filters.sortLength($filters.capitalize(user.nom_complet), 15, '...') }}
+                                <span class="user-level text-success">Accès : {{ user.access.access }}</span>
                                 <span class="caret"></span>
                             </span>
                         </a>

@@ -7,9 +7,10 @@
                         <div class="col-md-12 mb-3">
                             <h1 class="text-center text-white animated zoomIn">Bienvenue agent <strong> <i
                                         class="icon-user mx-2"></i>{{
-                                            user.nom_complet }}</strong>!
+                                            user.nom_complet }} </strong>!
                             </h1>
-                            <p class="text-center text-white animated fadeInUp">Veuillez-vous connecter au module adéquat selon votre niveau d'accès</p>
+                            <p class="text-center text-white animated fadeInUp">Veuillez-vous connecter au module adéquat
+                                selon votre niveau d'accès</p>
                         </div>
                         <div class="col-3 col-sm-3 col-lg-2" v-for="(mod, index) in modules" :key="index">
                             <button class="card btn w-100 p-0 choice-card animated zoomIn" :disabled="!mod.enabled"
@@ -31,86 +32,55 @@
 
 export default {
     name: 'Modules',
-    data() {
-        let modules = [
-            {
-                name: "DANTIC",
-                enabled: true,
-            },
-            {
-                name: "IPA",
-                enabled: true,
-            },
-            {
-                name: "ITA",
-                enabled: true,
-            },
-            {
-                name: "SENASEM",
-                enabled: true,
-            },
-            {
-                name: "SENAFIC",
-                enabled: true,
-            },
-            {
-                name: "DPROTV",
-                enabled: true,
-            },
-        ];
-        return {
-            modules: modules,
-        };
-    },
+
     async mounted() {
-        await this.$store.dispatch("auth/refreshLoggedUser")
+        await this.$store.dispatch("auth/refreshLoggedUser");
+
+        /* Enable user access module */
+        this.modules.forEach((mod) => {
+            mod.enabled = true;
+            /* let access = mod.name.toLocaleLowerCase();
+            if (access === this.user.access.access) {
+                mod.enabled = true;
+            } */
+        })
     },
 
     computed: {
         user() {
             return this.$store.getters['auth/GET_USER']
+        },
+        modules() {
+            return this.$store.state.modules
         }
+
     },
     methods: {
         toggleChoice(choice) {
             let mod = choice.name.toLowerCase();
             if (this.user) {
-                switch (mod) {
-                    case 'dantic':
+                if (choice.enabled) {
+                    try {
                         this.$router.push({
-                            name: "dantic-secure-route",
+                            name: `${mod}-secure-route`,
                         });
-                        break;
-                    case 'ita':
-                        this.$router.push({
-                            name: "ita-secure-route",
-                        });
-                        break
-                    case 'senasem':
-                        this.$router.push({
-                            name: "senasem-secure-route",
-                        });
-                        break
-                    case 'dprotv':
-                        this.$router.push({
-                            name: "dprotv-secure-route",
-                        });
-                        break
-                    case 'senafic':
-                        this.$router.push({
-                            name: "senafic-secure-route",
-                        });
-                        break
-                    default:
-                        Swal.fire({
-                            title: "Module non disponible",
-                            text: "Impossible de vous loguer dans cette module sélectionnée!",
-                            icon: 'warning',
-                            timer: 3000,
-                            showConfirmButton: false,
-                            showCancelButton: false,
-                        });
-                        break;
+                    } catch (error) {
+                        $.notify(
+                            {
+                                icon: "fas fa-info",
+                                title: "Accès refusé!",
+                                message: `Vous n'avez pas accès au module ${mod}`,
+                            },
+                            {
+                                type: "danger",
+                                placement: {
+                                    from: "bottom",
+                                    align: "right",
+                                },
+                                time: 5000,
+                            }
+                        );
+                    }
                 }
             }
         },

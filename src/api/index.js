@@ -50,7 +50,7 @@ class GlobalApi {
     var data = {
       key: "9fceada2874804cd75ff649fc94b02de4e664dc8",
     };
-    var res = await request(data,"/common/reporting");
+    var res = await request(data, "/common/reporting");
     callback(res.data);
   }
 
@@ -65,9 +65,13 @@ class GlobalApi {
       "/connexion/connexion_url/login"
     );
 
+    console.log(JSON.stringify(data));
+
     return new Promise((resolve, reject) => {
       if (status === 200) {
-        localStorage.setItem("userToken", JSON.stringify(data.reponse.data));
+        if (data.error === undefined) {
+          localStorage.setItem("userToken", JSON.stringify(data.reponse.data));
+        }
         resolve(data);
       } else {
         reject(false);

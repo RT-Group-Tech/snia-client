@@ -17,7 +17,7 @@ class Api {
       "/senasem/semences/add"
     );
     return new Promise((resolve, reject) => {
-      if (status == 200 && data.status === "success") {
+      if (status == 200 && data.reponse.status === "success") {
         resolve(true);
       } else reject(false);
     });
@@ -29,7 +29,7 @@ class Api {
    */
   static async voirSemences(callback) {
     const { data, status } = await request(null, "/senasem/semences/view");
-    if (status === 200 && data.status === "success") callback(data);
+    if (status === 200) callback(data);
     else callback(null);
   }
 }

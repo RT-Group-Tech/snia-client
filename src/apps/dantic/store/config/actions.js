@@ -14,20 +14,20 @@ const actions = {
 
     viewIpas({ commit }) {
         Api.voirIpas((data) => {
-            commit("SET_IPAS", data.result.reponse);
+            commit("SET_IPAS", data.reponse);
         });
     },
 
     viewItas({ commit }) {
         Api.voirItas((data) => {
-            commit("SET_ITAS", data.result.reponse);
+            commit("SET_ITAS", data.reponse);
         });
     },
 
     getItasOfIpa({ commit }, id) {
         return new Promise((resolve) => {
             Api.voirItasDeIpa(id, (data) => {
-                let ipas = data.result.reponse.datas;
+                let ipas = data.reponse.datas;
                 commit("SET_ITAOfIPA", ipas.reverse());
                 resolve(true);
             });
@@ -37,7 +37,7 @@ const actions = {
     voirCategories({ commit }) {
         return new Promise((resolve) => {
             Api.voirCategories((res) => {
-                let categories = res.result.reponse.data;
+                let categories = res.reponse.data;
                 commit("SET_CATEGORIES", categories);
                 resolve(categories);
             });
@@ -49,7 +49,8 @@ const actions = {
             state.dataLoading = true;
             Api.voirFormulaires((data) => {
                 state.dataLoading = false;
-                let formulaires = data.result.formulaires;
+                console.clear(); console.log(data);
+                let formulaires = data.formulaires;
                 commit("SET_FORMULAIRES", formulaires.reverse());
                 resolve(formulaires);
             });

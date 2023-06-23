@@ -50,8 +50,8 @@ class GlobalApi {
     var data = {
       key: "9fceada2874804cd75ff649fc94b02de4e664dc8",
     };
-    var res = await request(data);
-    callback(res.data.result);
+    var res = await request(data,"/common/reporting");
+    callback(res.data);
   }
 
   static async login(agent, callback) {

@@ -75,7 +75,7 @@ export default {
                   icon: "fas fa-info",
                   title: "Opération echoué!",
                   message:
-                    "Une erreur est survenue lors de traitement des informations d'utilisateur !",
+                    "Une erreur est survenue lors de traitement des informations de l'utilisateur !",
                 },
                 {
                   type: "danger",
@@ -146,36 +146,36 @@ export default {
     },
 
     /*async initDefaultUsers() {
-                                                                  localStorage.clear("userToken");
-                                                                  await UserService.all(async (rows) => {
-                                                                    if (rows.length === 0) {
-                                                                      let users = [
-                                                                        {
-                                                                          name: "Gaston Delimond",
-                                                                          email: "gaston@gmail.com",
-                                                                          password: "12345",
-                                                                        },
-                                                                        {
-                                                                          name: "Chris Tenday",
-                                                                          email: "chris@gmail.com",
-                                                                          password: "12345",
-                                                                        },
-                                                                        {
-                                                                          name: "Tenday Chris",
-                                                                          email: "chris@ita.com",
-                                                                          password: "12345",
-                                                                        },
-                                                                        {
-                                                                          name: "Lionnel Nawej",
-                                                                          email: "lionnel@gmail.com",
-                                                                          password: "12345",
-                                                                        },
-                                                                      ];
-                                                                      for (let i = 0; i < users.length; i++) {
-                                                                        await UserService.create(users[i], (res) => console.log(res));
-                                                                      }
-                                                                    }
-                                                                  });
-                                                                },*/
+                                                                      localStorage.clear("userToken");
+                                                                      await UserService.all(async (rows) => {
+                                                                        if (rows.length === 0) {
+                                                                          let users = [
+                                                                            {
+                                                                              name: "Gaston Delimond",
+                                                                              email: "gaston@gmail.com",
+                                                                              password: "12345",
+                                                                            },
+                                                                            {
+                                                                              name: "Chris Tenday",
+                                                                              email: "chris@gmail.com",
+                                                                              password: "12345",
+                                                                            },
+                                                                            {
+                                                                              name: "Tenday Chris",
+                                                                              email: "chris@ita.com",
+                                                                              password: "12345",
+                                                                            },
+                                                                            {
+                                                                              name: "Lionnel Nawej",
+                                                                              email: "lionnel@gmail.com",
+                                                                              password: "12345",
+                                                                            },
+                                                                          ];
+                                                                          for (let i = 0; i < users.length; i++) {
+                                                                            await UserService.create(users[i], (res) => console.log(res));
+                                                                          }
+                                                                        }
+                                                                      });
+                                                                    },*/
   },
 };

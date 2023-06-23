@@ -8,9 +8,9 @@
                         <div class="mb-2">
                             <select class="custom-select form-control" v-model="form.culture_id" required>
                                 <option value="">---Sélectionnez une culture---</option>
-                                <option value="text">Culture 1</option>
-                                <option value="text">Culture 2</option>
-                                <option value="text">Culture 3</option>
+                                <option value="1">Culture 1</option>
+                                <option value="2">Culture 2</option>
+                                <option value="3">Culture 3</option>
                             </select>
                         </div>
                     </div>

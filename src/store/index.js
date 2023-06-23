@@ -12,75 +12,89 @@ import GlobalApi from "../api";
 
 /*Crée un store central global qui permet d'ajouter des tiers modules */
 const store = createStore({
-    modules: {
-        dantic: danticStore,
-        senasem: senasemStore,
-        senafic: senaficStore,
-        auth: authStore,
-        ita: itaStore,
+  modules: {
+    dantic: danticStore,
+    senasem: senasemStore,
+    senafic: senaficStore,
+    auth: authStore,
+    ita: itaStore,
+  },
+  getters: {
+    GET_COLLECTES: (state) => state.collectes,
+    GET_SUJETS: (state) => state.sujets,
+    GET_CULTURES: (state) => state.cultures,
+  },
+  mutations: {
+    SET_SUJETS(state, data) {
+      state.sujets = data;
     },
-    getters: {
-        GET_COLLECTES: (state) => state.collectes,
-        GET_SUJETS: (state) => state.sujets,
-        GET_CULTURES: (state) => state.cultures,
+    SET_COLLECTES(state, data) {
+      state.collectes = data;
     },
-    mutations: {
-        SET_SUJETS(state, data) {
-            state.sujets = data;
-        },
-        SET_COLLECTES(state, data) {
-            state.collectes = data;
-        },
-        SET_CULTURES(state, data) {
-            state.cultures = data;
-        },
+    SET_CULTURES(state, data) {
+      state.cultures = data;
     },
-    state: {
-        collectes: [] /*Liste des données collectées */ ,
-        sujets: [] /* Formulaire sujets */ ,
-        cultures: [], //*Liste des cultures * */
+  },
+  state: {
+    collectes: [] /*Liste des données collectées */,
+    sujets: [] /* Formulaire sujets */,
+    cultures: [], //*Liste des cultures * */
+  },
+  actions: {
+    voirSujets({ commit, state }) {
+      return new Promise((resolve) => {
+        state.dataLoading = true;
+        Api.voirFormulairesSujets((data) => {
+          state.dataLoading = false;
+          let sujets = data.result.reponse;
+          commit("SET_SUJETS", sujets.reverse());
+          resolve(sujets);
+        });
+      });
     },
-    actions: {
-        voirSujets({ commit, state }) {
-            return new Promise((resolve) => {
-                state.dataLoading = true;
-                Api.voirFormulairesSujets((data) => {
-                    state.dataLoading = false;
-                    let sujets = data.result.reponse;
-                    commit("SET_SUJETS", sujets.reverse());
-                    resolve(sujets);
-                });
-            });
-        },
-        /****
-         *
-         */
-        voirCollectes({ commit, state }) {
-            return new Promise((resolve) => {
-                state.dataLoading = true;
-                Api.voirDonneesCollectes((data) => {
-                    state.dataLoading = false;
-                    commit("SET_COLLECTES", data);
-                    resolve(data);
-                });
-            });
-        },
-        voirCultures({ commit }) {
-            return new Promise((resolve) => {
-                GlobalApi.voirCultures((data) => {
-                    commit("GET_CULTURES", data);
-                    resolve(data);
-                });
-            });
-        },
-        generateReporting() {
-            return new Promise((resolve) => {
-                GlobalApi.genererRaport((reponse) => {
-                    resolve(reponse);
-                });
-            });
-        },
+    /****
+     *
+     */
+    voirCollectes({ commit, state }) {
+      return new Promise((resolve) => {
+        state.dataLoading = true;
+        Api.voirDonneesCollectes((data) => {
+          state.dataLoading = false;
+          commit("SET_COLLECTES", data);
+          resolve(data);
+        });
+      });
     },
+    voirCultures({ commit }) {
+      return new Promise((resolve) => {
+        GlobalApi.voirCultures((data) => {
+          let simulate = [
+            {
+              culture_id: "1",
+              titre: "Culture 1",
+            },
+            {
+              culture_id: "2",
+              titre: "Culture 2",
+            },
+          ];
+          if (data.length === 0) {
+            commit("SET_CULTURES", simulate);
+          } else {
+            commit("SET_CULTURES", data.cultures);
+          }
+          resolve(data);
+        });
+      });
+    },
+    generateReporting() {
+      return new Promise((resolve) => {
+        GlobalApi.genererRaport((reponse) => {
+          resolve(reponse);
+        });
+      });
+    },
+  },
 });
 
 export default store;

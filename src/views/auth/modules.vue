@@ -39,7 +39,7 @@ export default {
             },
             {
                 name: "IPA",
-                enabled: false,
+                enabled: true,
             },
             {
                 name: "ITA",

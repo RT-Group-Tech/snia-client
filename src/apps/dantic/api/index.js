@@ -478,6 +478,12 @@ class Api {
 
     await request(data);
   }
+
+  static async viewCultures()
+  {
+    var res=await request({},"/dantic/culture_url/viewculture");
+
+  }
 }
 
 export default Api;

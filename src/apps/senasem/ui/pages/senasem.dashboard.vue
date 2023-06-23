@@ -89,7 +89,7 @@
                                                     <tr v-for="(sem, i) in semences" :key="i">
                                                         <td>
                                                             <div class="flag">
-                                                                <img src="assets/img/flags/id.png" alt="indonesia">
+                                                                <img :src="sem.media" alt="image">
                                                             </div>
                                                         </td>
                                                         <td>{{ sem.nom }}</td>

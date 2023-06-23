@@ -79,7 +79,7 @@
                                                     <tr v-for="(prod, i) in produits" :key="i">
                                                         <td>
                                                             <div class="flag">
-                                                                <img src="assets/img/flags/id.png" alt="indonesia">
+                                                                <img :src="prod.media" alt="image">
                                                             </div>
                                                         </td>
                                                         <td>{{ prod.titre }}</td>

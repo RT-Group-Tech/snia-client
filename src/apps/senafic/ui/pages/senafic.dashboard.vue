@@ -83,7 +83,7 @@
                                                     <tr v-for="(fert, i) in fertilisants" :key="i">
                                                         <td>
                                                             <div class="flag">
-                                                                <img src="assets/img/flags/id.png" alt="indonesia">
+                                                                <img :src="fert.media" alt="image">
                                                             </div>
                                                         </td>
                                                         <td>{{ fert.fertilisant }}</td>

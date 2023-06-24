@@ -38,11 +38,11 @@ export default {
 
         /* Enable user access module */
         this.modules.forEach((mod) => {
-            mod.enabled = true;
-            /* let access = mod.name.toLocaleLowerCase();
+            /* mod.enabled = true; */
+            let access = mod.name.toLocaleLowerCase();
             if (access === this.user.access.access) {
                 mod.enabled = true;
-            } */
+            }
         })
     },
 

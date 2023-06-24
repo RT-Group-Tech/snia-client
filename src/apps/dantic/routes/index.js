@@ -82,7 +82,6 @@ const routes = [
           authRequired: true,
         },
       },
-
     ],
   },
 ];

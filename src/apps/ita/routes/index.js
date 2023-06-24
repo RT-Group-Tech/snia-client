@@ -41,7 +41,7 @@ const routes = [
         meta: {
           authRequired: true,
         },
-      }
+      },
     ],
   },
 ];

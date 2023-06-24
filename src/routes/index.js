@@ -3,7 +3,7 @@ import itaRoutes from "@/apps/ita/routes";
 import senasemRoutes from "@/apps/senasem/routes";
 import senaficRoutes from "@/apps/senafic/routes";
 import dprotvRoutes from "@/apps/dprotv/routes";
-/* import { beforeAuth } from "@/middlewares/auth"; */
+import { beforeAuth } from "@/middlewares/auth";
 
 const routes = [
   {
@@ -20,14 +20,7 @@ const routes = [
     path: "/modules/view",
     name: "modules",
     component: () => import("@/views/auth/modules"),
-    beforeEnter: (to, from, next) => {
-      let user = localStorage.getItem("userToken");
-      if (user === null || user === undefined) {
-        next({ name: "login" });
-      } else {
-        next();
-      }
-    },
+    beforeEnter: beforeAuth,
   },
 
   /*modules routes */

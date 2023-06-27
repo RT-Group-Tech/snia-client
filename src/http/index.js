@@ -4,7 +4,7 @@ let token = localStorage.getItem("userToken");
 // create a new axios instance
 var domain = "http://127.0.0.1/back-snia/";
 //domain="https://backend.rtgroup-rdc.com/url/security_rtg";
-domain = "http://snia.verifixs.com";
+domain = "https://snia.verifixs.com";
 
 const instance = axios.create({
   baseURL: domain,

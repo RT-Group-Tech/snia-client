@@ -110,10 +110,6 @@ export default {
         }
     },
 
-    mounted() {
-        this.$store.dispatch('dprotv/viewProduitsPhyto')
-    },
-
     computed: {
         produits() {
             if (this.searchWord) {

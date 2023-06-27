@@ -30,11 +30,6 @@ export default {
         createFertilisantModal
     },
 
-    mounted() {
-
-        this.$router.push({ name: 'senafic-dashboard-route' })
-    },
-
     beforeMount() {
         require('@/assets/css/atlantis2.css');
     },

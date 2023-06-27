@@ -9,6 +9,7 @@ const routes = [
     meta: {
       authRequired: true,
     },
+    redirect: { name: "dprotv-dashboard-route" },
     children: [
       {
         path: "",

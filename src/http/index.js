@@ -4,25 +4,25 @@ let token = localStorage.getItem("userToken");
 // create a new axios instance
 var domain = "http://127.0.0.1/back-snia/";
 //domain="https://backend.rtgroup-rdc.com/url/security_rtg";
-domain = "https://snia.verifixs.com";
+domain = "http://snia.verifixs.com";
 
 const instance = axios.create({
-    baseURL: domain,
-    headers: {
-        Authorization: ``,
-    },
+  baseURL: domain,
+  headers: {
+    Authorization: ``,
+  },
 });
 
 // before a request is made start the nprogress
 instance.interceptors.request.use((config) => {
-    //NProgress.start();
-    return config;
+  //NProgress.start();
+  return config;
 });
 
 // before a response is returned stop nprogress
 instance.interceptors.response.use((response) => {
-    //NProgress.done();
-    return response;
+  //NProgress.done();
+  return response;
 });
 
 /***
@@ -34,25 +34,25 @@ instance.interceptors.response.use((response) => {
  * @returns {data, status} data: http response if status equal 200 or 201
  */
 export async function request(data = null, url = null) {
-    return new Promise((resolve, reject) => {
-        if (data === null) {
-            instance
-                .get(url)
-                .then((result) => {
-                    var data = result.data;
-                    let status = result.status;
-                    resolve({ data, status });
-                })
-                .catch((err) => reject(err));
-        } else {
-            instance
-                .post(url, data)
-                .then(function(result) {
-                    var data = result.data;
-                    let status = result.status;
-                    resolve({ data, status });
-                })
-                .catch((err) => reject(err));
-        }
-    });
+  return new Promise((resolve, reject) => {
+    if (data === null) {
+      instance
+        .get(url)
+        .then((result) => {
+          var data = result.data;
+          let status = result.status;
+          resolve({ data, status });
+        })
+        .catch((err) => reject(err));
+    } else {
+      instance
+        .post(url, data)
+        .then(function (result) {
+          var data = result.data;
+          let status = result.status;
+          resolve({ data, status });
+        })
+        .catch((err) => reject(err));
+    }
+  });
 }

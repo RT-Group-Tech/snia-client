@@ -28,10 +28,6 @@ export default {
         mainFooter,
         createProduitModal
     },
-
-    mounted() {
-        this.$router.push({ name: 'dprotv-dashboard-route' })
-    },
     beforeMount() {
         require('@/assets/css/atlantis2.css');
     },

@@ -5,7 +5,7 @@ export default {
 
   mounted() {
     /*init local database from client side service*/
-    AgentService.init((res) => console.log());
-    IpaService.init((res) => console.log());
+    /* AgentService.init((res) => console.log());
+        IpaService.init((res) => console.log()); */
   },
 };

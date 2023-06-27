@@ -29,9 +29,6 @@ export default {
         createSemenceModal
     },
 
-    mounted() {
-        this.$router.push({ name: 'senasem-dashboard-route' })
-    },
     beforeMount() {
         require('@/assets/css/atlantis2.css');
     },

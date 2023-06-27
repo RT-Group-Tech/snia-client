@@ -24,7 +24,7 @@ git commit -m 'deploy'
 
 git push -f git@github.com:RT-Group-Tech/snia-client.git master:gh-pages
 
-cd -
+cd
 
 # ssh key generating command
 # ssh-keygen -t ed25519 -C "myGitEmail@gmail.com"

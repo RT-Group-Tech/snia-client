@@ -30,7 +30,6 @@ export default {
     },
     mounted() {
         $('.scrollbar-inner').scrollbar();
-        this.$router.push({ name: 'ita-dashboard-route' });
     },
 
     beforeMount() {

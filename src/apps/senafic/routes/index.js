@@ -9,6 +9,7 @@ const routes = [
     meta: {
       authRequired: true,
     },
+    redirect: { name: "senafic-dashboard-route" },
     children: [
       {
         path: "",

@@ -8,8 +8,11 @@
                         <h5 class="op-7 mb-3">Inspéction Territoriale Agricole de la Rép. Dém du Congo</h5>
                     </div>
                     <div class="ml-auto">
-                        <button type="button" class="btn btn-success" @click.prevent="$showBsModal('secteurCreateModal')">
+                        <button type="button" class="btn btn-success mr-1"
+                            @click.prevent="$showBsModal('secteurCreateModal')">
                             <i class="flaticon-add"></i> Nouveau secteur</button>
+                        <button type="button" class="btn btn-light" @click.prevent="$showBsModal('report-modal')">
+                            <i class="icon-chart"></i> Générer un rapport</button>
                     </div>
                 </div>
             </div>
@@ -56,14 +59,17 @@
         </div>
     </div>
     <secteur-create-modal />
+    <report-modal />
 </template>
 
 <script>
 import SecteurCreateModal from "../modals/ita.secteurs-create-modal"
+import reportModal from "@/views/public/modals/generate-report-modal";
 export default {
     name: 'ItaDashboard',
     components: {
-        SecteurCreateModal
+        SecteurCreateModal,
+        reportModal
     }
 }
 </script>

@@ -1,0 +1,63 @@
+{
+    "_id": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+    "colName": "SNIA",
+    "created": "2023-06-20T12:18:25.759Z",
+    "sortNum": 10000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2999777e-ae94-4322-a78d-30759227f8a7",
+            "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+            "containerId": "",
+            "name": "view data",
+            "url": "https://backend.rtgroup-rdc.com/url/security_rtg?key=c367484f52a3b74989f77b3f8a1e2e108f044871",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-06-20T12:18:37.215Z",
+            "modified": "2023-06-23T00:07:28.364Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "key",
+                    "value": "c367484f52a3b74989f77b3f8a1e2e108f044871",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "key",
+                        "value": "c367484f52a3b74989f77b3f8a1e2e108f044871"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "f32a3eb9-a5fd-4519-9acb-975193d8046c",
+            "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+            "containerId": "",
+            "name": "voir cultures",
+            "url": "https://snia.verifixs.com/dantic/culture_url/viewculture",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-06-23T16:39:59.875Z",
+            "modified": "2023-06-28T18:37:53.327Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "key",
+                        "value": ""
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}

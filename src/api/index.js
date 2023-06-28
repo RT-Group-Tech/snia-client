@@ -65,8 +65,6 @@ class GlobalApi {
       "/connexion/connexion_url/login"
     );
 
-    console.log(JSON.stringify(data));
-
     return new Promise((resolve, reject) => {
       if (status === 200) {
         if (data.error === undefined) {

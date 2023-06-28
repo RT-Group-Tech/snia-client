@@ -42,7 +42,8 @@
                                     class="btn btn-snia  btn-full btn-login">
                                     <i v-if="loginLoading" class="fa fa-spinner fa-spin mr-2"></i>
                                     <i v-else class="icon-login"></i> &nbsp;
-                                    Connexion</button>
+                                    Connexion
+                                </button>
                             </div>
                         </div>
                     </form>

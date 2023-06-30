@@ -11,7 +11,7 @@
                 </ul>
             </nav>
             <div class="copyright ml-auto">
-                Snia RDC. Production PAM.
+                Snia RDC. MinAgri RDC.
             </div>
         </div>
     </footer>

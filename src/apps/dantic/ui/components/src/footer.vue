@@ -3,7 +3,7 @@
         <div class="container">
             <nav class="pull-left">
                 <ul class="nav">
-                    <li class="nav-item">
+                    <li class="nav-item" style="display: none;">
                         <a class="nav-link" href="javascript:void(0)">
                             Aide ?
                         </a>

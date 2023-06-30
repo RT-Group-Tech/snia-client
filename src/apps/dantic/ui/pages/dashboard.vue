@@ -22,7 +22,7 @@
                         <div class="card full-height animated zoomIn">
                             <div class="card-body">
                                 <div class="card-title">Statistiques</div>
-                                <div class="card-category">Informations à propos des statistiques du module</div>
+                                <div class="card-category">Stastisques globales</div>
                                 <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
                                     <div class="px-2 pb-2 pb-md-0 text-center">
                                         <div id="circles-1"></div>
@@ -48,11 +48,13 @@
                                     <div class="col-md-4 d-flex flex-column justify-content-around">
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-success op-8">Total IPA</h6>
-                                            <h3 class="fw-bold">9</h3>
+                                            <h3 class="fw-bold">0
+                                              {<script>//TODO: Calculer et afficher le vrai nombre total des ipas enregistre dans le systeme</script>}</h3>
                                         </div>
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-danger op-8">Total ITA</h6>
-                                            <h3 class="fw-bold">20</h3>
+                                            <h3 class="fw-bold">0{
+                                              <script>//TODO: Calculer et afficher le vrai nombre total des itas enregistr dans le systeme</script>}</h3>
                                         </div>
 
                                     </div>
@@ -68,6 +70,8 @@
                 </div>
 
                 <div class="row mt--2">
+                    {
+                  <script>//TODO: Dans chaque dashboard-card , calculer et afficher les chiffres reel</script>}
                     <div class="col-sm-6 col-lg-3">
                         <dashboard-card title="Total ipas" value="234" leading="ipas" icon="fab fa-fort-awesome"
                             bg-color="bg-info">
@@ -108,6 +112,8 @@
                                             style="height: 400px; overflow-y: scroll;">
                                             <table class="table">
                                                 <tbody>
+                                                  {
+                                                  <script>//TODO:Recuperer et afficher les vrais ipas enregistre dans le systeme</script>}
                                                     <tr v-for="(region, index) in regions" :key="index"
                                                         :id="`${region.getAttribute('id')}-item`" class="table-item">
                                                         <td>
@@ -120,7 +126,7 @@
                                                             {{ region.getAttribute('ipa-name') }}
                                                         </td>
                                                         <td class="text-right">
-                                                            Dan Beya | dan@gmail.com
+                                                            20000 habitants
                                                         </td>
                                                     </tr>
 

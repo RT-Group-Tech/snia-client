@@ -49,12 +49,14 @@
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-success op-8">Total IPA</h6>
                                             <h3 class="fw-bold">0
-                                              {<script>//TODO: Calculer et afficher le vrai nombre total des ipas enregistre dans le systeme</script>}</h3>
+                                                <!-- TODO: Calculer et afficher le vrai nombre total des ipas enregistre dans le systeme -->
+                                            </h3>
                                         </div>
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-danger op-8">Total ITA</h6>
-                                            <h3 class="fw-bold">0{
-                                              <script>//TODO: Calculer et afficher le vrai nombre total des itas enregistr dans le systeme</script>}</h3>
+                                            <h3 class="fw-bold">
+                                                0<!-- TODO: Calculer et afficher le vrai nombre total des itas enregistr dans le systeme -->
+                                            </h3>
                                         </div>
 
                                     </div>
@@ -70,8 +72,7 @@
                 </div>
 
                 <div class="row mt--2">
-                    {
-                  <script>//TODO: Dans chaque dashboard-card , calculer et afficher les chiffres reel</script>}
+                    <!--  TODO: Dans chaque dashboard-card , calculer et afficher les chiffres reel -->
                     <div class="col-sm-6 col-lg-3">
                         <dashboard-card title="Total ipas" value="234" leading="ipas" icon="fab fa-fort-awesome"
                             bg-color="bg-info">
@@ -112,8 +113,7 @@
                                             style="height: 400px; overflow-y: scroll;">
                                             <table class="table">
                                                 <tbody>
-                                                  {
-                                                  <script>//TODO:Recuperer et afficher les vrais ipas enregistre dans le systeme</script>}
+                                                    T<!-- ODO:Recuperer et afficher les vrais ipas enregistre dans le systeme -->
                                                     <tr v-for="(region, index) in regions" :key="index"
                                                         :id="`${region.getAttribute('id')}-item`" class="table-item">
                                                         <td>

@@ -45,6 +45,9 @@ export default {
                         this.document = res.document;
                     }
                 }
+            }).catch((e) => {
+                this.isLoader = false;
+                this.document = null;
             });
         }
     },

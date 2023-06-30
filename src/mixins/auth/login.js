@@ -44,7 +44,7 @@ export default {
                 let access = reponse.data.access.access;
                 this.$store.dispatch("auth/refreshLoggedUser");
                 this.$router.push({
-                  name: `ita-secure-route`,
+                  name: `${access}-secure-route`,
                 });
               } else {
                 /*create a simple animation shake when task is failed */

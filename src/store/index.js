@@ -116,9 +116,13 @@ const store = createStore({
       });
     },
     generateReporting() {
-      return new Promise((resolve) => {
-        GlobalApi.genererRaport((reponse) => {
-          resolve(reponse);
+      return new Promise((resolve, reject) => {
+        GlobalApi.genererRaport((data) => {
+          if (data.reponse !== undefined) {
+            resolve(data);
+          } else {
+            reject(false);
+          }
         });
       });
     },

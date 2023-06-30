@@ -51,6 +51,7 @@ class GlobalApi {
       key: "9fceada2874804cd75ff649fc94b02de4e664dc8",
     };
     var res = await request(data, "/common/reporting");
+    console.log(res);
     callback(res.data);
   }
 

@@ -145,7 +145,7 @@ export default {
         last: '',
         nick: ''
       },
-      grades: ["Grade 1", "Grade 2"],
+      grades: ["Directeur ", "Chef de division","Chef de bureau","ATA1","ATA2","AGA1","AGA2","AA1","AA2","HUISSIER"],
       access:["dantic","dprotv","senasem","senafic","tablette"],
       form: {
         nom_complet: '',

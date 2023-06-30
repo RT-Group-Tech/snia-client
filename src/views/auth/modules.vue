@@ -41,7 +41,7 @@ export default {
             /* mod.enabled = true; */
             let access = mod.name.toLocaleLowerCase();
             if (access === this.user.access.access) {
-                mod.enabled = true;
+                //mod.enabled = true;
             }
         })
     },

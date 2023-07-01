@@ -32,6 +32,9 @@ export default {
     beforeMount() {
         require('@/assets/css/atlantis2.css');
     },
+    mounted() {
+        this.$store.dispatch('voirCultures');
+    },
     unmounted() {
         this.$router.go();
     },

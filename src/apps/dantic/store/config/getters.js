@@ -6,6 +6,7 @@ const getters = {
   GET_ITAOfIPA: (state) => state.itasOfIpa,
   GET_FORMULAIRES: (state) => state.formulaires,
   GET_CATEGORIES: (state) => state.categories,
+  GET_DASHBOARD: (state) => state.dashboard,
 };
 
 export default getters;

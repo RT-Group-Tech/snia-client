@@ -7,10 +7,9 @@
                         <label class="fw-bold mb-1">Sélectionnez une culture <sup class="text-danger">*</sup></label>
                         <div class="mb-2">
                             <select class="custom-select form-control" v-model="form.culture_id" required>
-                                <option value="">---Sélectionnez une culture---</option>
-                                <option value="1">Culture 1</option>
-                                <option value="2">Culture 2</option>
-                                <option value="3">Culture 3</option>
+                                <option value="" selected>---Sélectionnez une culture---</option>
+                                <option v-for="(culture, index) in cultures" :key="index" :value="culture.culture_id">{{
+                                    culture.nom }}</option>
                             </select>
                         </div>
                     </div>
@@ -95,6 +94,12 @@ export default {
                         showConfirmButton: false,
                     });
                 })
+        }
+    },
+
+    computed: {
+        cultures() {
+            return this.$store.getters.GET_CULTURES
         }
     },
 }

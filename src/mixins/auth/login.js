@@ -1,5 +1,4 @@
 import UserService from "@/database/services/user.service";
-import Api from "@/apps/dantic/api";
 import GlobalApi from "@/api/index";
 
 export default {
@@ -146,36 +145,36 @@ export default {
     },
 
     /*async initDefaultUsers() {
-                                                                                                                      localStorage.clear("userToken");
-                                                                                                                      await UserService.all(async (rows) => {
-                                                                                                                        if (rows.length === 0) {
-                                                                                                                          let users = [
-                                                                                                                            {
-                                                                                                                              name: "Gaston Delimond",
-                                                                                                                              email: "gaston@gmail.com",
-                                                                                                                              password: "12345",
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                              name: "Chris Tenday",
-                                                                                                                              email: "chris@gmail.com",
-                                                                                                                              password: "12345",
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                              name: "Tenday Chris",
-                                                                                                                              email: "chris@ita.com",
-                                                                                                                              password: "12345",
-                                                                                                                            },
-                                                                                                                            {
-                                                                                                                              name: "Lionnel Nawej",
-                                                                                                                              email: "lionnel@gmail.com",
-                                                                                                                              password: "12345",
-                                                                                                                            },
-                                                                                                                          ];
-                                                                                                                          for (let i = 0; i < users.length; i++) {
-                                                                                                                            await UserService.create(users[i], (res) => console.log(res));
-                                                                                                                          }
-                                                                                                                        }
-                                                                                                                      });
-                                                                                                                    },*/
+                                                                                                                              localStorage.clear("userToken");
+                                                                                                                              await UserService.all(async (rows) => {
+                                                                                                                                if (rows.length === 0) {
+                                                                                                                                  let users = [
+                                                                                                                                    {
+                                                                                                                                      name: "Gaston Delimond",
+                                                                                                                                      email: "gaston@gmail.com",
+                                                                                                                                      password: "12345",
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                      name: "Chris Tenday",
+                                                                                                                                      email: "chris@gmail.com",
+                                                                                                                                      password: "12345",
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                      name: "Tenday Chris",
+                                                                                                                                      email: "chris@ita.com",
+                                                                                                                                      password: "12345",
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                      name: "Lionnel Nawej",
+                                                                                                                                      email: "lionnel@gmail.com",
+                                                                                                                                      password: "12345",
+                                                                                                                                    },
+                                                                                                                                  ];
+                                                                                                                                  for (let i = 0; i < users.length; i++) {
+                                                                                                                                    await UserService.create(users[i], (res) => console.log(res));
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              });
+                                                                                                                            },*/
   },
 };

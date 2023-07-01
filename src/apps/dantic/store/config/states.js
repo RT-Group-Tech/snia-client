@@ -9,6 +9,7 @@ const states = {
     categories: [] /*Liste des categories cultures */ ,
     dataLoading: false,
     formulaireSection: null /*Selection une section de formulaire*/ ,
+    dashboard: {}
 };
 
 export default states;

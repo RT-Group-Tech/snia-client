@@ -73,7 +73,8 @@
                                                 <td>{{ ita.total_population }}</td>
                                                 <td>{{ ita.superficie }}</td>
 
-                                                <td><span class="text-success fw-bold">{{ ita.province }} {<script>//TODO:Afficher le nom de l'IPA</script>}</span></td>
+                                                <td><span class="text-success fw-bold">{{ ita.province }}
+                                                        <!-- //TODO:Afficher le nom de l'IPA --></span></td>
                                                 <td style="display: none;">
                                                     <button type="button" data-toggle="tooltip" title="Voir agent info."
                                                         class="btn btn-info btn-sm btn-lg"

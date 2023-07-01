@@ -6,7 +6,7 @@
                     <p class="text-center">Chargement rapport</p>
                     <img src="assets/img/processing_loader.gif" style="height: 20px;" alt="loader" class="img-fluid">
                 </div>
-                <a :href="document" v-else-if="document !== null" class="btn btn-success btn-lg"><i
+                <a :href="document" target="_blank" v-else-if="document !== null" class="btn btn-success btn-lg"><i
                         class="icon-cloud-download mr-1"></i> Télécharger le
                     rapport</a>
             </div>

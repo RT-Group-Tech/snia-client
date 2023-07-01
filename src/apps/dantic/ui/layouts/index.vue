@@ -31,8 +31,10 @@ export default {
 
     async mounted() {
         this.$store.dispatch('dantic/viewIpas')
-        $('.scrollbar-inner').scrollbar();
+        this.$store.dispatch('dantic/viewAgents')
+        this.$store.dispatch('dantic/viewItas')
         this.$store.dispatch("auth/refreshLoggedUser");
+        $('.scrollbar-inner').scrollbar();
     },
     unmounted() {
         this.$router.go();

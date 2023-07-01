@@ -29,7 +29,7 @@ class GlobalApi {
       },
       "/dantic/culture_url/viewculture"
     );
-    let cultures = data.cultures;
+    let cultures = data.reponse.data;
     if (status === 200) callback(cultures);
     else callback([]);
   }

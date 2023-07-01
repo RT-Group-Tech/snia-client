@@ -479,11 +479,11 @@ class Api {
         let input = s.inputs[i];
         /* let opts = []; */
         /* if (input.options !== undefined) {
-                                                                  input.options.forEach((el) => {
-                                                                    opts.push(el.input_option);
-                                                                  });
-                                                                  console.log(opts.toString());
-                                                                } */
+                                                                                  input.options.forEach((el) => {
+                                                                                    opts.push(el.input_option);
+                                                                                  });
+                                                                                  console.log(opts.toString());
+                                                                                } */
         if (input.formulaire_input_id === undefined) {
           input.formulaire_section_id = s.formulaire_section_id;
           let fieldRes = await this.creerFormulaireSectionDetails(input);
@@ -517,6 +517,17 @@ class Api {
   static async editFormTitre(data) {
     data.key = "a306375b18af9454030614b49285fcc3e1361376";
     await request(data);
+  }
+
+  static async refreshDashboard(state) {
+    let danticDashboard = {
+      itasCount: state.itas.length,
+      ipasCount: state.ipas.length,
+      agentsCount: state.agents.length,
+    };
+    return new Promise((resolve, reject) => {
+      resolve(danticDashboard);
+    });
   }
 }
 

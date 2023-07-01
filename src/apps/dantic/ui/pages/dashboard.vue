@@ -55,7 +55,7 @@
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-danger op-8">Total ITA</h6>
                                             <h3 class="fw-bold">
-                                                0<!-- TODO: Calculer et afficher le vrai nombre total des itas enregistr dans le systeme -->
+                                                0<!-- TODO: Calculer et afficher le vrai nombre total des itas enregistre dans le systeme -->
                                             </h3>
                                         </div>
 
@@ -74,20 +74,20 @@
                 <div class="row mt--2">
                     <!--  TODO: Dans chaque dashboard-card , calculer et afficher les chiffres reel -->
                     <div class="col-sm-6 col-lg-3">
-                        <dashboard-card title="Total ipas" value="234" leading="ipas" icon="fab fa-fort-awesome"
-                            bg-color="bg-info">
+                        <dashboard-card title="Total ipas" :value="dashboard.ipasCount" leading="ipas"
+                            icon="fab fa-fort-awesome" bg-color="bg-info">
                         </dashboard-card>
                     </div>
 
                     <div class="col-sm-6 col-lg-3">
-                        <dashboard-card title="Total itas" value="234" leading="itas" icon="fab fa-fort-awesome-alt"
-                            bg-color="bg-secondary">
+                        <dashboard-card title="Total itas" :value="dashboard.itasCount" leading="itas"
+                            icon="fab fa-fort-awesome-alt" bg-color="bg-secondary">
                         </dashboard-card>
                     </div>
 
                     <div class="col-sm-6 col-lg-3">
-                        <dashboard-card title="Nombre agents" value="100" leading="agents" icon="icon-people"
-                            bg-color="bg-warning">
+                        <dashboard-card title="Nombre agents" :value="dashboard.agentsCount" leading="agents"
+                            icon="icon-people" bg-color="bg-warning">
                         </dashboard-card>
                     </div>
                     <div class="col-sm-6 col-lg-3">
@@ -113,7 +113,7 @@
                                             style="height: 400px; overflow-y: scroll;">
                                             <table class="table">
                                                 <tbody>
-                                                    T<!-- ODO:Recuperer et afficher les vrais ipas enregistre dans le systeme -->
+                                                    <!-- TODO:Recuperer et afficher les vrais ipas enregistre dans le systeme -->
                                                     <tr v-for="(region, index) in regions" :key="index"
                                                         :id="`${region.getAttribute('id')}-item`" class="table-item">
                                                         <td>
@@ -169,8 +169,6 @@
 import DashboardMixin from "../../mixins/dashboard"
 import servicesMixins from "../../mixins/services.mixins";
 
-import Api from "../../api"
-
 
 export default {
     name: "Dashboard",
@@ -188,14 +186,16 @@ export default {
             },
         }
     },
-    methods: {
-        testRequests() {
-            /* Api.login({ identifiant: "lionnes@gmail.com", pass: "1234" }, (res) => {
-                console.log(res);
-            }) */
-            Api.voirAgents((res) => {
-                console.log(res);
-            });
+
+    mounted() {
+        setInterval(() => {
+            this.$store.dispatch('dantic/refreshDashboard');
+        }, 1000)
+    },
+
+    computed: {
+        dashboard() {
+            return this.$store.getters['dantic/GET_DASHBOARD'];
         }
     },
 

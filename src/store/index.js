@@ -96,21 +96,7 @@ const store = createStore({
     voirCultures({ commit }) {
       return new Promise((resolve) => {
         GlobalApi.voirCultures((data) => {
-          let simulate = [
-            {
-              culture_id: "1",
-              titre: "Culture 1",
-            },
-            {
-              culture_id: "2",
-              titre: "Culture 2",
-            },
-          ];
-          if (data.length === 0) {
-            commit("SET_CULTURES", simulate);
-          } else {
-            commit("SET_CULTURES", data.cultures);
-          }
+          commit("SET_CULTURES", data);
           resolve(data);
         });
       });

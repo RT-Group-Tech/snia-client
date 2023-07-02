@@ -48,6 +48,34 @@
             "headers": [],
             "params": [],
             "tests": []
+        },
+        {
+            "_id": "ebc612f2-936a-41d7-888a-649cf6613334",
+            "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+            "containerId": "",
+            "name": "Collecte correction",
+            "url": "http://snia.verifixs.com/collectes/corrections",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2023-07-01T23:23:06.002Z",
+            "modified": "2023-07-02T21:40:31.796Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "collecte_detail_id",
+                        "value": "1"
+                    },
+                    {
+                        "name": "correction",
+                        "value": "sjskfsjjfjs"
+                    }
+                ]
+            },
+            "tests": []
         }
     ]
 }

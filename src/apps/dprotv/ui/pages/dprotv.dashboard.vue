@@ -1,5 +1,5 @@
 <template>
-    <div class="main-panel scrollbar-inner">
+    <div class="main-panel">
 
         <div class="bg-primary2 pt-4 pb-5">
             <div class="container text-white py-2">

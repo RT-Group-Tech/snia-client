@@ -19,6 +19,14 @@ const routes = [
           authRequired: true,
         },
       },
+      {
+        path: "/senafic/secure/collectes",
+        component: () => import("@/views/public/pages/data-collect-page"),
+        name: "senafic-collect-route",
+        meta: {
+          authRequired: true,
+        },
+      },
     ],
   },
 ];

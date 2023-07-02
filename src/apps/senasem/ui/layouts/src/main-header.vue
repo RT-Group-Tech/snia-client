@@ -31,6 +31,13 @@
                             </a>
 
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)"
+                                @click.prevent="$router.push({ name: 'senasem-collect-route' })" id="navbarDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Données collectées
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

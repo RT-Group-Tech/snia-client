@@ -19,6 +19,14 @@ const routes = [
           authRequired: true,
         },
       },
+      {
+        path: "/dprotv/secure/collectes",
+        component: () => import("@/views/public/pages/data-collect-page"),
+        name: "dprotv-collect-route",
+        meta: {
+          authRequired: true,
+        },
+      },
     ],
   },
 ];

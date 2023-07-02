@@ -18,6 +18,15 @@ const routes = [
           authRequired: true,
         },
       },
+
+      {
+        path: "/senasem/secure/collectes",
+        component: () => import("@/views/public/pages/data-collect-page"),
+        name: "senasem-collect-route",
+        meta: {
+          authRequired: true,
+        },
+      },
     ],
   },
 ];

@@ -77,5 +77,27 @@ class GlobalApi {
       }
     });
   }
+
+  /**
+   * Signaler et porter une correction sur un champs de données collectées
+   * @param {*} form
+   * @returns promise
+   */
+  static async signalerDonnee(form) {
+    var form = {
+      collecte_detail_id: form.collecte_detail_id,
+      correction: form.correction,
+    };
+
+    var { data, status } = await request(form, "/collectes/corrections");
+
+    return new Promise((resolve, reject) => {
+      if (status === 200 && data.reponse.status === "success") {
+        resolve(data);
+      } else {
+        reject(false);
+      }
+    });
+  }
 }
 export default GlobalApi;

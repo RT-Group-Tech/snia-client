@@ -6,9 +6,13 @@
                     <p class="text-center">Chargement rapport</p>
                     <img src="assets/img/processing_loader.gif" style="height: 20px;" alt="loader" class="img-fluid">
                 </div>
-                <a :href="document" target="_blank" v-else-if="document !== null" class="btn btn-success btn-lg"><i
-                        class="icon-cloud-download mr-1"></i> Télécharger le
-                    rapport</a>
+                <div v-else>
+                    <a :href="document" v-if="document !== null" target="_blank" class="btn btn-success btn-lg"><i
+                            class="icon-cloud-download mr-1"></i> Télécharger le
+                        rapport</a>
+                    <a href="javascript:void(0)" @click.prevent="loadGenerate" v-else target="_blank"
+                        class="btn btn-primary btn-lg"><i class="icon-refresh mr-1"></i> Relancer le téléchargement</a>
+                </div>
             </div>
         </template>
     </bs-modal>
@@ -37,13 +41,10 @@ export default {
     methods: {
         loadGenerate() {
             this.isLoader = true;
-            this.$store.dispatch("generateReporting").then((reponse) => {
-                if (reponse.reponse !== undefined) {
-                    let res = reponse.reponse;
-                    if (res.status !== undefined && reponse.status === "success") {
-                        this.isLoader = false;
-                        this.document = res.document;
-                    }
+            this.$store.dispatch("generateReporting").then((result) => {
+                if (result.reponse.status === 'success') {
+                    this.isLoader = false;
+                    this.document = result.reponse.document;
                 }
             }).catch((e) => {
                 this.isLoader = false;

@@ -145,8 +145,8 @@ export default {
         last: '',
         nick: ''
       },
-      grades: ["Directeur ", "Chef de division","Chef de bureau","ATA1","ATA2","AGA1","AGA2","AA1","AA2","HUISSIER"],
-      access:["dantic","dprotv","senasem","senafic","tablette"],
+      grades: ["Directeur ", "Chef de division", "Chef de bureau", "ATA1", "ATA2", "AGA1", "AGA2", "AA1", "AA2", "HUISSIER"],
+      access: ["dantic", "ita", "dprotv", "senasem", "senafic", "tablette"],
       form: {
         nom_complet: '',
         telephone: '',
@@ -159,7 +159,7 @@ export default {
         email: '',
         pass: '',
         confirm: '',
-        access:''
+        access: ''
       }
     }
   },
@@ -170,22 +170,19 @@ export default {
       /*End agent name splitting*/
 
       this.submitLoading = true;
-       Api.creerAgent(this.form, (data) => {
+      Api.creerAgent(this.form, (data) => {
         this.submitLoading = false;
         $("#agentModal").modal('hide')
         console.log(data);
         this.$store.dispatch("dantic/viewAgents")
       })
 
-      this.$validForm("agent-form", event, async (result, form) =>
-      {
+      this.$validForm("agent-form", event, async (result, form) => {
         console.clear(); console.log("dsds"); console.log(this.form);
-        if (!result)
-        {
+        if (!result) {
           this.$animatedFailedTask("submit-btn");
         }
-        else
-          {
+        else {
           if (this.form.pass !== this.form.confirm) {
             return
           }

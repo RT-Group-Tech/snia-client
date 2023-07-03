@@ -69,12 +69,10 @@ const store = createStore({
     ],
   },
   actions: {
-    voirSujets({ commit, state }) {
+    voirSujets({ commit }) {
       return new Promise((resolve) => {
-        state.dataLoading = true;
         Api.voirFormulairesSujets((data) => {
-          state.dataLoading = false;
-          let sujets = data.result.reponse;
+          let sujets = data.reponse;
           commit("SET_SUJETS", sujets.reverse());
           resolve(sujets);
         });
@@ -85,9 +83,7 @@ const store = createStore({
      */
     voirCollectes({ commit, state }) {
       return new Promise((resolve) => {
-        state.dataLoading = true;
         Api.voirDonneesCollectes((data) => {
-          state.dataLoading = false;
           commit("SET_COLLECTES", data);
           resolve(data);
         });

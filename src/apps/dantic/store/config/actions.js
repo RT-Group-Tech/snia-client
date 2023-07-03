@@ -46,11 +46,7 @@ const actions = {
 
   voirFormulaires({ commit, state }) {
     return new Promise((resolve) => {
-      state.dataLoading = true;
       Api.voirFormulaires((data) => {
-        state.dataLoading = false;
-        console.clear();
-        console.log(data);
         let formulaires = data.formulaires;
         commit("SET_FORMULAIRES", formulaires.reverse());
         resolve(formulaires);

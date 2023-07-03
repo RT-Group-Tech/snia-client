@@ -231,6 +231,7 @@ export default {
     },
 
     mounted() {
+
         this.addNewSection();
         this.$initBsTooltip();
     },

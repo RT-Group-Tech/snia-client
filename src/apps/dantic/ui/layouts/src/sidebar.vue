@@ -3,16 +3,16 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
             <div class="sidebar-content">
                 <div class="user">
-                    <div class="avatar-sm float-left mr-2">
+                    <!-- <div class="avatar-sm float-left mr-2">
                         <img src="assets/img/picture_placeholder.png" alt="..." class="avatar-img rounded-circle">
-                    </div>
+                    </div> -->
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                            <span>
+                            <!-- <span>
                                 {{ $filters.sortLength($filters.capitalize(user.nom_complet), 15, '...') }}
                                 <span class="user-level text-success">Accès : {{ user.access.access }}</span>
                                 <span class="caret"></span>
-                            </span>
+                            </span> -->
                         </a>
                         <div class="clearfix"></div>
 
@@ -71,22 +71,22 @@ export default {
             currentRoute: ''
         }
     },
+    created() {
+        this.$store.dispatch('auth/refresh')
+    },
 
     mounted() {
-        /*setInterval(() => {
-            let route = this.$route.name;
-            this.currentRoute = route
-        }, 100);*/
         var scrollbarDashboard = $(".sidebar .scrollbar");
+
         if (scrollbarDashboard.length > 0) {
             scrollbarDashboard.scrollbar();
         }
     },
 
     computed: {
-        ...mapGetters({
-            user: "auth/GET_USER"
-        })
+        user() {
+            return this.$store.getters['auth/GET_USER'];
+        }
     },
 
 }

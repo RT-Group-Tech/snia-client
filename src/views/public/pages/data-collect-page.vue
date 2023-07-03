@@ -97,8 +97,7 @@ export default {
     },
     computed: {
         collectes() {
-            if (this.selectSujet.length > 0)
-            {
+            if (this.selectSujet.length > 0) {
                 let filtered = this.$store.getters.GET_COLLECTES;
                 return filtered;
             }
@@ -119,7 +118,6 @@ export default {
             this.$nextTick(() => $('#collecte-view-modal').modal('show'))
         }
     },
-
     mounted() {
         this.$store.dispatch('voirCollectes');
         this.$store.dispatch("voirSujets");

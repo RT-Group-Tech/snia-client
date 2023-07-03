@@ -40,11 +40,11 @@
             "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
             "containerId": "",
             "name": "voir cultures",
-            "url": "http://snia.verifixs.com/senasem/semences/view",
+            "url": "http://snia.verifixs.com/dantic/formulaire_url/viewsujet",
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-06-23T16:39:59.875Z",
-            "modified": "2023-06-30T23:48:01.595Z",
+            "modified": "2023-07-03T14:41:02.590Z",
             "headers": [],
             "params": [],
             "tests": []

@@ -22,7 +22,7 @@
                             <input type="text" class="form-control fw-extrabold text-dark" name="name" placeholder="Name"
                                 :value="data.valeur" disabled>
                             <div class="input-group-append p-md-0 bg-transparent">
-                                <span class="input-group-text fa fa-ban" @click.prevent="reportData"
+                                <span class="input-group-text fa fa-ban" @click.prevent="reportData(data)"
                                     style="cursor:pointer;"> </span>
                             </div>
 
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import Api from '@/api'
 
 export default {
     name: "CollecteViewModal",
@@ -60,24 +61,41 @@ export default {
 
     },
     methods: {
-        reportData() {
-            this.$swal({
-                text: "Voulez-vous signaler cette donnée?",
-                showConfirmButton: true,
+        reportData(data) {
+            console.log(JSON.stringify(data));
+            Swal.fire({
+                title: 'Signaler & corriger les données',
+                text: 'Veuillez signaler et corriger cette donnée !',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
                 showCancelButton: true,
-                confirmButtonText: "Oui",
-                cancelButtonText: "Non",
-                confirmButtonColor: 'green',
-                cancelButtonColor: 'red'
+                cancelButtonText: 'Annuler',
+                confirmButtonText: 'Confirmer & soummettre',
+                showLoaderOnConfirm: true,
+                allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
-
                 if (result.isConfirmed) {
-                    /**
-                     * Signaler cette donnée.
-                     */
-                }
+                    let form = {
+                        collecte_detail_id: data.formulaire_input_id,
+                        correction: result.value,
+                    }
+                    Api.signalerDonnee(form).then((res) => {
+                        if (res !== null) {
+                            this.$closeBsModal('collecte-view-modal');
+                            Swal({
+                                icon: "success",
+                                text: "La correction a été effectué !",
+                                timer: 2000,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                            });
+                        }
+                    });
 
-            });
+                }
+            })
         },
         setCollecteView(collecteData) {
             this.collecteView = collecteData;

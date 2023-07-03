@@ -36,12 +36,7 @@ class GlobalApi {
 
   /* Voir les sujets enregistrés dans le systèmes */
   static async voirFormulairesSujets(callback) {
-    const { data, status } = await request(
-      {
-        key: "65bf8cb061d59e48bff8f64af71f640908f81103",
-      },
-      "/dantic/formulaire_url/viewsujet"
-    );
+    const { data, status } = await request("/dantic/formulaire_url/viewsujet");
     if (status === 200) callback(data);
     else callback(false);
   }
@@ -88,14 +83,13 @@ class GlobalApi {
       collecte_detail_id: form.collecte_detail_id,
       correction: form.correction,
     };
-
     var { data, status } = await request(form, "/collectes/corrections");
-
+    let success = data.reponse.status === "success";
     return new Promise((resolve, reject) => {
-      if (status === 200 && data.reponse.status === "success") {
+      if (status === 200 && success) {
         resolve(data);
       } else {
-        reject(false);
+        reject(null);
       }
     });
   }

@@ -27,6 +27,7 @@
                                     <div class="px-2 pb-2 pb-md-0 text-center">
                                         <div id="circles-1"></div>
                                         <h6 class="fw-bold mt-3 mb-0">IPA</h6>
+
                                     </div>
                                     <div class="px-2 pb-2 pb-md-0 text-center">
                                         <div id="circles-2"></div>
@@ -48,14 +49,14 @@
                                     <div class="col-md-4 d-flex flex-column justify-content-around">
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-success op-8">Total IPA</h6>
-                                            <h3 class="fw-bold">0
-                                                <!-- TODO: Calculer et afficher le vrai nombre total des ipas enregistre dans le systeme -->
+                                            <h3 class="fw-bold">
+                                                {{ dashboard.ipasCount }}
                                             </h3>
                                         </div>
                                         <div>
                                             <h6 class="fw-bold text-uppercase text-danger op-8">Total ITA</h6>
                                             <h3 class="fw-bold">
-                                                0<!-- TODO: Calculer et afficher le vrai nombre total des itas enregistre dans le systeme -->
+                                                {{ dashboard.itasCount }}
                                             </h3>
                                         </div>
 
@@ -72,7 +73,6 @@
                 </div>
 
                 <div class="row mt--2">
-                    <!--  TODO: Dans chaque dashboard-card , calculer et afficher les chiffres reel -->
                     <div class="col-sm-6 col-lg-3">
                         <dashboard-card title="Total ipas" :value="dashboard.ipasCount" leading="ipas"
                             icon="fab fa-fort-awesome" bg-color="bg-info">

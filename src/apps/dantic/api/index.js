@@ -479,11 +479,11 @@ class Api {
         let input = s.inputs[i];
         /* let opts = []; */
         /* if (input.options !== undefined) {
-                                                                                  input.options.forEach((el) => {
-                                                                                    opts.push(el.input_option);
-                                                                                  });
-                                                                                  console.log(opts.toString());
-                                                                                } */
+                                                                                                  input.options.forEach((el) => {
+                                                                                                    opts.push(el.input_option);
+                                                                                                  });
+                                                                                                  console.log(opts.toString());
+                                                                                                } */
         if (input.formulaire_input_id === undefined) {
           input.formulaire_section_id = s.formulaire_section_id;
           let fieldRes = await this.creerFormulaireSectionDetails(input);

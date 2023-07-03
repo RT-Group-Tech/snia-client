@@ -115,8 +115,6 @@ $(document).ready(function () {
     userScrollbar.scrollbar();
   }
 
-  $(".scroll-bar").draggable();
-
   var toggle_sidebar = false,
     toggle_quick_sidebar = false,
     toggle_topbar = false,

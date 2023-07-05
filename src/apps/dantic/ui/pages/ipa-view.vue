@@ -149,9 +149,6 @@ export default {
   },
   mounted() {
     this.$initBsTooltip();
-    if (this.ipas.length > 0) {
-      this.dataLoading = false;
-    }
     this.$store.dispatch('dantic/viewIpas').then((_) => this.dataLoading = false).catch((_) => this.dataLoading = false)
   },
   methods: {

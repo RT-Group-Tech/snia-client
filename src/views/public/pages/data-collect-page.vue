@@ -127,9 +127,6 @@ export default {
         }
     },
     mounted() {
-        if (this.collectes.length > 0) {
-            this.dataLoading = false;
-        }
         this.$store.dispatch('voirCollectes').then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
         this.$store.dispatch("voirSujets");
     }

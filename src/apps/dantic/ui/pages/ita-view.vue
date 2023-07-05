@@ -131,15 +131,11 @@ export default {
 
     mounted() {
         this.$initBsTooltip();
-        if (this.itas.length > 0) {
-            this.dataLoading = false;
-        }
         this.$store.dispatch('dantic/viewItas').then((_) => this.dataLoading = false).catch((_) => this.dataLoading = false)
 
     },
     methods: {
         showCreateItaModal() {
-
             this.$store.state.dantic.selectedIpa = null;
             $("#itaCreateModal").modal('show');
         }

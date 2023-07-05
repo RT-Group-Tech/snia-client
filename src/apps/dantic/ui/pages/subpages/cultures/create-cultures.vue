@@ -53,9 +53,6 @@ export default {
         createCultureModal
     },
     created() {
-        if (this.cultures.length > 0) {
-            this.dataLoading = false;
-        }
         this.$store.dispatch('voirCultures').then((s) => this.dataLoading = false).catch((err) => this.dataLoading = false);
     },
     computed: {

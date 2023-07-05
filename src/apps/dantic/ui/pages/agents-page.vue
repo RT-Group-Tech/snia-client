@@ -165,9 +165,7 @@ export default {
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-        if (this.agents.length > 0) {
-            this.dataLoading = false;
-        }
+
         this.$store.dispatch('dantic/viewAgents').then((q) => this.dataLoading = false).catch((e) => this.dataLoading = false);
     }
 }

@@ -40,11 +40,11 @@
             "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
             "containerId": "",
             "name": "voir cultures",
-            "url": "http://snia.verifixs.com/dantic/formulaire_url/viewsujet",
+            "url": "http://snia.verifixs.com/dantic/culture_url/viewculture",
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-06-23T16:39:59.875Z",
-            "modified": "2023-07-03T14:41:02.590Z",
+            "modified": "2023-07-05T13:44:32.124Z",
             "headers": [],
             "params": [],
             "tests": []

@@ -24,8 +24,8 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="javascript:void(0)">Parametres comptes</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" @click.prevent="$router.push({ name: 'modules' })"
-                        href="javascript:void(0)">Retour aux modules</a>
+                    <!-- <a class="dropdown-item" @click.prevent="$router.push({ name: 'modules' })"
+                        href="javascript:void(0)">Retour aux modules</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="javascript:void(0)" @click="logout">Me
                         Déconnecter</a>

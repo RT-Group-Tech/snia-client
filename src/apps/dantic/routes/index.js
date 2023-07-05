@@ -78,7 +78,7 @@ const routes = [
       {
         path: "/dantic/secure/collectes",
         component: () => import("@/views/public/pages/data-collect-page"),
-        name: "ipa-collect-route",
+        name: "dantic-collect-route",
         meta: {
           authRequired: true,
         },

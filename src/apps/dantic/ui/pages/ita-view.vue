@@ -56,36 +56,38 @@
                     <div class="col-md-12">
                         <div class="card full-height mt-4 animated fadeIn">
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="ipa-datatables" class="display table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>ITA</th>
-                                                <th>Population</th>
-                                                <th>Superficie</th>
-                                                <th>IPA</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(ita, index) in itas" :key="index">
-                                                <td>{{ ita.ita }}</td>
-                                                <td>{{ ita.total_population }}</td>
-                                                <td>{{ ita.superficie }}</td>
+                                <section-loader :loading="dataLoading">
+                                    <div class="table-responsive">
+                                        <table id="ipa-datatables" class="display table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>ITA</th>
+                                                    <th>Population</th>
+                                                    <th>Superficie</th>
+                                                    <th>IPA</th>
+                                                    <!-- <th></th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(ita, index) in itas" :key="index">
+                                                    <td>{{ ita.ita }}</td>
+                                                    <td>{{ ita.total_population }}</td>
+                                                    <td>{{ ita.superficie }}</td>
 
-                                                <td><span class="text-success fw-bold">{{ ita.province }}
-                                                        <!-- //TODO:Afficher le nom de l'IPA --></span></td>
-                                                <td style="display: none;">
+                                                    <td><span class="fw-bold">{{ ita.ipa_id }}
+                                                            <!-- //TODO:Afficher le nom de l'IPA --></span></td>
+                                                    <!-- <td style="display: none;">
                                                     <button type="button" data-toggle="tooltip" title="Voir agent info."
                                                         class="btn btn-info btn-sm btn-lg"
                                                         data-original-title="Voir agent & modification">
                                                         Afficher IPA
                                                     </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section-loader>
                                 <!-- table pour afficher les ipa & ita -->
                                 <!-- end table -->
                             </div>
@@ -122,17 +124,22 @@ export default {
 
     data() {
         return {
-            searchword: ''
+            searchword: '',
+            dataLoading: true,
         }
     },
 
     mounted() {
         this.$initBsTooltip();
-        this.$store.dispatch('dantic/viewItas')
+        if (this.itas.length > 0) {
+            this.dataLoading = false;
+        }
+        this.$store.dispatch('dantic/viewItas').then((_) => this.dataLoading = false).catch((_) => this.dataLoading = false)
 
     },
     methods: {
         showCreateItaModal() {
+
             this.$store.state.dantic.selectedIpa = null;
             $("#itaCreateModal").modal('show');
         }

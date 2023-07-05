@@ -10,7 +10,8 @@
                 </button>
                 <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
                 <!-- Logo Header -->
-                <a href="" class="logo d-flex align-items-center justify-content-center mt-2">
+                <a href="javascript:void(0)" @click.prevent="$router.push({ name: 'ipa-dashboard-route' })"
+                    class="logo d-flex align-items-center justify-content-center mt-2">
                     <logo />
                 </a>
                 <!-- End Logo Header -->
@@ -24,16 +25,14 @@
                         </h3>
                         <li class="nav-item active">
                             <a class="nav-link" href="javascript:void(0)"
-                                @click.prevent="$router.push({ name: 'senafic-dashboard-route' })" id="navbarDropdown"
-                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @click.prevent="$router.push({ name: 'ipa-dashboard-route' })" id="navbarDropdown"
+                                role="button">
                                 Tableau de bord
                             </a>
-
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)"
-                                @click.prevent="$router.push({ name: 'senafic-collect-route' })" id="navbarDropdown"
+                                @click.prevent="$router.push({ name: 'ipa-collect-route' })" id="navbarDropdown"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Données collectées
                             </a>
@@ -45,8 +44,10 @@
                             </a>
                             <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="javascript:void(0)"
-                                    @click.prevent="$showBsModal('createFertilisantModal')">Ajouter fertilisant</a>
-                                <a class="dropdown-item" href="javascript:void(0)">Voir fertilisants</a>
+                                    @click.prevent="$router.push({ name: 'ita-secteurs-route' })">Voir secteur</a>
+                                <a class="dropdown-item" href="javascript:void(0)"
+                                    @click.prevent="$showBsModal('secteurCreateModal')">Créer
+                                    secteur</a>
                             </div>
                         </li>
 
@@ -80,8 +81,8 @@
 </template>
 
 <script>
-import AuthView from '@/mixins/auth/logview'
+import AuthView from '@/mixins/auth/logview';
 export default {
-    mixins: [AuthView]
+    mixins: [AuthView],
 }
 </script>

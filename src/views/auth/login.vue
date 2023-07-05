@@ -3,12 +3,19 @@
         <div class="wrapper wrapper-login bg-app-gradient wrapper-login-full p-0 ">
             <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center">
                 <img src="assets/img/armoirie_rdc.png" alt="" class="img-fluid">
-                <h1 class="fw-bold display-4 text-white mb-2">
-                    SNIA
+                <h1 class="fw-bold display-4 text-white mb-2 mt-2 text-uppercase">
+                    Ministère de l'agriculture
                 </h1>
-                <h3 class="text-white sub-title">Veuillez vous authentifier !</h3>
+
+                <div class="d-flex align-content-center justify-content-center align-items-center w-25">
+                    <div class="flex-fill" style="background-color: #00aeef; height: 4px;"></div>
+                    <div class="flex-fill" style="background-color: #fff200; height: 4px;"></div>
+                    <div class="flex-fill" style="background-color: #ed1c24; height: 4px;"></div>
+                </div>
+
             </div>
-            <div class="login-aside w-50 d-flex align-items-center justify-content-center">
+            <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center">
+                <!-- <h2 class="text-white fw-extrabold text-uppercase"><i class="icon-lock mr-1"></i> Authentification</h2> -->
                 <div class="container container-login bg-white" id="login-box">
                     <!-- <h3 class="text-center fw-extrabold mb-3 title"><i class="flaticon-lock-1"></i></h3> -->
                     <form class="needs-validation" id="form-login" @submit.prevent="loggedIn" novalidate>

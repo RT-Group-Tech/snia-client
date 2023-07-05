@@ -11,7 +11,7 @@
                 <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
                 <!-- Logo Header -->
                 <a href="" class="logo d-flex align-items-center justify-content-center mt-2">
-                    <h2 class="fw-bold text-white">DPROTV</h2>
+                    <logo />
                 </a>
                 <!-- End Logo Header -->
 

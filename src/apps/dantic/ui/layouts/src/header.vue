@@ -2,10 +2,9 @@
     <div class="main-header">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="blue2">
-            <div class="logo-holder logo-1">
+            <div class="">
                 <router-link :to="{ name: 'dashboard-route' }" class="logo">
-                    <h3>SNIA RDC</h3>
-                    <p>Interface dantic</p>
+                    <logo size="60" />
                 </router-link>
             </div>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"

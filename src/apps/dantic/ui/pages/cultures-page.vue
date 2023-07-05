@@ -39,7 +39,7 @@
                                                 href="#v-pills-cultures" role="tab" aria-controls="v-pills-cultures"
                                                 aria-selected="false">
                                                 <i class="flaticon-add"></i>
-                                                Création cultures
+                                                Voir & Créer cultures
                                             </a>
 
                                         </div>

@@ -3,6 +3,7 @@ import itaRoutes from "@/apps/ita/routes";
 import senasemRoutes from "@/apps/senasem/routes";
 import senaficRoutes from "@/apps/senafic/routes";
 import dprotvRoutes from "@/apps/dprotv/routes";
+import ipaRoutes from "@/apps/ipa/routes";
 import { beforeAuth } from "@/middlewares/auth";
 
 const routes = [
@@ -22,9 +23,10 @@ const routes = [
     component: () => import("@/views/auth/modules"),
     beforeEnter: beforeAuth,
   },
-
   /*modules routes */
   ...danticRoutes, //dantic routes
+
+  ...ipaRoutes, //ipa routes
 
   ...itaRoutes, //ita routes
 

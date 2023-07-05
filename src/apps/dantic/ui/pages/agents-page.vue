@@ -54,43 +54,46 @@
                     <div class="col-md-12">
                         <div class="card full-height mt-4 animated fadeIn">
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="agents-datatables" class="display table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Nom complet</th>
-                                                <th>Numero référence</th>
-                                                <th>Fonction</th>
-                                                <th>Grade</th>
-                                                <th>Sexe</th>
-                                                <th>Email</th>
-                                                <th>Téléphone</th>
-                                                <th>Status</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(agent, index) in agents" :key="index">
-                                                <td>{{ agent.nom_complet }}</td>
-                                                <td>{{ agent.numero_reference }}</td>
-                                                <td>{{ agent.fonction }}</td>
-                                                <td>{{ agent.grade }}</td>
-                                                <td>{{ agent.sexe }}</td>
-                                                <td>{{ agent.email }}</td>
-                                                <td>{{ agent.telephone }}</td>
+                                <section-loader :loading="dataLoading">
+                                    <div class="table-responsive">
+                                        <table id="agents-datatables" class="display table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nom complet</th>
+                                                    <th>Numero référence</th>
+                                                    <th>Fonction</th>
+                                                    <th>Grade</th>
+                                                    <th>Sexe</th>
+                                                    <th>Email</th>
+                                                    <th>Téléphone</th>
+                                                    <th>Status</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(agent, index) in agents" :key="index">
+                                                    <td>{{ agent.nom_complet }}</td>
+                                                    <td>{{ agent.numero_reference }}</td>
+                                                    <td>{{ agent.fonction }}</td>
+                                                    <td>{{ agent.grade }}</td>
+                                                    <td>{{ agent.sexe }}</td>
+                                                    <td>{{ agent.email }}</td>
+                                                    <td>{{ agent.telephone }}</td>
 
-                                                <td><span class="text-success fw-bold">{{ agent.agent_status }}</span></td>
-                                                <td>
-                                                    <button type="button" data-toggle="tooltip" title="Voir agent info."
-                                                        class="btn btn-info btn-sm btn-lg"
-                                                        data-original-title="Voir agent & modification">
-                                                        Afficher agent
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    <td><span class="text-success fw-bold">{{ agent.agent_status }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" data-toggle="tooltip" title="Voir agent info."
+                                                            class="btn btn-info btn-sm btn-lg"
+                                                            data-original-title="Voir agent & modification">
+                                                            Afficher agent
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section-loader>
                                 <!-- table pour afficher les ipa & ita -->
                                 <!-- end table -->
                             </div>
@@ -125,6 +128,7 @@ export default {
         return {
             /*  filter word */
             searchword: '',
+            dataLoading: true,
         }
     },
 
@@ -161,7 +165,10 @@ export default {
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-        this.$store.dispatch('dantic/viewAgents');
+        if (this.agents.length > 0) {
+            this.dataLoading = false;
+        }
+        this.$store.dispatch('dantic/viewAgents').then((q) => this.dataLoading = false).catch((e) => this.dataLoading = false);
     }
 }
 </script>

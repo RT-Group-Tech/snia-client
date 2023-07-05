@@ -55,41 +55,43 @@
             </div>
           </div>
           <div class="col-md-12">
-            <div class="row mt-4">
-              <div class="col-md-3" v-for="(ipa, i) in ipas" :key="i">
-                <div class="card card-pricing">
-                  <div class="card-header bg-transparent">
-                    <h4 class="card-title">
-                      <img src="assets/img/icons/city.png" height="20" width="20" class="img-fluid mr-1">
-                      {{ ipa.province }}
-                    </h4>
-                  </div>
-                  <div class="card-body">
-                    <ul class="specification-list">
-                      <li>
-                        <span class="name-specification">Population</span>
-                        <span class="status-specification">{{ ipa.total_population }}</span>
-                      </li>
-                      <li>
-                        <span class="name-specification">Superficie</span>
-                        <span class="status-specification">{{ ipa.superficie }} km<sup>2</sup> </span>
-                      </li>
-                      <li>
-                        <span class="name-specification">Total ITA</span>
-                        <span class="status-specification">0
-                          <!-- //TODO: Calculer le total des itas ensuite afficher ici -->
-                          <button type="button" :disabled="itaLoading === ipa.ipa_id" @click.prevent="getItas(ipa)"
-                            title="Voir la liste des itas" class="btn btn-icon btn-sm ml-2 btn-info">
-                            <i v-if="itaLoading === ipa.ipa_id" class="fa fa-spinner fa-spin"></i>
-                            <i v-else class="fas fa-th-list"></i>
-                          </button>
-                        </span>
-                      </li>
-                    </ul>
+            <section-loader :loading="dataLoading">
+              <div class="row mt-4">
+                <div class="col-md-3" v-for="(ipa, i) in ipas" :key="i">
+                  <div class="card card-pricing">
+                    <div class="card-header bg-transparent">
+                      <h4 class="card-title">
+                        <img src="assets/img/icons/city.png" height="20" width="20" class="img-fluid mr-1">
+                        {{ ipa.province }}
+                      </h4>
+                    </div>
+                    <div class="card-body">
+                      <ul class="specification-list">
+                        <li>
+                          <span class="name-specification">Population</span>
+                          <span class="status-specification">{{ ipa.total_population }}</span>
+                        </li>
+                        <li>
+                          <span class="name-specification">Superficie</span>
+                          <span class="status-specification">{{ ipa.superficie }} km<sup>2</sup> </span>
+                        </li>
+                        <li>
+                          <span class="name-specification">Total ITA</span>
+                          <span class="status-specification">0
+                            <!-- //TODO: Calculer le total des itas ensuite afficher ici -->
+                            <button type="button" :disabled="itaLoading === ipa.ipa_id" @click.prevent="getItas(ipa)"
+                              title="Voir la liste des itas" class="btn btn-icon btn-sm ml-2 btn-info">
+                              <i v-if="itaLoading === ipa.ipa_id" class="fa fa-spinner fa-spin"></i>
+                              <i v-else class="fas fa-th-list"></i>
+                            </button>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </section-loader>
           </div>
         </div>
       </div>
@@ -129,7 +131,8 @@ export default {
   data() {
     return {
       searchword: '',
-      itaLoading: ''
+      itaLoading: '',
+      dataLoading: true
     }
   },
 
@@ -146,7 +149,10 @@ export default {
   },
   mounted() {
     this.$initBsTooltip();
-    this.$store.dispatch('dantic/viewIpas')
+    if (this.ipas.length > 0) {
+      this.dataLoading = false;
+    }
+    this.$store.dispatch('dantic/viewIpas').then((_) => this.dataLoading = false).catch((_) => this.dataLoading = false)
   },
   methods: {
     showIpaRegisterModal() {

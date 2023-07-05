@@ -1,129 +1,72 @@
 <template>
     <div class="tab-pane fade" id="v-pills-cultures" role="tabpanel" aria-labelledby="v-pills-home-tab-icons">
-        <form @submit.prevent="submitForm" id="form-culture">
-            <div class="accordion accordion-secondary">
-                <div class="card">
-                    <div class="card-header" aria-expanded="true" aria-controls="collapseOne" role="button">
-                        <div class="span-title text-uppercase fw-extrabold">
-                            Création cultures
-                        </div>
-                    </div>
-
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Désignation<sup class="text-danger">*</sup></label>
-                                    <input type="text" v-model="form.nom" placeholder="Entrer le titre du formulaire..."
-                                        class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Sélectionner une catégorie <sup
-                                            class="text-danger">*</sup></label>
-                                    <select class="form-control custom-select" v-model="form.culture_categorie_id"
-                                        id="defaultSelect" required>
-                                        <option selected>Sélectionner une catégorie</option>
-                                        <option v-for="(cat, index) in categories" :key="index"
-                                            :value="cat.culture_categorie_id">{{ cat.categorie
-                                            }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Détail<sup class="text-danger">*</sup></label>
-                                    <input type="text" v-model="form.detail" placeholder="Entrer un détail..."
-                                        class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Valeur<sup class="text-danger">*</sup></label>
-                                    <input type="text" v-model="form.valeur" placeholder="Entrer une valeur..."
-                                        class="form-control" required>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" :disabled="formLoading" class="btn btn-success mr-2"><i v-if="formLoading"
-                                class="fa fa-spinner fa-spin mr-2"></i>Sauvegarder</button>
-                        <button type="reset" class="btn btn-danger">Annuler</button>
-                    </div>
+        <div class="p-2">
+            <div class="d-flex align-items-center mb-2">
+                <h3 class="fw-extrabold">Liste des Cultures </h3>
+                <button class="btn ml-auto btn-primary" @click="$showBsModal('cultureCreateModal')"><i
+                        class="flaticon-add mr-2"></i>Nouvelles cultures</button>
+            </div>
+            <div class="input-group m-0 mb-2">
+                <input type="text" v-model="searchWord" placeholder="Recherche culture..." class="form-control">
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="fa fa-search search-icon"></i>
+                    </span>
                 </div>
             </div>
-        </form>
+
+            <!-- formulaires list -->
+            <section-loader :loading="dataLoading">
+                <ul class="list-group list-group-bordered">
+                    <li class="list-group-item d-lg-flex align-items-center justify-content-between"
+                        v-for="(culture, i) in cultures" :key="i">
+                        <span> {{ $filters.capitalize(culture.nom) }} </span>
+                        <div class="d-flex">
+                            <button :disabled="deleteLoading === culture.culture_id" class="btn btn-icon btn-danger mr-1"
+                                @click.prevent="deleteCulture(culture.culture_id)">
+                                <i v-if="deleteLoading === culture.culture_id" class="fa fa-spinner fa-spin" />
+                                <i v-else class="icon-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </section-loader>
+        </div>
     </div>
+    <create-culture-modal />
 </template>
 
 <script>
-import Api from '@/apps/dantic/api';
+import createCultureModal from "../../../modals/culture-create-modal"
 export default {
     name: "Create-Categorie",
+
     data() {
         return {
-            form: {
-                culture_categorie_id: '',
-                nom: '',
-                detail: '',
-                valeur: ''
-            },
-            formLoading: false,
+            deleteLoading: '',
+            dataLoading: true,
+            searchWord: ''
         }
     },
 
+    components: {
+        createCultureModal
+    },
+    created() {
+        if (this.cultures.length > 0) {
+            this.dataLoading = false;
+        }
+        this.$store.dispatch('voirCultures').then((s) => this.dataLoading = false).catch((err) => this.dataLoading = false);
+    },
     computed: {
-        categories() {
-            return this.$store.getters['dantic/GET_CATEGORIES']
+        cultures() {
+            if (this.searchWord) {
+                let filtered = this.$store.getters.GET_CULTURES;
+                return filtered.filter((c) => c.nom.toLowerCase().includes(this.searchWord.toLowerCase()));
+            }
+            return this.$store.getters.GET_CULTURES
         }
     },
 
-    methods: {
-        submitForm(event) {
-            this.$validForm('form-culture', event, async (result, form) => {
-                if (!result) {
-                    this.$animatedFailedTask("submit-btn");
-                }
-                else {
-                    this.formLoading = true;
-                    /*request here...*/
-                    await Api.creerCulture(this.form, (res) => {
-                        console.log(JSON.stringify(res));
-                        this.cleanForm();
-                        this.formLoading = false;
-                        $.notify(
-                            {
-                                icon: "fas fa-check",
-                                title: "Succès !",
-                                message: "Création culture effectuée avec succès !",
-                            },
-                            {
-                                type: "success",
-                                placement: {
-                                    from: "bottom",
-                                    align: "right",
-                                },
-                                time: 1000,
-                            }
-                        );
-                    })
-                }
-            })
-        },
-
-        cleanForm() {
-            this.form.culture_categorie_id = '';
-            this.form.nom = '';
-            this.form.valeur = '';
-            this.form.detail = '';
-        }
-    },
 }
 </script>

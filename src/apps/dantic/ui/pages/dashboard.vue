@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="page-inner mt--5">
-                <div class="row mt--2">
+                <!-- <div class="row mt--2">
                     <div class="col-md-6">
                         <div class="card full-height animated zoomIn">
                             <div class="card-body">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row mt--2">
                     <div class="col-sm-6 col-lg-3">
@@ -188,6 +188,9 @@ export default {
     },
 
     mounted() {
+        this.$store.dispatch('dantic/viewIpas')
+        this.$store.dispatch('dantic/viewAgents')
+        this.$store.dispatch('dantic/viewItas')
         setInterval(() => {
             this.$store.dispatch('dantic/refreshDashboard');
         }, 1000)

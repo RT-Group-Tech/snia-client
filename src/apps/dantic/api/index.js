@@ -196,7 +196,6 @@ class Api {
   static async creerCulture(form, callback) {
     const { data, status } = await request(
       {
-        key: "18edab2a8b33f8b3c7cefbbb3478cb531d52f603",
         culture_categorie_id: form.culture_categorie_id,
         nom: form.nom,
         detail: form.detail,
@@ -479,11 +478,11 @@ class Api {
         let input = s.inputs[i];
         /* let opts = []; */
         /* if (input.options !== undefined) {
-                                                                                                  input.options.forEach((el) => {
-                                                                                                    opts.push(el.input_option);
-                                                                                                  });
-                                                                                                  console.log(opts.toString());
-                                                                                                } */
+                                                                                                          input.options.forEach((el) => {
+                                                                                                            opts.push(el.input_option);
+                                                                                                          });
+                                                                                                          console.log(opts.toString());
+                                                                                                        } */
         if (input.formulaire_input_id === undefined) {
           input.formulaire_section_id = s.formulaire_section_id;
           let fieldRes = await this.creerFormulaireSectionDetails(input);

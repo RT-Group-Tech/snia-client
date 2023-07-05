@@ -29,10 +29,8 @@ export default {
         require('@/assets/css/atlantis.css');
     },
 
-    async mounted() {
-        this.$store.dispatch('dantic/viewIpas')
-        this.$store.dispatch('dantic/viewAgents')
-        this.$store.dispatch('dantic/viewItas')
+    mounted() {
+
         this.$store.dispatch("auth/refreshLoggedUser");
         $('.scrollbar-inner').scrollbar();
     },

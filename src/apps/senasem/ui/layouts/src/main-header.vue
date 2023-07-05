@@ -12,7 +12,7 @@
                 <!-- Logo Header -->
                 <a href="javascript:void(0)" @click.prevent="$router.push({ name: 'senasem-dashboard-route' })"
                     class="logo d-flex align-items-center justify-content-center mt-2">
-                    <h2 class="fw-bold text-white">SENASEM</h2>
+                    <logo />
                 </a>
                 <!-- End Logo Header -->
 

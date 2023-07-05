@@ -6,6 +6,7 @@ import senaficStore from "@/apps/senafic/store";
 import senasemStore from "@/apps/senasem/store";
 import dprotvStore from "@/apps/dprotv/store";
 import itaStore from "@/apps/ita/store";
+import ipaStore from "@/apps/ipa/store";
 import authStore from "./modules/auth";
 
 import Api from "@/api";
@@ -20,6 +21,7 @@ const store = createStore({
     dprotv: dprotvStore,
     auth: authStore,
     ita: itaStore,
+    ipa: ipaStore,
   },
   getters: {
     GET_COLLECTES: (state) => state.collectes,
@@ -82,18 +84,24 @@ const store = createStore({
      *
      */
     voirCollectes({ commit, state }) {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         Api.voirDonneesCollectes((data) => {
           commit("SET_COLLECTES", data);
-          resolve(data);
+          if (data.reponse != undefined) {
+            resolve(data);
+          } else {
+            reject(false);
+          }
         });
       });
     },
     voirCultures({ commit }) {
-      return new Promise((resolve) => {
+      console.log("##Voir cultures");
+      return new Promise((resolve, reject) => {
         GlobalApi.voirCultures((data) => {
           commit("SET_CULTURES", data);
-          resolve(data);
+          if (data.reponse != undefined) resolve(data);
+          else reject(data);
         });
       });
     },

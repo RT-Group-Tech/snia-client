@@ -5,22 +5,29 @@ import Api from "@/apps/dantic/api";
 const actions = {
   /*Permet de voir tous les agent via la dbTable locale*/
   viewAgents({ commit, state }) {
-    state.dataLoading = true;
-    Api.voirAgents((data) => {
-      state.dataLoading = false;
-      commit("SET_AGENTS", data.reverse());
+    return new Promise((resolve, reject) => {
+      Api.voirAgents((data) => {
+        commit("SET_AGENTS", data.reverse());
+        resolve(data);
+      });
     });
   },
 
   viewIpas({ commit }) {
-    Api.voirIpas((data) => {
-      commit("SET_IPAS", data.reponse);
+    return new Promise((resolve, reject) => {
+      Api.voirIpas((data) => {
+        commit("SET_IPAS", data.reponse);
+        resolve(data);
+      });
     });
   },
 
   viewItas({ commit }) {
-    Api.voirItas((data) => {
-      commit("SET_ITAS", data.reponse);
+    return new Promise((resolve, reject) => {
+      Api.voirItas((data) => {
+        commit("SET_ITAS", data.reponse);
+        resolve(data);
+      });
     });
   },
 

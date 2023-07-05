@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import sectionLoader from "@/views/utilities/section_loader";
+import sectionLoader from "@/views/utilities/section-loader";
 
 export default {
     name: "reporting-page",

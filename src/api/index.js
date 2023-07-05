@@ -36,7 +36,10 @@ class GlobalApi {
 
   /* Voir les sujets enregistrés dans le systèmes */
   static async voirFormulairesSujets(callback) {
-    const { data, status } = await request("/dantic/formulaire_url/viewsujet");
+    const { data, status } = await request(
+      null,
+      "/dantic/formulaire_url/viewsujet"
+    );
     if (status === 200) callback(data);
     else callback(false);
   }

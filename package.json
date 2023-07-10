@@ -15,6 +15,7 @@
         "http": "^0.0.1-security",
         "jquery": "^3.6.3",
         "jszip": "^3.10.1",
+        "lottie-web-vue": "^2.0.7",
         "nano-sql": "^1.8.5",
         "vue": "^3.2.13",
         "vue-multiselect": "^2.1.7",

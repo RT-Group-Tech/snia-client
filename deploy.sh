@@ -25,6 +25,7 @@ git commit -m 'deploy'
 git push -f git@github.com:RT-Group-Tech/snia-client.git master:gh-pages
 
 cd
-
 # ssh key generating command
 # ssh-keygen -t ed25519 -C "myGitEmail@gmail.com"
+
+rm -r dist #remove dist directory after deploy

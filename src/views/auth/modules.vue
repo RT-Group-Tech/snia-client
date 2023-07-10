@@ -61,7 +61,7 @@ export default {
             if (this.user) {
                 if (choice.enabled) {
                     try {
-                        this.$router.push({
+                        this.$router.replace({
                             name: `${mod}-secure-route`,
                         });
                     } catch (error) {

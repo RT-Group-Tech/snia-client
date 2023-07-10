@@ -56,7 +56,7 @@
                             <div class="card-body">
                                 <section-loader :loading="dataLoading">
                                     <div class="table-responsive">
-                                        <table id="agents-datatables" class="display table table-striped table-hover">
+                                        <table id="agentsTable" class="display table table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>Nom complet</th>
@@ -116,9 +116,8 @@
 
 <script>
 import servicesMixins from '../../mixins/services.mixins';
-
 import AgentCreateModal from "../modals/agent-create-modal.vue";
-
+import dataTableLang from '@/utils/datatable.fr.config'
 export default {
     name: "Ipa-view",
     components: { AgentCreateModal },
@@ -151,22 +150,26 @@ export default {
         },
     },
     mounted() {
-        /*  $('#agents-datatables').DataTable({
-             "language": {
-                 "paginate": {
-                     "previous": "Précédent",
-                     "next": "Suivant"
-                 },
-                 "zeroRecords": "Aucune données trouvés !",
-                 "info": "Afficher _PAGE_ sur _PAGES_",
-                 "search": "Recherche"
-             }
-         }) */
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-
-        this.$store.dispatch('dantic/viewAgents').then((q) => this.dataLoading = false).catch((e) => this.dataLoading = false);
+        /* setInterval(() => {
+            $('#agentsTable').DataTable({
+                "language": {
+                    ...dataTableLang
+                },
+                stateSave: true,
+                "bDestroy": true
+            })
+        }, 1000) */
+        this.$initBsTooltip();
+        this.$store.dispatch('dantic/viewAgents').then((q) => {
+            this.dataLoading = false
+            /* $('#agentsTable').DataTable({
+                "language": {
+                    ...dataTableLang
+                },
+                stateSave: true,
+                "bDestroy": true
+            }) */
+        }).catch((e) => this.dataLoading = false);
     }
 }
 </script>

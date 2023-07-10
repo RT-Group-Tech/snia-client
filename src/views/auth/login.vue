@@ -3,7 +3,8 @@
         <div class="wrapper wrapper-login bg-app-gradient wrapper-login-full p-0 ">
             <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center">
                 <img src="assets/img/armoirie_rdc.png" alt="" class="img-fluid">
-                <h1 class="fw-bold display-4 text-white mb-2 mt-2 text-uppercase">
+                <h1 class="fw-bold display-4 text-white mb-2 mt-2 text-uppercase"
+                    style="font-family: Arial, Helvetica, sans-serif;">
                     Ministère de l'agriculture
                 </h1>
 

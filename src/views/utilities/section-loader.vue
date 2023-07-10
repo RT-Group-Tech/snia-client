@@ -11,10 +11,10 @@
     <div id="loader"
       class="d-flex justify-content-center flex-column align-content-center align-items-center w-100 border-light rounded"
       v-if="loading" :style="`min-height:${height}px;`">
-      <img src="assets/img/section_loader.gif" style="height: 60px;" class="mfp-img-mobile img-fluid" />
-      <h4 class="mt-2 fw-bold d-flex justify-content-center align-items-end align-content-end">chargement en cours
+      <lottie-animation :json="json"></lottie-animation>
+      <!-- <h4 class="mt-2 fw-bold d-flex justify-content-center align-items-end align-content-end">chargement en cours
         <img style="height: 20px;" src="assets/img/processing_loader.gif" alt="" class="img-fluid">
-      </h4>
+      </h4> -->
     </div>
     <!-- End- loader !-->
     <slot v-else></slot>
@@ -23,7 +23,13 @@
 </template>
 
 <script>
+import jsonLoader from "@/assets/json/loading-1.json";
 export default {
+  data() {
+    return {
+      json: jsonLoader
+    }
+  },
   props: {
     loading: {
       type: Boolean,

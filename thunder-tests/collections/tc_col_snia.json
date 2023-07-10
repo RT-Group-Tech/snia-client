@@ -76,6 +76,20 @@
                 ]
             },
             "tests": []
+        },
+        {
+            "_id": "f317f1f7-9fed-4c54-964e-3afa60d62ef6",
+            "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+            "containerId": "",
+            "name": "view collect",
+            "url": "https://snia.verifixs.com/collectes/all",
+            "method": "GET",
+            "sortNum": 12500,
+            "created": "2023-07-10T11:12:52.699Z",
+            "modified": "2023-07-10T11:13:50.198Z",
+            "headers": [],
+            "params": [],
+            "tests": []
         }
     ]
 }

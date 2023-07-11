@@ -34,7 +34,6 @@ export default {
     name: 'Modules',
     async mounted() {
         await this.$store.dispatch("auth/refreshLoggedUser");
-
         /* Enable user access module */
         this.modules.forEach((mod) => {
             /* mod.enabled = true; */

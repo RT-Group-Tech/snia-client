@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper bubble-shadow" data-background-color="blue">
         <div class="choice-module h-100 w-100">
-            <div class="container h-100 mx-5">
+            <div class="container h-100 ">
                 <div class="container d-flex h-100">
                     <div class="row my-auto w-75 mx-auto justify-content-center align-items-center">
                         <div class="col-md-12 mb-3">
@@ -12,7 +12,7 @@
                             <p class="text-center text-white animated fadeInUp">Veuillez-vous connecter au module adéquat
                                 selon votre niveau d'accès</p>
                         </div>
-                        <div class="col-3 col-sm-3 col-lg-2" v-for="(mod, index) in modules" :key="index">
+                        <div class="col-3 col-sm-3 col-lg-3" v-for="(mod, index) in modules" :key="index">
                             <button class="card btn w-100 p-0 choice-card animated zoomIn" :disabled="!mod.enabled"
                                 @click.prevent="() => toggleChoice(mod)">
                                 <div class="card-body p-3 text-center">
@@ -32,7 +32,6 @@
 
 export default {
     name: 'Modules',
-
     async mounted() {
         await this.$store.dispatch("auth/refreshLoggedUser");
 

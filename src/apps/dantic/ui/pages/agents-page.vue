@@ -117,7 +117,6 @@
 <script>
 import servicesMixins from '../../mixins/services.mixins';
 import AgentCreateModal from "../modals/agent-create-modal.vue";
-import dataTableLang from '@/utils/datatable.fr.config'
 export default {
     name: "Ipa-view",
     components: { AgentCreateModal },

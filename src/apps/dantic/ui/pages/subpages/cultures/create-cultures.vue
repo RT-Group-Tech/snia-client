@@ -16,7 +16,7 @@
             </div>
 
             <!-- formulaires list -->
-            <section-loader :loading="dataLoading">
+            <section-loader :loading="dataLoading" :data="cultures">
                 <ul class="list-group list-group-bordered">
                     <li class="list-group-item d-lg-flex align-items-center justify-content-between"
                         v-for="(culture, i) in cultures" :key="i">

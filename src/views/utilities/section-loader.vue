@@ -10,7 +10,7 @@
     <!-- loader !-->
     <div id="loader"
       class="d-flex justify-content-center flex-column align-content-center align-items-center w-100 border-light rounded"
-      v-if="loading" :style="`min-height:${height}px;`">
+      v-if="loading && data.length === 0" :style="`min-height:${height}px;`">
       <lottie-animation :json="json"></lottie-animation>
       <!-- <h4 class="mt-2 fw-bold d-flex justify-content-center align-items-end align-content-end">chargement en cours
         <img style="height: 20px;" src="assets/img/processing_loader.gif" alt="" class="img-fluid">
@@ -42,6 +42,11 @@ export default {
     height: {
       type: Number,
       default: 300
+    },
+
+    data: {
+      type: Array,
+      default: () => []
     }
   },
   mounted() { },

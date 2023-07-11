@@ -56,7 +56,7 @@
                     <div class="col-md-12">
                         <div class="card full-height mt-4 animated fadeIn">
                             <div class="card-body">
-                                <section-loader :loading="dataLoading">
+                                <section-loader :loading="dataLoading" :data="itas">
                                     <div class="table-responsive">
                                         <table id="ipa-datatables" class="display table table-striped table-hover">
                                             <thead>

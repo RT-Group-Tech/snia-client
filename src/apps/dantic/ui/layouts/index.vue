@@ -30,7 +30,6 @@ export default {
     },
 
     mounted() {
-
         this.$store.dispatch("auth/refreshLoggedUser");
         $('.scrollbar-inner').scrollbar();
     },

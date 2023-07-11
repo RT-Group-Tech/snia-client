@@ -38,7 +38,7 @@
 
                     </div>
                 </div>
-                <section-loader :loading="dataLoading">
+                <section-loader :loading="dataLoading" :data="collectes">
                     <div>
                         <div v-if="collectes.length < 1"
                             class="card w-100 p-5 h-75 d-flex align-items-center justify-content-center">
@@ -71,7 +71,7 @@
 
 
         <!-- Global footer component -->
-        <d-footer v-if="$route.name === 'ipa-collect-route'"></d-footer>
+        <d-footer v-if="$route.name === 'dantic-collect-route'"></d-footer>
         <!-- end Global footer component -->
 
 

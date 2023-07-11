@@ -8,14 +8,15 @@ import Logo from "@/views/utilities/logo";
 import LottieAnimation from "./others/lottie-animation";
 
 export default {
-  install: (app, options) => {
-    app.component("map-svg", MapSvg);
-    app.component("group-caption", GroupCaption);
-    app.component("submit-btn", SubmitBtn);
-    app.component("user-menu", UserMenu);
-    app.component("section-loader", SectionLoader);
-    app.component("lottie-animation", LottieAnimation);
-    app.component("logo", Logo);
-    app.use(BsComponents);
-  },
+    install: (app, options) => {
+        app.component("map-svg", MapSvg);
+        app.component("group-caption", GroupCaption);
+        app.component("submit-btn", SubmitBtn);
+        app.component("user-menu", UserMenu);
+        app.component("section-loader", SectionLoader);
+        app.component("lottie-animation", LottieAnimation);
+        app.component("empty-state", LottieAnimation);
+        app.component("logo", Logo);
+        app.use(BsComponents);
+    },
 };

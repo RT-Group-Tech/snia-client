@@ -71,9 +71,6 @@ export default {
             currentRoute: ''
         }
     },
-    created() {
-        this.$store.dispatch('auth/refresh')
-    },
 
     mounted() {
         var scrollbarDashboard = $(".sidebar .scrollbar");

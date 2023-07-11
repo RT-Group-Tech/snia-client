@@ -10,8 +10,8 @@
                                 de l'Information et de la Communication</h5>
                         </div>
                         <div class="ml-md-auto py-2 py-md-0">
-                            <button class="btn btn-light" @click="testRequests"> <i class="icon-user-follow"></i>
-                                Utilisateur</button>
+                            <button class="btn btn-light" @click="$showBsModal('report-modal')"> <i class="icon-docs"></i>
+                                Générer le rapport</button>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         </dashboard-card>
                     </div>
                     <div class="col-sm-6 col-lg-3">
-                        <dashboard-card title="Nbre agriculteurs" value="100" leading="agric." icon="icon-people"
+                        <dashboard-card title="Total formulaires" value="100" leading="form." icon="icon-list"
                             bg-color="bg-success">
                         </dashboard-card>
                     </div>
@@ -163,17 +163,22 @@
         <d-footer></d-footer>
         <!-- end Global footer component -->
     </div>
+    <report-modal />
 </template>
 
 <script>
 import DashboardMixin from "../../mixins/dashboard"
 import servicesMixins from "../../mixins/services.mixins";
+import reportModal from "@/views/public/modals/generate-report-modal";
 
 
 export default {
     name: "Dashboard",
     extends: DashboardMixin,
     mixins: [servicesMixins],
+    components: {
+        reportModal
+    },
     data() {
         return {
             regions: [],

@@ -71,36 +71,42 @@
                             <div class="card-body m-0">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="table-responsive table-hover table-sales">
-                                            <table class="table">
-                                                <thead>
-                                                    <th>
-                                                        Image
-                                                    </th>
-                                                    <th>
-                                                        Libelle de la semence
-                                                    </th>
-                                                    <th class="text-right">
-                                                        Culture
-                                                    </th>
-                                                </thead>
-                                                <tbody>
+                                        <section-loader :loading="dataLoading" :data="semences">
+                                            <div class="table-responsive table-hover table-sales"
+                                                v-if="semences.length > 0">
+                                                <table class="table">
+                                                    <thead>
+                                                        <th>
+                                                            Image
+                                                        </th>
+                                                        <th>
+                                                            Libelle de la semence
+                                                        </th>
+                                                        <th class="text-right">
+                                                            Culture
+                                                        </th>
+                                                    </thead>
+                                                    <tbody>
 
-                                                    <tr v-for="(sem, i) in semences" :key="i">
-                                                        <td>
-                                                            <div class="flag">
-                                                                <img :src="sem.media" alt="image">
-                                                            </div>
-                                                        </td>
-                                                        <td>{{ sem.nom }}</td>
-                                                        <td class="text-right">
-                                                            Sit lorem pasma
-                                                        </td>
+                                                        <tr v-for="(sem, i) in semences" :key="i">
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img :src="sem.media" alt="image">
+                                                                </div>
+                                                            </td>
+                                                            <td>{{ sem.nom }}</td>
+                                                            <td class="text-right">
+                                                                Sit lorem pasma
+                                                            </td>
 
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div v-else>
+                                                <empty-state></empty-state>
+                                            </div>
+                                        </section-loader>
                                     </div>
 
                                 </div>
@@ -119,12 +125,14 @@ export default {
 
     data() {
         return {
-            searchWord: ''
+            searchWord: '',
+            dataLoading: false
         }
     },
 
     mounted() {
-        this.$store.dispatch('senasem/viewSemences');
+        this.dataLoading = true
+        this.$store.dispatch('senasem/viewSemences').then(() => this.dataLoading = false).catch(() => this.dataLoading = false);
     },
 
     computed: {

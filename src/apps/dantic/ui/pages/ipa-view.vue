@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <section-loader :loading="dataLoading">
+            <section-loader :loading="dataLoading" :data="ipas">
               <div class="row mt-4">
                 <div class="col-md-3" v-for="(ipa, i) in ipas" :key="i">
                   <div class="card card-pricing">

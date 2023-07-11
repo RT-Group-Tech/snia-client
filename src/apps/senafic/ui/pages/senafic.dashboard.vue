@@ -71,29 +71,34 @@
                                     il s'agit de la liste exhaustive de tous les fertilisants répertoriés !</p>
                             </div>
                             <div class="card-body m-0">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive table-hover table-sales">
-                                            <table class="table">
-                                                <thead>
-                                                    <th>Image</th>
-                                                    <th>Libellé du fertilisant</th>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="(fert, i) in fertilisants" :key="i">
-                                                        <td>
-                                                            <div class="flag">
-                                                                <img :src="fert.media" alt="image">
-                                                            </div>
-                                                        </td>
-                                                        <td>{{ fert.fertilisant }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                <section-loader :data="fertilisants" :loading="dataLoading">
+                                    <div class="row">
+                                        <div class="col-md-12" v-if="fertilisants.length > 0">
+                                            <div class="table-responsive table-hover table-sales">
+                                                <table class="table">
+                                                    <thead>
+                                                        <th>Image</th>
+                                                        <th>Libellé du fertilisant</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="(fert, i) in fertilisants" :key="i">
+                                                            <td>
+                                                                <div class="flag">
+                                                                    <img :src="fert.media" alt="image">
+                                                                </div>
+                                                            </td>
+                                                            <td>{{ fert.fertilisant }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="col-md-12" v-else>
+                                            <empty-state></empty-state>
+                                        </div>
 
-                                </div>
+                                    </div>
+                                </section-loader>
                             </div>
                         </div>
                     </div>
@@ -109,11 +114,12 @@ export default {
 
     data() {
         return {
-            searchWord: ''
+            searchWord: '',
+            dataLoading: false
         }
     },
     mounted() {
-        this.$store.dispatch('senafic/viewFertilisants');
+        this.$store.dispatch('senafic/viewFertilisants').then(() => dataLoading = false).catch(() => dataLoading = false);
     },
 
     computed: {

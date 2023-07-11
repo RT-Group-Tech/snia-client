@@ -12,7 +12,7 @@
                             @click.prevent="$showBsModal('secteurCreateModal')">
                             <i class="flaticon-add"></i> Nouveau secteur</button>
                         <button type="button" class="btn btn-light" @click.prevent="$showBsModal('report-modal')">
-                            <i class="icon-chart"></i> Générer un rapport</button>
+                            <i class="icon-docs"></i> Générer un rapport</button>
                     </div>
                 </div>
             </div>

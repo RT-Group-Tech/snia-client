@@ -1,5 +1,5 @@
 <template>
-    <bs-modal id="report-modal" size="modal-lg" title="Générer un rapport">
+    <bs-modal id="report-modal" size="modal-lg" title="Générer un rapport" @on-close="reset">
         <template #body-content>
             <h4>Sélectionnez les dates pour filtrer le rapport !</h4>
             <form @submit.prevent="loadGenerate">
@@ -24,12 +24,14 @@
                     <lottie-animation :json="json" lottie-size="200"></lottie-animation>
                 </div>
                 <div v-else>
-                    <a :href="document" v-if="document !== null" target="_blank" class="btn btn-success btn-lg w-100"><i
-                            class="icon-cloud-download mr-1"></i> Télécharger le
+                    <a :href="document" v-if="document !== null" target="_blank"
+                        class="btn btn-success btn-lg w-100 text-white"><i class="icon-cloud-download mr-1"></i> Télécharger
+                        le
                         rapport</a>
-                    <a href="javascript:void(0)" @click.prevent="loadGenerate" v-else target="_blank"
-                        class="btn btn-primary btn-lg w-100"><i class="icon-refresh mr-1"></i> Relancer le
-                        téléchargement</a>
+                    <div v-else class="d-flex justify-content-center align-content-center align-items-center">
+                        <lottie-animation :json="json2" lottie-size="250"></lottie-animation>
+                        <h4 class="display-4">Veuillez générer un rapport !</h4>
+                    </div>
                 </div>
             </div>
         </template>
@@ -37,6 +39,7 @@
 </template>
 <script>
 import jsonLoader from "@/assets/json/loading-1.json";
+import jsonReport from "@/assets/json/report.json";
 
 export default {
     name: "ReportModal",
@@ -45,24 +48,13 @@ export default {
         return {
             isLoader: false,
             document: null,
-            json: jsonLoader
+            json: jsonLoader,
+            json2: jsonReport
         }
     },
 
-    mounted() {
-        /*  $('#datepicker1').datetimepicker({
-             format: 'MM/DD/YYYY',
-         });
-         $('#datepicker2').datetimepicker({
-             format: 'MM/DD/YYYY',
-         }); */
-        if (navigator.onLine) {
-            this.loadGenerate();
-        }
-        else {
-            this.$closeBsModal('report-modal');
-            this.isLoader = false;
-        }
+    unmounted() {
+        this.reset();
     },
 
     methods: {
@@ -77,6 +69,10 @@ export default {
                 this.isLoader = false;
                 this.document = null;
             });
+        },
+        reset() {
+            this.document = null;
+            this.isLoader = false;
         }
     },
 }

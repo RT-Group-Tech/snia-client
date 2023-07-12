@@ -12,7 +12,7 @@
                             @click.prevent="$showBsModal('secteurCreateModal')">
                             <i class="flaticon-add"></i> Nouveau secteur</button>
                         <button type="button" class="btn btn-light" @click.prevent="$showBsModal('report-modal')">
-                            <i class="icon-docs"></i> Générer un rapport</button>
+                            <i class="icon-docs"></i> Rapport</button>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre agents de ita</div>
-                                <div class="h1 mb-3 fw-extrabold ">43</div>
+                                <div class="h1 mb-3 fw-extrabold ">0</div>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre secteurs de ita</div>
-                                <div class="h1 mb-3 fw-extrabold">17</div>
+                                <div class="h1 mb-3 fw-extrabold">0</div>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre agriculteurs</div>
-                                <div class="h1 mb-3 fw-extrabold">700</div>
+                                <div class="h1 mb-3 fw-extrabold">0</div>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre utilisateurs</div>
-                                <div class="h1 mb-3 fw-extrabold">30</div>
+                                <div class="h1 mb-3 fw-extrabold">0</div>
                             </div>
                         </div>
                     </div>

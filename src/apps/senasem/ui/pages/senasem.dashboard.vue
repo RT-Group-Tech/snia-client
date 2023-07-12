@@ -24,7 +24,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre des semences</div>
-                                <div class="h1 mb-3 fw-extrabold ">43</div>
+                                <div class="h1 mb-3 fw-extrabold ">0</div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre d'agents SENASEM</div>
-                                <div class="h1 mb-3 fw-extrabold">17</div>
+                                <div class="h1 mb-3 fw-extrabold">0</div>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Semences certifiées</div>
-                                <div class="h1 mb-3 fw-extrabold">700</div>
+                                <div class="h1 mb-3 fw-extrabold">0</div>
                             </div>
                         </div>
                     </div>

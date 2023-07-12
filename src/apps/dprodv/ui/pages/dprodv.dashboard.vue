@@ -9,7 +9,7 @@
                     </div>
                     <div class="ml-auto">
                         <button type="button" class="btn btn-light" @click.prevent="$showBsModal('report-modal')">
-                            <i class="icon-docs"></i> Générer un rapport</button>
+                            <i class="icon-docs"></i>Rapport</button>
                     </div>
                 </div>
             </div>

@@ -122,6 +122,7 @@ export default {
     border: 1px solid #e0e0e0;
     padding: 4px 8px;
     padding-right: 0;
+    font-size: .8em;
     margin: 3px 3px;
 }
 

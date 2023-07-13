@@ -7,39 +7,37 @@ import ipaRoutes from "@/apps/ipa/routes";
 import dprodvRoutes from "@/apps/dprodv/routes";
 import { beforeAuth } from "@/middlewares/auth";
 
-const routes = [{
-        path: "/:pathMatch(.*)*",
-        name: "notfound",
-        component: () =>
-            import ("@/views/public/error/404"),
-    },
-    {
-        path: "/",
-        name: "login",
-        component: () =>
-            import ("@/views/auth/login"),
-    },
-    {
-        path: "/modules/view",
-        name: "modules",
-        component: () =>
-            import ("@/views/auth/modules"),
-        beforeEnter: beforeAuth,
-    },
-    /*modules routes */
-    ...danticRoutes, //dantic routes
+const routes = [
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notfound",
+    component: () => import("@/views/public/error/404"),
+  },
+  {
+    path: "/",
+    name: "login",
+    component: () => import("@/views/auth/login"),
+  },
+  {
+    path: "/modules/view",
+    name: "modules",
+    component: () => import("@/views/auth/modules"),
+    beforeEnter: beforeAuth,
+  },
+  /*modules routes */
+  ...danticRoutes, //dantic routes
 
-    ...ipaRoutes, //ipa routes
+  ...ipaRoutes, //ipa routes
 
-    ...itaRoutes, //ita routes
+  ...itaRoutes, //ita routes
 
-    ...senasemRoutes, //senasem routes
+  ...senasemRoutes, //senasem routes
 
-    ...senaficRoutes, //senafic routes
+  ...senaficRoutes, //senafic routes
 
-    ...dprotvRoutes, //dprotv routes
+  ...dprotvRoutes, //dprotv routes
 
-    ...dprodvRoutes, //dprodv routes
+  ...dprodvRoutes, //dprodv routes
 ];
 
 export default routes;

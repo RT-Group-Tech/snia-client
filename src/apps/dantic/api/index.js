@@ -432,8 +432,9 @@ class Api {
         sujet_id: formulaireData.sujet_id,
       };
       let liaisonRes = await this.lierFormulaireToSubject(liaisonReqData);
+      console.log("liaison", JSON.stringify(liaisonRes));
       /* check formulaire_sujet link success*/
-      if (liaisonRes.result.reponse.status === "success") {
+      if (liaisonRes.reponse.status === "success") {
         for (let i = 0; i < formulaireData.sections.length; i++) {
           let forms = formulaireData.sections[i];
 
@@ -478,11 +479,11 @@ class Api {
         let input = s.inputs[i];
         /* let opts = []; */
         /* if (input.options !== undefined) {
-                                                                                                          input.options.forEach((el) => {
-                                                                                                            opts.push(el.input_option);
-                                                                                                          });
-                                                                                                          console.log(opts.toString());
-                                                                                                        } */
+                                                                                                                                  input.options.forEach((el) => {
+                                                                                                                                    opts.push(el.input_option);
+                                                                                                                                  });
+                                                                                                                                  console.log(opts.toString());
+                                                                                                                                } */
         if (input.formulaire_input_id === undefined) {
           input.formulaire_section_id = s.formulaire_section_id;
           let fieldRes = await this.creerFormulaireSectionDetails(input);

@@ -1,5 +1,5 @@
 const states = {
-  user: {},
+  user: null,
 };
 
 const setters = {
@@ -16,7 +16,6 @@ const actions = {
   async refreshLoggedUser({ commit }) {
     let token = localStorage.getItem("userToken");
     let user = JSON.parse(token);
-    console.log("logged userdata :::", user);
     commit("SET_USER", user);
   },
 

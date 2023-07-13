@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { checkUser } from "@/middlewares/auth";
 
 import routes from "@/routes";
 const router = createRouter({
@@ -7,7 +6,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-router.beforeEach(checkUser);
+
+/* router.beforeEach(checkUser); */
 router.beforeResolve((to, from, next) => {
   if (to.name) {
     NProgress.start();

@@ -325,6 +325,7 @@ export default {
         /*Soumettre le formulaire*/
         submitForm(event) {
             this.formLoading = true;
+            console.log(JSON.stringify(this.form));
             Api.configurerFormulaire(this.form, async (res) => {
                 this.formLoading = false
                 Swal.fire({

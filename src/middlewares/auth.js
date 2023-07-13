@@ -1,22 +1,38 @@
 import store from "@/store";
 
-export function beforeAuth(to, from, next) {
+export async function beforeAuth(to, from, next) {
+  let isAuthenticated = false;
+  await store.dispatch("auth/refreshLoggedUser");
   const user = store.getters["auth/GET_USER"];
-  if (user === null || user === undefined) {
-    next({ name: "login" });
-  } else {
-    next();
+  if (user !== null) {
+    isAuthenticated = true;
   }
+  if (to.name !== "login" && !isAuthenticated) {
+    next({ path: "/" });
+    $.notify(
+      {
+        icon: "fas fa-info",
+        title: "Accès Interdit!",
+        message: "Vous n'êtes pas connectés pour effectuer cette opération !",
+      },
+      {
+        type: "danger",
+        placement: {
+          from: "bottom",
+          align: "right",
+        },
+        time: 5000,
+      }
+    );
+  } else next();
 }
 
 export function checkUser(from, to, next) {
-  if (to.meta.authRequired) {
-    const user = store.getters["auth/GET_USER"];
-    if (user === null || user === undefined) {
-      next({ name: "login" });
-    } else {
-      next();
-    }
+  let isAuthenticated = false;
+  const user = store.getters["auth/GET_USER"];
+  if (user !== null) {
+    isAuthenticated = true;
   }
-  next();
+  if (to.name !== "login" && !isAuthenticated) next({ path: "/" });
+  else next();
 }

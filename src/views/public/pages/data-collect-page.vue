@@ -46,7 +46,8 @@
                             <h1 class="display-4" style="font-size: 1.6em;">Aucune donnée disponible !</h1>
                         </div>
                         <div class="row" v-else>
-                            <div class="col-6 col-sm-4 col-lg-2" v-for="(collecte, i) in collectes" :key="i">
+                            <div class="col-6 col-sm-4 col-lg-2" v-for="(collecte, i) in collectes" :key="i"
+                                v-show="collecte.collectes.length > 0">
                                 <div class="card folder-card rounded animated zoomIn"
                                     @click.prevent="showCollecte(collecte)">
                                     <div class="card-body p-3 text-center">
@@ -108,7 +109,7 @@ export default {
                 let arr2 = this.selectSujet;
                 let filtered = arr.filter(function (arr_el) {
                     return arr2.filter(function (sujetId) {
-                        return sujetId.includes(arr_el.sujets[0].sujet_id);
+                        return sujetId.includes(arr_el.sujets[0].sujet_id) && (arr_el.collectes.length > 0);
                     }).length > 0
                 })
                 return filtered;
@@ -132,20 +133,6 @@ export default {
     },
 
 
-    created() {
-        var array = [{ id: 1, name: "test1" }, { id: 2, name: "test2" }, { id: 3, name: "test3" }, { id: 4, name: "test4" }];
-
-        var anotherOne = [{ id: 2, name: "test2" }, { id: 4, name: "test4" }];
-
-        var filteredArray = array.filter(function (array_el) {
-            return anotherOne.filter(function (anotherOne_el) {
-                return anotherOne_el.id == array_el.id;
-            }).length != 0
-        })
-        console.clear();
-        console.log(JSON.stringify(filteredArray));
-
-    },
     mounted() {
         this.$store.dispatch('voirCollectes').then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
         this.$store.dispatch("voirSujets");

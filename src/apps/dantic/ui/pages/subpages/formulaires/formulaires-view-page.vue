@@ -17,68 +17,71 @@
             </div>
 
             <!-- formulaires list -->
-            <ul class="list-group list-group-bordered">
-                <li class="list-group-item d-lg-flex align-items-center justify-content-between"
-                    v-for="(formulaire, i) in formulaires" :key="i">
-                    <span><i class="flaticon-interface-6 text-info mr-1"></i>
-                        {{ $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }} </span>
-                    <div class="d-flex">
-                        <bs-popover title="Modifier le titre du formulaire" trigger-class="popover-title" placement="right"
-                            toggle-class="btn-icon d-block btn-success mr-1" toggle-icon="icon-pencil"
-                            @onToggle="$closeBsPopover('popover-title')">
-                            <template #content>
-                                <form @submit.prevent="updateFormTitre(formulaire)">
-                                    <div class="input-group mb-2">
-                                        <input type="text" v-model="formulaire.titre" class="form-control"
-                                            placeholder="Entrer formulaire titre...">
-                                    </div>
+            <section-loader :loading="dataLoading">
+                <ul class="list-group list-group-bordered">
+                    <li class="list-group-item d-lg-flex align-items-center justify-content-between"
+                        v-for="(formulaire, i) in formulaires" :key="i">
+                        <span><i class="flaticon-interface-6 text-info mr-1"></i>
+                            {{ $filters.capitalize($filters.sortLength(formulaire.titre, 70, "...")) }} </span>
+                        <div class="d-flex">
+                            <bs-popover title="Modifier le titre du formulaire" trigger-class="popover-title"
+                                placement="right" toggle-class="btn-icon d-block btn-success mr-1" toggle-icon="icon-pencil"
+                                @onToggle="$closeBsPopover('popover-title')">
+                                <template #content>
+                                    <form @submit.prevent="updateFormTitre(formulaire)">
+                                        <div class="input-group mb-2">
+                                            <input type="text" v-model="formulaire.titre" class="form-control"
+                                                placeholder="Entrer formulaire titre...">
+                                        </div>
 
-                                    <div class="d-flex justify-content-between">
-                                        <button :disabled="updateLoading === formulaire.formulaire_id" type="submit"
-                                            class="btn btn-success flex-fill mr-2">
-                                            <i v-if="updateLoading === formulaire.formulaire_id"
-                                                class="fa fa-spinner fa-spin mr-2" />Sauvegarder les modification
-                                        </button>
-                                        <button type="button" class="btn btn-danger"
-                                            @click.prevent="$closeBsPopover('popover-title')">
-                                            Fermer
-                                        </button>
-                                    </div>
-                                </form>
-                            </template>
-                        </bs-popover>
+                                        <div class="d-flex justify-content-between">
+                                            <button :disabled="updateLoading === formulaire.formulaire_id" type="submit"
+                                                class="btn btn-success flex-fill mr-2">
+                                                <i v-if="updateLoading === formulaire.formulaire_id"
+                                                    class="fa fa-spinner fa-spin mr-2" />Sauvegarder les modification
+                                            </button>
+                                            <button type="button" class="btn btn-danger"
+                                                @click.prevent="$closeBsPopover('popover-title')">
+                                                Fermer
+                                            </button>
+                                        </div>
+                                    </form>
+                                </template>
+                            </bs-popover>
 
-                        <button class="btn btn-icon btn-info mr-1" type="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><i class="icon-information"></i></button>
+                            <button class="btn btn-icon btn-info mr-1" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="icon-information"></i></button>
 
-                        <button :disabled="deleteLoading === formulaire.formulaire_id" class="btn btn-icon btn-danger mr-1"
-                            @click.prevent="deleteFormulaire(formulaire.formulaire_id)">
-                            <i v-if="deleteLoading === formulaire.formulaire_id" class="fa fa-spinner fa-spin" />
-                            <i v-else class="icon-trash"></i>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" x-placement="right-start"
-                            style="position: absolute; transform: translate3d(119px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            <h6 class="dropdown-header fw-extrabold text-primary">
-                                Formulaire sections
-                            </h6>
-                            <div class="dropdown-divider"></div>
-                            <li v-for="(section, i) in formulaire.sections" :key="i">
-                                <a class="dropdown-item d-flex justify-content-between pt-2 pb-2" href="javascript:void(0)"
-                                    @click.prevent="getSection(section)">
-                                    <span>{{ $filters.capitalize(section.section) }}</span><i
-                                        class="fas fa-edit text-info"></i>
-                                </a>
+                            <button :disabled="deleteLoading === formulaire.formulaire_id"
+                                class="btn btn-icon btn-danger mr-1"
+                                @click.prevent="deleteFormulaire(formulaire.formulaire_id)">
+                                <i v-if="deleteLoading === formulaire.formulaire_id" class="fa fa-spinner fa-spin" />
+                                <i v-else class="icon-trash"></i>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" x-placement="right-start"
+                                style="position: absolute; transform: translate3d(119px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <h6 class="dropdown-header fw-extrabold text-primary">
+                                    Formulaire sections
+                                </h6>
                                 <div class="dropdown-divider"></div>
-                            </li>
-                            <li class="text-center">
-                                <a href="javascript:void(0)" @click.prevent="addNewSection(formulaire)"
-                                    class="btn btn-sm btn-primary"><i class="flaticon-add"></i>
-                                    Ajouter section</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+                                <li v-for="(section, i) in formulaire.sections" :key="i">
+                                    <a class="dropdown-item d-flex justify-content-between pt-2 pb-2"
+                                        href="javascript:void(0)" @click.prevent="getSection(section)">
+                                        <span>{{ $filters.capitalize(section.section) }}</span><i
+                                            class="fas fa-edit text-info"></i>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li class="text-center">
+                                    <a href="javascript:void(0)" @click.prevent="addNewSection(formulaire)"
+                                        class="btn btn-sm btn-primary"><i class="flaticon-add"></i>
+                                        Ajouter section</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </section-loader>
             <!--             <div v-show="viewLoading" class="d-flex justify-content-center mt-4 align-items-center w-100 h-50">
                 <i class="fa fa-3x fa-spinner fa-spin text-muted"></i>
             </div> -->
@@ -296,6 +299,7 @@ export default {
             searchWord: '',
             selectedSection: {},
             deleteLoading: '',
+            dataLoading: false,
             updateLoading: '',
             isNew: false, //Quand l'on crée un nouveau formulaire...
             submitLoading: false,
@@ -307,16 +311,14 @@ export default {
 
     mounted() {
         /*Quick loading data...*/
-        this.$store.dispatch('dantic/voirFormulaires');
+        this.dataLoading = true
+        this.$store.dispatch('dantic/voirFormulaires').then(() => this.dataLoading = false).catch((err) => this.dataLoading = false);
         /*End*/
         /*Pour permettre de recuperer la totalité des infos sur une section nouvellement crée */
         /*Vue la lentance du serveur lors de l'enregistrements des nouvelles options de la sections...*/
         /* this.timer = setInterval(() => { this.$store.dispatch('dantic/voirFormulaires') }, 4000) */
     },
-    unmounted() {
-        /*Cancel runtime statment*/
-        clearInterval(this.timer);
-    },
+
 
     computed: {
         formulaires() {

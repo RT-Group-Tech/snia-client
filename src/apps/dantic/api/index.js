@@ -291,6 +291,7 @@ class Api {
       "/dantic/formulaire_url/safeguardsection"
     );
     let res = data.reponse;
+    console.log(JSON.stringify(res));
     return new Promise((resolve) => {
       if (status === 200 && res.status === "success")
         resolve({ formulaire_section_id: res.datas });
@@ -438,10 +439,12 @@ class Api {
         for (let i = 0; i < formulaireData.sections.length; i++) {
           let forms = formulaireData.sections[i];
 
+          /*section data object*/
           let f = {
             section: forms.section,
             formulaire_id: formulaire_id,
           };
+          /* Création des sections */
           let { formulaire_section_id } = await this.creerSectionFormulaire(f);
 
           if (
@@ -479,11 +482,11 @@ class Api {
         let input = s.inputs[i];
         /* let opts = []; */
         /* if (input.options !== undefined) {
-                                                                                                                                  input.options.forEach((el) => {
-                                                                                                                                    opts.push(el.input_option);
-                                                                                                                                  });
-                                                                                                                                  console.log(opts.toString());
-                                                                                                                                } */
+                                                                                                                                          input.options.forEach((el) => {
+                                                                                                                                            opts.push(el.input_option);
+                                                                                                                                          });
+                                                                                                                                          console.log(opts.toString());
+                                                                                                                                        } */
         if (input.formulaire_input_id === undefined) {
           input.formulaire_section_id = s.formulaire_section_id;
           let fieldRes = await this.creerFormulaireSectionDetails(input);

@@ -52,12 +52,16 @@ const actions = {
   },
 
   voirFormulaires({ commit, state }) {
-    return new Promise((resolve) => {
-      Api.voirFormulaires((data) => {
-        let formulaires = data.formulaires;
-        commit("SET_FORMULAIRES", formulaires.reverse());
-        resolve(formulaires);
-      });
+    return new Promise((resolve, reject) => {
+      try {
+        Api.voirFormulaires((data) => {
+          let formulaires = data.formulaires;
+          commit("SET_FORMULAIRES", formulaires.reverse());
+          resolve(formulaires);
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   },
 

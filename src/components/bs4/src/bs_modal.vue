@@ -17,7 +17,7 @@
 
                     </perfect-scrollbar>
                     <!-- Modal footer -->
-                    <div class="modal-footer" v-show="$slots.footerContent">
+                    <div class="modal-footer">
                         <slot name="footer-content"></slot>
                     </div>
                 </div>

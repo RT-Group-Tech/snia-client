@@ -44,18 +44,18 @@ const routes = [
         name: "test-route",
         beforeEnter: beforeAuth,
       },
-      {
-        path: "/dantic/secure/config.formulaires",
-        component: () => import("@/apps/dantic/ui/pages/config-form-page"),
-        name: "config-form-route",
-        beforeEnter: beforeAuth,
-      },
-      {
-        path: "/dantic/secure/cultures",
-        component: () => import("@/apps/dantic/ui/pages/cultures-page.vue"),
-        name: "culture-route",
-        beforeEnter: beforeAuth,
-      },
+      /*    {
+                 path: "/dantic/secure/config.formulaires",
+                 component: () => import("@/apps/dantic/ui/pages/config-form-page"),
+                 name: "config-form-route",
+                 beforeEnter: beforeAuth,
+               }, */
+      /* {
+              path: "/dantic/secure/cultures",
+              component: () => import("@/apps/dantic/ui/pages/cultures-page.vue"),
+              name: "culture-route",
+              beforeEnter: beforeAuth,
+            }, */
       {
         path: "/dantic/secure/collectes",
         component: () => import("@/views/public/pages/data-collect-page"),

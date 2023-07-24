@@ -25,7 +25,8 @@
                 </div>
                 <div v-else>
                     <a :href="document" v-if="document !== null" target="_blank"
-                        class="btn btn-success btn-lg w-100 text-white"><i class="icon-cloud-download mr-1"></i> Télécharger
+                        class="btn btn-success btn-lg w-100 p-4 m-2 text-white"><i class="icon-cloud-download mr-1"></i>
+                        Télécharger
                         le
                         rapport</a>
                     <div v-else class="d-flex justify-content-center align-content-center align-items-center">

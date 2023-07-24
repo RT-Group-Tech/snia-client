@@ -1,17 +1,17 @@
 <template>
   <!-- data-toggle="tooltip" :title="`Menu ${title}`" data-placement="bottom" -->
-  <li v-if="!disabled" class="nav-item" :class="currentRoute === routeName ? 'active' : ''">
+  <li v-show="!hidden" class="nav-item" :class="currentRoute === routeName ? 'active' : ''">
     <router-link :to="{ name: routeName }" :disabled="true">
       <i :class="icon"></i>
       <p>{{ title }}</p>
     </router-link>
   </li>
-  <li v-else :disabled="disabled" class="nav-item" :class="currentRoute === routeName ? 'active' : ''">
+  <!-- <li v-else :disabled="disabled" class="nav-item" :class="currentRoute === routeName ? 'active' : ''">
     <a href="javascript:void(0)">
       <i :class="icon"></i>
       <p>{{ title }}</p>
     </a>
-  </li>
+  </li> -->
 </template>
 
 <script>
@@ -49,6 +49,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    hidden: {
+      type: Boolean,
+      default: false,
     }
   }
 }

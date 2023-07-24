@@ -1,21 +1,21 @@
 <template>
-    <bs-modal id="collecte-view-modal" size="modal-xl" :title="collecte.titre">
+    <bs-modal id="collecte-view-modal" size="modal-xl" :title="`Collècte du ${collecte.date_enregistrement}`">
         <template #body-content>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-9">
                     <h6 class="card-title fw-extrabold"><span class="fa fa-calendar-check"></span> Collecte du
                         {{ collecteView.date_enregistrement }}</h6>
                 </div>
                 <div class="col-md-3">
-                    <select name="" id="" class="form-control" v-model="collecteView">
+                    <select class="form-control" v-model="collecteView">
                         <option v-for="d in collecte.collectes" :key="d" :value="d">{{ d.date_enregistrement }}
                         </option>
                     </select>
                 </div>
             </div>
-            <hr>
+            <hr> -->
             <div class="row">
-                <div class="col-md-6" v-for="(data, i) in collecteView.data" :key="i">
+                <div class="col-md-6" v-for="(data, i) in collecte.data" :key="i">
                     <div class="form-group form-group-default">
                         <label class="text-info fw-extrabold">{{ data.input }}</label>
                         <div class="input-group">
@@ -25,9 +25,7 @@
                                 <span class="input-group-text fa fa-ban" @click.prevent="reportData(data)"
                                     style="cursor:pointer;"> </span>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -44,21 +42,11 @@ import Api from '@/api'
 
 export default {
     name: "CollecteViewModal",
-    data() {
-        return {
-            collecteView: {}
-        }
-    },
     props: {
         collecte: {
             type: Object,
-            default: () => {
-
-            },
+            default: () => { },
         }
-    },
-    computed: {
-
     },
     methods: {
         reportData(data) {
@@ -104,11 +92,11 @@ export default {
     mounted() {
 
     },
-    watch: {
-        collecte(newValue) {
-            this.collecteView = newValue.collectes[0];
-        }
-    }
+    /*  watch: {
+         collecte(newValue) {
+             this.collecteView = newValue.collectes[0];
+         }
+     } */
 }
 
 </script>

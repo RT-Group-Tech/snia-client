@@ -77,14 +77,15 @@
 
 
         <!--  Modal pour voir les détails de la collecte -->
-        <collecte-view-modal :collecte="selectedCollecte"></collecte-view-modal>
+
+        <collecte-detail-modal :data="selectedCollecte"></collecte-detail-modal>
         <!-- End modal -->
 
     </div>
 </template>
 
 <script>
-import collecteViewModal from '../modals/collecte-view-modal.vue'
+import collecteDetailModal from '../modals/collecte-detail-modal.vue'
 import emptyStateJson from "@/assets/json/folder-empty.json";
 export default {
     name: "Data-Collected",
@@ -99,7 +100,7 @@ export default {
     },
 
     components: {
-        collecteViewModal
+        collecteDetailModal,
     },
     computed: {
         collectes() {
@@ -127,8 +128,8 @@ export default {
     methods: {
         showCollecte(collecte) {
             this.selectedCollecte = collecte;
-
-            this.$nextTick(() => $('#collecte-view-modal').modal('show'))
+            console.log(JSON.stringify(collecte));
+            this.$nextTick(() => this.$showBsModal('collecte-detail-modal'))
         }
     },
 

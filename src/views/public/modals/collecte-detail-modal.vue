@@ -11,7 +11,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="icon-calendar"></i></span>
                             </div>
-                            <input type="date" v-model="date" class="form-control" placeholder="Select date">
+                            <input id="dateField" type="text" class="form-control" placeholder="Sélectionnez la date"
+                                @change="date = $event">
                         </div>
                     </div>
                 </div>
@@ -45,13 +46,34 @@ export default {
     components: {
         collecteViewModal
     },
+    mounted() {
+        $('#dateField').datetimepicker({
+            format: 'MM/DD/YYYY',
+        })
+    },
     methods: {
         showDetail(collecte) {
-            console.log(JSON.stringify(this.selectedCollecte));
-            this.$nextTick(() => {
-                this.selectedCollecte = collecte;
-                this.$showBsModal('collecte-view-modal');
-            });
+            if (collecte.data.length > 0) {
+                this.$nextTick(() => {
+                    this.selectedCollecte = collecte;
+                    this.$showBsModal('collecte-view-modal');
+                });
+            }
+            else {
+                Swal.fire({
+                    title: 'Information manquante',
+                    text: 'Aucune information repertorié pour cette collècte ! ',
+                    icon: 'info',
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    timer: 2000
+                });
+                return
+            }
+
+        },
+        onChangedDate(date) {
+            console.log(date);
         }
     },
     props: {

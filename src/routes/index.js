@@ -19,11 +19,17 @@ const routes = [
     component: () => import("@/views/auth/login"),
   },
   {
+    path: "/password/reset/request",
+    name: "reset-pass",
+    component: () => import("@/views/auth/resetpassword"),
+  },
+  {
     path: "/modules/view",
     name: "modules",
     component: () => import("@/views/auth/modules"),
     beforeEnter: beforeAuth,
   },
+
   /*modules routes */
   ...danticRoutes, //dantic routes
 

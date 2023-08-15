@@ -121,7 +121,7 @@
                                                                 <img src="assets/img/flags/cd.png" alt="rdc">
                                                             </div>
                                                         </td>
-                                                        <td>IPA</td>
+
                                                         <td class="text-right">
                                                             {{ region.getAttribute('ipa-name') }}
                                                         </td>

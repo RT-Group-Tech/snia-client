@@ -9,7 +9,7 @@
     --app-bg-color-accent-hover: #3886ec;
     --app-color2: #ef1f27;
     --app-color3: #fff200;
-    --body-color: #edeff5
+    --body-color: #edeff5;
 }
 
 .bg-app-2 {
@@ -65,11 +65,14 @@
     background: rgb(221, 34, 34) !important;
 }
 
+
 /*Custom loading*/
+
 .lds-ellipsis {
     display: inline-block;
     position: relative;
 }
+
 .lds-ellipsis div {
     position: absolute;
     top: 50%;
@@ -80,44 +83,56 @@
     background: #1a2035;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
+
 .lds-ellipsis div:nth-child(1) {
     left: 8px;
     animation: lds-ellipsis1 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(2) {
     left: 8px;
     animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(3) {
     left: 32px;
     animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(4) {
     left: 56px;
     animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
     0% {
         transform: scale(0);
     }
+
     100% {
         transform: scale(1);
     }
 }
+
 @keyframes lds-ellipsis3 {
     0% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(0);
     }
 }
+
 @keyframes lds-ellipsis2 {
     0% {
         transform: translate(0, 0);
     }
+
     100% {
         transform: translate(24px, 0);
     }
 }
+
+
 /*End custom loading*/

@@ -11,8 +11,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="icon-calendar"></i></span>
                             </div>
-                            <input id="dateField" type="text" class="form-control" placeholder="Sélectionnez la date"
-                                @change="date = $event">
+                            <input id="dateField" type="text" class="form-control" placeholder="Sélectionnez la date">
                         </div>
                     </div>
                 </div>
@@ -20,7 +19,7 @@
             <div class="list-group list-group-bordered">
                 <a class="list-group-item d-flex justify-content-between align-items-center"
                     @click.prevent="() => showDetail(collecte)" href="javascript:void(0)"
-                    v-for="(collecte, index) in data.collectes" :key="index">
+                    v-for="(collecte, index) in getData.collectes" :key="index">
                     Collècte du {{ collecte.date_enregistrement }}
                     <i class="icon-arrow-right"></i>
                 </a>
@@ -34,7 +33,9 @@
 </template>
 
 <script>
+
 import collecteViewModal from './collecte-view-modal.vue'
+
 export default {
     name: "CollectDetails",
     data() {
@@ -80,6 +81,13 @@ export default {
         data: {
             type: Object,
             default: () => { }
+        }
+    },
+
+    computed: {
+        getData() {
+
+            return this.data;
         }
     }
 }

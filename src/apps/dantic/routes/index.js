@@ -15,6 +15,12 @@ const routes = [
         beforeEnter: beforeAuth,
       },
       {
+        path: "/dantic/user/profile",
+        component: () => import("@/views/public/pages/user-profile"),
+        name: "dantic-profile-route",
+        beforeEnter: beforeAuth,
+      },
+      {
         path: "/dantic/secure/ipa-view",
         component: () => import("@/apps/dantic/ui/pages/ipa-view"),
         name: "ipa-view-route",
@@ -45,17 +51,17 @@ const routes = [
         beforeEnter: beforeAuth,
       },
       /*    {
-                 path: "/dantic/secure/config.formulaires",
-                 component: () => import("@/apps/dantic/ui/pages/config-form-page"),
-                 name: "config-form-route",
-                 beforeEnter: beforeAuth,
-               }, */
+                                   path: "/dantic/secure/config.formulaires",
+                                   component: () => import("@/apps/dantic/ui/pages/config-form-page"),
+                                   name: "config-form-route",
+                                   beforeEnter: beforeAuth,
+                                 }, */
       /* {
-              path: "/dantic/secure/cultures",
-              component: () => import("@/apps/dantic/ui/pages/cultures-page.vue"),
-              name: "culture-route",
-              beforeEnter: beforeAuth,
-            }, */
+                                path: "/dantic/secure/cultures",
+                                component: () => import("@/apps/dantic/ui/pages/cultures-page.vue"),
+                                name: "culture-route",
+                                beforeEnter: beforeAuth,
+                              }, */
       {
         path: "/dantic/secure/collectes",
         component: () => import("@/views/public/pages/data-collect-page"),

@@ -43,7 +43,8 @@
                                 </div>
                             </div>
                             <div class=" row form-sub m-0">
-                                <a href="#" class="link float-right fw-mediumbold">Mot de passe perdu?</a>
+                                <router-link :to="{ name: 'reset-pass' }" class="link float-right fw-mediumbold">Mot de passe
+                                    perdu?</router-link>
                             </div>
                             <div class="form-action mb-3">
                                 <button :disabled="loginLoading" type="submit" id="btn-login"

@@ -20,9 +20,10 @@
                 </li>
                 <li>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void(0)">Mon profl</a>
+                    <router-link class="dropdown-item" :to="{ name: 'dantic-profile-route' }">Mon profil</router-link>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void(0)">Parametres comptes</a>
+                    <router-link class="dropdown-item" :to="{ name: 'dantic-profile-route' }">Paramètre du
+                        compte</router-link>
                     <div class="dropdown-divider"></div>
                     <!-- <a class="dropdown-item" @click.prevent="$router.push({ name: 'modules' })"
                         href="javascript:void(0)">Retour aux modules</a> -->

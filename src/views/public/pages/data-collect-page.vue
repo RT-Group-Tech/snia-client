@@ -94,7 +94,7 @@ export default {
         return {
             selectedCollecte: {},
             selectSujet: [],
-            dataLoading: true,
+            dataLoading: false,
             json: emptyStateJson
         }
     },
@@ -128,13 +128,13 @@ export default {
     methods: {
         showCollecte(collecte) {
             this.selectedCollecte = collecte;
-            console.log(JSON.stringify(collecte));
             this.$nextTick(() => this.$showBsModal('collecte-detail-modal'))
         }
     },
 
 
     mounted() {
+        this.dataLoading = true;
         this.$store.dispatch('voirCollectes').then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
         this.$store.dispatch("voirSujets");
     }

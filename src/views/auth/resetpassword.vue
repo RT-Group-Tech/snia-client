@@ -17,7 +17,7 @@
             </div>
             <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center">
                 <!-- <h2 class="text-white fw-extrabold text-uppercase"><i class="icon-lock mr-1"></i> Authentification</h2> -->
-                <div class="container container-login bg-white" id="login-box">
+                <div class="container container-login bg-white" id="reset-box">
                     <h3 class="text-center mb-3 title fadeIn" v-show="!hasOtpReady">Votre mot de passe est perdu ? Veuillez
                         envoyer
                         une requête de reinitialisation de mot de passe !</h3>
@@ -88,6 +88,9 @@ export default {
                 } else {
                     this.hasOtpReady = true;
                     console.log("otp is ready !");
+                    if (!this.hasOtpReady) {
+                        this.$animatedFailedTask("reset-box");
+                    }
                 }
             });
         }

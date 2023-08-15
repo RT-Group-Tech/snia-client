@@ -3,24 +3,24 @@
     <template #body-content>
       <div class="row mt-3">
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Nom</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Nom <sup class="text-danger">*</sup></label>
             <input type="text" v-model="name.first" class="form-control" name="nom"
               placeholder="Saisir le nom de l'agent..." required>
           </div>
 
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Postnom</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Postnom <sup class="text-danger">*</sup></label>
             <input type="text" v-model="name.last" class="form-control" name="postnom" placeholder="Saisir postnom..."
               required>
           </div>
 
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Prénom</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Prénom <sup class="text-danger">*</sup></label>
             <input type="text" v-model="name.nick" class="form-control" name="prenom" placeholder="Saisir prénom..."
               required>
           </div>
@@ -28,19 +28,19 @@
       </div>
       <div class="row mt-3">
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Statut</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Status <sup class="text-danger">*</sup></label>
             <select name="" id="" class="form-control" v-model="form.statut">
               <option value="">------</option>
-              <option value="Matricule">Matricule</option>
+              <option value="Matricule">Matricule <sup class="text-danger">*</sup></option>
               <option value="Nouvelle unite">Nouvelle unité</option>
             </select>
           </div>
 
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Grade</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Grade <sup class="text-danger">*</sup></label>
             <select name="" id="" class="form-control" v-model="form.grade">
               <option value="">-------</option>
               <option v-for="(grade, index) in grades" :key="index" :value="grade">{{ grade }}</option>
@@ -49,8 +49,8 @@
 
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Fonction</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Fonction <sup class="text-danger">*</sup></label>
             <input type="text" v-model="form.fonction" class="form-control" name="prenom" placeholder="Saisir prénom..."
               required>
           </div>
@@ -58,15 +58,15 @@
       </div>
       <div class="row mt-3">
         <div class="col-md-4" v-if="form.statut === 'Matricule'">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Numéro Matricule</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Numéro Matricule <sup class="text-danger">*</sup></label>
             <input type="text" v-model="form.numero_reference" class="form-control" name="email"
               placeholder="Saisir le numéro matricule..." required>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Sexe</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Sexe <sup class="text-danger">*</sup></label>
             <select name="" id="" class="form-control" v-model="form.sexe">
               <option value="Masculin">Masculin</option>
               <option value="Feminin">Feminin</option>
@@ -74,23 +74,23 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Date de naissance</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Date de naissance <sup class="text-danger">*</sup></label>
             <input type="date" class="form-control" v-model="form.date_naissance">
           </div>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-md-6">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Email</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Email <sup class="text-danger">*</sup></label>
             <input type="email" v-model="form.email" class="form-control" name="email" placeholder="Saisir email..."
               required>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Téléphone</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Téléphone <sup class="text-danger">*</sup></label>
             <input type="tel" v-model="form.telephone" class="form-control" name="telephone"
               placeholder="Saisir le n° de téléphone...(+243)" required>
           </div>
@@ -98,22 +98,22 @@
       </div>
       <div class="row mt-3">
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Mot de passe</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Mot de passe <sup class="text-danger">*</sup></label>
             <input type="password" v-model="form.pass" class="form-control" name="pass"
               placeholder="Saisir le mot de passe..." required>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Confirmation mot de passe</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Confirmation mot de passe <sup class="text-danger">*</sup></label>
             <input type="password" v-model="form.confirm" class="form-control" name="confirm"
               placeholder="Confirmer mot de passe..." required>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">Accès système</label>
+          <div class="form-group form-group-default ">
+            <label class="fw-extrabold">Accès système <sup class="text-danger">*</sup></label>
             <select name="" id="" class="form-control" v-model="form.access">
               <option value="">-------</option>
               <option v-for="(ac, index) in access" :key="index" :value="ac">{{ ac }}</option>

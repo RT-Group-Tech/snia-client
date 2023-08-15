@@ -4,6 +4,7 @@
             <div class="avatar-sm">
                 <img src="assets/img/picture_placeholder.png" alt="..." class="avatar-img rounded-circle">
             </div>
+
         </a>
         <ul class="dropdown-menu dropdown-user animated fadeIn">
             <div class="dropdown-user-scroll scrollbar-outer">
@@ -20,9 +21,12 @@
                 </li>
                 <li>
                     <div class="dropdown-divider"></div>
-                    <router-link class="dropdown-item" :to="{ name: 'dantic-profile-route' }">Mon profil</router-link>
+                    <router-link class="dropdown-item"
+                        :to="{ name: `${user.access.access}-profile-route`, params: { task: 'view' } }">Mon
+                        profil</router-link>
                     <div class="dropdown-divider"></div>
-                    <router-link class="dropdown-item" :to="{ name: 'dantic-profile-route' }">Paramètre du
+                    <router-link class="dropdown-item"
+                        :to="{ name: `${user.access.access}-profile-route`, params: { task: 'config' } }">Paramètre du
                         compte</router-link>
                     <div class="dropdown-divider"></div>
                     <!-- <a class="dropdown-item" @click.prevent="$router.push({ name: 'modules' })"

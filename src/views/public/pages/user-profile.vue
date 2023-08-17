@@ -201,7 +201,8 @@ export default {
             userData: {
                 current_pass: '',
                 new_pass: '',
-                confirm: ''
+                confirm: '',
+                agent_id: ''
             },
             requestLoading: false
         }
@@ -220,8 +221,9 @@ export default {
                      * Login request
                      */
                     this.requestLoading = true;
+                    this.userData.agent_id = this.user.agent_id;
                     GlobalApi.resetPassword(this.userData)
-                        .then(async (result) => {
+                        .then((result) => {
                             this.requestLoading = false;
                             if (result != null) {
                                 Swal({
@@ -232,6 +234,9 @@ export default {
                                     showConfirmButton: false,
                                     showCancelButton: false,
                                 });
+                                this.userData.current_pass = '';
+                                this.userData.new_pass = '';
+                                this.userData.confirm = '';
                             }
                             else {
                                 Swal({
@@ -245,7 +250,8 @@ export default {
                             }
                         })
                         .catch((e) => {
-                            this.loginLoading = false;
+                            console.log(e);
+                            this.requestLoading = false;
                             $.notify(
                                 {
                                     icon: "fas fa-info",

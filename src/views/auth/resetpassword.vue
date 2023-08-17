@@ -23,11 +23,10 @@
                     <form class="needs-validation" id="form-request" @submit.prevent="handleRequestUpdate" novalidate>
                         <div class="login-form">
                             <div class="form-group form-floating-label">
-                                <input id="npass" data-toggle="tooltip" placeholder="Saisir le nouveau mot de passe..."
-                                    v-model="form2.new_pass" title="Saisir le nouveau mot de passe..." name="npass"
-                                    type="password" class=" form-control input-border-bottom" data-placement="right"
-                                    required>
-                                <label for="email" class="placeholder text-color-snia">Nouveau mot de passe</label>
+                                <input id="npass" data-toggle="tooltip" v-model="form2.new_pass"
+                                    title="Saisir le nouveau mot de passe..." name="npass" type="password"
+                                    class=" form-control input-border-bottom" data-placement="right" required>
+                                <label for="npass" class="placeholder text-color-snia">Nouveau mot de passe</label>
                                 <div class="invalid-feedback">
                                     Veuillez entrer le nouveau mot de passe !
                                 </div>
@@ -35,11 +34,10 @@
 
                             <div class="form-group form-floating-label">
                                 <input id="confirm" data-toggle="tooltip" v-model="form2.confirm"
-                                    placeholder="Confirmer le nouveau mot de passe ..."
                                     title="Confirmation nouveau mot de passe ..." name="confirm" type="password"
                                     class=" form-control input-border-bottom" data-placement="right"
                                     :required="form2.new_pass !== form2.confirm || form2.confirm !== ''">
-                                <label for="email" class="placeholder text-color-snia">Confirmation Nouveau mot de
+                                <label for="confirm" class="placeholder text-color-snia">Confirmation Nouveau mot de
                                     passe</label>
                                 <div class="invalid-feedback">
                                     Veuillez retaper le nouveau mot de passe !
@@ -51,7 +49,7 @@
                                     class="btn btn-snia  btn-full btn-login mb-2">
                                     <i v-if="requestLoading" class="fa fa-spinner fa-spin mr-2"></i>
                                     <i v-else class="icon-login"></i> &nbsp;
-                                    Soumettre la modification du nouveau mot de passe
+                                    Réinitialiser le mot de passe
                                 </button>
 
                                 <a href="javascript:void(0)" @click="$router.go(-1)" class="link fw-mediumbold">Retour
@@ -145,8 +143,11 @@ export default {
                     this.requestLoading = true;
                     Api.handleResetPass(this.form).then((res) => {
                         this.requestLoading = false;
+                        console.log(JSON.stringify(res));
                         if (res !== null) {
                             this.hasOtpReady = true;
+                            let agent = res.reponse.agent;
+                            this.agent = agent;
                         }
                         else {
                             this.$animatedFailedTask("login-box");
@@ -166,7 +167,24 @@ export default {
                                 }
                             );
                         }
-                    }).catch((e) => console.log('error request:::', e))
+                    }).catch((e) => {
+                        this.$animatedFailedTask("login-box");
+                        $.notify(
+                            {
+                                icon: "fas fa-info",
+                                title: "Opération echoué!",
+                                message: "utilisateur non reconnu !",
+                            },
+                            {
+                                type: "danger",
+                                placement: {
+                                    from: "bottom",
+                                    align: "right",
+                                },
+                                time: 5000,
+                            }
+                        );
+                    })
                 }
             });
         },
@@ -178,29 +196,29 @@ export default {
                 otp: otp
             }
             Api.checkOtp(udata).then((res) => {
+                console.log(JSON.stringify(res));
                 this.requestOtpLoading = false;
                 if (res !== null) {
                     this.showUpdatePassFields = true;
                     this.hasOtpReady = false;
                 }
-                else {
-                    $.notify(
-                        {
-                            icon: "fas fa-info",
-                            title: "Opération echoué!",
-                            message: "Veuillez entrer un code valide !",
-                        },
-                        {
-                            type: "danger",
-                            placement: {
-                                from: "bottom",
-                                align: "right",
-                            },
-                            time: 3000,
-                        }
-                    );
-                }
 
+            }).catch((e) => {
+                $.notify(
+                    {
+                        icon: "fas fa-info",
+                        title: "Opération echoué!",
+                        message: "Veuillez entrer un code valide !",
+                    },
+                    {
+                        type: "danger",
+                        placement: {
+                            from: "bottom",
+                            align: "right",
+                        },
+                        time: 3000,
+                    }
+                );
             });
             console.log("handle otp ::: ", otp);
         },
@@ -214,10 +232,11 @@ export default {
                 } else {
                     this.requestLoading = true;
                     let udata = {
-                        agent_id: agent.agent_id,
+                        agent_id: this.agent.agent_id,
                         new_pass: this.form2.new_pass
                     }
                     Api.updatePassword(udata).then((res) => {
+                        console.log(JSON.stringify(res));
                         if (res != null) {
                             Swal({
                                 icon: 'success',
@@ -227,7 +246,9 @@ export default {
                                 showConfirmButton: false,
                                 showCancelButton: false,
                             });
+                            this.$router.go(-1);
                         }
+
                     }).catch((e) => {
                         console.log("error request:::", e);
                     })

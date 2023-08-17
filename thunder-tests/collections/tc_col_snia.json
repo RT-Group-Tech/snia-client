@@ -110,11 +110,11 @@
             "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
             "containerId": "",
             "name": "SendOtp",
-            "url": "https://snia.edgeverifed.com/agents/password/recover",
+            "url": "https://snia.edgeverifed.com/agents/password/checkotp",
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-08-16T23:00:22.847Z",
-            "modified": "2023-08-17T00:12:24.788Z",
+            "modified": "2023-08-17T11:50:00.139Z",
             "headers": [],
             "params": [],
             "body": {
@@ -122,13 +122,12 @@
                 "raw": "",
                 "form": [
                     {
-                        "name": "identifiant",
-                        "value": "gaston@gmail.com"
+                        "name": "agent_id",
+                        "value": "3"
                     },
                     {
-                        "name": "agent_id",
-                        "value": "2",
-                        "isDisabled": true
+                        "name": "otp",
+                        "value": "500133"
                     }
                 ]
             },

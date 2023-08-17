@@ -88,7 +88,8 @@ class GlobalApi {
    * @param {*} user,
    * @param {Boolean} connected: check si le user le fait en étant connecté
    */
-  static async resetPassword(user, { connected = true }) {
+  static async resetPassword(user) {
+    console.log(JSON.stringify(user));
     let form = {
       agent_id: user.agent_id,
       current_pass: user.current_pass,
@@ -96,6 +97,7 @@ class GlobalApi {
     };
     let { data, status } = await request(form, "/agents/password");
     let success = data.reponse.status === "success";
+    console.log(data);
     return new Promise((resolve, reject) => {
       if (status === 200 && success) {
         resolve(data);

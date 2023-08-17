@@ -85,8 +85,8 @@
                                     Soumettre la requête reinitialisation
                                 </button>
                                 <lottie-animation v-if="requestOtpLoading" :json="json" lottie-size="70"></lottie-animation>
-                                <button v-else :disabled="requestLoading" v-show="hasOtpReady" type="submit"
-                                    id="btn-request" class="btn btn-snia  btn-full btn-login mb-2">
+                                <button v-else :disabled="requestLoading" v-show="hasOtpReady" @click.prevent="resendOtp"
+                                    type="button" id="btn-request" class="btn btn-snia  btn-full btn-login mb-2">
                                     <i v-if="requestLoading" class="fa fa-spinner fa-spin mr-2"></i>
                                     <i v-else class="icon-refresh"></i> &nbsp;
                                     Renvoyer le code
@@ -133,6 +133,11 @@ export default {
         }
     },
     methods: {
+
+        /**
+         * 
+         * Requete de demande de réinitialisation du mot de passe utilisateur
+        */
         handleRequestOtp(event) {
             this.$validForm("form-request", event, (result, form) => {
                 if (!result) {
@@ -168,6 +173,7 @@ export default {
                             );
                         }
                     }).catch((e) => {
+                        this.requestLoading = false;
                         this.$animatedFailedTask("login-box");
                         $.notify(
                             {
@@ -189,6 +195,45 @@ export default {
             });
         },
 
+
+        /**
+         * 
+         * Renvoi le otp à l'utilisateur
+         */
+        resendOtp() {
+            this.requestLoading = true;
+            Api.handleResetPass(this.form).then((res) => {
+                this.requestLoading = false;
+                console.log(JSON.stringify(res));
+                if (res !== null) {
+                    this.hasOtpReady = true;
+                    let agent = res.reponse.agent;
+                    this.agent = agent;
+                }
+            }).catch((e) => {
+                this.requestLoading = false;
+                $.notify(
+                    {
+                        icon: "fas fa-info",
+                        title: "Opération echoué!",
+                        message: "Une est servenue lors du traitement de cette requête, veuillez réessayer ultérieurement !",
+                    },
+                    {
+                        type: "danger",
+                        placement: {
+                            from: "bottom",
+                            align: "right",
+                        },
+                        time: 5000,
+                    }
+                );
+            })
+        },
+
+        /**
+         * Verification du code otp entré par l'utilisateur pour son eligibilité de 
+         * réinitialiser son mot de passe !
+        */
         checkOtp(otp) {
             this.requestOtpLoading = true;
             let udata = {
@@ -204,6 +249,7 @@ export default {
                 }
 
             }).catch((e) => {
+                this.requestLoading = false;
                 $.notify(
                     {
                         icon: "fas fa-info",
@@ -223,6 +269,11 @@ export default {
             console.log("handle otp ::: ", otp);
         },
 
+
+        /**
+         * 
+         * Modification ou réinitialisation du mot de passe de l'utilisateur !
+        */
         handleRequestUpdate(event) {
             this.$validForm("form-request", event, (result, form) => {
                 if (!result) {
@@ -250,6 +301,22 @@ export default {
                         }
 
                     }).catch((e) => {
+                        this.requestLoading = false;
+                        $.notify(
+                            {
+                                icon: "fas fa-info",
+                                title: "Echec de l'opération!",
+                                message: "L'opération de réinitialisation mot de passe a echouée !",
+                            },
+                            {
+                                type: "danger",
+                                placement: {
+                                    from: "bottom",
+                                    align: "right",
+                                },
+                                time: 3000,
+                            }
+                        );
                         console.log("error request:::", e);
                     })
                 }

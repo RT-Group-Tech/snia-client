@@ -1,7 +1,7 @@
 <template>
     <div style="display: flex; flex-direction: row; justify-content: center; justify-items: center;">
         <v-otp-input ref="otpInput" v-model:value="bindModal" input-classes="otp-input" separator="" :num-inputs="6"
-            :should-auto-focus="true" input-type="numeric" @on-change="handleOnChange" @on-complete="handleOnComplete" />
+            :should-auto-focus="true" @on-change="handleOnChange" @on-complete="handleOnComplete" />
     </div>
 </template>
 
@@ -11,18 +11,18 @@ import VOtpInput from "vue3-otp-input";
 import { ref } from "vue";
 export default {
     name: "PinCode",
+    emits: ['onComplete'],
     components: {
         VOtpInput
     },
-    setup(props) {
+    setup(props, { emit }) {
         const otpInput = ref(null);
         const bindModal = ref("");
         const handleOnComplete = (value) => {
-            console.log("OTP completed: ", value);
-
+            emit('onComplete', value);
         };
         const handleOnChange = (value) => {
-            console.log("OTP changed: ", value);
+
         };
         const clearInput = () => {
             otpInput.value?.clearInput();

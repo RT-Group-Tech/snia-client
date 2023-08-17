@@ -104,6 +104,35 @@
             "headers": [],
             "params": [],
             "tests": []
+        },
+        {
+            "_id": "e047568f-837b-4aa9-bcef-b59ce028f797",
+            "colId": "5acb1095-6c34-47c3-8b78-9ccf700b0c83",
+            "containerId": "",
+            "name": "SendOtp",
+            "url": "https://snia.edgeverifed.com/agents/password/recover",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-08-16T23:00:22.847Z",
+            "modified": "2023-08-17T00:12:24.788Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "identifiant",
+                        "value": "gaston@gmail.com"
+                    },
+                    {
+                        "name": "agent_id",
+                        "value": "2",
+                        "isDisabled": true
+                    }
+                ]
+            },
+            "tests": []
         }
     ]
 }

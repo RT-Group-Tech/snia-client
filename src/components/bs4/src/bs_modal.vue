@@ -1,7 +1,8 @@
 <template>
     <teleport to="body">
         <!-- The Modal -->
-        <form class="modal fade" :id="id" data-backdrop="static" @submit.prevent="$emit('submit', $event)">
+        <form class="modal fade" :id="id" data-backdrop="static" @submit.prevent="$emit('submit', $event)"
+            :novalidate="formNovalidate">
             <div :class="size" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <!-- Modal Header -->
@@ -47,6 +48,10 @@ export default {
         id: {
             type: String,
             default: ''
+        },
+        formNovalidate: {
+            type: Boolean,
+            default: false
         },
 
         title: {

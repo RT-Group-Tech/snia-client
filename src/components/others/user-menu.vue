@@ -11,7 +11,7 @@
                 <li>
                     <div class="user-box">
                         <div class="avatar-lg" style="width: 80px;"><img src="assets/img/picture_placeholder.png"
-                                alt="image profile" class="avatar-img rounded"></div>
+                                alt="image profile" class="avatar-img rounded-circle"></div>
                         <div class="u-text">
                             <h4 class="fw-bold">{{ user.nom_complet
                             }}</h4>

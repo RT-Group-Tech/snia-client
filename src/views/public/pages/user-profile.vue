@@ -41,7 +41,6 @@
                                 </div>
                             </div>
                             <div class="card-body">
-
                                 <div class="tab-content mt-2 mb-3">
                                     <div class="tab-pane fade" :class="$route.params.task === 'view' ? 'show active' : ''"
                                         id="profile" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -122,55 +121,152 @@
                                         :class="$route.params.task === 'config' ? 'show active' : ''" id="settings"
                                         role="tabpanel" aria-labelledby="pills-profile-tab">
 
-                                        <div class="row d-flex flex-column justify-content-center align-content-center">
-                                            <div class="col-md-12">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
                                                 <div class="form-group form-group-default">
                                                     <label>Nom complet</label>
                                                     <input type="text" disabled class="form-control" name="name"
                                                         placeholder="Adresse email" :value="user.nom_complet">
                                                 </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <div class="form-group form-group-default">
                                                     <label>Adresse email</label>
                                                     <input type="text" disabled :value="user.email" class="form-control"
                                                         name="name" placeholder="Email">
                                                 </div>
-
-                                                <div class="form-group form-group-default">
-                                                    <label>Ancien mot de passe <sup class="text-danger">*</sup></label>
-                                                    <input type="text" class="form-control" name="name"
-                                                        placeholder="Entrez votre ancien mot de passe...">
-                                                </div>
-                                                <div class="form-group form-group-default">
-                                                    <label>Nouveau mot de passe <sup class="text-danger">*</sup></label>
-                                                    <input type="text" class="form-control" name="name"
-                                                        placeholder="Saisir un nouveau mot de passe...">
-                                                </div>
-
-                                                <a href="#" class="btn btn-primary btn-block"> <i class="icon-pencil"></i>
-                                                    Soumettre les
-                                                    modifications</a>
                                             </div>
+                                            <div class="col-md-12">
+                                                <form id="formRequest" class="needs-validation"
+                                                    @submit.prevent="submitReset" novalidate>
 
+                                                    <div class="form-group form-group-default">
+                                                        <label>Ancien mot de passe <sup class="text-danger">*</sup></label>
+                                                        <input type="text" class="form-control" name="name"
+                                                            placeholder="Entrez votre ancien mot de passe..."
+                                                            v-model="userData.current_pass" required>
+                                                        <div class="invalid-feedback">
+                                                            Entrez votre ancien mot de passe !
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-group-default">
+                                                        <label>Nouveau mot de passe <sup class="text-danger">*</sup></label>
+                                                        <input type="text" class="form-control" name="name"
+                                                            placeholder="Saisir un nouveau mot de passe..."
+                                                            v-model="userData.new_pass" required>
+                                                        <div class="invalid-feedback">
+                                                            Entrez votre nouveau mot de passe !
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-group-default">
+                                                        <label>Confirmation nouveau mot de passe <sup
+                                                                class="text-danger">*</sup></label>
+                                                        <input type="text" class="form-control" name="name"
+                                                            placeholder="Retapez le nouveau mot de passe..."
+                                                            v-model="userData.confirm"
+                                                            :required="userData.new_pass !== userData.confirm">
+                                                        <div class="invalid-feedback">
+                                                            Confirmez votre nouveau mot de passe !
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit" :disabled="requestLoading"
+                                                        class="btn btn-primary btn-block" id="btnRequest">
+                                                        <i v-if="requestLoading" class="fa fa-spinner fa-spin mr-2"></i>
+                                                        <i v-else class="icon-pencil"></i>
+                                                        Soumettre les
+                                                        modifications</button>
+                                                </form>
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import GlobalApi from '@/api';
 export default {
     name: 'UserProfile',
+
+    data() {
+        return {
+            userData: {
+                current_pass: '',
+                new_pass: '',
+                confirm: ''
+            },
+            requestLoading: false
+        }
+    },
+
+    methods: {
+        submitReset(event) {
+            this.$validForm("formRequest", event, (result, form) => {
+                if (!result) {
+                    /*create a simple animation shake when task is failed */
+                    this.$animatedFailedTask("btnRequest");
+                    /*end shake animation*/
+                } else {
+
+                    /**
+                     * Login request
+                     */
+                    this.requestLoading = true;
+                    GlobalApi.resetPassword(this.userData)
+                        .then(async (result) => {
+                            this.requestLoading = false;
+                            if (result != null) {
+                                Swal({
+                                    title: 'Opération effectuée !',
+                                    text: 'Le nouveau mot de passe a été mis à jour avec succès !',
+                                    icon: 'success',
+                                    timer: 2000,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                });
+                            }
+                            else {
+                                Swal({
+                                    title: 'Echec de l\'opération !',
+                                    text: 'Ancien mot de passe saisi est erroné !',
+                                    icon: 'warning',
+                                    timer: 2000,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                });
+                            }
+                        })
+                        .catch((e) => {
+                            this.loginLoading = false;
+                            $.notify(
+                                {
+                                    icon: "fas fa-info",
+                                    title: "Opération echoué!",
+                                    message:
+                                        "Une erreur est survenue lors de traitement des informations de l'utilisateur !",
+                                },
+                                {
+                                    type: "danger",
+                                    placement: {
+                                        from: "bottom",
+                                        align: "right",
+                                    },
+                                    time: 5000,
+                                }
+                            );
+                        });
+                }
+            });
+        }
+    },
 
 
     computed: {

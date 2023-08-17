@@ -53,7 +53,13 @@ class GlobalApi {
     callback(res.data);
   }
 
-  static async login(agent, callback) {
+  /**
+   *
+   * Boite de connexion au système
+   * @param {Object} agent,
+   * @param {*} callback
+   */
+  static async login(agent) {
     var form = {
       identifiant: agent.identifiant,
       pass: agent.pass,
@@ -72,6 +78,80 @@ class GlobalApi {
         resolve(data);
       } else {
         reject(false);
+      }
+    });
+  }
+
+  /**
+   *
+   * Reset user account password
+   * @param {*} user,
+   * @param {Boolean} connected: check si le user le fait en étant connecté
+   */
+  static async resetPassword(user, { connected = true }) {
+    let form = {
+      agent_id: user.agent_id,
+      current_pass: user.current_pass,
+      new_pass: user.new_pass,
+    };
+    let { data, status } = await request(form, "/agents/password");
+    let success = data.reponse.status === "success";
+    return new Promise((resolve, reject) => {
+      if (status === 200 && success) {
+        resolve(data);
+      } else {
+        reject(null);
+      }
+    });
+  }
+
+  /**
+   * send otp
+   * @param {*} mail
+   */
+  static async handleResetPass(user) {
+    let form = {
+      identifiant: user.email,
+    };
+    let { data, status } = await request(form, "/agents/password/recover");
+    return new Promise((resolve, reject) => {
+      let success = data.reponse.status === "success";
+      if (status === 200 && success) {
+        resolve(data);
+      } else {
+        reject(null);
+      }
+    });
+  }
+
+  static async checkOtp(user) {
+    let form = {
+      agent_id: user.agent_id,
+      otp: user.otp,
+    };
+    let { data, status } = await request(form, "/agents/password/checkotp");
+    return new Promise((resolve, reject) => {
+      let success = data.reponse.status === "success";
+      if (status === 200 && success) {
+        resolve(data);
+      } else {
+        reject(null);
+      }
+    });
+  }
+
+  static async updatePassword(user) {
+    let form = {
+      agent_id: user.agent_id,
+      new_pass: user.new_pass,
+    };
+    let { data, status } = await request(form, "/agents/password/update");
+    return new Promise((resolve, reject) => {
+      let success = data.reponse.status === "success";
+      if (status === 200 && success) {
+        resolve(data);
+      } else {
+        reject(null);
       }
     });
   }

@@ -3,8 +3,8 @@
  =========================================================
  * Atlantis Bootstrap 4 Admin Dashboard (Bootstrap 4)
  =========================================================
-
- * Product Page: http://www.themekita.com/
+ 
+ * Product Page : http://www.themekita.com/
  * Copyright 2018 Theme Kita (http://www.themekita.com/)
 
  =========================================================
@@ -902,12 +902,12 @@ body {
 
 .sidebar .nav.nav-primary>.nav-item a[data-toggle=collapse][aria-expanded=true]:before,
 .sidebar[data-background-color="white"] .nav.nav-primary>.nav-item a[data-toggle=collapse][aria-expanded=true]:before {
-    background: var(--app-bg-color-accent) !important;
+    background: var(--app-color2) !important;
 }
 
 .sidebar .nav.nav-primary>.nav-item.active a:before,
 .sidebar[data-background-color="white"] .nav.nav-primary>.nav-item.active a:before {
-    background: var(--app-bg-color-accent) !important;
+    background: var(--app-color2) !important;
 }
 
 .sidebar .nav.nav-primary>.nav-item.active a i,
@@ -1162,7 +1162,7 @@ body {
 }
 
 .sidebar.sidebar-style-2 .nav.nav-primary>.nav-item.active>a {
-    background: var(--app-bg-color-accent) !important;
+    background: var(--app-color2) !important;
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), 4px 4px 15px -5px rgba(21, 114, 232, 0.4);
 }
 
@@ -1262,7 +1262,7 @@ body {
 }
 
 .sidebar.sidebar-style-2 .nav.nav-danger>.nav-item.active>a {
-    background: rgba(23, 125, 255, 0.76) !important;
+    background: #F25961 !important;
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), 4px 4px 15px -5px rgba(242, 89, 97, 0.4);
 }
 
@@ -1328,7 +1328,7 @@ body {
     top: 0;
     bottom: 0;
     right: -380px;
-    width: 430px;
+    width: 380px;
     overflow: auto;
     overflow-x: hidden;
     height: 100vh;
@@ -3330,7 +3330,7 @@ body {
 .sidebar[data-background-color="blue"].sidebar-style-2 .nav>.nav-item.active>a:focus,
 .sidebar[data-background-color="blue"].sidebar-style-2 .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] {
     background: #fff !important;
-    color: rgba(23, 125, 255, 0.76) !important;
+    color: #1572e8 !important;
 }
 
 .sidebar[data-background-color="blue"].sidebar-style-2 .nav>.nav-item.active>a p,
@@ -3422,7 +3422,7 @@ body {
 .sidebar[data-background-color="blue2"].sidebar-style-2 .nav>.nav-item.active>a:focus,
 .sidebar[data-background-color="blue2"].sidebar-style-2 .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] {
     background: #fff !important;
-    color: rgba(23, 125, 255, 0.76) !important;
+    color: #111679 !important;
 }
 
 .sidebar[data-background-color="blue2"].sidebar-style-2 .nav>.nav-item.active>a p,
@@ -6681,7 +6681,7 @@ label {
     transition: all .2s;
     opacity: 0.8;
     margin-bottom: 0 !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     font-weight: 400;
     top: 12px;
 }
@@ -6689,12 +6689,12 @@ label {
 .form-floating-label .form-control:focus+.placeholder,
 .form-floating-label .form-control:valid+.placeholder,
 .form-floating-label .form-control.filled+.placeholder {
-    font-size: 85% !important;
+    font-size: 12px !important;
     transform: translate3d(0, -10px, 0);
     top: 0;
     opacity: 1;
     padding: .375rem 0 .75rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .form-floating-label .form-control.filled+.placeholder {
@@ -6906,7 +6906,7 @@ label {
 
 .form-control:disabled,
 .form-control[readonly] {
-    background: transparent !important;
+    background: #e8e8e8 !important;
     border-color: #e8e8e8 !important;
 }
 
@@ -8784,8 +8784,8 @@ label.error {
 }
 
 .nav-pills.nav-primary .nav-link.active {
-    background: #1269db;
-    border: 1px solid #1269db;
+    background: #1572e8;
+    border: 1px solid #1572e8;
 }
 
 .nav-pills.nav-secondary .nav-link.active {
@@ -9053,16 +9053,15 @@ label.error {
     box-shadow: 0px 0px 20px 1px rgba(69, 65, 78, 0.2);
 }
 
-
-/* .popover .popover-header {
+.popover .popover-header {
     background: var(--app-bg-color);
     font-size: 15px;
     border-bottom: 0px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     margin-top: 0;
     color: #aaaaaa;
-    font-weight: 800;
-} */
+    font-weight: 600;
+}
 
 .popover .popover-body {
     margin-bottom: 5px;
@@ -20754,15 +20753,6 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-chil
     margin: 0;
 }
 
-.folder-card {
-    cursor: pointer;
-    transition: .2s ease-in;
-}
-
-.folder-card:hover {
-    border: 1px solid #1572e8 !important;
-}
-
 .note-popover .popover-content>.btn-group,
 .card-header.note-toolbar>.btn-group {
     margin-top: 5px;
@@ -22224,7 +22214,7 @@ screen and (max-height: 300px) {
     }
 
     .quick_sidebar_open .quick-sidebar {
-        width: 400px;
+        width: 350px;
     }
 
     .main-header {
@@ -23088,15 +23078,6 @@ body[data-background-color="dark"] .board {
     background: #F25961 !important;
     background: -webkit-linear-gradient(legacy-direction(-45deg), #E80A15, #F25961) !important;
     background: linear-gradient(-45deg, #E80A15, #F25961) !important;
-}
-
-
-/***
-    styles
-****/
-
-.input-attach-btn {
-    border-bottom-left-radius: 0px !important;
 }
 
 

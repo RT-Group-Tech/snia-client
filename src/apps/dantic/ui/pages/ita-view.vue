@@ -121,7 +121,6 @@ export default {
             console.log("delete ita", data.ita_ip);
         });
         this.$initBsTooltip();
-        this.$store.dispatch('dantic/viewItas');
     },
     methods: {
         showCreateItaModal() {
@@ -364,17 +363,5 @@ export default {
             this.table.ajax.reload();
         }
     },
-
-    computed: {
-        itas() {
-            if (this.searchword) {
-                let filtered = this.$store.getters['dantic/GET_ITAS'];
-                return filtered.filter((ita) => ita.ita.toLowerCase().includes(this.searchword.toLowerCase()));
-            }
-            else {
-                return this.$store.getters['dantic/GET_ITAS'];
-            }
-        }
-    }
 }
 </script>

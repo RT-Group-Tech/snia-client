@@ -99,18 +99,17 @@ export default {
         }
     },
 
-    computed: {
-        /* filter agent from list */
-        agents() {
-            if (this.searchword) {
-                let filtered = this.$store.getters['dantic/GET_AGENTS'];
-                return filtered.filter((agent) => agent.nom_complet.toLowerCase().includes(this.searchword.toLowerCase()));
-            }
-            else {
-                return this.$store.getters['dantic/GET_AGENTS'];
-            }
-        }
-    },
+    /*  computed: {
+         agents() {
+             if (this.searchword) {
+                 let filtered = this.$store.getters['dantic/GET_AGENTS'];
+                 return filtered.filter((agent) => agent.nom_complet.toLowerCase().includes(this.searchword.toLowerCase()));
+             }
+             else {
+                 return this.$store.getters['dantic/GET_AGENTS'];
+             }
+         }
+     }, */
     methods: {
         showAgentRegisterModal() {
             $("#agentModal").modal('show')
@@ -378,7 +377,6 @@ export default {
             console.log("delete user ", data.agent_id);
         });
         this.$initBsTooltip();
-        this.$store.dispatch('dantic/viewAgents');
     }
 }
 </script>

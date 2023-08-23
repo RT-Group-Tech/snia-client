@@ -159,8 +159,8 @@
       </div>
     </template>
     <template #footer-content>
-      <button id="submit-btn" type="submit" class="btn btn-success" :class="submitLoading ? 'disabled' : ''"
-        style="margin-right: 4px;"> <i v-if="submitLoading" class="fa fa-spinner fa-spin" /> Enregistrer Agent
+      <button id="submit-btn" type="submit" class="btn btn-success" :disabled="submitLoading"> <i v-if="submitLoading"
+          class="fa fa-spinner fa-spin"></i> Enregistrer Agent
       </button>
       <button class="btn btn-danger" data-dismiss="modal">Fermer</button>
     </template>
@@ -208,14 +208,14 @@ export default {
           this.$animatedFailedTask("submit-btn");
         }
         else {
-          this.submitLoading = false;
+          this.submitLoading = true;
           Api.creerAgent(this.form, (data) => {
             this.submitLoading = false;
             $("#agentModal").modal('hide')
-            this.$store.dispatch("dantic/viewAgents")
+            this.$emit('reloadData');
+            this.$store.dispatch("dantic/viewAgents");
           })
         }
-
       });
     }
   }

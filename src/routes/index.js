@@ -5,6 +5,8 @@ import senaficRoutes from "@/apps/senafic/routes";
 import dprotvRoutes from "@/apps/dprotv/routes";
 import ipaRoutes from "@/apps/ipa/routes";
 import dprodvRoutes from "@/apps/dprodv/routes";
+import ministreRoutes from "@/apps/ministre/routes";
+import sgRoutes from "@/apps/sg/routes";
 import { beforeAuth } from "@/middlewares/auth";
 
 const routes = [
@@ -32,6 +34,10 @@ const routes = [
 
   /*modules routes */
   ...danticRoutes, //dantic routes
+
+  ...ministreRoutes, //Ministre module routes
+
+  ...sgRoutes, //Secretaire général module routes
 
   ...ipaRoutes, //ipa routes
 

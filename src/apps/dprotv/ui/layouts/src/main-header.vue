@@ -45,8 +45,11 @@
                             </a>
                             <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="javascript:void(0)"
-                                    @click.prevent="$showBsModal('createProduitModal')">Ajouter produits</a>
-                                <a class="dropdown-item" href="javascript:void(0)">Voir produits</a>
+                                    @click.prevent="$showBsModal('createProduitModal')"> Ajout produits</a>
+                                <a class="dropdown-item" href="#/dprotv/secure/exportations">Exportations</a>
+                                <a class="dropdown-item" href="#/dprotv/secure/importations">Importations</a>
+                                <a class="dropdown-item" href="javascript:void(0)"
+                                    @click.prevent="$showBsModal('publicationModal')">Publication FVCP</a>
                             </div>
                         </li>
 
@@ -77,11 +80,16 @@
             </div>
         </div>
     </div>
+    <publication-modal></publication-modal>
 </template>
 
 <script>
-import AuthView from '@/mixins/auth/logview'
+import AuthView from '@/mixins/auth/logview';
+import publicationModal from '../../modals/publication_modal';
 export default {
-    mixins: [AuthView]
+    mixins: [AuthView],
+    components: {
+        publicationModal,
+    },
 }
 </script>

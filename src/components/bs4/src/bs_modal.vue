@@ -60,9 +60,9 @@ export default {
         },
         size: {
             type: String,
-            default: '',
+            default: 'modal-md',
             validator: (val) => {
-                return ['modal-sm', 'modal-lg', 'modal-xl'].includes(val)
+                return ['modal-sm', 'modal-md', 'modal-lg', 'modal-xl'].includes(val)
             }
         }
     },

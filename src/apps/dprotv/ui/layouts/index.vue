@@ -9,8 +9,6 @@
         <!-- main footer -->
         <main-footer />
         <!-- End footer -->
-        <create-produit-modal />
-
     </div>
 </template>
 
@@ -18,15 +16,13 @@
 import mainHeader from './src/main-header';
 import mainFooter from './src/main-footer';
 import utilities from '@/mixins/public/utils';
-import createProduitModal from '../modals/create_produit_modal';
 
 export default {
-    name: "SenasemModule",
+    name: "DprotvModule",
     mixins: [utilities],
     components: {
         mainHeader,
         mainFooter,
-        createProduitModal
     },
     beforeMount() {
         require('@/assets/css/atlantis2.css');

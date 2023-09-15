@@ -50,9 +50,10 @@
                                 <a class="dropdown-item" href="#/dprotv/secure/importations">Importations</a>
                                 <a class="dropdown-item" href="javascript:void(0)"
                                     @click.prevent="$showBsModal('publicationModal')">Publication FVCP</a>
+                                <a class="dropdown-item" href="#/dprotv/secure/view/alerts">Voir alertes
+                                    phytosanitaire</a>
                             </div>
                         </li>
-
                     </ul>
                 </nav>
                 <nav class="navbar navbar-header navbar-expand-lg p-0">

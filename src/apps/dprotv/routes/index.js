@@ -28,6 +28,12 @@ const routes = [
         beforeEnter: beforeAuth,
       },
       {
+        path: "/dprotv/secure/view/alerts",
+        component: () => import("@/apps/dprotv/ui/pages/dprotv.alerts"),
+        name: "dprotv-alertes-route",
+        beforeEnter: beforeAuth,
+      },
+      {
         path: "/dprotv/secure/collectes",
         component: () => import("@/views/public/pages/data-collect-page"),
         name: "dprotv-collect-route",

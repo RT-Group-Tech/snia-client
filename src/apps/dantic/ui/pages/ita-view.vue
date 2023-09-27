@@ -372,7 +372,7 @@ export default {
                     {
                         title: '',
                         data: null,
-                        defaultContent: ' <div class="d-flex"><button class="btn btn-icon btn-info mr-2" type="button""> <i class="icon-note"></i> </button>  <button class="btn btn-icon btn-danger" type="button""> <i class="icon-trash"></i> </button></div>  '
+                        defaultContent: ' <div class="d-flex"><button style="display: none;" class="btn btn-icon btn-info mr-2" type="button""> <i class="icon-note"></i> </button>  <button class="btn btn-icon btn-danger" type="button""> <i class="icon-trash"></i> </button></div>  '
                     }
                 ]
             });

@@ -1,5 +1,5 @@
 <template>
-  <bs-modal id="ipaCreateModal" title="Création de la nouvelle Inspéction Provinciale Agricole"
+  <bs-modal id="ipaCreateModal" title="Enregistrer une Inspéction Provinciale Agricole"
     @submit.prevent="submitIpa" size="modal-lg">
     <template #body-content>
       <div class="form-group form-group-default bg-light">
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">GPS/Longitude</label>
+            <label class="fw-extrabold">Bureau IPA: GPS/Longitude</label>
             <div class="input-group">
               <input type="text" v-model="form.longitude" class="form-control" name="postnom"
                 placeholder="Saisir la longitude..." required>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group form-group-default bg-light">
-            <label class="fw-extrabold">GPS/Latitude</label>
+            <label class="fw-extrabold">Bureau IPA: GPS/Latitude</label>
             <div class="input-group">
               <input type="text" v-model="form.latitude" class="form-control" name="postnom"
                 placeholder="Saisir la latitude..." required>

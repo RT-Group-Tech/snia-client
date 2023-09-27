@@ -101,10 +101,10 @@
                         <div class="card animated fadeInUp">
                             <div class="card-header">
                                 <div class="card-head-row card-tools-still-right">
-                                    <h4 class="card-title">Geolocalisation des IPA & ITA</h4>
+                                    <h4 class="card-title">Liste des province</h4>
                                 </div>
                                 <p class="card-category">
-                                    Ci-apres la liste des IPA, leurs adresses ainsi que leur haute hierarchie</p>
+                                    Ci-apres la liste des provinces, regroupées par type de climat.</p>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -125,11 +125,10 @@
                                                         <td class="text-right">
                                                             {{ region.getAttribute('ipa-name') }}
                                                         </td>
-                                                        <td class="text-right">
-                                                            20000 habitants
+                                                        <td class="text-right" style="visibility: hidden;">
+                                                            0 habitants
                                                         </td>
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>

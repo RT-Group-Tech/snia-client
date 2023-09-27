@@ -28,25 +28,28 @@
           <div class="col-md-12">
             <div class="d-flex justify-content-between">
               <div class="d-md-inline-block">
-                <div class="input-group">
+                <div class="input-group" style="display: none;">
                   <div class="input-group-prepend">
                     <span class="input-group-text bg-white">
                       <i class="fa fa-search search-icon"></i>
                     </span>
                   </div>
-                  <input type="text" v-model="searchword" placeholder="Rechercher un IPA ..." class="form-control"
-                    aria-label="Text input with dropdown button">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">Filtrer </button>
-                    <div class="dropdown-menu" x-placement="bottom-start"
-                      style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
-                      <a class="dropdown-item" href="#">IPA</a>
-                      <a class="dropdown-item" href="#">Population</a>
-                      <a class="dropdown-item" href="#">Superficie</a>
+                  <div style="display: none;">
+                    <input type="text" v-model="searchword" placeholder="Rechercher un IPA ..." class="form-control"
+                           aria-label="Text input with dropdown button">
+                    <div class="input-group-append" >
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">Filtrer </button>
+                      <div class="dropdown-menu" x-placement="bottom-start"
+                           style="position: absolute; transform: translate3d(229px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="#">IPA</a>
+                        <a class="dropdown-item" href="#">Population</a>
+                        <a class="dropdown-item" href="#">Superficie</a>
 
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
               <button type="button" @click="showIpaRegisterModal" class="btn btn-success d-none d-sm-inline-block">

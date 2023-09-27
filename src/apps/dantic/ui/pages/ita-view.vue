@@ -96,6 +96,7 @@
 <script>
 
 import ItaCreateModal from "../modals/ita-create-modal.vue";
+import Api from "@/apps/dantic/api";
 
 export default {
     name: "Ipa-view",
@@ -116,13 +117,41 @@ export default {
             let data = table.row(e.target.closest('tr')).data();
             console.log(JSON.stringify(data));
         });
-        $('#itasTable tbody').on('click', '.btn-danger', function (e) {
+        $('#itasTable tbody').on('click', '.btn-danger', (e)=> {
             let data = table.row(e.target.closest('tr')).data();
             console.log("delete ita", data.ita_ip);
+          this.deleteIta(data.ita_ip);
         });
         this.$initBsTooltip();
     },
     methods: {
+        async deleteIta(itaIp){
+          this.$swal(
+              {
+                title:"Etes-vous sure?",
+                showCancelButton:true,
+                showCloseButton:true,
+                confirmButtonText:"Oui",
+                cancelButtonText:"Annuler"
+              }
+          ).then(async (result) => {
+
+            if (result.value) {
+              var data = new FormData();
+              data.append("ita_ip", itaIp);
+
+              await Api.deleteIta(data,function(res){
+                console.log("finished..");
+                console.log(res);
+              });
+
+              /**
+               * reload page.
+               */
+              window.location.reload();
+            }
+          });
+        },
         showCreateItaModal() {
             this.$store.state.dantic.selectedIpa = null;
             $("#itaCreateModal").modal('show');

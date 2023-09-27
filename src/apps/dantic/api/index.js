@@ -400,6 +400,13 @@ class Api {
     }
   }
 
+  static async deleteIta(data,callback)
+  {
+    var res=await request(data,"/dantic/ita_url/delete");
+
+    callback(res);
+  }
+
   /**
    * Enregistrer les options d'un sous champ.
    * @param formulaireSousInputId

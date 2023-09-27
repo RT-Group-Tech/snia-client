@@ -20,9 +20,9 @@
                                                 <i class="fa fa-search search-icon"></i>
                                             </span>
                                         </div>
-                                        <input type="text" v-model="searchword" placeholder="recherche ipa..."
+                                        <input type="text" v-model="searchword" placeholder="recherche..."
                                             class="form-control" aria-label="Text input with dropdown button">
-                                        <div class="input-group-append">
+                                        <div class="input-group-append" style="display: none;">
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtrer
                                             </button>
@@ -56,15 +56,15 @@
                                                 <th>ITA</th>
                                                 <th>Population</th>
                                                 <th>Superficie</th>
-                                                <th>IPA</th>
+                                                <th style="display: none;">IPA</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(ita, index) in itas" :key="index">
                                                 <td>{{ ita.ita }}</td>
-                                                <td>{{ ita.total_population }}</td>
-                                                <td>{{ ita.superficie }}</td>
-                                                <td>
+                                                <td>-</td>
+                                                <td>{{ ita.superficie }}km<sup>2</sup></td>
+                                                <td style="display: none;">
                                                     <button type="button" data-toggle="tooltip" title="Voir agent info."
                                                         class="btn btn-info btn-sm btn-lg"
                                                         data-original-title="Voir ITA & Modification">

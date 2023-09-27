@@ -72,16 +72,15 @@
                       <ul class="specification-list">
                         <li>
                           <span class="name-specification">Population</span>
-                          <span class="status-specification">{{ ipa.total_population }}</span>
+                          <span class="status-specification">-</span>
                         </li>
                         <li>
                           <span class="name-specification">Superficie</span>
                           <span class="status-specification">{{ ipa.superficie }} km<sup>2</sup> </span>
                         </li>
                         <li>
-                          <span class="name-specification">Total ITA</span>
-                          <span class="status-specification">0
-                            <!-- //TODO: Calculer le total des itas ensuite afficher ici -->
+                          <span class="name-specification">ITA</span>
+                          <span class="status-specification">
                             <button type="button" :disabled="itaLoading === ipa.ipa_id" @click.prevent="getItas(ipa)"
                               title="Voir la liste des itas" class="btn btn-icon btn-sm ml-2 btn-info">
                               <i v-if="itaLoading === ipa.ipa_id" class="fa fa-spinner fa-spin"></i>

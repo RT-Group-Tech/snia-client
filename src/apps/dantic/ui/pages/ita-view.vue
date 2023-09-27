@@ -57,7 +57,7 @@
                         <div class="card full-height mt-4 animated fadeIn">
                             <div class="card-header d-flex justify-content-between">
                                 <h4 class="card-title">Liste des ITAs</h4>
-                                <button type="button" title="Création d'une nouvelle ita" data-toggle="tooltip"
+                                <button type="button" title="Enregistrer ITA" data-toggle="tooltip"
                                     class="btn btn-success d-none d-sm-inline-block" @click="showCreateItaModal">
                                     <i class="flaticon-add mr-1"></i>Nouvelle ITA
                                 </button>
@@ -335,10 +335,7 @@ export default {
                         title: 'Libellé ITA',
                         data: 'ita'
                     },
-                    {
-                        title: 'Nombre de la population',
-                        data: 'total_population'
-                    },
+
                     {
                         title: 'Supérficie',
                         data: 'superficie'

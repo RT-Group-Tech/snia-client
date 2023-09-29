@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import GlobalApi from "@/api";
+
 export default {
   name: "input",
   data(){
@@ -46,15 +48,18 @@ export default {
       /**
        * Make server request.
        */
+      var form=new FormData();
+      form.append("agent_id",this.agentId);
+      form.append(this.inputName,this.inputValue);
 
-      this.disableState=true;
+      GlobalApi.editAgent(form,function(res){
+        console.log("agent updated...");
+        console.log(res);
+        this.disableState=true;
+      })
+
     }
   },
-  watch:{
-    disable(newVal){
-      console.log("disable changed to :"+newVal);
-    }
-  }
 }
 </script>
 

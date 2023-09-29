@@ -1,6 +1,14 @@
 import { request } from "@/http";
 
 class GlobalApi {
+
+  static async editAgent(data,callback)
+  {
+    var res=await request(data,"/");
+
+    callback(res);
+  }
+
   /**
    * Fonction permettant de voir la liste des données collectées
    * @callback array

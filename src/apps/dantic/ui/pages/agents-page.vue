@@ -111,6 +111,19 @@ export default {
          }
      }, */
     methods: {
+        viewAgentProfile(agentData)
+        {
+          /**
+           * Store agent data in public store.
+           */
+          localStorage.setItem("agent_profile",JSON.stringify(agentData));
+          var domain=window.location.host;
+          var path="/#/dantic/user/profile/view";
+          var goTo=domain+path;
+
+          this.$router.push("/dantic/user/profile/view"); //TODO: got to route by reloading browser.
+        }
+        ,
         showAgentRegisterModal() {
             $("#agentModal").modal('show')
         },
@@ -352,7 +365,7 @@ export default {
                     {
                         title: '',
                         data: null,
-                        defaultContent: ' <div class="d-flex"><button class="btn btn-icon btn-info mr-2" type="button""> <i class="icon-note"></i> </button>  <button class="btn btn-icon btn-danger" type="button""> <i class="icon-trash"></i> </button></div>  '
+                        defaultContent: ' <div class="d-flex"><button class="btn btn-icon btn-info mr-2" type="button""> <i class="icon-note"></i> </button>  <button style="display: none" class="btn btn-icon btn-danger" type="button""> <i class="icon-trash"></i> </button></div>  '
                     }
                 ]
             });
@@ -368,8 +381,10 @@ export default {
     async mounted() {
         let table = await this.initAjaxDataTable();
         this.table = table;
-        $('#agentsTable tbody').on('click', '.btn-info', function (e) {
+        $('#agentsTable tbody').on('click', '.btn-info', (e) =>{
             let data = table.row(e.target.closest('tr')).data();
+            //this.$router.go();
+            this.viewAgentProfile(data);
             console.log(JSON.stringify(data));
         });
         $('#agentsTable tbody').on('click', '.btn-danger', function (e) {

@@ -46,18 +46,11 @@
                                         id="profile" role="tabpanel" aria-labelledby="pills-home-tab">
                                         <div class="row mt-3">
                                             <div class="col-md-6">
-                                                <div class="form-group form-group-default">
-                                                    <label>Nom complet</label>
-                                                    <input type="text" disabled class="form-control" name="name"
-                                                        placeholder="Name" :value="user.nom_complet">
-                                                </div>
+                                                <InputWidget label="Nom complet" placeholder="Nom complet" :val="user.nom_complet" input-name="nom_complet" :agent-id="user.agent_id"></InputWidget>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group form-group-default">
-                                                    <label>Adresse Email</label>
-                                                    <input type="email" disabled class="form-control" name="email"
-                                                        placeholder="Name" :value="user.email">
-                                                </div>
+
+                                              <InputWidget label="Email" placeholder="email" :val="user.email" input-name="email" :agent-id="user.agent_id"></InputWidget>
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -77,21 +70,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group form-group-default">
-                                                    <label>Téléphone</label>
-                                                    <input type="text" class="form-control" disabled :value="user.telephone"
-                                                        name="phone" placeholder="Phone">
-                                                </div>
+                                              <InputWidget label="Téléphone" placeholder="téléphone" :val="user.telephone" input-name="telephone" :agent-id="user.agent_id"></InputWidget>
                                             </div>
                                         </div>
                                         <div class="row mt-3">
 
                                             <div class="col-md-6">
-                                                <div class="form-group form-group-default">
-                                                    <label>Fonction</label>
-                                                    <input disabled type="text" class="form-control" :value="user.fonction"
-                                                        name="address" placeholder="Grade">
-                                                </div>
+                                              <InputWidget label="Fonction" placeholder="fonction" :val="user.fonction" input-name="fonction" :agent-id="user.agent_id"></InputWidget>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-group-default">
@@ -193,9 +178,12 @@
 <script>
 import { mapGetters } from 'vuex';
 import GlobalApi from '@/api';
+import InputWidget from "@/views/public/widgets/InputWidget";
 export default {
     name: 'UserProfile',
-
+    components:{
+      InputWidget
+    },
     data() {
         return {
             userData: {
@@ -276,9 +264,21 @@ export default {
 
 
     computed: {
-        ...mapGetters({
-            user: "auth/GET_USER"
-        })
+        /**...mapGetters({
+            //user: "auth/GET_USER"
+        })*/
+      user:function(){
+          var agent=this.$store.getters.GET_USERPROFILE;
+          if(agent===undefined)
+          {
+            //TODO: Get user.
+          }
+
+          return agent;
+      }
     },
+  mounted() {
+
+  }
 }
 </script>

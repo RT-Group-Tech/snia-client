@@ -27,6 +27,19 @@ const store = createStore({
     GET_COLLECTES: (state) => state.collectes,
     GET_SUJETS: (state) => state.sujets,
     GET_CULTURES: (state) => state.cultures,
+    GET_USERPROFILE:function(state){
+      var ag=localStorage.getItem("agent_profile");
+      if(ag===undefined || ag===null || ag.length<1)
+      {
+        state.userProfile=null;
+      }
+      else
+      {
+        state.userProfile=JSON.parse(ag);
+      }
+
+      return state.userProfile;
+    }
   },
   mutations: {
     SET_SUJETS(state, data) {
@@ -38,6 +51,9 @@ const store = createStore({
     SET_CULTURES(state, data) {
       state.cultures = data;
     },
+    SET_USERPROFILE(state,data){
+      state.userProfile=data;
+    }
   },
   state: {
     collectes: [] /*Liste des données collectées */,
@@ -81,6 +97,7 @@ const store = createStore({
         enabled: false,
       },
     ],
+    userProfile:{}
   },
   actions: {
     voirSujets({ commit }) {

@@ -13,12 +13,18 @@ class GlobalApi {
    * Fonction permettant de voir la liste des données collectées
    * @callback array
    */
-  static async voirDonneesCollectes(callback) {
+  static async voirDonneesCollectes(callback,filter)
+  {
+    var url="/collectes/all";
+    if(filter!==undefined && filter.from.length>1)
+    {
+      url+="?from="+filter.from+"&to="+filter.to;
+    }
     const { data, status } = await request(
       {
         key: "999e6e3f651b4b6fd7eb12acfcc8e2ca2a9c34fb",
       },
-      "/collectes/all"
+      url
     );
 
     let donneesCollectes = data.formulaires;

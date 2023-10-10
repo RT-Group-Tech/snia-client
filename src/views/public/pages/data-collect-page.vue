@@ -18,10 +18,10 @@
                                     <span class="input-group-text bg-light text-muted"><i class="icon-magnifier"></i></span>
                                 </div>
 
-                                <input type="date" class="form-control" id="datepicker1" placeholder="Du...">
-                                <input type="date" placeholder="Au..." class="form-control" id="datepicker2">
+                                <input v-model="filter.from" type="date" class="form-control" id="datepicker1" placeholder="Du...">
+                                <input v-model="filter.to" type="date" placeholder="Au..." class="form-control" id="datepicker2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-info">Filtrer</button>
+                                    <button @click.prevent="filterData" class="btn btn-info">Filtrer</button>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,11 @@ export default {
             selectedCollecte: {},
             selectSujet: [],
             dataLoading: false,
-            json: emptyStateJson
+            json: emptyStateJson,
+            filter:{
+              from:"",
+              to:""
+            }
         }
     },
 
@@ -126,17 +130,28 @@ export default {
     },
 
     methods: {
+        filterData(){
+
+          var d=this.filter.from.split("-");
+          this.filter.from=d[2]+"/"+d[1]+"/"+d[0];
+          d=this.filter.to.split("-");
+          this.filter.to=d[2]+"/"+d[1]+"/"+d[0];
+
+          this.viewData();
+        },
         showCollecte(collecte) {
             this.selectedCollecte = collecte;
             this.$nextTick(() => this.$showBsModal('collecte-detail-modal'))
+        },
+        viewData(){
+          this.dataLoading = true;
+          var filter=(this.filter.from!==null)? this.filter : null ;
+          this.$store.dispatch('voirCollectes',filter).then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
+          this.$store.dispatch("voirSujets");
         }
     },
-
-
     mounted() {
-        this.dataLoading = true;
-        this.$store.dispatch('voirCollectes').then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
-        this.$store.dispatch("voirSujets");
-    }
+        this.viewData();
+    },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-group form-group-default">
-      <span v-if="disableState" style="cursor: pointer;" @click="enableEdit()" class="fa fa-pencil-alt pull-right"></span>
+      <span v-if="disableState" style="cursor: pointer;" @click="toggleEdit()" class="fa fa-pencil-alt pull-right"></span>
       <span v-else style="cursor: pointer;" @click="updateValue()" class="fa fa-check pull-right"></span>
       <label >{{label}}</label>
       <input type="text" :disabled="disableState" class="form-control" name="name"
@@ -39,6 +39,16 @@ export default {
     enableEdit(){
       this.disableState=false;
     },
+    toggleEdit(){
+      if(this.disableState)
+      {
+        this.disableState=false;
+      }
+      else
+      {
+        this.disableState=true;
+      }
+    },
     updateValue(){
       console.log("update value...");
       console.log(this.agentId)
@@ -51,11 +61,11 @@ export default {
       var form=new FormData();
       form.append("agent_id",this.agentId);
       form.append(this.inputName,this.inputValue);
-
-      GlobalApi.editAgent(form,function(res){
+      this.toggleEdit();
+      GlobalApi.editAgent(form,(res)=>{
         console.log("agent updated...");
         console.log(res);
-        this.disableState=true;
+
       })
 
     }

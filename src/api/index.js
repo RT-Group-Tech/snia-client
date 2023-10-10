@@ -4,7 +4,7 @@ class GlobalApi {
 
   static async editAgent(data,callback)
   {
-    var res=await request(data,"/");
+    var res=await request(data,"/agents/update");
 
     callback(res);
   }

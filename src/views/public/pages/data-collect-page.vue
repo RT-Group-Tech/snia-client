@@ -12,7 +12,10 @@
                 <div class="row ">
                     <div class="col-md-6">
                         <div class="form-group mb-4 p-0">
-                            <label>Filtrer par date</label>
+                            <label>Filtrage: <div v-if="filter.from.length>0">
+                              <span><span class="fa fa-calendar-alt"></span> {{filter.from}}</span> au <span>{{filter.to}} </span>
+                            </div>
+                            <span v-else>aucun..</span></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-light text-muted"><i class="icon-magnifier"></i></span>

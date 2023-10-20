@@ -79,9 +79,11 @@ class GlobalApi {
       pass: agent.pass,
     };
 
+    var url="collectes/all";
+    url="/connexion/connexion_url/login";
     var { data, status } = await request(
       form,
-      "/connexion/connexion_url/login"
+      url
     );
 
     return new Promise((resolve, reject) => {

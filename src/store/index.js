@@ -66,7 +66,7 @@ const store = createStore({
       },
       {
         name: "MINISTRE",
-        enabled: false,
+        enabled: true,
       },
       {
         name: "SG",

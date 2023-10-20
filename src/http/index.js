@@ -4,11 +4,8 @@ let token = localStorage.getItem("userToken");
 // create a new axios instance
 var domain = "127.0.0.1/backend_snia/";
 //domain="https://backend.rtgroup-rdc.com/url/security_rtg";
-domain =
-  process.env.NODE_ENV === "production"
-    ? "https://snia.edgeverifed.com"
-    : "http://snia.edgeverifed.com";
-
+domain =process.env.NODE_ENV === "production" ? "http://snia.edgeverifed.com" : "http://snia.edgeverifed.com";
+domain="http://127.0.0.1/backend_snia/"
 const instance = axios.create({
   baseURL: domain,
   headers: {
@@ -36,7 +33,8 @@ instance.interceptors.response.use((response) => {
  * @param {Object} data
  * @returns {data, status} data: http response if status equal 200 or 201
  */
-export async function request(data = null, url = null) {
+export async function request(data = null, url = null)
+{
   return new Promise((resolve, reject) => {
     if (data === null) {
       instance

@@ -15,6 +15,13 @@
             </div>
             <hr> -->
             <div class="row">
+                <div class="col-md-12">
+                  <button @click.prevent="validateData(false)" class="btn pull-right"><i class="icon-dislike"></i> Rejeter</button>
+                  <button @click.prevent="validateData(true)" class="btn pull-right" style=" margin-right: 5px;"> <i class="icon-like mr-1"></i> Approuver</button>
+                </div>
+            </div>
+          <hr>
+            <div class="row">
                 <div class="col-md-6" v-for="(data, i) in collecte.data" :key="i">
                     <div class="form-group form-group-default">
                         <label class="text-info fw-extrabold">{{ data.input }}</label>
@@ -87,6 +94,45 @@ export default {
         },
         setCollecteView(collecteData) {
             this.collecteView = collecteData;
+        },
+        validateData(validate)
+        {
+          var text="approbation";
+          var validation=0;
+          if(validate)
+          {
+            /**
+             * Approuver.
+             */
+            text="approbation";
+            validation=1;
+          }
+          else
+          {
+            /**
+             * Rejeter.
+             */
+            text="rejet";
+            validation=1;
+          }
+
+          this.$swal(
+              {
+                title:"Etes-vous sur de votre "+text+"?",
+                showCancelButton:true,
+                cancelButtonText:"Annuler",
+                confirmButtonText:"Continuer"
+              }
+          ).then((res)=>{
+            console.log(res);
+            if(res.isConfirmed)
+            {
+              /**
+               * Poursuivre.
+               */
+
+            }
+          });
         }
     },
     mounted() {

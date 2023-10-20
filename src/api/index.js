@@ -194,5 +194,11 @@ class GlobalApi {
       }
     });
   }
+
+  static async validateCollecte(data,callback)
+  {
+    var res=await request(data,"/collectes/validate")
+    callback(res);
+  }
 }
 export default GlobalApi;

@@ -14,10 +14,10 @@
                 </div>
             </div>
             <hr> -->
-            <div class="row">
+            <div class="row" v-if="collecte.collecte_status==='pending'">
                 <div class="col-md-12">
-                  <button @click.prevent="validateData(false)" class="btn pull-right"><i class="icon-dislike"></i> Rejeter</button>
-                  <button @click.prevent="validateData(true)" class="btn pull-right" style=" margin-right: 5px;"> <i class="icon-like mr-1"></i> Approuver</button>
+                  <button @click.prevent="validateData(false,collecte.collecte_id)" class="btn pull-right"><i class="icon-dislike"></i> Rejeter</button>
+                  <button @click.prevent="validateData(true,collecte.collecte_id)" class="btn pull-right" style=" margin-right: 5px;"> <i class="icon-like mr-1"></i> Approuver</button>
                 </div>
             </div>
           <hr>
@@ -95,7 +95,7 @@ export default {
         setCollecteView(collecteData) {
             this.collecteView = collecteData;
         },
-        validateData(validate)
+        validateData(validate,collecteId)
         {
           var text="approbation";
           var validation=0;
@@ -113,7 +113,7 @@ export default {
              * Rejeter.
              */
             text="rejet";
-            validation=1;
+            validation=0;
           }
 
           this.$swal(
@@ -130,7 +130,14 @@ export default {
               /**
                * Poursuivre.
                */
+                var form=new FormData();
+                form.append("validation",validation);
+                form.append("collecte_id",collecteId);
 
+                Api.validateCollecte(form,(result)=>{
+
+            });
+                $("#collecte-view-modal").modal('hide');
             }
           });
         }

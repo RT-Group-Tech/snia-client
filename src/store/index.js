@@ -114,7 +114,7 @@ const store = createStore({
      */
     voirCollectes({ commit, state },filter) {
       return new Promise((resolve, reject) => {
-        console.log("fil..."); console.log(filter);
+
         Api.voirDonneesCollectes((data) => {
           commit("SET_COLLECTES", data);
           if (data.reponse != undefined) {

@@ -16,9 +16,19 @@ class GlobalApi {
   static async voirDonneesCollectes(callback,filter)
   {
     var url="/collectes/all";
-    if(filter!==undefined && filter.from.length>1)
+    if(filter!==undefined)
     {
-      url+="?from="+filter.from+"&to="+filter.to;
+      url+="?f=1";
+
+      if(filter.from!==undefined && filter.from.length>1)
+      {
+        url+="&from="+filter.from+"&to="+filter.to;
+      }
+
+      if(filter.status!==undefined && filter.status!==null)
+      {
+        url+="&status="+filter.status;
+      }
     }
     const { data, status } = await request(
       {
@@ -26,7 +36,6 @@ class GlobalApi {
       },
       url
     );
-
     let donneesCollectes = data.formulaires;
     if (status === 200) callback(donneesCollectes);
     else callback([]);

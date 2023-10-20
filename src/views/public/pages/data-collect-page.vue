@@ -10,7 +10,7 @@
             </div>
             <div class="page-inner mt--5">
                 <div class="row ">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group mb-4 p-0">
                             <label>Filtrage: <div v-if="filter.from.length>0">
                               <span><span class="fa fa-calendar-alt"></span> {{filter.from}}</span> au <span>{{filter.to}} </span>
@@ -30,7 +30,23 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                    <div class="form-group mb-4 p-0 m-0">
+                      <label>Filtrer par status</label>
+                      <div class="d-flex">
+                        <div class="form-group">
+                          <p>
+                            <input type="radio" name="validation" value="1" v-model="validation"> Validée
+                            <input type="radio" name="validation" value="0" v-model="validation"> Non validée &nbsp;
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                    <div class="col-md-4">
                         <div class="form-group mb-4 p-0 m-0">
                             <label>Filtrer par sujet</label>
                             <div class="d-flex">
@@ -40,6 +56,7 @@
                         </div>
 
                     </div>
+
                 </div>
                 <section-loader :loading="dataLoading" :data="collectes">
                     <div>
@@ -102,7 +119,8 @@ export default {
             filter:{
               from:"",
               to:""
-            }
+            },
+            validation:1
         }
     },
 
@@ -156,5 +174,17 @@ export default {
     mounted() {
         this.viewData();
     },
+  watch:{
+      validation:function(newValue)
+      {
+        /**
+         * Filter par status.
+         */
+        var filter={
+          status:newValue
+        };
+        this.$store.dispatch('voirCollectes',filter).then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
+      }
+  }
 }
 </script>

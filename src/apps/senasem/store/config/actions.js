@@ -8,6 +8,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             try {
                 Api.voirSemences((data) => {
+                    console.clear(); console.log("view.."); console.log(data);
                     if (data !== null) {
                         if (data.semences !== undefined) {
                             commit("SET_SEMENCES", data.semences.reverse());

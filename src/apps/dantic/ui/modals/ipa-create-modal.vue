@@ -33,7 +33,7 @@
             <label class="fw-extrabold">Bureau IPA: GPS/Longitude</label>
             <div class="input-group">
               <input type="text" v-model="form.longitude" class="form-control" name="postnom"
-                placeholder="Saisir la longitude..." required>
+                placeholder="Saisir la longitude..." >
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
             <label class="fw-extrabold">Bureau IPA: GPS/Latitude</label>
             <div class="input-group">
               <input type="text" v-model="form.latitude" class="form-control" name="postnom"
-                placeholder="Saisir la latitude..." required>
+                placeholder="Saisir la latitude..." >
             </div>
           </div>
         </div>

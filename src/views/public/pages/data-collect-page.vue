@@ -120,7 +120,7 @@ export default {
               from:"",
               to:""
             },
-            validation:1
+            validation:-1
         }
     },
 

@@ -66,7 +66,7 @@ const store = createStore({
       },
       {
         name: "MINISTRE",
-        enabled: true,
+        enabled: false,
       },
       {
         name: "SG",
@@ -82,7 +82,7 @@ const store = createStore({
       },
       {
         name: "SENASEM",
-        enabled: false,
+        enabled: true,
       },
       {
         name: "SENAFIC",
@@ -90,7 +90,7 @@ const store = createStore({
       },
       {
         name: "DPROTV",
-        enabled: false,
+        enabled: true,
       },
       {
         name: "DPRODV",

@@ -50,11 +50,11 @@
 
                     <sidebar-item title="Agents" route-name="agents-route" icon="icon-people" />
 
-                    <!--  <sidebar-item title="Cultures" route-name="culture-route" icon="icon-share-alt" /> -->
-                    <sidebar-item title="Cultures" :hidden="true" icon="icon-share-alt" />
+                    <sidebar-item title="Cultures" route-name="culture-route" icon="icon-share-alt" />
+                    <!--<sidebar-item title="Cultures" :hidden="false" icon="icon-share-alt" />!-->
 
-                    <!--  <sidebar-item title="Formulaires" route-name="config-form-route" icon="icon-note" /> -->
-                    <sidebar-item title="Formulaires" :hidden="true" icon="icon-note" />
+                    <sidebar-item title="Formulaires" route-name="config-form-route" icon="icon-note" />
+                    <!-- <sidebar-item title="Formulaires" :hidden="false" icon="icon-note" />!-->
 
                     <sidebar-item title="Données" route-name="dantic-collect-route" icon="icon-folder-alt" />
 

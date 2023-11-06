@@ -82,7 +82,7 @@ const store = createStore({
       },
       {
         name: "SENASEM",
-        enabled: true,
+        enabled: false,
       },
       {
         name: "SENAFIC",
@@ -90,7 +90,7 @@ const store = createStore({
       },
       {
         name: "DPROTV",
-        enabled: true,
+        enabled: false,
       },
       {
         name: "DPRODV",

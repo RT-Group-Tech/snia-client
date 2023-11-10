@@ -318,7 +318,7 @@ class Api {
       input: form.input,
       input_type: form.input_type,
       options: options.toString(),
-    });
+    },"/dantic/formulaire_url/configformulaire");
     //console.log("Terminate on ", JSON.stringify(data));
     let res = data.reponse;
     //console.log(res);
@@ -349,7 +349,7 @@ class Api {
     console.log("####Save sous options", JSON.stringify(options));
     for (var i = 0; i < options.length; i++) {
       data.input_option = options[i].input_option;
-      var res = await request(data);
+      var res = await request(data,"/dantic/formulaire_url/addinputoption");
 
       var reponse = res.data.reponse;
       console.log(JSON.stringify(reponse));
@@ -378,7 +378,7 @@ class Api {
       data.sous_input = sous_inputs[i].sous_input;
       data.type = sous_inputs[i].type;
 
-      var res = await request(data);
+      var res = await request(data,"/dantic/formulaire_url/sousinputs");
       //console.log(res);
       var reponse = res.data.reponse;
       console.log(JSON.stringify(reponse));
@@ -421,7 +421,7 @@ class Api {
 
     for (var i = 0; i < sous_options.length; i++) {
       data.sous_input_option = sous_options[i].sous_input_option;
-      var res = await request(data);
+      var res = await request(data,"/dantic/formulaire_url/sousinputs/option");
       //console.log(data); console.log(res);
       var reponse = res.data.reponse;
     }
@@ -478,11 +478,10 @@ class Api {
   static async modifierSectionFormulaire(s) {
     console.log("input length", s.inputs.length, JSON.stringify(s));
     let req1 = await request({
-      key: "42f39eeec46be85329dc54480a9a2e72ba3a5653",
       formulaire_section_id: s.formulaire_section_id,
       formulaire_id: s.formulaire_id,
       section: s.section,
-    });
+    },"/formulaire_url/safeguardsection");
     /* console.log("section update", JSON.stringify(req1)); */
     if (req1.status === 200) {
       for (let i = 0; i < s.inputs.length; i++) {
@@ -515,18 +514,17 @@ class Api {
   }
   static async supprimerFormulaire(formulaireId, callback) {
     let { data, status } = await request({
-      key: "e464b90fb62cb10624551926bb58084884905ba3",
       formulaire_id: formulaireId,
-    });
-    let res = data.result.reponse.status;
+    },"/dantic/formulaire_url/delete");
+    let res = data.reponse.status;
     console.log(JSON.stringify(data));
     if (status == 200 && res === "success") callback(true);
     else callback(false);
   }
 
   static async editFormTitre(data) {
-    data.key = "a306375b18af9454030614b49285fcc3e1361376";
-    await request(data);
+    //data.key = "a306375b18af9454030614b49285fcc3e1361376";
+    await request(data,"/dantic/formulaire_url/updatetitle");
   }
 
   static async refreshDashboard(state) {

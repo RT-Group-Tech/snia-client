@@ -49,6 +49,7 @@ export async function request(data = null, url = null)
       instance
         .post(url, data)
         .then(function (result) {
+            //console.log(result); console.clear();
           var data = result.data;
           let status = result.status;
           resolve({ data, status });

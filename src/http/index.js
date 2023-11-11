@@ -5,7 +5,7 @@ let token = localStorage.getItem("userToken");
 var domain = "127.0.0.1/backend_snia/";
 //domain="https://backend.rtgroup-rdc.com/url/security_rtg";
 domain =process.env.NODE_ENV === "production" ? "http://snia.edgeverifed.com" : "http://snia.edgeverifed.com";
-domain="http://back-system.agri-dantic-edai.tech";
+//domain="http://back-system.agri-dantic-edai.tech";
 const instance = axios.create({
   baseURL: domain,
   headers: {

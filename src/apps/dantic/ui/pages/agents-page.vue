@@ -121,12 +121,6 @@ export default {
           var path="/#/dantic/user/profile/view";
           var goTo=domain+path;
 
-          //this.$router.replace({ name: "dantic-profile-route" });
-          /**this.$router.push({path:"/dantic/user/profile/view"})
-          .then(()=>{
-            this.$router.go();
-          }); *///TODO: got to route by reloading browser.
-
           this.$router.push({ path: '/dantic/user/profile/view' })
               .then(() => { this.$router.go() })
         }

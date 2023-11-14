@@ -121,7 +121,6 @@ class GlobalApi {
     };
     let { data, status } = await request(form, "/agents/password");
     let success = data.reponse.status === "success";
-    console.log(data);
     return new Promise((resolve, reject) => {
       if (status === 200 && success) {
         resolve(data);

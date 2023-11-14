@@ -94,7 +94,6 @@ class GlobalApi {
       form,
       url
     );
-
     return new Promise((resolve, reject) => {
       if (status === 200) {
         if (data.error === undefined) {
@@ -208,6 +207,20 @@ class GlobalApi {
   {
     var res=await request(data,"/collectes/validate")
     callback(res);
+  }
+
+  static async getAvailableAccess(callback,from=null)
+  {
+    var res;
+    if(from!==null)
+    {
+      res=await request(null,"/dantic/access?config");
+    }
+    else
+    {
+      res=await request(null,"/dantic/access");
+    }
+    callback(res.data);
   }
 }
 export default GlobalApi;

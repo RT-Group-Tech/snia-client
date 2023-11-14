@@ -32,16 +32,16 @@
 
 export default {
     name: 'Modules',
+    data()
+    {
+      return {
+        moduleAccess:[]
+      };
+    },
     async mounted() {
         await this.$store.dispatch("auth/refreshLoggedUser");
-        /* Enable user access module */
-        this.modules.forEach((mod) => {
-            /* mod.enabled = true; */
-            let access = mod.name.toLocaleLowerCase();
-            if (access === this.user.access.access) {
-                mod.enabled = true;
-            }
-        })
+        await this.$store.dispatch("getAvailableAccess");
+
     },
 
     computed: {
@@ -49,6 +49,17 @@ export default {
             return this.$store.getters['auth/GET_USER']
         },
         modules() {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          for(var i=0; i<this.$store.state.modules.length; i++)
+          {
+            let access = this.$store.state.modules[i].name.toLocaleLowerCase();
+
+            if (access === this.user.access.access)
+            {
+              // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+              this.$store.state.modules[i].enabled = true;
+            }
+          }
             return this.$store.state.modules
         }
 

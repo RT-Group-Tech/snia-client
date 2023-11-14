@@ -28,6 +28,10 @@ const setters = {
   SET_DASHBOARD(state, data) {
     state.dashboard = data;
   },
+  SET_ACCESS(state,data)
+  {
+    state.access=data;
+  }
 };
 
 export default setters;

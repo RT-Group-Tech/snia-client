@@ -7,6 +7,7 @@ const getters = {
   GET_FORMULAIRES: (state) => state.formulaires,
   GET_CATEGORIES: (state) => state.categories,
   GET_DASHBOARD: (state) => state.dashboard,
+  GET_ACCESS: (state) =>state.access
 };
 
 export default getters;

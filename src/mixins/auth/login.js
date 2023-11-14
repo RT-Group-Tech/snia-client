@@ -35,21 +35,25 @@ export default {
           GlobalApi.login(user)
             .then(async (result) => {
               this.loginLoading = false;
-              if (
-                result.reponse !== undefined &&
-                result.reponse.status === "success"
-              ) {
+
+              if (result.reponse !== undefined && result.reponse.status === "success")
+              {
                 let reponse = result.reponse;
                 let access = reponse.data.access.access;
+                access=access.toLowerCase();
                 this.$store.dispatch("auth/refreshLoggedUser");
-                if (access === "dantic") {
+                console.log("success login.."); console.log(access);
+                if (access === "dantic")
+                {
                   this.$router.replace({ name: "modules" });
                   return;
                 }
                 this.$router.replace({
                   name: `${access}-secure-route`,
                 });
-              } else {
+              }
+              else
+              {
                 /*create a simple animation shake when task is failed */
                 this.$animatedFailedTask("login-box");
                 /*end shake animation*/
@@ -72,7 +76,8 @@ export default {
               }
             })
             .catch((e) => {
-              this.loginLoading = false;
+              this.loginLoading = false
+              console.log(e);
               $.notify(
                 {
                   icon: "fas fa-info",

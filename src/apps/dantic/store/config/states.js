@@ -9,7 +9,8 @@ const states = {
     categories: [] /*Liste des categories cultures */ ,
     dataLoading: false,
     formulaireSection: null /*Selection une section de formulaire*/ ,
-    dashboard: {}
+    dashboard: {},
+    access:{}
 };
 
 export default states;

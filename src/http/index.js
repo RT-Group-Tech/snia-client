@@ -1,11 +1,10 @@
 import axios from "axios";
+import base_url from "@/http/base_url";
 
 let token = localStorage.getItem("userToken");
 // create a new axios instance
-var domain = "127.0.0.1/backend_snia/";
-//domain="https://backend.rtgroup-rdc.com/url/security_rtg";
-domain =process.env.NODE_ENV === "production" ? "http://snia.edgeverifed.com" : "http://snia.edgeverifed.com";
-//domain="http://back-system.agri-dantic-edai.tech";
+var domain = base_url.url;
+
 const instance = axios.create({
   baseURL: domain,
   headers: {

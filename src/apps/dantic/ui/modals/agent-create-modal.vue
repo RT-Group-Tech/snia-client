@@ -218,6 +218,14 @@ export default {
         }
       });
     }
+  },
+  mounted() {
+    /**
+     * GeT ACCESS.
+     */
+    Api.getAccess((access)=>{
+      this.access=access;
+    });
   }
 }
 </script>

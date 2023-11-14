@@ -53,6 +53,10 @@ const store = createStore({
     },
     SET_USERPROFILE(state,data){
       state.userProfile=data;
+    },
+    SET_MODULES(state,data)
+    {
+      state.modules=data;
     }
   },
   state: {
@@ -146,6 +150,13 @@ const store = createStore({
         });
       });
     },
+    async getAvailableAccess({commit})
+    {
+      Api.getAvailableAccess((data)=>{
+        console.log("global.."); console.log(data);
+        commit("SET_MODULES",data.access);
+      },"config")
+    }
   },
 });
 

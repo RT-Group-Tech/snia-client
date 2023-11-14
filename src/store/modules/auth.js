@@ -1,5 +1,8 @@
+import Api from "@/api";
+
 const states = {
   user: null,
+  modules:[]
 };
 
 const setters = {
@@ -23,6 +26,7 @@ const actions = {
     localStorage.setItem("userToken", null);
     commit("SET_USER", null);
   },
+
 };
 
 const auth = {

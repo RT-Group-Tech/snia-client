@@ -86,6 +86,7 @@
 
 <script>
 import AgentCreateModal from "../modals/agent-create-modal.vue";
+import domain from "../../../../http/base_url";
 
 export default {
     name: "AgentPage",
@@ -331,7 +332,7 @@ export default {
                 ],
                 lengthChange: false,
                 ajax: {
-                    url: 'http://snia.edgeverifed.com/dantic/agent_url/viewAgent',
+                    url: domain.url+'/dantic/agent_url/viewAgent',
                     dataSrc: 'reponse'
                 },
                 columns: [

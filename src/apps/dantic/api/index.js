@@ -537,6 +537,13 @@ class Api {
       resolve(danticDashboard);
     });
   }
+
+  static async getAccess(callback)
+  {
+    var res=await request(null,"/dantic/access");
+    console.clear(); console.log("access..."); console.log(res);
+    callback(res.data.access);
+  }
 }
 
 export default Api;

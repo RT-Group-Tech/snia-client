@@ -44,7 +44,6 @@ const routes = [
         name: "agents-view-route",
         beforeEnter: beforeAuth,
       },
-
       {
         path: "/dantic/secure/config.formulaires",
         component: () => import("@/apps/dantic/ui/pages/config-form-page"),

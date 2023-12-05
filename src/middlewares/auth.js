@@ -4,7 +4,8 @@ export async function beforeAuth(to, from, next) {
   let isAuthenticated = false;
   await store.dispatch("auth/refreshLoggedUser");
   const user = store.getters["auth/GET_USER"];
-  if (user !== null) {
+  if (user !== null)
+  {
     isAuthenticated = true;
   }
   if (to.name !== "login" && !isAuthenticated) {

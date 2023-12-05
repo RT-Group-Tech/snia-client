@@ -214,11 +214,11 @@ class GlobalApi {
     var res;
     if(from!==null)
     {
-      res=await request(null,"/dantic/access?config");
+      res=await request(null,"/access/modules?config");
     }
     else
     {
-      res=await request(null,"/dantic/access");
+      res=await request(null,"/access/list");
     }
     callback(res.data);
   }

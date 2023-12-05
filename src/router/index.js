@@ -19,6 +19,7 @@ router.afterEach((to, from) => {
 });
 router.onError((error) => {
   if (/loading chunk \d* failed./i.test(error.message) && navigator.onLine) {
+    //console.log("router error");
     window.location.reload();
   }
 });

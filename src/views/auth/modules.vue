@@ -69,8 +69,14 @@ export default {
     methods: {
         toggleChoice(choice) {
             let mod = choice.name.toLowerCase();
-            if (this.user) {
-                if (choice.enabled) {
+            if (this.user)
+            {
+                if (choice.enabled)
+                {
+                    if(mod.includes("ipa"))
+                    {
+                      mod="ipa";
+                    }
                     try {
                         this.$router.replace({
                             name: `${mod}-secure-route`,

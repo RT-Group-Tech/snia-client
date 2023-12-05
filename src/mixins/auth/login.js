@@ -42,15 +42,26 @@ export default {
                 let access = reponse.data.access.access;
                 access=access.toLowerCase();
                 this.$store.dispatch("auth/refreshLoggedUser");
-                console.log("success login.."); console.log(access);
+                //console.log("success login.."); console.log(access);
                 if (access === "dantic")
                 {
                   this.$router.replace({ name: "modules" });
                   return;
                 }
-                this.$router.replace({
+                if(access.includes("ipa"))
+                {
+                  access="ipa";
+                }
+                else if(access.includes("ita"))
+                {
+                  access="ita";
+                }
+                else{}
+                console.log(access);
+                /*this.$router.replace({
                   name: `${access}-secure-route`,
-                });
+                });*/
+                this.$router.replace({ name: "modules" });
               }
               else
               {

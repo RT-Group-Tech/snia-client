@@ -51,6 +51,7 @@ export default {
         modules() {
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.user.access.access=this.user.access.access.toLocaleLowerCase();
+
           for(var i=0; i<this.$store.state.modules.length; i++)
           {
             let access = this.$store.state.modules[i].name.toLocaleLowerCase();

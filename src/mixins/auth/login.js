@@ -58,10 +58,9 @@ export default {
                 }
                 else{}
                 console.log(access);
-                /*this.$router.replace({
+                this.$router.replace({
                   name: `${access}-secure-route`,
-                });*/
-                this.$router.replace({ name: "modules" });
+                });
               }
               else
               {

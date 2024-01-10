@@ -21,6 +21,12 @@ const routes = [
         beforeEnter: beforeAuth,
       },
       {
+        path: "/dantic/user/profile/:task",
+        component: () => import("@/views/public/pages/user-profile"),
+        name: "DANTIC-profile-route",
+        beforeEnter: beforeAuth,
+      },
+      {
         path: "/dantic/secure/ipa-view",
         component: () => import("@/apps/dantic/ui/pages/ipa-view"),
         name: "ipa-view-route",

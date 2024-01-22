@@ -9,12 +9,12 @@ if(window.location.host.includes("localhost"))
      */
     domain="http://127.0.0.1/backend_snia";
 }
-else if(window.location.host.includes("edge"))
+else if(window.location.host.includes("test"))
 {
     /**
      * Test server.
      */
-    domain="http://snia.edgeverifed.com";
+    domain="http://test-back-system.agri-dantic-edai.tech";
 }
 else if(window.location.host.includes("agri"))
 {

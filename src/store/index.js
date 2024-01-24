@@ -64,42 +64,6 @@ const store = createStore({
     sujets: [] /* Formulaire sujets */,
     cultures: [], //*Liste des cultures * */,
     modules: [
-      {
-        name: "DANTIC",
-        enabled: false,
-      },
-      {
-        name: "MINISTRE",
-        enabled: false,
-      },
-      {
-        name: "SG",
-        enabled: false,
-      },
-      {
-        name: "IPA",
-        enabled: false,
-      },
-      {
-        name: "ITA",
-        enabled: false,
-      },
-      {
-        name: "SENASEM",
-        enabled: false,
-      },
-      {
-        name: "SENAFIC",
-        enabled: false,
-      },
-      {
-        name: "DPROTV",
-        enabled: false,
-      },
-      {
-        name: "DPRODV",
-        enabled: false,
-      },
     ],
     userProfile:{}
   },

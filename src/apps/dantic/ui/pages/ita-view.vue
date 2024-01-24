@@ -97,6 +97,7 @@
 
 import ItaCreateModal from "../modals/ita-create-modal.vue";
 import Api from "@/apps/dantic/api";
+import base_url from "@/http/base_url";
 
 export default {
     name: "Ipa-view",
@@ -356,7 +357,7 @@ export default {
                 ],
                 lengthChange: false,
                 ajax: {
-                    url: 'http://snia.edgeverifed.com/dantic/ita_url/viewIta',
+                    url: base_url.url+'/dantic/ita_url/viewIta',
                     dataSrc: 'reponse'
                 },
                 columns: [

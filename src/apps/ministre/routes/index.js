@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/ministre/secure",
     component: () => import("@/apps/ministre/ui/layouts"),
-    name: "ministre-secure-route",
+    name: "service-ministre-secure-route",
     beforeEnter: beforeAuth,
     redirect: { name: "ministre-dashboard-route" },
     children: [

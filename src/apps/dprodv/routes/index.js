@@ -4,7 +4,7 @@ const routes = [{
     path: "/dprodv/secure",
     component: () =>
         import ("@/apps/dprodv/ui/layouts"),
-    name: "dprodv-secure-route",
+    name: "service-dprodv-secure-route",
     beforeEnter: beforeAuth,
 
     redirect: { name: "dprodv-dashboard-route" },

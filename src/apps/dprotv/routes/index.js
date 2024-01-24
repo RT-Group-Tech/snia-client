@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/dprotv/secure",
     component: () => import("@/apps/dprotv/ui/layouts"),
-    name: "dprotv-secure-route",
+    name: "service-dprotv-secure-route",
     beforeEnter: beforeAuth,
 
     redirect: { name: "dprotv-dashboard-route" },

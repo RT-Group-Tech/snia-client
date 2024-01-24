@@ -1,5 +1,5 @@
 var domain="";
-domain =process.env.NODE_ENV === "production" ? "http://snia.edgeverifed.com" : "http://snia.edgeverifed.com";
+//domain =process.env.NODE_ENV === "production" ? "http://snia.edgeverifed.com" : "http://snia.edgeverifed.com";
 
 if(window.location.host.includes("localhost"))
 {

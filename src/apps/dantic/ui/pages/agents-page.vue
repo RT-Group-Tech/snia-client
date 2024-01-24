@@ -337,8 +337,8 @@ export default {
                 },
                 columns: [
                     {
-                        title: '#N° de Référence',
-                        data: 'numero_reference'
+                        title: 'Accès',
+                        data: 'access.access'
                     },
                     {
                         title: 'Nom Complet',

@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/dantic/secure",
     component: () => import("@/apps/dantic/ui/layouts"),
-    name: "dantic-secure-route",
+    name: "service-dantic-secure-route",
     beforeEnter: beforeAuth,
     redirect: { name: "dashboard-route" },
     children: [

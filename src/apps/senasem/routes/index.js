@@ -4,7 +4,7 @@ const routes = [{
     path: "/senasem/secure",
     component: () =>
         import ("@/apps/senasem/ui/layouts"),
-    name: "senasem-secure-route",
+    name: "service-senasem-secure-route",
     beforeEnter: beforeAuth,
 
     children: [{

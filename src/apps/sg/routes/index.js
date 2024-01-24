@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/sg/secure",
     component: () => import("@/apps/sg/ui/layouts"),
-    name: "sg-secure-route",
+    name: "service-sg-secure-route",
     beforeEnter: beforeAuth,
     redirect: { name: "sg-dashboard-route" },
     children: [

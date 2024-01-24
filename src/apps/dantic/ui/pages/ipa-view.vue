@@ -52,15 +52,15 @@
 
                 </div>
               </div>
-              <button type="button" @click="showIpaRegisterModal" class="btn btn-success d-none d-sm-inline-block">
+              <!--<button type="button" @click="showIpaRegisterModal" class="btn btn-success d-none d-sm-inline-block">
                 <i class="flaticon-add mr-1"></i>Nouvelle IPA
-              </button>
+              </button>!-->
             </div>
           </div>
           <div class="col-md-12">
             <section-loader :loading="dataLoading" :data="ipas">
               <div class="row mt-4">
-                <div class="col-md-3" v-for="(ipa, i) in ipas" :key="i">
+                <div class="col-md-6" v-for="(ipa, i) in ipas" :key="i">
                   <div class="card card-pricing">
                     <div class="card-header bg-transparent">
                       <h4 class="card-title">

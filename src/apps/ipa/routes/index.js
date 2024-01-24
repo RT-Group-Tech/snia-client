@@ -25,14 +25,14 @@ const routes = [{
             path: "/ipa/user/profile",
             component: () =>
                 import ("@/views/public/pages/user-profile"),
-            name: "ipa-Haut-Katanga-profile-route",
+            name: "IPA-HAUT-KATANGA-profile-route",
             beforeEnter: beforeAuth,
         },
         {
             path: "/ipa/user/profile",
             component: () =>
                 import ("@/views/public/pages/user-profile"),
-            name: "ipa-Kasaï-profile-route",
+            name: "IPA-KASAï-profile-route",
             beforeEnter: beforeAuth,
         },
     ],

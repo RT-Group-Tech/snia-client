@@ -4,7 +4,7 @@ const routes = [{
     path: "/senafic/secure",
     component: () =>
         import ("@/apps/senafic/ui/layouts"),
-    name: "senafic-secure-route",
+    name: "service-senafic-secure-route",
     beforeEnter: beforeAuth,
 
     redirect: { name: "senafic-dashboard-route" },

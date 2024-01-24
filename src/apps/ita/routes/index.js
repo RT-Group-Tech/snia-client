@@ -40,7 +40,7 @@ const routes = [{
             path: "/ita/user/profile/:task",
             component: () =>
                 import ("@/views/public/pages/user-profile"),
-            name: "ita-profile-route",
+            name: "ITA-MWEKA-profile-route",
             beforeEnter: beforeAuth,
         },
     ],

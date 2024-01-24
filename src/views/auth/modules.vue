@@ -55,8 +55,8 @@ export default {
           for(var i=0; i<this.$store.state.modules.length; i++)
           {
             let access = this.$store.state.modules[i].name.toLocaleLowerCase();
-
-            if (access === this.user.access.access)
+            console.clear(); console.log(this.user.access.access);
+            if (access.includes(this.user.access.access))
             {
               // eslint-disable-next-line vue/no-side-effects-in-computed-properties
               this.$store.state.modules[i].enabled = true;
@@ -76,7 +76,7 @@ export default {
                     if(mod.includes("ipa"))
                     {
                       mod="ipa";
-                    }
+                    }console.clear(); console.log(mod);
                     try {
                         this.$router.replace({
                             name: `${mod}-secure-route`,

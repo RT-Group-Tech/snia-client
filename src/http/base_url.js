@@ -1,5 +1,4 @@
 var domain="";
-//domain =process.env.NODE_ENV === "production" ? "http://snia.edgeverifed.com" : "http://snia.edgeverifed.com";
 
 if(window.location.host.includes("localhost"))
 {
@@ -18,6 +17,10 @@ else if(window.location.host.includes("test"))
 }
 else if(window.location.host.includes("agri"))
 {
+    /**
+     * Production server.
+     * @type {string}
+     */
     domain="http://back-system.agri-dantic-edai.tech";
 }
 else{}

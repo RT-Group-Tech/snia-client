@@ -5,7 +5,7 @@
                 <img src="assets/img/armoirie_rdc.png" alt="" class="img-fluid">
                 <h1 class="fw-bold display-4 text-white mb-2 mt-2 text-uppercase"
                     style="font-family: Arial, Helvetica, sans-serif;">
-                    Ministère de l'agriculture
+                    Ministère de l'agriculturesadesfdgfgsdgf
                 </h1>
 
                 <div class="d-flex align-content-center justify-content-center align-items-center w-25">

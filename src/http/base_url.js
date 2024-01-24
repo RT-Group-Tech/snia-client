@@ -24,7 +24,8 @@ else if(host.includes("agri"))
     domain="http://back-system.agri-dantic-edai.tech";
 }
 else{}
-console.log("host:"+host);
+//console.log("host:"+host);
+domain="http://test-back-system.agri-dantic-edai.tech";
 export default{
     url:domain
 }

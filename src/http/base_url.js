@@ -1,6 +1,6 @@
 var domain="";
-
-if(window.location.host.includes("localhost"))
+var host=window.location.host;
+if(host.includes("localhost"))
 {
     /**
      * Local server.
@@ -8,14 +8,14 @@ if(window.location.host.includes("localhost"))
      */
     domain="http://127.0.0.1/backend_snia";
 }
-else if(window.location.host.includes("test"))
+else if(host.includes("test"))
 {
     /**
      * Test server.
      */
     domain="http://test-back-system.agri-dantic-edai.tech";
 }
-else if(window.location.host.includes("agri"))
+else if(host.includes("agri"))
 {
     /**
      * Production server.
@@ -24,7 +24,7 @@ else if(window.location.host.includes("agri"))
     domain="http://back-system.agri-dantic-edai.tech";
 }
 else{}
-
+console.log("host:"+host);
 export default{
     url:domain
 }

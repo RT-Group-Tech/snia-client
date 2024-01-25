@@ -8,7 +8,6 @@
         <router-view />
 
         <!-- main footer -->
-        <ita-main-footer />
         <!-- End footer -->
 
 
@@ -26,7 +25,6 @@ export default {
     mixins: [utilities],
     components: {
         itaMainHeader,
-        itaMainFooter
     },
     mounted() {
         $('.scrollbar-inner').scrollbar();

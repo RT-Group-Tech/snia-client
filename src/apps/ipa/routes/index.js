@@ -10,8 +10,7 @@ const routes = [{
     children: [{
             path: "",
             name: "ipa-dashboard-route",
-            component: () =>
-                import ("@/apps/ipa/ui/pages/ipa.dashboard"),
+            component: () => import ("@/apps/ipa/ui/pages/ipa.dashboard"),
             beforeEnter: beforeAuth,
         },
         {

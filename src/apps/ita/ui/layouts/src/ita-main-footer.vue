@@ -11,9 +11,6 @@
 
                 </ul>
             </nav>
-            <div class="copyright ml-auto">
-                powered <i class="icon-globe text-info"></i> by <a href="rtgroup-rdc.com">RT GROUP</a>
-            </div>
         </div>
     </footer>
 </template>

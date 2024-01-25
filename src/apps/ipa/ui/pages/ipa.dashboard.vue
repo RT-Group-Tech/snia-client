@@ -17,20 +17,20 @@
 
         <div class="container mt--5">
             <div class="page-inner mt--3">
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre agents de ipa</div>
-                                <div class="h1 mb-3 fw-extrabold ">0</div>
+                                <div class="h1 mb-3 fw-extrabold ">-</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 col-sm-4 col-lg-2">
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre de itas de ipa</div>
-                                <div class="h1 mb-3 fw-extrabold">0</div>
+                                <div class="text-muted m-0">Nombre ITAS</div>
+                                <div class="h1 mb-3 fw-extrabold">-</div>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre agriculteurs</div>
-                                <div class="h1 mb-3 fw-extrabold">700</div>
+                                <div class="h1 mb-3 fw-extrabold">-</div>
                             </div>
                         </div>
                     </div>
@@ -46,13 +46,17 @@
                         <div class="card animated zoomIn">
                             <div class="card-body p-3 text-center">
                                 <div class="text-muted m-0">Nombre utilisateurs</div>
-                                <div class="h1 mb-3 fw-extrabold">0</div>
+                                <div class="h1 mb-3 fw-extrabold">-</div>
                             </div>
                         </div>
                     </div>
 
-                </div>
+                </div>!-->
+
             </div>
+          <div class="row">
+            <data-collect-page></data-collect-page>
+          </div>
         </div>
     </div>
     <report-modal />
@@ -60,10 +64,12 @@
 
 <script>
 import reportModal from "@/views/public/modals/generate-report-modal";
+import dataCollectPage from "@/views/public/pages/data-collect-page";
 export default {
     name: 'ItaDashboard',
     components: {
-        reportModal
+        reportModal,
+      dataCollectPage
     },
   computed:{
     user() {

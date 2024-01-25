@@ -8,7 +8,6 @@
         <router-view />
 
         <!-- main footer -->
-        <ipa-main-footer />
         <!-- End footer -->
 
 
@@ -26,7 +25,6 @@ export default {
     mixins: [utilities],
     components: {
         ipaMainHeader,
-        ipaMainFooter
     },
     mounted() {
         $('.scrollbar-inner').scrollbar();

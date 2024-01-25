@@ -37,20 +37,6 @@
                                 Données collectées
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Menu
-                            </a>
-                            <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"
-                                    @click.prevent="$router.push({ name: 'ita-secteurs-route' })">Voir secteur</a>
-                                <a class="dropdown-item" href="javascript:void(0)"
-                                    @click.prevent="$showBsModal('secteurCreateModal')">Créer
-                                    secteur</a>
-                            </div>
-                        </li>
-
                     </ul>
                 </nav>
                 <nav class="navbar navbar-header navbar-expand-lg p-0">

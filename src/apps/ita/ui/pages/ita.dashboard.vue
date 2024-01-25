@@ -8,9 +8,6 @@
                         <h5 class="op-7 mb-3">Inspéction Territoriale Agricole de la Rép. Dém du Congo</h5>
                     </div>
                     <div class="ml-auto">
-                        <button type="button" class="btn btn-success mr-1"
-                            @click.prevent="$showBsModal('secteurCreateModal')">
-                            <i class="flaticon-add"></i> Nouveau secteur</button>
                         <button type="button" class="btn btn-light" @click.prevent="$showBsModal('report-modal')">
                             <i class="icon-docs"></i> Rapport</button>
                     </div>
@@ -20,42 +17,10 @@
 
         <div class="container mt--5">
             <div class="page-inner mt--3">
-                <div class="row">
-                    <div class="col-6 col-sm-4 col-lg-2">
-                        <div class="card animated zoomIn">
-                            <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre agents de ita</div>
-                                <div class="h1 mb-3 fw-extrabold ">0</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-lg-2">
-                        <div class="card animated zoomIn">
-                            <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre secteurs de ita</div>
-                                <div class="h1 mb-3 fw-extrabold">0</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-lg-2">
-                        <div class="card animated zoomIn">
-                            <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre agriculteurs</div>
-                                <div class="h1 mb-3 fw-extrabold">0</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4 col-lg-2">
-                        <div class="card animated zoomIn">
-                            <div class="card-body p-3 text-center">
-                                <div class="text-muted m-0">Nombre utilisateurs</div>
-                                <div class="h1 mb-3 fw-extrabold">0</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
             </div>
+          <div class="row">
+            <data-collect-page></data-collect-page>
+          </div>
         </div>
     </div>
     <secteur-create-modal />
@@ -63,13 +28,15 @@
 </template>
 
 <script>
+import dataCollectPage from "@/views/public/pages/data-collect-page";
 import SecteurCreateModal from "../modals/ita.secteurs-create-modal"
 import reportModal from "@/views/public/modals/generate-report-modal";
 export default {
     name: 'ItaDashboard',
     components: {
         SecteurCreateModal,
-        reportModal
+        reportModal,
+        dataCollectPage
     },
     computed:{
       user() {

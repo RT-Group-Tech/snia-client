@@ -19,7 +19,7 @@
             <div class="page-inner mt--3">
             </div>
           <div class="row">
-            <data-collect-page></data-collect-page>
+            <data-collect-page :access="user.access.access"></data-collect-page>
           </div>
         </div>
     </div>

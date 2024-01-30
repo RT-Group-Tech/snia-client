@@ -19,7 +19,7 @@ class GlobalApi {
     if(filter!==undefined)
     {
       url+="?f=1";
-
+      url+="&access="+filter.access;
       if(filter.from!==undefined && filter.from.length>1)
       {
         url+="&from="+filter.from+"&to="+filter.to;
@@ -29,6 +29,7 @@ class GlobalApi {
       {
         url+="&status="+filter.status;
       }
+
     }
     const { data, status } = await request(
       {

@@ -109,7 +109,6 @@ import collecteDetailModal from '../modals/collecte-detail-modal.vue'
 import emptyStateJson from "@/assets/json/folder-empty.json";
 export default {
     name: "Data-Collected",
-
     data() {
         return {
             selectedCollecte: {},
@@ -118,12 +117,18 @@ export default {
             json: emptyStateJson,
             filter:{
               from:"",
-              to:""
+              to:"",
+              access:"all"
             },
             validation:-1
         }
     },
-
+    props:{
+        access:{
+          type:String,
+          default:"all"
+    },
+    },
     components: {
         collecteDetailModal,
     },
@@ -157,7 +162,7 @@ export default {
           this.filter.from=d[2]+"/"+d[1]+"/"+d[0];
           d=this.filter.to.split("-");
           this.filter.to=d[2]+"/"+d[1]+"/"+d[0];
-
+          this.filter.access="sss";
           this.viewData();
         },
         showCollecte(collecte) {
@@ -166,7 +171,11 @@ export default {
         },
         viewData(){
           this.dataLoading = true;
-          var filter=(this.filter.from!==null)? this.filter : null ;
+          this.filter.access="xxxxx";
+          //var filter=(this.filter.from!==null)? this.filter : null ;
+          var filter=this.filter;
+          filter.access=this.access;
+
           this.$store.dispatch('voirCollectes',filter).then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
           this.$store.dispatch("voirSujets");
         }
@@ -181,7 +190,8 @@ export default {
          * Filter par status.
          */
         var filter={
-          status:newValue
+          status:newValue,
+          access:this.access
         };
         this.$store.dispatch('voirCollectes',filter).then((rs) => this.dataLoading = false).catch(() => this.dataLoading = false);
       }

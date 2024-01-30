@@ -18,14 +18,14 @@
           </div>
 
         </div>
-        <div class="col-md-6">
+        <div style="display: none;" class="col-md-6">
           <div class="form-group form-group-default">
             <label>Détail</label>
             <input v-model="form.detail" required id="detail" type="text" class="form-control"
               placeholder="Saisir le detail...">
           </div>
         </div>
-        <div class="col-md-6">
+        <div style="display: none;" class="col-md-6">
           <div class=" form-group form-group-default">
             <label>Valeur</label>
             <input v-model="form.valeur" required id="detail" type="text" class="form-control"

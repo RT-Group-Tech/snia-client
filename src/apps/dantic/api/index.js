@@ -198,8 +198,8 @@ class Api {
       {
         culture_categorie_id: form.culture_categorie_id,
         nom: form.nom,
-        detail: form.detail,
-        valeur: form.valeur,
+        //detail: form.detail,
+        //valeur: form.valeur,
       },
       "/dantic/culture_url/safeguardculture"
     );

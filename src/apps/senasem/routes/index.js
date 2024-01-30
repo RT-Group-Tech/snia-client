@@ -26,7 +26,7 @@ const routes = [{
             path: "/senasem/user/profile",
             component: () =>
                 import ("@/views/public/pages/user-profile"),
-            name: "senasem-profile-route",
+            name: "SERVICE-SENASEM-profile-route",
             beforeEnter: beforeAuth,
         },
     ],

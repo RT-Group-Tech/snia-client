@@ -207,6 +207,12 @@ class Api {
     else callback(false);
   }
 
+  static async deleteCulture(form,callback)
+  {
+    await request(form,"dantic/culture_url/delete");
+    callback();
+  }
+
   /* VOir les formulaires enregistrés dans le systèmes */
   static async voirFormulaires(callback) {
     const { data, status } = await request(

@@ -38,6 +38,7 @@
 
 <script>
 import createCultureModal from "../../../modals/culture-create-modal"
+import Api from "@/apps/dantic/api";
 export default {
     name: "Create-Categorie",
 
@@ -51,6 +52,19 @@ export default {
 
     components: {
         createCultureModal
+    },
+    methods:{
+      deleteCulture(cultureId)
+      {
+        var formData=new FormData();
+        formData.append("culture_id",cultureId);
+        formData.append("agent_id",0);
+
+          Api.deleteCulture(formData,()=>{
+
+            this.$store.dispatch('voirCultures').then((s) => this.dataLoading = false).catch((err) => this.dataLoading = false);
+          });
+      }
     },
     created() {
         this.$store.dispatch('voirCultures').then((s) => this.dataLoading = false).catch((err) => this.dataLoading = false);
